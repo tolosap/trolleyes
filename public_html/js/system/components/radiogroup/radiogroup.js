@@ -21,9 +21,9 @@ function radiogroup(serverService) {
         });
     };
 
-    self.$doCheck = function () {
-        console.log("change radiogroup");
-    }
+//    self.$doCheck = function () {
+//        console.log("change radiogroup");
+//    }
 
 //    self.$doCheck = function () {
 //        console.log("change radiogroup");
