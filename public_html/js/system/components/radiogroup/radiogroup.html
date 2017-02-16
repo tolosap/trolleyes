@@ -4,6 +4,7 @@
                name="rg.tablereference"
                required="rg.required"
                ng-model="rg.ide"
+               ng-selected="button.id == rg.ide"
                ng-value="button.id" />{{button[rg.field]| clipString}}
     </label>
 </div>
