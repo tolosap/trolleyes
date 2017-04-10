@@ -5,7 +5,7 @@
            ng-change="dt.change(dt.form[dt.name])"
            ng-required="dt.required" 
            placeholder="dd/mm/aaaa" 
-           name="dt.name" 
+           name="{{dt.name}}" 
            jqdatepicker />
     <small>{{dt.model| fechaformateada }}</small>
 </div>
