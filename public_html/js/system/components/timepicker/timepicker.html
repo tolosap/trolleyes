@@ -5,7 +5,7 @@
            ng-change="dtp.change(dtp.form[dtp.name])"
            ng-required="dtp.required"
            placeholder="dd/mm/aaaa HH:mm"
-           name="dtp.name"
+           name="{{dtp.name}}"
            datetimepicker
            />
     <small>{{dt.model| fechaformateada }}</small>
