@@ -1,4 +1,4 @@
-
+# SISANE HAS BEEN DEPRECATED. DO NOT USE.
 # sisane client (warning: under development)
 
   * sisane is a client for sisane server and provides a template to easy build small and medium AJAX projects with Angular 1.x    
