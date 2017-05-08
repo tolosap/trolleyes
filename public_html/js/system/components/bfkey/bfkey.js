@@ -28,7 +28,7 @@ function bfkey(serverService, $uibModal, metaService)
             size: 'lg'
         }).result.then(function (modalResult)
         {
-            //no va. Pendiente de desarrollo en el servidor de un servicio de lectura y mofificación de ajenas 
+            // Pendiente de desarrollo en el servidor de un servicio específico de lectura y mofificación de ajenas 
             
             self.bean["obj_" + self.reference].id = modalResult;
             var jsonToSend = {json: angular.toJson(serverService.array_identificarArray(self.bean))};

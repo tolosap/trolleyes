@@ -74,22 +74,5 @@ moduloDocumento.controller('DocumentoPListController', ['$scope', '$routeParams'
                 $scope.status = "Error en la recepción de datos del servidor";
             });
         }
-        $scope.pop = function (id, foreignObjectName, foreignContollerName, foreignViewName) {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'js/' + foreignObjectName + '/' + foreignViewName + '.html',
-                controller: foreignContollerName,
-                size: 'lg',
-                resolve: {
-                    id: function () {
-                        return id;
-                    }
-                }
-            }).result.then(function (modalResult) {
-                if (modalResult) {
-                    getDataFromServer();
-                }
-
-            });
-        };
         getDataFromServer();
     }]);

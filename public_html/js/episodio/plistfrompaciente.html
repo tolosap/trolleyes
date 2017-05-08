@@ -167,45 +167,30 @@ THE SOFTWARE.
                                                             name="ob"
                                                             reference="f.reference"
                                                             bean="obj"
-                                                            fname="f.longname"                                                                                                                              
-
-                                                            >
+                                                            fname="f.longname">
                                                         </bf-key>
                                                     </div> 
                                                 </td>                       
                                                 <td>
                                                     <div class="btn-toolbar" role="toolbar">
                                                         <div class="btn-group">
-
                                                             <actions
                                                                 id="obj.id"
-                                                                name="ob"
-                                                                >                                                                  
+                                                                name="ob">                                                                  
                                                             </actions>
-
-                                                            <div ng-repeat="t in fields" ng-if="t.type == 'specific'" class="btn-group">
-                                                                <bf-key
-                                                                    name="ob"
-                                                                    reference="t.reference"
-                                                                    bean="obj"
-                                                                    fname="t.longname"                                                                                                                              
-
-                                                                    >
-                                                                </bf-key>
-
+                                                            <div class="btn-group">
+                                                                <a class="btn btn-default btn-xs" href="prueba/plist/1/10?sfilter=and,id_episodio,equa,{{obj.id}}">
+                                                                    <span class="glyphicon glyphicon-alert"></span>
+                                                                </a>
+                                                                <a class="btn btn-default btn-xs" href="analitica/plist/1/10?sfilter=and,id_episodio,equa,{{obj.id}}">
+                                                                    <span class="glyphicon glyphicon-heart"></span>
+                                                                </a>
+                                                                <a class="btn btn-default btn-xs" href="diagnostico/plist/1/10?sfilter=and,id_episodio,equa,{{obj.id}}">
+                                                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                                                </a>
                                                             </div>
-
                                                         </div>
-                                                        <a class="btn btn-default btn-xs" href="prueba/plist/1/10?sfilter=and,id_episodio,equa,{{obj.id}}">
-                                                            <span class="glyphicon glyphicon-alert"></span>
-                                                        </a>
-                                                        <a class="btn btn-default btn-xs" href="analitica/plist/1/10?sfilter=and,id_episodio,equa,{{obj.id}}">
-                                                            <span class="glyphicon glyphicon-heart"></span>
-                                                        </a>
-                                                        <a class="btn btn-default btn-xs" href="diagnostico/plist/1/10?sfilter=and,id_episodio,equa,{{obj.id}}">
-                                                            <span class="glyphicon glyphicon-list-alt"></span>
-                                                        </a>
-                                                    </div>
+                                                    </div>                                                    
                                                 </td>
                                             </tr>                                   
                                         </tbody>
