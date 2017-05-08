@@ -54,7 +54,7 @@ function foreignkey(serverService, $uibModal) {
             validity(true);
             return;
         }
-        if (self.bean.id) {
+        if (self.bean) {
             serverService.promise_getOne(self.reference, id).then(function (response) {
                 var old_id = id;
                 self.bean = response.data.message;
