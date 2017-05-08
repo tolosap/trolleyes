@@ -22,13 +22,16 @@ function bfkey(serverService, $uibModal, metaService)
 
     self.chooseOne = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'js/' + self.reference + '/selection.html',
+            templateUrl: 'js/system/templates/selection.html',
+            // templateUrl: 'js/' + self.reference + '/selection.html',
             controller: serverService.capitalizeWord(self.reference) + "SelectionController",
             size: 'lg'
         }).result.then(function (modalResult)
         {
-            self.bean["id_" + self.reference] = modalResult;
-            var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray(self.bean))};
+            //no va. Pendiente de desarrollo en el servidor de un servicio de lectura y mofificación de ajenas 
+            
+            self.bean["obj_" + self.reference].id = modalResult;
+            var jsonToSend = {json: angular.toJson(serverService.array_identificarArray(self.bean))};
             serverService.promise_setOne(self.name, jsonToSend);
             location.reload();
         });

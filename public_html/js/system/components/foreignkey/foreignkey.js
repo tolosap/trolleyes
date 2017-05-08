@@ -20,7 +20,8 @@ function foreignkey(serverService, $uibModal) {
 
     self.chooseOne = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'js/' + self.reference + '/selection.html',
+            templateUrl: 'js/system/templates/selection.html',
+            // templateUrl: 'js/' + self.reference + '/selection.html',
             controller: serverService.capitalizeWord(self.reference) + "SelectionController",
             size: 'lg'
         }).result.then(function (modalResult) {
