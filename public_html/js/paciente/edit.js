@@ -90,13 +90,5 @@ moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '
             $location.path('/' + $scope.ob + '/plist');
         };
 
-        $scope.chooseOne = function (nameForeign, foreignObjectName, contollerName) {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'js/' + foreignObjectName + '/selection.html',
-                controller: contollerName,
-                size: 'lg'
-            }).result.then(function (modalResult) {
-                $scope.bean[nameForeign].id = modalResult;
-            });
-        };
+
     }]);

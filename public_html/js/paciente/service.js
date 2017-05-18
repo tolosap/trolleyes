@@ -18,7 +18,7 @@ moduloServicios.factory('pacienteService', ['serverService', function (serverSer
                     {name: "pais", shortname: "Pais", longname: "Pais", visible: false, type: "text", required: true, maxlength: 255, pattern: serverService.getRegExpr("nombre"), help: serverService.getRegExpl("nombre")},
                     {name: "email", shortname: "Email", longname: "Email", visible: true, type: "text", required: true, maxlength: 255, pattern: serverService.getRegExpr("email"), help: serverService.getRegExpl("email")},
                     {name: "telefono", shortname: "Tel.", longname: "Telefono", visible: true, type: "text", required: true, maxlength: 255, pattern: serverService.getRegExpr("telefono"), help: serverService.getRegExpl("telefono")},
-                    {name: "obj_servicio", shortname: "Tipo serv.", longname: "Tipo de servicio", visible: false, type: "foreign", reference: "servicio"},
+                    {name: "obj_servicio", shortname: "Serv.", longname: "Servicio", visible: false, type: "foreign", reference: "servicio", descforeign: "descripcion"},
                     {name: "fecha_salida", shortname: "Fech. Salida", longname: "Fecha Salida", visible: false, type: "date", required: true, maxlength: 255, pattern: ""}
                 ];
             },

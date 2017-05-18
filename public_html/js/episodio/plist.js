@@ -81,5 +81,10 @@ moduloEpisodio.controller('EpisodioPListController', ['$scope', '$routeParams', 
                 $scope.status = "Error en la recepción de datos del servidor";
             });
         }
+        $scope.$on('reloadEvent', function (event, data) {
+
+            getDataFromServer();
+        });
         getDataFromServer();
+
     }]);

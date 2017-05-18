@@ -41,17 +41,17 @@ moduloPaciente.controller('PacienteNewController', ['$scope', '$routeParams', '$
         $scope.bean = {};
         $scope.bean.id = 0;
         $scope.bean.obj_servicio = {"id": 0};
-        if ($routeParams.id_servicio) {
-            serverService.promise_getOne('servicio', $routeParams.id_servicio).then(function (response) {
-                if (response.data.message.id != 0) {
-                    $scope.bean.obj_servicio = response.data.message;
-                    $scope.show_obj_servicio = false;
-                    $scope.title = "Nuevo paciente con servicio " + $scope.bean.obj_servicio.description;
-                }
-            });
-        } else {
-            $scope.show_obj_servicio = true;
-        }
+//        if ($routeParams.id_servicio) {
+//            serverService.promise_getOne('servicio', $routeParams.id_servicio).then(function (response) {
+//                if (response.data.message.id != 0) {
+//                    $scope.bean.obj_servicio = response.data.message;
+//                    $scope.show_obj_servicio = false;
+//                    $scope.title = "Nuevo paciente con servicio " + $scope.bean.obj_servicio.description;
+//                }
+//            });
+//        } else {
+//            $scope.show_obj_servicio = true;
+//        }
 
         $scope.save = function () {
             var arrinputdate = $scope.bean.fecha_salida.split(" ");
@@ -86,34 +86,10 @@ moduloPaciente.controller('PacienteNewController', ['$scope', '$routeParams', '$
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
-
-        $scope.chooseOne = function (nameForeign, foreignObjectName, contollerName) {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'js/' + foreignObjectName + '/selection.html',
-                controller: contollerName,
-                size: 'lg'
-            }).result.then(function (modalResult) {
-                $scope.bean[nameForeign].id = modalResult;
-            });
+        $scope.errors = function ($argument) {
+            alert($argument);
         };
 
 
-
-        //-----------------specific---------------------------------------------
-        $scope.$watch('bean.obj_servicio.id', function () {
-            if ($scope.bean) {
-                serverService.promise_getOne('servicio', $scope.bean.obj_servicio.id).then(function (response) {
-                    var old_id = $scope.bean.obj_servicio.id;
-                    $scope.bean.obj_servicio = response.data.message;
-                    if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_servicio.$setValidity('exists', true);
-                    } else {
-                        $scope.outerForm.obj_servicio.$setValidity('exists', false);
-                        $scope.bean.obj_servicio.id = old_id;
-                    }
-                });
-            }
-        });
-        console.log($scope.bean);
     }]);
 

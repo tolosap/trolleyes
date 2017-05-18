@@ -29,11 +29,13 @@ function bfkey(serverService, $uibModal, metaService)
         }).result.then(function (modalResult)
         {
             // Pendiente de desarrollo en el servidor de un servicio específico de lectura y mofificación de ajenas 
-            
+
             self.bean["obj_" + self.reference].id = modalResult;
             var jsonToSend = {json: angular.toJson(serverService.array_identificarArray(self.bean))};
-            serverService.promise_setOne(self.name, jsonToSend);
-            location.reload();
+            serverService.promise_setOne(self.name, jsonToSend).then(function (response) {
+                 $rootScope.$broadcast('reloadEvent');
+               // location.reload();
+            })
         });
     };
 
