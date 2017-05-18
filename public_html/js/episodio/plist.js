@@ -82,7 +82,6 @@ moduloEpisodio.controller('EpisodioPListController', ['$scope', '$routeParams', 
             });
         }
         $scope.$on('reloadEvent', function (event, data) {
-
             getDataFromServer();
         });
         getDataFromServer();
