@@ -143,7 +143,7 @@ THE SOFTWARE.
                                         <thead plistheader></thead>
                                         <tbody>
 
-                                            <tr ng-repeat="obj in page | filter:searchText">
+                                            <tr ng-repeat="obj in page| filter:searchText">
                                                 <td ng-repeat="f in fields" ng-if="f.visible"  class="text-right">
                                                     <div ng-if="f.visible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
                                                     <div ng-if="f.visible && f.type == 'date'" class="text-center">{{obj[f.name]}}</div>
@@ -157,6 +157,8 @@ THE SOFTWARE.
                                                 <td>
                                                     <div class="btn-toolbar" role="toolbar">
                                                         <div class="btn-group">
+
+                                                            <!--
                                                             <a class="btn btn-default btn-xs" href="{{ob}}/view/{{obj.id}}">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
@@ -171,7 +173,11 @@ THE SOFTWARE.
                                                             </a>
                                                             <a class="btn btn-default btn-xs" ng-click="pop(obj.id, 'paciente', 'PacienteRemovepopController', 'removepop')">
                                                                 <span class="glyphicon glyphicon-remove"></span>
-                                                            </a>                             
+                                                            </a>   
+                                                            -->
+                                                            <actions id="obj.id" name="ob"></actions>
+
+
                                                             <a class="btn btn-default btn-xs" href="episodio/plistfrompaciente/{{obj.id}}/1/10">
                                                                 <span class="glyphicon glyphicon-list"></span>&nbsp;<span>Ver Episodios</span>
                                                             </a>                                                             
