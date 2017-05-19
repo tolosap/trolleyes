@@ -64,14 +64,9 @@ THE SOFTWARE.
                                         <td ng-if="f.type == 'text'">{{bean[f.name]}}</td>
                                         <td ng-if="f.type == 'boolean'" ng-bind-html="bean[f.name] | booleanizate"></td> 
 
-                                        <td ng-if="f.name == 'obj_tipousuario'">{{bean[f.name].descripcion}}</td>
-                                        <td ng-if="f.name == 'obj_medico'">{{bean[f.name].id}}</td>   
 
-                                        <td ng-if="f.name.startsWith('obj_')">
-                                            <a href="{{f.reference}}/view/{{bean[f.name]['id']}}">
-                                                {{bean[f.name]["description"]}}
-                                            </a>
-                                        </td>                           
+
+                                 <td ng-if="f.type == 'foreign'"><a href="{{f.reference}}/view/{{bean[f.name].id}}">{{bean[f.name][f.descforeign]|clipString}}</a></td>                            
                                     </tr>
                                 </tbody>
                             </table>  

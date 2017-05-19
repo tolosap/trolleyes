@@ -162,21 +162,9 @@ THE SOFTWARE.
                                                 <td>
                                                     <div class="btn-toolbar" role="toolbar">
                                                         <div class="btn-group">
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/view/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" ng-click="pop(obj.id, 'usuario', 'UsuarioViewpopController', 'viewpop')">
-                                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/edit/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-pencil"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/remove/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-remove"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" ng-click="pop(obj.id, 'usuario', 'UsuarioRemovepopController', 'removepop')">
-                                                                <span class="glyphicon glyphicon-remove"></span>
-                                                            </a>
+                                                            
+                                                             <actions id="obj.id" name="ob"></actions>
+                                                             
                                                         </div>
                                                     </div>
                                                 </td>
