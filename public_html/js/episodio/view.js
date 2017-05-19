@@ -44,12 +44,11 @@ moduloEpisodio.controller('EpisodioViewController', ['$scope', '$routeParams', '
                     $scope.status = null;
                     $scope.bean = response.data.message;
 
-                    var filter = "and,id_medico,equa," + $scope.bean.obj_medico.id;
-
-                    serverService.promise_getPage("usuario", 1, 1, filter).then(function (data) {
-                        if (data.data.message.length > 0)
-                            $scope.medico = data.data.message[0];
-                    });
+//                    var filter = "and,id_medico,equa," + $scope.bean.obj_medico.id;
+//                    serverService.promise_getPage("usuario", 1, 1, filter).then(function (data) {
+//                        if (data.data.message.length > 0)
+//                            $scope.medico = data.data.message[0];
+//                    });
 
 
 
