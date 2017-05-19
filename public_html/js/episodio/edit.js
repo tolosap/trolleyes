@@ -70,10 +70,6 @@ moduloEpisodio.controller('EpisodioEditController', ['$scope', '$routeParams', '
             $scope.status = "Error en la recepción de datos del servidor";
         });
         $scope.save = function () {
-            var arrinputdate = $scope.bean.fecha.split(" ");
-            var partes = arrinputdate[0].split("/");
-            var newDate = new Date(partes[2], partes[1] - 1, partes[0]);
-            $scope.bean.fecha = $filter('date')(newDate, "dd/MM/yyyy HH:mm");
 
             if ($scope.bean.obj_importancia.id <= 0)
                 $scope.bean.obj_importancia.id = null;
