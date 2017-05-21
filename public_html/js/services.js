@@ -50,11 +50,11 @@ moduloServicios
 //            ;
                 return {
                     getAppUrl: function () {
-                        return "http://localhost:8081/sisane-server/json";
+                        return "http://localhost:8081/gesane/json";
                         //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
                     },
                     getCAppUrl: function () {
-                        return "http://localhost:8080/sisane-client/public_html/";
+                        return "http://localhost:8080/gesane/public_html/";
                         //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
                     },
                     //---- OK ----
