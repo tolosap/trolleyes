@@ -121,42 +121,5 @@ moduloDiagnostico.controller('DiagnosticoEditController', ['$scope', '$routePara
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
-        $scope.chooseOne = function (nameForeign, foreignObjectName, contollerName) {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'js/' + foreignObjectName + '/selection.html',
-                controller: contollerName,
-                size: 'lg'
-            }).result.then(function (modalResult) {
-                $scope.bean[nameForeign].id = modalResult;
-            });
-        };
-        $scope.$watch('bean.obj_tipodiagnostico.id', function () {
-            if ($scope.bean) {
-                serverService.promise_getOne('tipodiagnostico', $scope.bean.obj_tipodiagnostico.id).then(function (response) {
-                    var old_id = $scope.bean.obj_tipodiagnostico.id;
-                    $scope.bean.obj_tipodiagnostico = response.data.message;
-                    if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_tipodiagnostico.$setValidity('exists', true);
-                    } else {
-                        $scope.outerForm.obj_tipodiagnostico.$setValidity('exists', false);
-                        $scope.bean.obj_tipodiagnostico.id = old_id;
-                    }
-                });
-            }
-        });
-
-        $scope.$watch('bean.obj_episodio.id', function () {
-            if ($scope.bean) {
-                serverService.promise_getOne('episodio', $scope.bean.obj_episodio.id).then(function (response) {
-                    var old_id = $scope.bean.obj_episodio.id;
-                    $scope.bean.obj_episodio = response.data.message;
-                    if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_episodio.$setValidity('exists', true);
-                    } else {
-                        $scope.outerForm.obj_episodio.$setValidity('exists', false);
-                        $scope.bean.obj_episodio.id = old_id;
-                    }
-                });
-            }
-        });
+       
     }]);

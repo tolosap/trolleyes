@@ -33,6 +33,7 @@ moduloEpisodio.controller('EpisodioSelectionController', ['$scope', '$uibModalIn
         $scope.fields = episodioService.getFields();
         $scope.obtitle = episodioService.getObTitle();
         $scope.icon = episodioService.getIcon();
+        $scope.title = "Selección de un " + $scope.obtitle;
         $scope.ob = episodioService.getTitle();
         $scope.op = "selection";
         $scope.numpage = 1;
