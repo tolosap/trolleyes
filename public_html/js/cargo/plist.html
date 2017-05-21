@@ -1,9 +1,9 @@
 <!--
 Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
 
-escalamio: The stunning micro-library that helps you to develop easily
-            AJAX web applications by using Angular.js 1.x & zylkanexy
-escalamio is distributed under the MIT License (MIT)
+sisane: The stunning micro-library that helps you to develop easily
+            AJAX web applications by using Angular.js 1.x & sisane-server
+sisane is distributed under the MIT License (MIT)
 Sources at https://github.com/rafaelaznar/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-
 <div id="wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -36,7 +35,7 @@ THE SOFTWARE.
                         <div class="row">
                             <div class="col-xs-12" ng-if="status">
                                 <div class="alert alert-danger" role="alert">
-                                    <h3 class="bg-danger">{{status}}</h3>
+                                    <h3 class="bg-danger">{{status}}</h3>                                
                                 </div>
                             </div>
                         </div>
@@ -56,7 +55,7 @@ THE SOFTWARE.
                                         <div role="tabpanel" id="pane0" class="tab-pane fade active in">
                                             <p></p>
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                                <div class="col-lg-3 col-md-3 col-sm-12">                                                    
                                                     <cplistinfo url="url"         
                                                                 numpage="numpage"                                                       
                                                                 rpp="rpp"
@@ -66,6 +65,7 @@ THE SOFTWARE.
                                                                 sfilterParams="sfilterParams"
                                                                 searchText="searchText">
                                                     </cplistinfo>
+
                                                 </div>
                                                 <div class="col-lg-6  col-md-6 col-sm-8 text-center">
                                                     <cplistpagination url="url"         
@@ -93,7 +93,7 @@ THE SOFTWARE.
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
-                                                    <p></p>
+                                                    <p></p>   
                                                     <cplistvisiblefields fields="fields"></cplistvisiblefields>
                                                     <p></p>
                                                 </div>
@@ -110,7 +110,7 @@ THE SOFTWARE.
                                                                   order="orderParams"
                                                                   filter="filterParams"
                                                                   sfilter="sfilterParams">
-                                                    </cplistfilter>  
+                                                    </cplistfilter> 
                                                 </div>
                                             </div>
                                         </div>
@@ -129,62 +129,47 @@ THE SOFTWARE.
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/new">Crear un nuevo {{ob}}</a>
+                                                        <a class="btn btn-primary" href="{{ob}}/new">Crear un nuevo {{obtitle}}</a>
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div id="datos" ng-if="!status">
-                                    <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
+                                    <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">                                
                                         <thead plistheader></thead>
                                         <tbody>
                                             <tr ng-repeat="obj in page| filter:searchText">
                                                 <td ng-repeat="f in fields" ng-if="f.visible"  class="text-right">
                                                     <div ng-if="f.visible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
                                                     <div ng-if="f.visible && f.type == 'date'" class="text-center">{{obj[f.name]}}</div>
+                                                    <div ng-if="f.visible && f.type == 'integer'" class="text-center">{{obj[f.name]}}</div>
+                                                    <div ng-if="f.visible && f.type == 'decimal'" class="text-center">{{obj[f.name]}}</div>
+                                                    <div ng-if="f.visible && f.type == 'text'" class="text-left">{{obj[f.name]|clipString}}</div>
+                                                    <div ng-if="f.visible && f.type == 'boolean'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
                                                     <!------------------------------------------------>
-                                                    <div ng-if="f.visible && f.name == 'obj_documento'" class="text-center"><a href="documento/view/{{obj.obj_documento.id}}">{{obj.obj_documento.descripcion}}</a></div>
-                                                </td>
+                                                    <div ng-if="f.visible && f.name == 'obj_servicio'" class="text-center"><a href="servicio/view/{{obj.obj_servicio.id}}">{{obj.obj_servicio.descripcion}}</a></div>
+                                                    <!------------------------------------------------>
+                                                    <div ng-if="f.visible && f.name == 'obj_especialidad'" class="text-center"><a href="especialidad/view/{{obj.obj_especialidad.id}}">{{obj.obj_especialidad.descripcion}}</a></div>                                                
+                                                </td>                       
                                                 <td>
                                                     <div class="btn-toolbar" role="toolbar">
                                                         <div class="btn-group">
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/view/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" ng-click="pop(obj.id, 'cargo', 'CargoViewpopController', 'viewpop')">
-                                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/edit/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-pencil"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/remove/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-remove"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" ng-click="pop(obj.id, 'cargo', 'CargoRemovepopController', 'removepop')">
-                                                                <span class="glyphicon glyphicon-remove"></span>
-                                                            </a>
+                                                            <actions id="obj.id" name="ob"></actions>
                                                         </div>
                                                     </div>
                                                 </td>
-                                            </tr>
+                                            </tr>                                             
                                         </tbody>
-                                    </table>
+                                    </table>            
                                 </div>
-                            </div>
-                        </div>
+                            </div>                                
+                        </div>  
                     </div>
                     <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>     
 </div>
-
-
-
-
-
-

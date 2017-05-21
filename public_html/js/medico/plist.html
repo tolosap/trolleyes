@@ -25,7 +25,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-
 <div id="wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -137,12 +136,10 @@ THE SOFTWARE.
                                         </div>
                                     </div>
                                 </div>
-
                                 <div id="datos" ng-if="!status">
                                     <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">                                
                                         <thead plistheader></thead>
                                         <tbody>
-
                                             <tr ng-repeat="obj in page| filter:searchText">
                                                 <td ng-repeat="f in fields" ng-if="f.visible"  class="text-right">
                                                     <div ng-if="f.visible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
@@ -176,9 +173,3 @@ THE SOFTWARE.
         </div>
     </div>     
 </div>
-
-
-
-
-
-
