@@ -1,5 +1,5 @@
-# SISANE HAS BEEN DEPRECATED. DO NOT USE.
-# sisane client (warning: under development)
+# GESANE
+# gesane client (warning: under development)
 
 ## License
 
