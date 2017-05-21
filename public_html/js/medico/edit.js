@@ -95,46 +95,8 @@ moduloMedico.controller('MedicoEditController', ['$scope', '$routeParams', '$loc
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
-        $scope.chooseOne = function (nameForeign, foreignObjectName, contollerName) {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'js/' + foreignObjectName + '/selection.html',
-                controller: contollerName,
-                size: 'lg'
-            }).result.then(function (modalResult) {
-                $scope.bean[nameForeign].id = modalResult;
-            });
-        };
+      
 
-        $scope.$watch('bean.obj_servicio.id', function () {
-            if ($scope.bean) {
-                serverService.promise_getOne('servicio', $scope.bean.obj_servicio.id).then(function (response) {
-                    var old_id = $scope.bean.obj_servicio.id;
-                    if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_servicio.$setValidity('exists', true);
-                        $scope.bean.obj_servicio = response.data.message;
-                    } else {
-                        $scope.outerForm.obj_servicio.$setValidity('exists', false);
-                        //$scope.bean.obj_servicio.id = 0;
-                        $scope.bean.obj_servicio.id = old_id;
-                    }
-                });
-            }
-        });
-
-        $scope.$watch('bean.obj_especialidad.id', function () {
-            if ($scope.bean) {
-                serverService.promise_getOne('especialidad', $scope.bean.obj_especialidad.id).then(function (response) {
-                    var old_id = $scope.bean.obj_especialidad.id;
-                    if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_especialidad.$setValidity('exists', true);
-                        $scope.bean.obj_especialidad = response.data.message;
-                    } else {
-                        $scope.outerForm.obj_especialidad.$setValidity('exists', false);
-                        //$scope.bean.obj_especialidad.id = 0;
-                        $scope.bean.obj_especialidad.id = old_id;
-                    }
-                });
-            }
-        });
+        
 
     }]);

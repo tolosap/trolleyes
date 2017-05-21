@@ -97,34 +97,6 @@ moduloMedico.controller('MedicoNewController', ['$scope', '$routeParams', '$loca
             $location.path('/' + $scope.ob + '/plist');
         };
 
-        $scope.$watch('bean.obj_servicio.id', function () {
-            if ($scope.bean) {
-                serverService.promise_getOne('servicio', $scope.bean.obj_servicio.id).then(function (response) {
-                    var old_id = $scope.bean.obj_servicio.id;
-                    $scope.bean.obj_servicio = response.data.message;
-                    if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_servicio.$setValidity('exists', true);
-                    } else {
-                        $scope.outerForm.obj_servicio.$setValidity('exists', false);
-                        $scope.bean.obj_servicio.id = old_id;
-                    }
-                });
-            }
-        });
-
-        $scope.$watch('bean.obj_especialidad.id', function () {
-            if ($scope.bean) {
-                serverService.promise_getOne('especialidad', $scope.bean.obj_especialidad.id).then(function (response) {
-                    var old_id = $scope.bean.obj_especialidad.id;
-                    $scope.bean.obj_especialidad = response.data.message;
-                    if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_especialidad.$setValidity('exists', true);
-                    } else {
-                        $scope.outerForm.obj_especialidad.$setValidity('exists', false);
-                        $scope.bean.obj_especialidad.id = old_id;
-                    }
-                });
-            }
-        });
+     
     }]);
 
