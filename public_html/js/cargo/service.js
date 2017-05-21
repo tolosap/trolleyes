@@ -5,7 +5,7 @@ moduloCargo.factory('cargoService', ['serverService', function (serverService) {
                 return [
                     {name: "id", shortname: "ID", longname: "Identificador", visible: true, type: "id"},
                     {name: "date", shortname: "fecha", longname: "Fecha", visible: true, type: "date", required: true, maxlength: 255, pattern: ""},
-                    {name: "obj_documento", shortname: "Documento", longname: "Documento", visible: true, type: "specific", required: true, maxlength: 255, pattern: "", reference: "documento", descforeign: "descripcion"}
+                    {name: "obj_documento", shortname: "Documento", longname: "Documento", visible: true, type: "foreign", required: true, maxlength: 255, pattern: "", reference: "documento", descforeign: "descripcion"}
                 ];
             },
             getIcon: function () {

@@ -57,12 +57,17 @@ THE SOFTWARE.
                                 <tbody>
                                     <tr ng-repeat="f in fields" class="text-left">
                                         <td>{{f.longname}}</td>
+                                        <!-- ----------------------------- -->
                                         <td ng-if="f.type == 'id'"><b>{{bean[f.name]}}</b></td>
                                         <td ng-if="f.type == 'date'">{{bean[f.name]}}</td>
                                         <td ng-if="f.type == 'integer'">{{bean[f.name]}}</td>
                                         <td ng-if="f.type == 'decimal'">{{bean[f.name]}}</td>
                                         <td ng-if="f.type == 'text'">{{bean[f.name]}}</td>
-                                        <td ng-if="f.type == 'boolean'" ng-bind-html="bean[f.name] | booleanizate"></td>                                              
+                                        <td ng-if="f.type == 'textarea'" ng-bind-html="bean[f.name] | breakFilter"></td>
+                                        <td ng-if="f.type == 'boolean'" ng-bind-html="bean[f.name] | booleanizate"></td>
+                                        <!-- ----------------------------- -->  
+                                        <td ng-if="f.type == 'foreign'">{{bean[f.name][f.descforeign]|clipString}}</td>    
+
                                     </tr>
                                 </tbody>
                             </table>  
