@@ -34,12 +34,35 @@ THE SOFTWARE.
         <span class="icon-bar"></span>
     </button>
     <a class='navbar-brand'  href='home'>
-        <i class="fa fa-th fa-1x"></i><i class="fa fa-th fa-1x"></i> sisane <i class="fa fa-th fa-1x"></i><i class="fa fa-th fa-1x"></i>
+        <i class="fa fa-th fa-1x"></i><i class="fa fa-th fa-1x"></i> GESANE <i class="fa fa-th fa-1x"></i><i class="fa fa-th fa-1x"></i>
     </a>
 </div>
 <div id="navbar" class="navbar-collapse collapse" >
     <ul class="nav navbar-nav" id="appMenu">
         <li ng-class="{ active: isActive('/home')}"><a href="home">Home</a></li>
+        
+        <!-- Administración ------------------------------------------- -->                
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administración<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">                
+                <li class="dropdown-header">Usuarios</li>
+                <li ng-class="{ active: isActive('/{{meta.usuario.name}}/plist')}"><a href="{{meta.usuario.name}}/plist"><i class="fa fa-fw {{meta.usuario.icon}}"></i>{{meta.usuario.title}}</a></li>
+                <li ng-class="{ active: isActive('/{{meta.tipousuario.name}}/plist')}"><a href="{{meta.tipousuario.name}}/plist"><i class="fa fa-fw {{meta.tipousuario.icon}}"></i>{{meta.tipousuario.title}}</a></li>                
+                <li class="divider"></li>                
+                <li class="dropdown-header">Centros</li>
+                 <li ng-class="{ active: isActive('/{{meta.centro.name}}/plist')}"><a href="{{meta.centro.name}}/plist"><i class="fa fa-fw {{meta.centro.icon}}"></i>{{meta.centro.title}}</a></li>
+                <li ng-class="{ active: isActive('/{{meta.curso.name}}/plist')}"><a href="{{meta.curso.name}}/plist"><i class="fa fa-fw {{meta.curso.icon}}"></i>{{meta.curso.title}}</a></li>                            
+                <li ng-class="{ active: isActive('/{{meta.grupo.name}}/plist')}"><a href="{{meta.grupo.name}}/plist"><i class="fa fa-fw {{meta.grupo.icon}}"></i>{{meta.grupo.title}}</a></li>                
+                
+                <!--
+                <li class="dropdown-header">Enfermeros</li>                
+                <li ng-class="{ active: isActive('/enfermero/plist')}"><a href="enfermero/plist"><i class="fa fa-fw fa-question-circle-o"></i>Enfermero/a</a></li>                                
+                -->
+            </ul>
+        </li>
+        
+        
+        
         <!-- Personal sanitario ------------------------------------------- -->                
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Personal sanitario<span class="caret"></span></a>
@@ -59,6 +82,8 @@ THE SOFTWARE.
                 -->
             </ul>
         </li>
+        
+        
         <!-- Pacientes e historial clínico ------------------------------------------- -->   
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Pacientes e historial clínico<span class="caret"></span></a>
