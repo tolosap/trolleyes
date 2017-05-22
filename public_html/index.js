@@ -7,6 +7,7 @@ sisane.controller('IndexController', ['$scope', '$location', 'serverService', 's
         $scope.isSessionActive = function () {
             if (sessionService.isSessionActive()) {
                 $scope.username = sessionService.getUsername();
+                $scope.desc_tipousuario = sessionService.getDesc_tipousuario();
                 return true;
             } else {
                 return false;

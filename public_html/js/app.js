@@ -320,6 +320,15 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
                 sessionService.setSessionActive();
                 sessionService.setUsername(response.data.message.login);
                 sessionService.setId(response.data.message.id);
+                sessionService.setNombre(response.data.message.nombre);
+                sessionService.setPrimer_apellido(response.data.message.primer_apellido);
+                sessionService.setSegundo_apellido(response.data.message.segundo_apellido);
+                sessionService.setEmail(response.data.message.email);
+                sessionService.setActivo(response.data.message.activo);
+                sessionService.setValidado(response.data.message.validado);
+                sessionService.setFecha_alta(response.data.message.fecha_alta);
+                sessionService.setId_tipousuario(response.data.message.obj_tipousuario.id);
+                sessionService.setDesc_tipousuario(response.data.message.obj_tipousuario.descripcion);
             } else {
                 sessionService.setSessionInactive();
                 sessionService.setUsername('');

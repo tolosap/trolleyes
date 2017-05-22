@@ -316,7 +316,25 @@ moduloServicios
             var isSessionActive = false;
             var username = "";
             var id = 0;
+            var nombre = "";
+            var primer_apellido = "";
+            var segundo_apellido = "";
+            var email = "";
+            var activo = false;
+            var validado = false;
+            var fecha_alta = "";
+            var id_tipousuario = "";
+            var desc_tipousuario = "";
             return {
+                isSessionActive: function () {
+                    return isSessionActive;
+                },
+                setSessionInactive: function () {
+                    isSessionActive = false;
+                },
+                setSessionActive: function () {
+                    isSessionActive = true;
+                },
                 getUsername: function () {
                     return username;
                 },
@@ -329,14 +347,59 @@ moduloServicios
                 setId: function (value) {
                     id = value;
                 },
-                isSessionActive: function () {
-                    return isSessionActive;
+                getNombre: function () {
+                    return nombre;
                 },
-                setSessionInactive: function () {
-                    isSessionActive = false;
+                setNombre: function (value) {
+                    nombre = value;
                 },
-                setSessionActive: function () {
-                    isSessionActive = true;
+                getPrimer_apellido: function () {
+                    return primer_apellido;
+                },
+                setPrimer_apellido: function (value) {
+                    primer_apellido = value;
+                },
+                getSegundo_apellido: function () {
+                    return segundo_apellido;
+                },
+                setSegundo_apellido: function (value) {
+                    segundo_apellido = value;
+                },
+                getEmail: function () {
+                    return email;
+                },
+                setEmail: function (value) {
+                    email = value;
+                },
+                getActivo: function () {
+                    return activo;
+                },
+                setActivo: function (value) {
+                    activo = value;
+                },
+                getValidado: function () {
+                    return validado;
+                },
+                setValidado: function (value) {
+                    validado = value;
+                },
+                getFecha_alta: function () {
+                    return fecha_alta;
+                },
+                setFecha_alta: function (value) {
+                    fecha_alta = value;
+                },
+                getId_tipousuario: function () {
+                    return id_tipousuario;
+                },
+                setId_tipousuario: function (value) {
+                    id_tipousuario = value;
+                },
+                getDesc_tipousuario: function () {
+                    return desc_tipousuario;
+                },
+                setDesc_tipousuario: function (value) {
+                    desc_tipousuario = value;
                 }
             };
         })
