@@ -54,14 +54,15 @@ THE SOFTWARE.
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="f in fields" class="text-left">
+                                        <tr ng-repeat="f in metaprops" class="text-left">
                                             <td>{{f.longname}}</td>
+                                            <td>{{f.type}}</td>
                                             <td ng-if="f.type == 'id'"><b>{{bean[f.name]}}</b></td>
-                                            <td ng-if="f.type == 'date'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'integer'">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type == 'datetime'">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type == 'int'">{{bean[f.name]}}</td>
                                             <td ng-if="f.type == 'decimal'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'text'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'boolean'" ng-bind-html="bean[f.name] | booleanizate"></td> 
+                                            <td ng-if="f.type == 'varchar'">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type == 'tinyint'" ng-bind-html="bean[f.name] | booleanizate"></td> 
                                             <td ng-if="f.type == 'foreign'"><a href="{{f.reference}}/view/{{bean[f.name].id}}">{{bean[f.name][f.descforeign]|clipString}}</a></td>    
 
                                         </tr>

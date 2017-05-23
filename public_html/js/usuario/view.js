@@ -30,11 +30,11 @@
 
 moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService', 'usuarioService', '$location',
     function ($scope, $routeParams, serverService, usuarioService, $location) {
-        $scope.fields = usuarioService.getFields();
-        $scope.obtitle = usuarioService.getObTitle();
-        $scope.icon = usuarioService.getIcon();
+//        $scope.fields = usuarioService.getFields();
+//        $scope.obtitle = usuarioService.getObTitle();
+//        $scope.icon = usuarioService.getIcon();
         $scope.ob = usuarioService.getTitle();
-        $scope.title = "Vista de " + $scope.obtitle;
+//        $scope.title = "Vista de " + $scope.obtitle;
         $scope.id = $routeParams.id;
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -42,7 +42,9 @@ moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'se
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-                    $scope.bean = response.data.message;
+                    $scope.bean = response.data.message.data;
+                    $scope.metaobject = response.data.message.object;
+                    $scope.metaprops = response.data.message.props;
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
