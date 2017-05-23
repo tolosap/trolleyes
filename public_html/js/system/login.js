@@ -12,13 +12,26 @@ moduloSistema.controller('LoginController', ['$scope', '$routeParams', '$locatio
         $scope.login = function () {
             serverService.getLoginPromise($scope.user.username, $scope.user.password).then(function (response) {
                 if (response.status == 200) {
+//                    sessionService.setSessionActive();
+//                    sessionService.setUsername(response.data.login);
+//                    sessionService.setId(response.data.id);
+
                     sessionService.setSessionActive();
-                    sessionService.setUsername(response.data.message.login);
-                    sessionService.setId(response.data.message.id);
+                    sessionService.setUsername(response.data.login);
+                    sessionService.setId(response.data.id);
+                    sessionService.setNombre(response.data.nombre);
+                    sessionService.setPrimer_apellido(response.data.primer_apellido);
+                    sessionService.setSegundo_apellido(response.data.segundo_apellido);
+                    sessionService.setEmail(response.data.email);
+                    sessionService.setActivo(response.data.activo);
+                    sessionService.setValidado(response.data.validado);
+                    sessionService.setFecha_alta(response.data.fecha_alta);
+                    sessionService.setId_tipousuario(response.data.obj_tipousuario.id);
+                    sessionService.setDesc_tipousuario(response.data.obj_tipousuario.descripcion);
+
                     $location.path('home');
                 } else {
-                    sessionService.setSessionInactive();
-                    sessionService.setUsername('');
+                    sessionService.setSessionInactive();       
                     return false;
                 }
             }, function errorCallback(response, status) {

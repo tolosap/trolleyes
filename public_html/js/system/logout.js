@@ -7,7 +7,6 @@ moduloSistema.controller('LogoutController', ['$scope', '$routeParams', '$locati
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     sessionService.setSessionInactive();
-                    sessionService.setUsername('');
                     $scope.status = "Has salido del sistema";
                     //$location.path('home');
                 } else {

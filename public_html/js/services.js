@@ -331,6 +331,17 @@ moduloServicios
                 },
                 setSessionInactive: function () {
                     isSessionActive = false;
+                    username = "";
+                    id = 0;
+                    nombre = "";
+                    primer_apellido = "";
+                    segundo_apellido = "";
+                    email = "";
+                    activo = false;
+                    validado = false;
+                    fecha_alta = "";
+                    id_tipousuario = "";
+                    desc_tipousuario = "";
                 },
                 setSessionActive: function () {
                     isSessionActive = true;

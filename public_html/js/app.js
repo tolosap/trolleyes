@@ -318,17 +318,17 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
         serverService.getSessionPromise().then(function (response) {
             if (response['status'] == 200) {
                 sessionService.setSessionActive();
-                sessionService.setUsername(response.data.message.login);
-                sessionService.setId(response.data.message.id);
-                sessionService.setNombre(response.data.message.nombre);
-                sessionService.setPrimer_apellido(response.data.message.primer_apellido);
-                sessionService.setSegundo_apellido(response.data.message.segundo_apellido);
-                sessionService.setEmail(response.data.message.email);
-                sessionService.setActivo(response.data.message.activo);
-                sessionService.setValidado(response.data.message.validado);
-                sessionService.setFecha_alta(response.data.message.fecha_alta);
-                sessionService.setId_tipousuario(response.data.message.obj_tipousuario.id);
-                sessionService.setDesc_tipousuario(response.data.message.obj_tipousuario.descripcion);
+                sessionService.setUsername(response.data.login);
+                sessionService.setId(response.data.id);
+                sessionService.setNombre(response.data.nombre);
+                sessionService.setPrimer_apellido(response.data.primer_apellido);
+                sessionService.setSegundo_apellido(response.data.segundo_apellido);
+                sessionService.setEmail(response.data.email);
+                sessionService.setActivo(response.data.activo);
+                sessionService.setValidado(response.data.validado);
+                sessionService.setFecha_alta(response.data.fecha_alta);
+                sessionService.setId_tipousuario(response.data.obj_tipousuario.id);
+                sessionService.setDesc_tipousuario(response.data.obj_tipousuario.descripcion);
             } else {
                 sessionService.setSessionInactive();
                 sessionService.setUsername('');

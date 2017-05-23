@@ -1,6 +1,7 @@
 sisane.controller('IndexController', ['$scope', '$location', 'serverService', 'sessionService', 'metaService',
     function ($scope, $location, serverService, sessionService, metaService) {
         $scope.username = "";
+        $scope.desc_tipousuario="";
         $scope.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
