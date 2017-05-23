@@ -96,7 +96,7 @@ THE SOFTWARE.
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p></p>   
-                                                    <cplistvisiblefields fields="fields"></cplistvisiblefields>
+                                                    <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
                                                     <p></p>
                                                 </div>
                                             </div>
@@ -145,26 +145,37 @@ THE SOFTWARE.
                                         <tbody>
 
                                             <tr ng-repeat="obj in page| filter:searchText">
-                                                <td ng-repeat="f in fields" ng-if="f.visible"  class="text-right">
-                                                    <div ng-if="f.visible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
-                                                    <div ng-if="f.visible && f.type == 'date'" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-if="f.visible && f.type == 'integer'" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-if="f.visible && f.type == 'decimal'" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-if="f.visible && f.type == 'text'" class="text-left">{{obj[f.name]|clipString}}</div>
-                                                    <div ng-if="f.visible && f.type == 'boolean'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>
-                                                    <!------------------------------------------------>
-                                                    <div ng-if="f.visible && f.name == 'obj_tipousuario'" class="text-center"><a href="tipousuario/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></div>
-                                                    <!------------------------------------------------>
-                                                    <div ng-if="f.visible && f.name == 'obj_medico' && obj.obj_medico.id > 0" class="text-center"><a href="medico/view/{{obj.obj_medico.id}}">{{obj.obj_medico.id}}</a></div>
-                                                    <div ng-if="f.visible && f.name == 'obj_medico' && obj.obj_medico.id == 0" class="text-center" ng-bind-html="false | booleanizate"></div>
-                                                    <!------------------------------------------------>
+                                                <td ng-repeat="f in metaprops" ng-if="f.tablevisible"  class="text-right">
+                                                    <div ng-if="f.tablevisible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
+                                                    <div ng-if="f.tablevisible && f.type == 'datetime'" class="text-center">{{obj[f.name]}}</div>
+                                                    <div ng-if="f.tablevisible && f.type == 'int'" class="text-center">{{obj[f.name]}}</div>
+                                                    <div ng-if="f.tablevisible && f.type == 'decimal'" class="text-center">{{obj[f.name]}}</div>
+                                                    <div ng-if="f.tablevisible && f.type == 'varchar'" class="text-left">{{obj[f.name]|clipString}}</div>
+                                                    <div ng-if="f.tablevisible && f.type == 'longtext'" class="text-left">{{obj[f.name]|clipString}}</div>
+                                                    <div ng-if="f.tablevisible && f.type == 'tinyint'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
+                                                    <div ng-if="f.tablevisible && f.type == 'foreign'" class="text-left">
+                                                        <cforeign 
+                                                            obf="f.reference"
+                                                            opf="'view'"
+                                                            idf="obj[(f.name)].id"
+                                                            descf="obj[(f.name)][f.descforeign]|clipString">                                                                
+                                                        </cforeign>
+                                                        <bf-key
+                                                            name="ob"
+                                                            reference="f.reference"
+                                                            bean="obj"
+                                                            fname="f.longname"                                                                                                                              
+
+                                                            >
+                                                        </bf-key>
+                                                    </div>     
                                                 </td>                       
                                                 <td>
                                                     <div class="btn-toolbar" role="toolbar">
                                                         <div class="btn-group">
-                                                            
-                                                             <actions id="obj.id" name="ob"></actions>
-                                                             
+
+                                                            <actions id="obj.id" name="ob"></actions>
+
                                                         </div>
                                                     </div>
                                                 </td>

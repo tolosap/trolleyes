@@ -65,7 +65,16 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
                 }
             }).then(function (response) {
                 if (response.status == 200) {
-                    $scope.page = response.data.message;
+                    $scope.page = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Listado de " + $scope.obtitle;
+
+
                     $scope.status = "";
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
