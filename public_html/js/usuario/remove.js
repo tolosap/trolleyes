@@ -28,13 +28,9 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '$location', 'serverService', 'usuarioService',
-    function ($scope, $routeParams, $location, serverService, usuarioService) {
-        $scope.fields = usuarioService.getFields();
-        $scope.obtitle = usuarioService.getObTitle();
-        $scope.icon = usuarioService.getIcon();
-        $scope.ob = usuarioService.getTitle();
-        $scope.title = "Borrado de " + $scope.obtitle;
+moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '$location', 'serverService',
+    function ($scope, $routeParams, $location, serverService) {
+        $scope.ob = "usuario";  //pte rutas
         $scope.id = $routeParams.id;
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -42,7 +38,14 @@ moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-                    $scope.bean = response.data.message;
+                    $scope.bean = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Borrado de " + $scope.obtitle;
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
