@@ -50,10 +50,10 @@ moduloFiltros
                 var description = "";
                 for (var i = 0; i < arrayLength; i++) {
                     if (foreignObject.metaprops[i].foreigndescription) {
-                        description += foreignObject.data[foreignObject.metaprops[i].name];
+                        description += foreignObject.data[foreignObject.metaprops[i].name] + " ";
                     }
                 }
-                return description;
+                return str.trim(description);
             };
         })
 

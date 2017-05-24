@@ -38,19 +38,25 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
         $scope.status = null;
         $scope.debugging = serverService.debugging();
         $scope.bean = {};
-        //---
-        $scope.bean.obj_tipousuario = {"id": null};
-        $scope.show_obj_tipousuario = true;
-        //---
-        $scope.bean.obj_medico = {"id": null};
-        $scope.show_obj_medico = true;
-        //---
+//        //---
+//        $scope.bean.obj_tipousuario = {"id": null};
+//        $scope.show_obj_tipousuario = true;
+//        //---
+//        $scope.bean.obj_medico = {"id": null};
+//        $scope.show_obj_medico = true;
+//        //---
         $scope.id = $routeParams.id;
         serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-                    $scope.bean = response.data.message;
+
+
+                    $scope.bean = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
