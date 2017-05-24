@@ -153,71 +153,18 @@ THE SOFTWARE.
                                                     <div ng-if="f.tablevisible && f.type == 'varchar'" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <div ng-if="f.tablevisible && f.type == 'longtext'" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <div ng-if="f.tablevisible && f.type == 'tinyint'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
-                                                    <div ng-if="f.tablevisible && f.type == 'foreign'" class="text-left">
-                                                        <cforeign 
-                                                            obf="f.reference"
-                                                            opf="'view'"
-                                                            idf="obj[(f.name)].id"
-                                                            descf="obj[(f.name)][f.descforeign]|clipString">                                                                
-                                                        </cforeign>
-                                                        <bf-key
-                                                            name="ob"
-                                                            reference="f.reference"
-                                                            bean="obj"
-                                                            fname="f.longname"                                                                                                                              
-
-                                                            >
-                                                        </bf-key>
+                                                    <div ng-if="f.tablevisible && f.type == 'foreign'" class="text-left" ng-init="fname=(f.name).replace('id_','obj_')">
+                                                        <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
                                                     </div>     
                                                 </td>                       
                                                 <td>
                                                     <div class="btn-toolbar" role="toolbar">
                                                         <div class="btn-group">
-
                                                             <actions id="obj.id" name="ob"></actions>
-
                                                         </div>
                                                     </div>
                                                 </td>
-                                            </tr> 
-                                            <!--
-                                            <tr ng-repeat="obj in page| filter:searchText">
-                                                <td ng-if="fields[0].visible" class="text-right">{{obj.id}}</td>
-                                                <td ng-if="fields[1].visible">{{obj.name}}</td>
-                                                <td ng-if="fields[2].visible">{{obj.surname}}</td>
-                                                <td ng-if="fields[3].visible">{{obj.login}}</td>
-                                                <td ng-if="fields[4].visible">{{obj.password}}</td> 
-                                                <td ng-if="fields[5].visible">{{obj.address}}</td>
-                                                <td ng-if="fields[6].visible">{{obj.city}}</td>
-                                                <td ng-if="fields[7].visible">{{obj.zip}}</td>
-                                                <td ng-if="fields[8].visible">{{obj.state}}</td>
-                                                <td ng-if="fields[9].visible">{{obj.country}}</td>                                                
-                                                <td ng-if="fields[10].visible">{{obj.email}}</td>
-                                                <td ng-if="fields[11].visible">{{obj.phone}}</td>
-                                                <td ng-if="fields[12].visible"><a href="usertype/view/{{obj.obj_usertype.id}}">{{obj.obj_usertype.description}}</a></td>
-                                                <td>
-                                                    <div class="btn-toolbar" role="toolbar">
-                                                        <div class="btn-group">
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/view/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" ng-click="pop(obj.id, 'user', 'UsuarioViewpopController', 'viewpop')">
-                                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/edit/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-pencil"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" href="{{ob}}/remove/{{obj.id}}">
-                                                                <span class="glyphicon glyphicon-remove"></span>
-                                                            </a>
-                                                            <a class="btn btn-default btn-xs" ng-click="pop(obj.id, 'user', 'UsuarioRemovepopController', 'removepop')">
-                                                                <span class="glyphicon glyphicon-remove"></span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            -->
+                                            </tr>                                            
                                         </tbody>
                                     </table>            
                                 </div>

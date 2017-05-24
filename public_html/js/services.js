@@ -283,7 +283,7 @@ moduloServicios
                                 return  this.checkEmptyString(sfilter);
                             }
                         }
-                    }
+                    }                  
                 };
             }])
         .factory('sharedSpaceService', function ($http) {

@@ -62,8 +62,7 @@ THE SOFTWARE.
                                             <td ng-if="f.type == 'decimal'">{{bean[f.name]}}</td>
                                             <td ng-if="f.type == 'varchar'">{{bean[f.name]}}</td>
                                             <td ng-if="f.type == 'tinyint'" ng-bind-html="bean[f.name] | booleanizate"></td> 
-                                            <td ng-if="f.type == 'foreign'"><a href="{{f.reference}}/view/{{bean[f.name].id}}">{{bean[f.name][f.descforeign]|clipString}}</a></td>    
-
+                                            <td ng-if="f.type == 'foreign'" ng-init="fname=(f.name).replace('id_','obj_')"><a href="{{f.reference}}/view/{{bean[fname].data.id}}">{{(bean[fname])|getForeignDescription}}</a></td>    
                                         </tr>
                                     </tbody>
                                 </table>  

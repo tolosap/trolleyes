@@ -43,6 +43,19 @@ moduloFiltros
                 return input[0] + ':' + input[1];
             };
         })
+        .filter('getForeignDescription', function ($filter) {
+            return function (foreignObject)
+            {
+                var arrayLength = foreignObject.metaprops.length;
+                var description = "";
+                for (var i = 0; i < arrayLength; i++) {
+                    if (foreignObject.metaprops[i].foreigndescription) {
+                        description += foreignObject.data[foreignObject.metaprops[i].name];
+                    }
+                }
+                return description;
+            };
+        })
 
         .filter('clipString', function ($filter)
         {

@@ -69,4 +69,5 @@ moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'se
         $scope.back = function () {
             window.history.back();
         };
+   
     }]);
