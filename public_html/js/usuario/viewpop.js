@@ -28,13 +28,9 @@
 'use strict';
 
 
-moduloUsuario.controller('UsuarioViewpopController', ['$scope', '$routeParams', 'serverService', 'usuarioService', '$location', '$uibModalInstance', 'id',
-    function ($scope, $routeParams, serverService, usuarioService, $location, $uibModalInstance, id) {
-        $scope.fields = usuarioService.getFields();
-        $scope.obtitle = usuarioService.getObTitle();
-        $scope.icon = usuarioService.getIcon();
-        $scope.ob = usuarioService.getTitle();
-        $scope.title = "Vista de " + $scope.obtitle;
+moduloUsuario.controller('UsuarioViewpopController', ['$scope', '$routeParams', 'serverService', '$location', '$uibModalInstance', 'id',
+    function ($scope, $routeParams, serverService, $location, $uibModalInstance, id) {
+        $scope.ob = "usuario";  
         $scope.id = id;
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -42,7 +38,14 @@ moduloUsuario.controller('UsuarioViewpopController', ['$scope', '$routeParams', 
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-                    $scope.bean = response.data.message;
+                    $scope.bean = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Listado de " + $scope.obtitle;
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }

@@ -28,13 +28,9 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService', 'usuarioService', '$location',
-    function ($scope, $routeParams, serverService, usuarioService, $location) {
-//        $scope.fields = usuarioService.getFields();
-//        $scope.obtitle = usuarioService.getObTitle();
-//        $scope.icon = usuarioService.getIcon();
-        $scope.ob = usuarioService.getTitle();
-//        $scope.title = "Vista de " + $scope.obtitle;
+moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService', '$location',
+    function ($scope, $routeParams, serverService, $location) {
+        $scope.ob="usuario";  //pte rutas
         $scope.id = $routeParams.id;
         $scope.status = null;
         $scope.debugging = serverService.debugging();
