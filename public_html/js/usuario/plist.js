@@ -28,14 +28,11 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$location', 'serverService', 'usuarioService', '$uibModal',
-    function ($scope, $routeParams, $location, serverService, usuarioService, $uibModal) {
-        $scope.fields = usuarioService.getFields();
-        $scope.obtitle = usuarioService.getObTitle();
-        $scope.icon = usuarioService.getIcon();
-        $scope.ob = usuarioService.getTitle();
-        $scope.title = "Listado de " + $scope.obtitle;
+moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal',
+    function ($scope, $routeParams, $location, serverService, $uibModal) {
+        $scope.ob = "usuario";
         $scope.op = "plist";
+
         $scope.numpage = serverService.checkDefault(1, $routeParams.page);
         $scope.rpp = serverService.checkDefault(10, $routeParams.rpp);
         $scope.neighbourhood = serverService.getGlobalNeighbourhood();
@@ -73,7 +70,6 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
                     $scope.obtitle = $scope.metaobj.name;
                     $scope.ob = $scope.metaobj.name;
                     $scope.title = "Listado de " + $scope.obtitle;
-
 
                     $scope.status = "";
                 } else {
