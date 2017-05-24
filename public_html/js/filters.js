@@ -53,7 +53,7 @@ moduloFiltros
                         description += foreignObject.data[foreignObject.metaprops[i].name] + " ";
                     }
                 }
-                return str.trim(description);
+                return description.trim();
             };
         })
 

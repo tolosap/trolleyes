@@ -67,14 +67,14 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
             $scope.status = "Error en la recepción de datos del servidor";
         });
         $scope.save = function () {
-            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
-            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
-            if ($scope.bean.obj_tipousuario.id <= 0) {
-                $scope.bean.obj_tipousuario.id = null;
-            }
-            if ($scope.bean.obj_medico.id <= 0) {
-                $scope.bean.obj_medico.id = null;
-            }
+//            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
+//            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
+//            if ($scope.bean.obj_tipousuario.id <= 0) {
+//                $scope.bean.obj_tipousuario.id = null;
+//            }
+//            if ($scope.bean.obj_medico.id <= 0) {
+//                $scope.bean.obj_medico.id = null;
+//            }
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
             serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
                 if (response.status == 200) {

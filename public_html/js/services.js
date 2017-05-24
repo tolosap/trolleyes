@@ -238,7 +238,7 @@ moduloServicios
                         for (var property in arr) {
                             if (arr.hasOwnProperty(property)) {
                                 if (property.match("^obj_")) {
-                                    newObj[property.replace("obj_", "id_")] = arr[property].id;
+                                    newObj[property.replace("obj_", "id_")] = arr[property].data.id;
                                 } else {
                                     newObj[property] = arr[property];
                                 }
