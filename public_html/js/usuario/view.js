@@ -43,8 +43,14 @@ moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'se
                 if (response.data.status == 200) {
                     $scope.status = null;
                     $scope.bean = response.data.message.data;
-                    $scope.metaobject = response.data.message.object;
-                    $scope.metaprops = response.data.message.props;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Listado de " + $scope.obtitle;
+
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
