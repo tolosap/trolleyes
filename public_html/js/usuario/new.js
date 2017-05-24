@@ -38,29 +38,54 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
         $scope.op = "new";
         $scope.status = null;
         $scope.debugging = serverService.debugging();
-        $scope.bean = {};
-        //----
-        $scope.bean.obj_tipousuario = {"id": 0};
-        if ($routeParams.id_tipousuario) {
-            serverService.promise_getOne('tipousuario', $routeParams.id_tipousuario).then(function (response) {
-                if (response.data.message.id != 0) {
-                    $scope.bean.obj_tipousuario = response.data.message;
-                    $scope.show_obj_tipousuario = false;
-                    $scope.title = "Nuevo usuario del tipo" + $scope.bean.obj_tipousuario.description;
+//        $scope.bean = {};
+//        //----
+////        $scope.bean.obj_tipousuario = {"id": 0};
+//        if ($routeParams.id_tipousuario) {
+//            serverService.promise_getOne('tipousuario', $routeParams.id_tipousuario).then(function (response) {
+//                if (response.data.message.id != 0) {
+//                    $scope.bean.obj_tipousuario = response.data.message;
+//                    $scope.show_obj_tipousuario = false;
+//                    $scope.title = "Nuevo usuario del tipo" + $scope.bean.obj_tipousuario.description;
+//                }
+//            });
+//        } else {
+//            $scope.show_obj_tipousuario = true;
+//        }
+//        //----
+//        $scope.bean.obj_medico = {"id": 0};
+
+        
+        serverService.promise_getMeta($scope.ob, $scope.id).then(function (response) {
+            if (response.status == 200) {
+                if (response.data.status == 200) {
+                    $scope.status = null;
+
+                    $scope.bean = {};
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Alta de " + $scope.obtitle;
+
+                } else {
+                    $scope.status = "Error en la recepción de datos del servidor";
                 }
-            });
-        } else {
-            $scope.show_obj_tipousuario = true;
-        }
-        //----
-        $scope.bean.obj_medico = {"id": 0};
+            } else {
+                $scope.status = "Error en la recepción de datos del servidor";
+            }
+        }).catch(function (data) {
+            $scope.status = "Error en la recepción de datos del servidor";
+        });
         //-----
         $scope.save = function () {
-            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
-            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
-            if (!$scope.bean.obj_medico.id > 0) {
-                $scope.bean.obj_medico.id = null;
-            }
+//            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
+//            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
+//            if (!$scope.bean.obj_medico.id > 0) {
+//                $scope.bean.obj_medico.id = null;
+//            }
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
             serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
                 if (response.status == 200) {
@@ -88,29 +113,5 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
-//        $scope.chooseOne = function (nameForeign, foreignObjectName, contollerName) {
-//            var modalInstance = $uibModal.open({
-//                templateUrl: 'js/' + foreignObjectName + '/selection.html',
-//                controller: contollerName,
-//                size: 'lg'
-//            }).result.then(function (modalResult) {
-//                $scope.bean[nameForeign].id = modalResult;
-//            });
-//        };
-//        $scope.$watch('bean.obj_tipousuario.id', function () {
-//            if ($scope.bean) {
-//                serverService.promise_getOne('tipousuario', $scope.bean.obj_tipousuario.id).then(function (response) {
-//                    var old_id = $scope.bean.obj_tipousuario.id;
-//                    $scope.bean.obj_tipousuario = response.data.message;
-//                    if (response.data.message.id != 0) {
-//                        $scope.outerForm.obj_tipousuario.$setValidity('exists', true);
-//                    } else {
-//                        $scope.outerForm.obj_tipousuario.$setValidity('exists', false);
-//                        $scope.bean.obj_tipousuario.id = old_id;
-//                    }
-//                });
-//            }
-//        });
-
     }]);
 

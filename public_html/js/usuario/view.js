@@ -45,7 +45,7 @@ moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'se
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;
                     $scope.ob = $scope.metaobj.name;
-                    $scope.title = "Listado de " + $scope.obtitle;
+                    $scope.title = "Vista de " + $scope.obtitle;
 
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";

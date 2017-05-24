@@ -28,12 +28,8 @@
 
 'use strict';
 moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$location', 'usuarioService', 'serverService', 'sharedSpaceService', '$filter', '$uibModal',
-    function ($scope, $routeParams, $location, usuarioService, serverService, sharedSpaceService, $filter, $uibModal) {
-        $scope.fields = usuarioService.getFields();
-        $scope.obtitle = usuarioService.getObTitle();
-        $scope.icon = usuarioService.getIcon();
-        $scope.ob = usuarioService.getTitle();
-        $scope.title = "Editando un " + $scope.obtitle;
+    function ($scope, $routeParams, $location, usuarioService, serverService, sharedSpaceService, $filter, $uibModal) {                
+        $scope.ob = "usuario";
         $scope.op = "edit";
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -51,11 +47,14 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
                 if (response.data.status == 200) {
                     $scope.status = null;
 
-
                     $scope.bean = response.data.message.data;
                     $scope.metaobj = response.data.message.metaobj;
                     $scope.metaprops = response.data.message.metaprops;
 
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Modificación de " + $scope.obtitle;
 
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
@@ -102,30 +101,4 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
-//        $scope.chooseOne = function (nameForeign, foreignObjectName, contollerName) {
-//            var modalInstance = $uibModal.open({
-//                templateUrl: 'js/' + foreignObjectName + '/selection.html',
-//                controller: contollerName,
-//                size: 'lg'
-//            }).result.then(function (modalResult) {
-//                $scope.bean[nameForeign].id = modalResult;
-//            });
-//        };
-//        $scope.$watch('bean.obj_tipousuario.id', function () {
-//            if ($scope.bean) {
-//                if ($scope.bean.obj_tipousuario.id) {
-//                    serverService.promise_getOne('tipousuario', $scope.bean.obj_tipousuario.id).then(function (response) {
-//                        var old_id = $scope.bean.obj_tipousuario.id;
-//                        if (response.data.message.id != 0) {
-//                            $scope.outerForm.obj_tipousuario.$setValidity('exists', true);
-//                            $scope.bean.obj_tipousuario = response.data.message;
-//                        } else {
-//                            $scope.outerForm.obj_tipousuario.$setValidity('exists', false);
-//                            //$scope.bean.obj_tipousuario.id = 0;
-//                            $scope.bean.obj_tipousuario.id = old_id;
-//                        }
-//                    });
-//                }
-//            }
-//        });
     }]);
