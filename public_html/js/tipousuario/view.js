@@ -28,13 +28,9 @@
 
 'use strict';
 
-moduloTipousuario.controller('TipousuarioViewController', ['$scope', '$routeParams', 'serverService', 'tipousuarioService', '$location',
-    function ($scope, $routeParams, serverService, tipousuarioService, $location) {
-        $scope.fields = tipousuarioService.getFields();
-        $scope.obtitle = tipousuarioService.getObTitle();
-        $scope.icon = tipousuarioService.getIcon();
-        $scope.ob = tipousuarioService.getTitle();
-        $scope.title = "Vista de " + $scope.obtitle;
+moduloTipousuario.controller('TipousuarioViewController', ['$scope', '$routeParams', 'serverService', '$location',
+    function ($scope, $routeParams, serverService, $location) {
+        $scope.ob="tipousuario";  //pte rutas
         $scope.id = $routeParams.id;
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -42,7 +38,15 @@ moduloTipousuario.controller('TipousuarioViewController', ['$scope', '$routePara
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-                    $scope.bean = response.data.message;
+                    $scope.bean = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Vista de " + $scope.obtitle;
+
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -61,4 +65,5 @@ moduloTipousuario.controller('TipousuarioViewController', ['$scope', '$routePara
         $scope.back = function () {
             window.history.back();
         };
+   
     }]);

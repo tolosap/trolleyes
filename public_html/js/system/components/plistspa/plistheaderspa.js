@@ -3,7 +3,7 @@
 moduloDirectivas.directive('plistheaderspa', function () {
     return {
         restrict: 'A',
-        templateUrl: 'js/system/components/plistspa/tableheader.html'
+        templateUrl: 'js/system/components/plistspa/plistheaderspa.html'
     };
 });
 

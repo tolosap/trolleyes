@@ -7,7 +7,6 @@ moduloDirectivas.component('foreignKey', {
         form: '=',
         name: '<',
         reference: '<',
-        //description: '<',
         required: '<'
     }
 
@@ -16,12 +15,9 @@ moduloDirectivas.component('foreignKey', {
 function foreignkey(serverService, $uibModal) {
     var self = this;
 
-
-
     self.chooseOne = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'js/system/templates/selection.html',
-            // templateUrl: 'js/' + self.reference + '/selection.html',
+            templateUrl: 'js/' + self.reference + '/selection.html',
             controller: serverService.capitalizeWord(self.reference) + "SelectionController",
             size: 'lg'
         }).result.then(function (modalResult) {
@@ -57,28 +53,28 @@ function foreignkey(serverService, $uibModal) {
 
     self.change = function (id) {
         if (!self.required && (id <= 0 || id === "" || id === undefined)) {
-            self.bean.data.id = null;
-
+            self.bean = {};
+            self.desc = "";
             validity(true);
             return;
         }
-        if (self.bean) {
-            serverService.promise_getOne(self.reference, id).then(function (response) {
-                var old_id = id;
-                self.bean = response.data.message;
-                if (response.data.message.data.id <= 0) {
-                    validity(false);
-                    self.bean.id = old_id;
-                } else {
 
-                    validity(true);
-
-                    self.desc = self.getDesc();
-                }
-            }).catch(function (data) {
+        serverService.promise_getOne(self.reference, id).then(function (response) {
+            //var old_id = id;
+            if (!response.data.message.data.id) {
                 validity(false);
-            });
-        }
+                //self.bean.data.id = old_id;
+                self.bean = {};
+                self.desc = "";
+            } else {
+                self.bean = response.data.message;
+                validity(true);
+                self.desc = self.getDesc();
+            }
+        }).catch(function (data) {
+            validity(false);
+        });
+
     };
 
     var validity = function (isValid) {
@@ -94,14 +90,13 @@ function foreignkey(serverService, $uibModal) {
                 description += self.bean.data[self.bean.metaprops[i].name] + " ";
             }
         }
-        description=description.trim();
-        if (description=="undefined"){
-            description="";
+        description = description.trim();
+        if (description == "undefined") {
+            description = "";
         }
         return description;
     };
     this.$onInit = function () {
-
         self.desc = self.getDesc();
     }
 }

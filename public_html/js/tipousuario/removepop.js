@@ -28,13 +28,9 @@
 'use strict';
 
 
-moduloTipousuario.controller('TipousuarioRemovepopController', ['$scope', '$routeParams', 'serverService', 'tipousuarioService', '$location', '$uibModalInstance', 'id',
-    function ($scope, $routeParams, serverService, tipousuarioService, $location, $uibModalInstance, id) {
-        $scope.fields = tipousuarioService.getFields();
-        $scope.obtitle = tipousuarioService.getObTitle();
-        $scope.icon = tipousuarioService.getIcon();
-        $scope.ob = tipousuarioService.getTitle();
-        $scope.title = "Borrado de " + $scope.obtitle;
+moduloTipousuario.controller('TipousuarioRemovepopController', ['$scope', '$routeParams', 'serverService', '$location', '$uibModalInstance', 'id',
+    function ($scope, $routeParams, serverService, $location, $uibModalInstance, id) {
+        $scope.ob = "tipousuario";  //pte rutas
         $scope.id = id;
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -43,7 +39,14 @@ moduloTipousuario.controller('TipousuarioRemovepopController', ['$scope', '$rout
                 if (response.status == 200) {
                     if (response.data.status == 200) {
                         $scope.status = null;
-                        $scope.bean = response.data.message;
+                        $scope.bean = response.data.message.data;
+                        $scope.metaobj = response.data.message.metaobj;
+                        $scope.metaprops = response.data.message.metaprops;
+
+                        $scope.icon = $scope.metaobj.icon;
+                        $scope.obtitle = $scope.metaobj.name;
+                        $scope.ob = $scope.metaobj.name;
+                        $scope.title = "Borrado de " + $scope.obtitle;
                     } else {
                         $scope.status = "Error en la recepción de datos del servidor";
                     }

@@ -3,7 +3,7 @@
 moduloDirectivas.directive('plistpaginationspa', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/system/components/plistspa/pagination.html'
+        templateUrl: 'js/system/components/plistspa/plistpaginationspa.html'
     };
 });
 moduloSistema.controller('plistPaginationspaController', ['$scope', 'serverService', '$rootScope', function ($scope, serverService, $rootScope) {

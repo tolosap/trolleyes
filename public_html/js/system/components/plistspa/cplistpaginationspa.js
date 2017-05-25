@@ -10,7 +10,7 @@ moduloDirectivas.component('cplistpaginationspa', {
         neighbourhood: '<',
         pageSelectionEvent: '&'
     },
-    templateUrl: 'js/system/components/plistspa/cpagination.html',
+    templateUrl: 'js/system/components/plistspa/cplistpaginationspa.html',
     controllerAs: 'pf',
     controller: ['serverService', function (serverService) {
             var self = this;

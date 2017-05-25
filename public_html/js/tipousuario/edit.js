@@ -27,24 +27,35 @@
  */
 
 'use strict';
-moduloTipousuario.controller('TipousuarioEditController', ['$scope', '$routeParams', '$location', 'tipousuarioService', 'serverService', 'sharedSpaceService', '$filter', '$uibModal',
-    function ($scope, $routeParams, $location, tipousuarioService, serverService, sharedSpaceService, $filter, $uibModal) {
-        $scope.fields = tipousuarioService.getFields();
-        $scope.obtitle = tipousuarioService.getObTitle();
-        $scope.icon = tipousuarioService.getIcon();
-        $scope.ob = tipousuarioService.getTitle();
-        $scope.title = "Editando un " + $scope.obtitle;
-        $scope.op = "plist";
+moduloTipousuario.controller('TipousuarioEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal) {                
+        $scope.ob = "tipousuario";
+        $scope.op = "edit";
         $scope.status = null;
-        $scope.error = true;
         $scope.debugging = serverService.debugging();
         $scope.bean = {};
+//        //---
+//        $scope.bean.obj_tipousuario = {"id": null};
+//        $scope.show_obj_tipousuario = true;
+//        //---
+//        $scope.bean.obj_medico = {"id": null};
+//        $scope.show_obj_medico = true;
+//        //---
         $scope.id = $routeParams.id;
         serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-                    $scope.bean = response.data.message;
+
+                    $scope.bean = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Modificación de " + $scope.obtitle;
+
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -55,8 +66,14 @@ moduloTipousuario.controller('TipousuarioEditController', ['$scope', '$routePara
             $scope.status = "Error en la recepción de datos del servidor";
         });
         $scope.save = function () {
-            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
-            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
+//            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
+//            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
+//            if ($scope.bean.obj_tipousuario.id <= 0) {
+//                $scope.bean.obj_tipousuario.id = null;
+//            }
+//            if ($scope.bean.obj_medico.id <= 0) {
+//                $scope.bean.obj_medico.id = null;
+//            }
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
             serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
                 if (response.status == 200) {
@@ -83,14 +100,5 @@ moduloTipousuario.controller('TipousuarioEditController', ['$scope', '$routePara
         };
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
-        };
-        $scope.chooseOne = function (nameForeign, foreignObjectName, contollerName) {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'js/' + foreignObjectName + '/selection.html',
-                controller: contollerName,
-                size: 'lg'
-            }).result.then(function (modalResult) {
-                $scope.bean[nameForeign].id = modalResult;
-            });
         };
     }]);

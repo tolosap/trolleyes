@@ -3,7 +3,7 @@
 moduloDirectivas.directive('plistfilterspa', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/system/components/plistspa/filter.html',
+        templateUrl: 'js/system/components/plistspa/plistfilterspa.html',
 //        scope:{
 //            Fields:'@' //one way data binding
 //        }

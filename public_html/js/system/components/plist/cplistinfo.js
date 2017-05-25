@@ -11,7 +11,7 @@ moduloDirectivas.component('cplistinfo', {
         sfilterparams: '<',
         searchtext: '='
     },
-    templateUrl: 'js/system/components/plist/cinfo.html',
+    templateUrl: 'js/system/components/plist/cplistinfo.html',
     controllerAs: 'pli',
     controller: ['$location', function ($location) {
             var self = this;

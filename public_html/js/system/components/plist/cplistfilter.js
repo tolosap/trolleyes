@@ -10,7 +10,7 @@ moduloDirectivas.component('cplistfilter', {
         filter: '<',
         sfilter: '<'
     },
-    templateUrl: 'js/system/components/plist/cfilter.html',
+    templateUrl: 'js/system/components/plist/cplistfilter.html',
     controllerAs: 'cf',
     controller: ['serverService', '$location', function (serverService, $location) {
             var self = this;

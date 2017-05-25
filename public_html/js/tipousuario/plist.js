@@ -28,14 +28,11 @@
 
 'use strict';
 
-moduloTipousuario.controller('TipousuarioPListController', ['$scope', '$routeParams', '$location', 'serverService', 'tipousuarioService', '$uibModal',
-    function ($scope, $routeParams, $location, serverService, tipousuarioService, $uibModal) {
-        $scope.fields = tipousuarioService.getFields();
-        $scope.obtitle = tipousuarioService.getObTitle();
-        $scope.icon = tipousuarioService.getIcon();
-        $scope.ob = tipousuarioService.getTitle();
-        $scope.title = "Listado de " + $scope.obtitle;
+moduloTipousuario.controller('TipousuarioPListController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal',
+    function ($scope, $routeParams, $location, serverService, $uibModal) {
+        $scope.ob = "tipousuario";
         $scope.op = "plist";
+
         $scope.numpage = serverService.checkDefault(1, $routeParams.page);
         $scope.rpp = serverService.checkDefault(10, $routeParams.rpp);
         $scope.neighbourhood = serverService.getGlobalNeighbourhood();
@@ -65,7 +62,15 @@ moduloTipousuario.controller('TipousuarioPListController', ['$scope', '$routePar
                 }
             }).then(function (response) {
                 if (response.status == 200) {
-                    $scope.page = response.data.message;
+                    $scope.page = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Listado de " + $scope.obtitle;
+
                     $scope.status = "";
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";

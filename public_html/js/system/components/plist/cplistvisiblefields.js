@@ -4,7 +4,7 @@ moduloDirectivas.component('cplistvisiblefields', {
     bindings: {
         fields: '='
     },
-    templateUrl: 'js/system/components/plist/cvisiblefields.html',
+    templateUrl: 'js/system/components/plist/cplistvisiblefields.html',
     controllerAs: 'pf'
 });
 

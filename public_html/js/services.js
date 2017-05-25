@@ -411,6 +411,9 @@ moduloServicios
                 },
                 setDesc_tipousuario: function (value) {
                     desc_tipousuario = value;
+                },
+                getNombre_completo: function () {
+                    return nombre + ' ' + primer_apellido + ' ' + segundo_apellido;
                 }
             };
         })        

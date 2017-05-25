@@ -3,7 +3,7 @@
 moduloDirectivas.directive('plistrppspa', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/system/components/plistspa/rpp.html'
+        templateUrl: 'js/system/components/plistspa/plistrppspa.html'
     };
 });
 moduloSistema.controller('plistrppspaController', ['$scope', 'serverService', '$rootScope', function ($scope, serverService, $rootScope) {

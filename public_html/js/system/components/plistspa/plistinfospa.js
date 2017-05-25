@@ -3,7 +3,7 @@
 moduloDirectivas.directive('plistinfospa', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/system/components/plist/info.html',
+        templateUrl: 'js/system/components/plistspa/plistinfospa.html',
 //        scope:{
 //            Fields:'@' //one way data binding
 //        }

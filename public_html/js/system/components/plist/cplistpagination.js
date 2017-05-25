@@ -11,7 +11,7 @@ moduloDirectivas.component('cplistpagination', {
         orderparams: '<',
         sfilterparams: '<'
     },
-    templateUrl: 'js/system/components/plist/cpagination.html',
+    templateUrl: 'js/system/components/plist/cplistpagination.html',
     controllerAs: 'pf',
     controller: ['serverService', '$location', function (serverService, $location) {
             var self = this;

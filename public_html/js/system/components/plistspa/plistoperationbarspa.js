@@ -3,7 +3,7 @@
 moduloDirectivas.directive('plistoperationbarspa', function () {
     return {
         restrict: 'A',
-        templateUrl: 'js/system/components/plistspa/operationbar.html',
+        templateUrl: 'js/system/components/plistspa/plistoperationbarspa.html',
 //        scope:{
 //            Fields:'@' //one way data binding
 //        }

@@ -100,7 +100,7 @@ THE SOFTWARE.
                             <div id="datos" ng-if="!status">
                                 <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">                                
                                     <thead plistheaderspa></thead>
-                                    <tbody>
+                                    <tbody>                                        
                                         <tr ng-repeat="obj in page| filter:searchText">
                                             <td ng-repeat="f in metaprops" ng-if="f.tablevisible"  class="text-right">
                                                 <div ng-if="f.tablevisible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
@@ -111,7 +111,7 @@ THE SOFTWARE.
                                                 <div ng-if="f.tablevisible && f.type == 'longtext'" class="text-left">{{obj[f.name]|clipString}}</div>
                                                 <div ng-if="f.tablevisible && f.type == 'tinyint'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
                                                 <div ng-if="f.tablevisible && f.type == 'foreign'" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
-                                                    <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
+                                                    {{(obj[fname])|getForeignDescription}}
                                                 </div>     
                                             </td>                       
                                             <td plistoperationbarspa></td>

@@ -3,7 +3,7 @@
 moduloDirectivas.directive('plistvisiblefieldsspa', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/system/components/plistspa/visiblefields.html'
+        templateUrl: 'js/system/components/plistspa/plistvisiblefieldsspa.html'
     };
 });
 

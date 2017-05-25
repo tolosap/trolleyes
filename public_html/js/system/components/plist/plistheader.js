@@ -2,7 +2,7 @@
 moduloDirectivas.directive('plistheader', function () {
     return {
         restrict: 'A',
-        templateUrl: 'js/system/components/plist/tableheader.html'
+        templateUrl: 'js/system/components/plist/plistheader.html'
     };
 });
 
