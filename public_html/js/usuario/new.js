@@ -30,11 +30,8 @@
 
 moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$location', 'serverService', 'usuarioService', 'sharedSpaceService', '$filter', '$uibModal',
     function ($scope, $routeParams, $location, serverService, usuarioService, sharedSpaceService, $filter, $uibModal) {
-        $scope.fields = usuarioService.getFields();
-        $scope.obtitle = usuarioService.getObTitle();
-        $scope.icon = usuarioService.getIcon();
-        $scope.ob = usuarioService.getTitle();
-        $scope.title = "Creando un nuevo " + $scope.obtitle;
+        $scope.ob = "usuario";
+
         $scope.op = "new";
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -55,8 +52,8 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
 //        //----
 //        $scope.bean.obj_medico = {"id": 0};
 
-        
-        serverService.promise_getMeta($scope.ob, $scope.id).then(function (response) {
+
+        serverService.promise_getOne($scope.ob, 0).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
