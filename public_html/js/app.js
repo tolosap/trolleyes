@@ -34,6 +34,7 @@ var sisane = angular.module('myApp', [
     'Directives',
     'systemControllers',
     'usuarioControllers',
+    'genericControllers',
     'tipousuarioControllers',
     'medicamentoControllers',
     'medicoControllers',
@@ -85,6 +86,14 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
         $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController'});
+        //------------
+        $routeProvider.when('/generic/:ob/view/:id', {templateUrl: 'js/generic/view.html', controller: 'GenericViewController'});
+        $routeProvider.when('/generic/:ob/new/:id?', {templateUrl: 'js/generic/new.html', controller: 'GenericNewController'});
+        $routeProvider.when('/generic/:ob/edit/:id', {templateUrl: 'js/generic/edit.html', controller: 'GenericEditController'});
+        $routeProvider.when('/generic/:ob/remove/:id', {templateUrl: 'js/generic/remove.html', controller: 'GenericRemoveController'});
+        $routeProvider.when('/generic/:ob/plist/:page?/:rpp?', {templateUrl: 'js/generic/plist.html', controller: 'GenericPListController'});
+        //$routeProvider.when('/generic/:ob/selection/:page?/:rpp?', {templateUrl: 'js/generic/selection.html', controller: 'GenericSelectionController'});
+        //------------
         //------------
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController'});
         $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController'});
@@ -353,6 +362,9 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
 //-------------
 var moduloSistema = angular.module('systemControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
+
+var moduleGeneric = angular.module('genericControllers', []);
+
 var moduloPrioridad = angular.module('prioridadControllers', []);
 var moduloPosologia = angular.module('posologiaControllers', []);
 var moduloTipousuario = angular.module('tipousuarioControllers', []);
