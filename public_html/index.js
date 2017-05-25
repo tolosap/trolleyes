@@ -1,5 +1,5 @@
-sisane.controller('IndexController', ['$scope', '$location', 'serverService', 'sessionService', 'metaService',
-    function ($scope, $location, serverService, sessionService, metaService) {
+sisane.controller('IndexController', ['$scope', '$location', 'serverService', 'sessionService',
+    function ($scope, $location, serverService, sessionService) {
         $scope.username = "";
         $scope.desc_tipousuario="";
         $scope.isActive = function (viewLocation) {
@@ -13,6 +13,5 @@ sisane.controller('IndexController', ['$scope', '$location', 'serverService', 's
             } else {
                 return false;
             }
-        };
-        $scope.meta = metaService.getMeta();
+        };       
     }]);

@@ -1,5 +1,4 @@
 'use strict';
-
 moduloDirectivas.directive('plistheader', function () {
     return {
         restrict: 'A',

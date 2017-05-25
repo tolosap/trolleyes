@@ -28,8 +28,8 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$location', 'serverService', 'usuarioService', 'sharedSpaceService', '$filter', '$uibModal',
-    function ($scope, $routeParams, $location, serverService, usuarioService, sharedSpaceService, $filter, $uibModal) {
+moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal) {
         $scope.ob = "usuario";
 
         $scope.op = "new";
