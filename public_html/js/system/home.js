@@ -29,9 +29,6 @@
 'use strict';
 moduloSistema.controller('HomeController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
-        //serverService.resetCSS();
         $scope.op = "Home";
-
     }
-]
-        );
+]);
