@@ -30,7 +30,7 @@
 
 moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
-        $scope.ob="usuario";  //pte rutas
+        $scope.ob = "usuario";  //pte rutas
         $scope.id = $routeParams.id;
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -56,14 +56,7 @@ moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'se
         }).catch(function (data) {
             $scope.status = "Error en la recepción de datos del servidor";
         });
-        $scope.close = function () {
-            $location.path('/home');
-        };
-        $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
-        };
         $scope.back = function () {
             window.history.back();
         };
-   
     }]);

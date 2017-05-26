@@ -28,7 +28,7 @@
 
 'use strict';
 moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal) {                
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal) {
         $scope.ob = "usuario";
         $scope.op = "edit";
         $scope.status = null;
@@ -79,7 +79,7 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
                 if (response.status == 200) {
                     if (response.data.status == 200) {
                         $scope.response = response;
-                        $scope.status = "El registro " + $scope.obtitle + " se ha modificado ... id = " + $scope.bean.id;
+                        $scope.status = "El registro de " + $scope.obtitle + " con id=" + $scope.bean.id + " se ha modificado.";
                         $scope.bean.id = $scope.bean.id;
                     } else {
                         $scope.status = "Error en la recepción de datos del servidor";
@@ -94,11 +94,5 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
         };
         $scope.back = function () {
             window.history.back();
-        };
-        $scope.close = function () {
-            $location.path('/home');
-        };
-        $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
         };
     }]);

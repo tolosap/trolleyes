@@ -104,11 +104,5 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
         $scope.back = function () {
             window.history.back();
         };
-        $scope.close = function () {
-            $location.path('/home');
-        };
-        $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
-        };
     }]);
 
