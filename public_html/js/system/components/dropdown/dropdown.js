@@ -3,8 +3,8 @@ moduloDirectivas.component('dropdown', {
     controllerAs: 'dd',
     bindings: {
         ide: '=',
-        tablereference: '<',
-        field: '<'
+        tablereference: '<'
+
     },
     controller: dropdown
 });
@@ -13,7 +13,25 @@ function dropdown(serverService) {
     var self = this;
     this.$onInit = function () {
         serverService.promise_getAll(self.tablereference).then(function (response) {
-            self.selections = response.data.message;
+            self.data = response.data.message.data;
+            self.metaobj = response.data.message.metaobj;
+            self.metaprops = response.data.message.metaprops;
+            self.selections = [];
+            var arrayLength = self.data.length;
+            for (var i = 0; i < arrayLength; i++) {
+                var arrayLength2 = self.metaprops.length;
+                for (var j = 0; j < arrayLength2; j++) {
+
+
+                    if (self.metaprops[j].foreigndescription) {
+                        var id = self.data[i]['id'];
+                        var name = self.data[i][self.metaprops[j].name];
+                        self.selections.push({'id': id, 'name': name});
+                    }
+                }
+
+            }
+
         }).catch(function (data) {
             console.log(data);
         });

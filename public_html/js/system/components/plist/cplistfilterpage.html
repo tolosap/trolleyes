@@ -6,26 +6,72 @@
                 {{cf.bean|json}}<br>
                 {{cf.filter_array|json}}
             </div>
-            <form class="form-horizontal" id="filtro">
-                <div ng-repeat="f in cf.fields" id="datos" ng-if="f.type == 'varchar'" class="form-group">
-                    <label class="control-label col-sm-1" for="input_{{f.name}}">{{f.longname}}</label>
-                    <div class="col-sm-2">
-                        <select id="select_{{f.name}}" class="form-control" name="filteroperator" ng-model="cf.bean['opt_' + f.name]">
-                            <option style="display:none">selecciona una operacion</option>
-                            <option value="like" ng-selected="true">contiene</option>
-                            <option value="nlik">no contiene</option>
-                            <option value="star">empieza por</option>
-                            <option value="nsta">no empieza por</option>
-                            <option value="ends">acaba con</option>
-                            <option value="nend">no acaba con</option>
-                            <option value="equa">es igual a</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" id="input_{{f.name}}" ng-model="cf.bean['text_' + f.name]" />
+            <form class="form-horizontal" id="outerForm">
+                <div ng-repeat="f in cf.fields" id="datos">
+
+                    <div class="form-group" ng-if="f.type == 'varchar'" id="{{f.name}}-group">
+                        <label class="control-label col-sm-1" for="input_{{f.name}}">{{f.longname}}</label>
+                        <div class="col-sm-2">
+                            <select id="select_{{f.name}}" class="form-control" name="filteroperator" ng-model="cf.bean['opt_' + f.name]">
+                                <option style="display:none">selecciona una operacion</option>
+                                <option value="like" ng-selected="true">contiene</option>
+                                <option value="nlik">no contiene</option>
+                                <option value="star">empieza por</option>
+                                <option value="nsta">no empieza por</option>
+                                <option value="ends">acaba con</option>
+                                <option value="nend">no acaba con</option>
+                                <option value="equa">es igual a</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="input_{{f.name}}" ng-model="cf.bean['text_' + f.name]" />
+                        </div>
                     </div>
 
+
+
+
+                    <div class="form-group" ng-if="f.type == 'datetime'" id="{{f.name}}-group">
+                        <label class="control-label col-sm-1">{{f.longname}}</label>
+                        <label class="control-label col-sm-1">Desde...</label>
+                        <div class="control col-sm-2">
+                            <date-time-picker
+                                name="f.name"
+                                form="outerForm"
+                                required="1"
+                                model="cf.bean['fini_' + f.name]">
+                            </date-time-picker>
+                        </div>
+                        <label class="control-label col-sm-1">Hasta...</label>
+                        <div class="control col-sm-2">
+                            <date-time-picker
+                                name="f.name"
+                                form="outerForm"
+                                required="1"
+                                model="cf.bean['fend_' + f.name]">
+                            </date-time-picker>
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="form-group" ng-if="f.type == 'foreign'" id="{{f.name}}-group" class="form-group">
+                        <label class="control-label col-sm-1">{{f.longname}}</label>
+                        <div class="control col-sm-5">
+                            <dropdown 
+                                ide="cf.bean[f.name].id"
+                                tablereference="f.reference">
+                            </dropdown>
+                        </div>
+                    </div>
+
+
                 </div>
+
+
+
+
+
                 <div class="form-group"> 
                     <div class="col-sm-offset-1 col-sm-10">
                         <button class="btn btn-default"  ng-click="cf.dofilter()">Filtrar</button>
