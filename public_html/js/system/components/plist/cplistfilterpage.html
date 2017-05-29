@@ -4,7 +4,8 @@
             <div class="alert alert-success" role="alert">
                 <h4>Debug:</h4>
                 {{cf.bean|json}}<br>
-                {{cf.filter_array|json}}
+                {{cf.filter_array|json}}<br>
+                {{cf.strFilter|json}}
             </div>
             <form class="form-horizontal" id="outerForm">
                 <div ng-repeat="f in cf.fields" id="datos">
@@ -38,7 +39,7 @@
                             <date-time-picker
                                 name="f.name"
                                 form="outerForm"
-                                required="1"
+                                required="0"
                                 model="cf.bean['fini_' + f.name]">
                             </date-time-picker>
                         </div>
@@ -47,7 +48,7 @@
                             <date-time-picker
                                 name="f.name"
                                 form="outerForm"
-                                required="1"
+                                required="0"
                                 model="cf.bean['fend_' + f.name]">
                             </date-time-picker>
                         </div>
