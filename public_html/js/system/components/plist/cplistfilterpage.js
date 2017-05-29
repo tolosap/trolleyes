@@ -48,12 +48,12 @@ moduloDirectivas.component('cplistfilterpage', {
                     if (key.startsWith('fini_')) {
                         var fini_field = key.split('_').pop(-1);
                         var fini_value = self.bean[key];
-                        self.filter_array.push(self.dameFiltro(fini_field, 'gequ', fini_value));
+                        self.filter_array.push("'" + self.dameFiltro(fini_field, 'gequ', fini_value) + "'");
                     }
                     if (key.startsWith('fend_')) {
                         var fini_field = key.split('_').pop(-1);
                         var fini_value = self.bean[key];
-                        self.filter_array.push(self.dameFiltro(fini_field, 'lequ', fini_value));
+                        self.filter_array.push("'" + self.dameFiltro(fini_field, 'lequ', fini_value) + "'");
                     }
                 }
 
