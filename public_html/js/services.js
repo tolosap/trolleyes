@@ -183,15 +183,23 @@ moduloServicios
                     //------------------------------------------------
                     promise_getCount: function (strObject, filter) {
                         if (filter) {
-                            filter = "&filter=" + filter;
+                            var arrayLength = filter.length;
+                            var strfilter = "";
+                            for (var i = 0; i < arrayLength; i++) {
+                                strfilter += "&filter=" + filter[i];
+                            }
                         } else {
-                            filter = "";
+                            strfilter = "";
                         }
-                        return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getcount' + filter, 'GET', '');
+                        return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getcount' + strfilter, 'GET', '');
                     },
                     promise_getPage: function (strObject, rpp, page, filter, order) {
                         if (filter) {
-                            filter = "&filter=" + filter;
+                            var arrayLength = filter.length;
+                            var strfilter = "";
+                            for (var i = 0; i < arrayLength; i++) {
+                                strfilter += "&filter=" + filter[i];
+                            }
                         } else {
                             filter = "";
                         }
@@ -283,7 +291,7 @@ moduloServicios
                                 return  this.checkEmptyString(sfilter);
                             }
                         }
-                    }                  
+                    }
                 };
             }])
         .factory('sharedSpaceService', function ($http) {
@@ -416,5 +424,5 @@ moduloServicios
                     return nombre + ' ' + primer_apellido + ' ' + segundo_apellido;
                 }
             };
-        })        
+        })
         .value('version', '1');

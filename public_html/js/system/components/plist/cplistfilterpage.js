@@ -7,8 +7,7 @@ moduloDirectivas.component('cplistfilterpage', {
         rpp: '<',
         numpage: '<',
         order: '<',
-        filter: '<',
-        sfilter: '<'
+        filter: '<'
     },
     templateUrl: 'js/system/components/plist/cplistfilterpage.html',
     controllerAs: 'cf',
@@ -46,16 +45,39 @@ moduloDirectivas.component('cplistfilterpage', {
                         self.filter_array.push(self.dameFiltro(key, 'equa', id_value));
                     }
                     if (key.startsWith('fini_')) {
-                        var fini_field = key.split('_').pop(-1);
-                        var fini_value = self.bean[key];
-                        self.filter_array.push("'" + self.dameFiltro(fini_field, 'gequ', fini_value) + "'");
+                        var fini_field = key.substring(key.indexOf('_') + 1, key.length);
+
+                        var fini_value = self.bean[key].replace(/ /g, "+").replace(/\//g, "-");
+                        self.filter_array.push(self.dameFiltro(fini_field, 'gequ', "'" + fini_value + "'"));
                     }
                     if (key.startsWith('fend_')) {
-                        var fini_field = key.split('_').pop(-1);
-                        var fini_value = self.bean[key];
-                        self.filter_array.push("'" + self.dameFiltro(fini_field, 'lequ', fini_value) + "'");
+
+
+                        var fend_field = key.substring(key.indexOf('_') + 1, key.length);
+
+                        var fend_value = self.bean[key].replace(/ /g, "+").replace(/\//g, "-");
+
+
+
+
+
+//                        var arrfechahora = fend_value.split(" ");
+//                        var arrfecha = arrfechahora[0].split("/");
+//                        var arrhora = arrfechahora[1].split(":");
+//                        var newDate = new Date(arrfecha[2], arrfecha[1], arrfecha[0], arrhora[1], arrhora[0]);
+//                        $scope.bean.fecha = $filter('date')(newDate, "dd/MM/yyyy-HH:mm");
+
+
+
+
+
+
+                        self.filter_array.push(self.dameFiltro(fend_field, 'lequ', "'" + fend_value + "'"));
                     }
                 }
+
+
+
 
 
 //                if (self.filter && self.filteroperator && self.filtervalue) {
@@ -74,10 +96,11 @@ moduloDirectivas.component('cplistfilterpage', {
                     strFilter += self.filter_array[i] + "&";
                 }
                 if (strFilter) {
-                    strFilter = strFilter.substring(0, strFilter.length - 1);
+                    strFilter = "?" + strFilter.substring(0, strFilter.length - 1);
                 }
-                self.strFilter = window.encodeURIComponent(strFilter);
-                $location.path(self.url + '/' + self.numpage + '/' + self.rpp + "&" + strFilter).search('sfilter', self.sfilter).search('order', self.order);
+                //self.strFilter = window.encodeURIComponent(self.url + '/' + self.numpage + '/' + self.rpp + strFilter);
+                self.strFilter = self.url + '/' + self.numpage + '/' + self.rpp + strFilter;
+                $location.path(self.strFilter).search('order', self.order);
 
 
                 return false;

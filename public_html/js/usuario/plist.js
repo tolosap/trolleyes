@@ -38,6 +38,7 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
         $scope.neighbourhood = serverService.getGlobalNeighbourhood();
         $scope.order = "";
         $scope.ordervalue = "";
+        
         $scope.filter = "id";
         $scope.filteroperator = "like";
         $scope.filtervalue = "";
@@ -45,6 +46,12 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
         $scope.orderParams = serverService.checkNull($routeParams.order)
         $scope.sfilterParams = serverService.checkNull($routeParams.sfilter)
         $scope.filterExpression = serverService.getFilterExpression($routeParams.filter, $routeParams.sfilter);
+        
+        
+        
+        
+        
+        
         $scope.status = null;
         $scope.debugging = serverService.debugging();
         $scope.url = $scope.ob + '/' + $scope.op;
