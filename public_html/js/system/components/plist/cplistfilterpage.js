@@ -34,10 +34,6 @@ moduloDirectivas.component('cplistfilterpage', {
                                 }
                             }
                         }
-
-
-
-
                     }
 
                     if (key.startsWith('id_')) {
@@ -96,11 +92,11 @@ moduloDirectivas.component('cplistfilterpage', {
                     strFilter += self.filter_array[i] + "&";
                 }
                 if (strFilter) {
-                    strFilter = "?" + strFilter.substring(0, strFilter.length - 1);
+                    strFilter = strFilter.substring(0, strFilter.length - 1);
                 }
                 //self.strFilter = window.encodeURIComponent(self.url + '/' + self.numpage + '/' + self.rpp + strFilter);
-                self.strFilter = self.url + '/' + self.numpage + '/' + self.rpp + strFilter;
-                $location.path(self.strFilter).search('order', self.order);
+                self.strFilter = self.url + '/' + self.numpage + '/' + self.rpp + '?' + strFilter;
+                $location.url(self.strFilter).search('order', self.order);
 
 
                 return false;

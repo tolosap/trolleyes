@@ -182,33 +182,42 @@ moduloServicios
                     },
                     //------------------------------------------------
                     promise_getCount: function (strObject, filter) {
+//                        if (filter) {
+//                            var arrayLength = filter.length;
+//                            var strfilter = "";
+//                            for (var i = 0; i < arrayLength; i++) {
+//                                strfilter += "&filter=" + filter[i];
+//                            }
+//                        } else {
+//                            strfilter = "";
+//                        }
                         if (filter) {
-                            var arrayLength = filter.length;
-                            var strfilter = "";
-                            for (var i = 0; i < arrayLength; i++) {
-                                strfilter += "&filter=" + filter[i];
-                            }
+                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getcount' + filter, 'GET', '');
                         } else {
-                            strfilter = "";
+                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getcount', 'GET', '');
                         }
-                        return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getcount' + strfilter, 'GET', '');
                     },
                     promise_getPage: function (strObject, rpp, page, filter, order) {
+//                        if (filter) {
+//                            var arrayLength = filter.length;
+//                            var strfilter = "";
+//                            for (var i = 0; i < arrayLength; i++) {
+//                                strfilter += "&filter=" + filter[i];
+//                            }
+//                        } else {
+//                            filter = "";
+//                        }
+//                        if (order) {
+//                            order = "&order=" + order;
+//                        } else {
+//                            order = "";
+//                        }
+                        //return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
                         if (filter) {
-                            var arrayLength = filter.length;
-                            var strfilter = "";
-                            for (var i = 0; i < arrayLength; i++) {
-                                strfilter += "&filter=" + filter[i];
-                            }
+                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter, 'GET', '');
                         } else {
-                            filter = "";
+                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp, 'GET', '');
                         }
-                        if (order) {
-                            order = "&order=" + order;
-                        } else {
-                            order = "";
-                        }
-                        return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
                     },
                     promise_getAll: function (strClass, filter, order) {
                         filter = (filter === undefined || filter === null) ? "" : filter;
