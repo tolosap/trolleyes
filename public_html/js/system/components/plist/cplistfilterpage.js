@@ -19,11 +19,8 @@ moduloDirectivas.component('cplistfilterpage', {
             {
                 self.filter_array = [];
                 for (var key in  self.bean) {
-
-                    //console.log(key, self.bean[key]);
                     if (key.startsWith('opt')) {
                         var campo = key.split('_').pop(-1);
-                        //console.log("OPT " + campo);
                         for (var key2 in  self.bean) {
                             if (self.bean[key2]) {
                                 if (key2.startsWith('text')) {
@@ -35,40 +32,25 @@ moduloDirectivas.component('cplistfilterpage', {
                             }
                         }
                     }
-
                     if (key.startsWith('id_')) {
                         var id_value = self.bean[key]['id'];
                         self.filter_array.push(self.dameFiltro(key, 'equa', id_value));
                     }
                     if (key.startsWith('fini_')) {
                         var fini_field = key.substring(key.indexOf('_') + 1, key.length);
-
-                        var fini_value = self.bean[key].replace(/ /g, "+").replace(/\//g, "-");
-                        self.filter_array.push(self.dameFiltro(fini_field, 'gequ', "'" + fini_value + "'"));
+                        //var fini_value = self.bean[key].replace(/ /g, "+").replace(/\//g, "-");
+                        var fini_value = self.bean[key];
+                        self.filter_array.push(self.dameFiltro(fini_field, 'dgeq', fini_value));
                     }
                     if (key.startsWith('fend_')) {
-
-
                         var fend_field = key.substring(key.indexOf('_') + 1, key.length);
-
-                        var fend_value = self.bean[key].replace(/ /g, "+").replace(/\//g, "-");
-
-
-
-
-
-//                        var arrfechahora = fend_value.split(" ");
-//                        var arrfecha = arrfechahora[0].split("/");
-//                        var arrhora = arrfechahora[1].split(":");
-//                        var newDate = new Date(arrfecha[2], arrfecha[1], arrfecha[0], arrhora[1], arrhora[0]);
-//                        $scope.bean.fecha = $filter('date')(newDate, "dd/MM/yyyy-HH:mm");
-
-
-
-
-
-
-                        self.filter_array.push(self.dameFiltro(fend_field, 'lequ', "'" + fend_value + "'"));
+                        //var fend_value = self.bean[key].replace(/ /g, "+").replace(/\//g, "-");
+                        var fend_value = self.bean[key];
+                        self.filter_array.push(self.dameFiltro(fend_field, 'dleq', fend_value));
+                    }
+                    if (key.startsWith('bool_')) {
+                        var campo = key.split('_').pop(-1);
+                        self.filter_array.push(self.dameFiltro(campo, 'equa', self.bean[key]));
                     }
                 }
 
