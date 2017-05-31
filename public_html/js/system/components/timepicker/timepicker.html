@@ -1,8 +1,8 @@
 <div id="fecha_group" ng-class="['input-group','control',{'has-error': dtp.form[dtp.name].$error.valid}]">
     <input type="text"
-           ng-model="dtp.model"
+           ng-model="dtp.modelo"
            class="form-control"
-           ng-change="dtp.change(dtp.form[dtp.name])"
+           ng-change="dtp.change()"
            ng-required="dtp.required"
            placeholder="dd/mm/aaaa HH:mm"
            name="{{dtp.name}}"
