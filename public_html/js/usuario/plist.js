@@ -36,19 +36,18 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
         $scope.numpage = serverService.checkDefault(1, $routeParams.page);
         $scope.rpp = serverService.checkDefault(10, $routeParams.rpp);
         $scope.neighbourhood = serverService.getGlobalNeighbourhood();
-        $scope.order = "";
-        $scope.ordervalue = "";
 
+        $scope.orderParams = serverService.checkNull($routeParams.order)
 
-        $scope.strFilter = "";
+        $scope.filterParams = "";
         if ($routeParams.filter) {
             if (Array.isArray($routeParams.filter)) {
                 var arrayLength = $routeParams.filter.length;
                 for (var i = 0; i < arrayLength; i++) {
-                    $scope.strFilter += '&filter=' + $routeParams.filter[i];
+                    $scope.filterParams += '&filter=' + $routeParams.filter[i];
                 }
             } else {
-                $scope.strFilter += '&filter=' + $routeParams.filter;
+                $scope.filterParams += '&filter=' + $routeParams.filter;
             }
         }
 
@@ -56,14 +55,14 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
         $scope.debugging = serverService.debugging();
         $scope.url = $scope.ob + '/' + $scope.op;
         function getDataFromServer() {
-            serverService.promise_getCount($scope.ob, $scope.strFilter).then(function (response) {
+            serverService.promise_getCount($scope.ob, $scope.filterParams).then(function (response) {
                 if (response.status == 200) {
                     $scope.registers = response.data.message;
                     $scope.pages = serverService.calculatePages($scope.rpp, $scope.registers);
                     if ($scope.numpage > $scope.pages) {
                         $scope.numpage = $scope.pages;
                     }
-                    return serverService.promise_getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.strFilter, $routeParams.order);
+                    return serverService.promise_getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }

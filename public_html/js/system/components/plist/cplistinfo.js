@@ -8,7 +8,6 @@ moduloDirectivas.component('cplistinfo', {
         registers: '<',
         orderparams: '<',
         filterparams: '<',
-        sfilterparams: '<',
         searchtext: '='
     },
     templateUrl: 'js/system/components/plist/cplistinfo.html',
@@ -16,16 +15,15 @@ moduloDirectivas.component('cplistinfo', {
     controller: ['$location', function ($location) {
             var self = this;
             self.doresetorder = function () {
-                $location.url(self.url + '/' + self.numpage + '/' + self.rpp).search('filter', self.filterparams).search('sfilter', self.sfilterparams);
+                $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?' + self.filterparams);
+                //$location.url(self.url + '/' + self.numpage + '/' + self.rpp).search('filter', self.filterparams).search('sfilter', self.sfilterparams);
                 return false;
             };
-
 
             self.doresetfilter = function () {
-                $location.url(self.url + '/' + self.numpage + '/' + self.rpp).search('sfilter', self.sfilterparams).search('order', self.orderparams);
+                $location.url(self.url + '/' + self.numpage + '/' + self.rpp).search('order', self.orderparams);
                 return false;
             };
-
 
             self.resetClientfilter = function () {
                 self.searchText = "";

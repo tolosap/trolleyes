@@ -207,17 +207,17 @@ moduloServicios
 //                        } else {
 //                            filter = "";
 //                        }
-//                        if (order) {
-//                            order = "&order=" + order;
-//                        } else {
-//                            order = "";
-//                        }
-                        //return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
-                        if (filter) {
-                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter, 'GET', '');
+                        if (order) {
+                            order = "&order=" + order;
                         } else {
-                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp, 'GET', '');
+                            order = "";
                         }
+                        //return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
+//                        if (filter) {
+                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
+//                        } else {
+//                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp, 'GET', '');
+//                        }
                     },
                     promise_getAll: function (strClass, filter, order) {
                         filter = (filter === undefined || filter === null) ? "" : filter;

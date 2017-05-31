@@ -23,7 +23,7 @@ moduloDirectivas.component('cplistfilterpage', {
                         var campo = key.split('_').pop(-1);
                         for (var key2 in  self.bean) {
                             if (self.bean[key2]) {
-                                if (key2.startsWith('text')) {
+                                if (key2.startsWith('text') || key2.startsWith('double')||key2.startsWith('longtext')||key2.startsWith('int')) {
                                     var campo2 = key2.split('_').pop(-1);
                                     if (campo === campo2) {
                                         self.filter_array.push(self.dameFiltro(campo, self.bean[key], self.bean[key2]));
@@ -52,6 +52,7 @@ moduloDirectivas.component('cplistfilterpage', {
                         var campo = key.split('_').pop(-1);
                         self.filter_array.push(self.dameFiltro(campo, 'equa', self.bean[key]));
                     }
+
                 }
 
 

@@ -10,7 +10,8 @@ moduloSistema.controller('plistheaderController', ['$scope', 'serverService', '$
 //        $scope.Fields = $scope.$parent.Fields;
 //        $scope.dosort = $scope.$parent.dosort;
         $scope.doorder = function (orderField, ascDesc) {
-            $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('sfilter', $scope.sfilterParams).search('order', orderField + ',' + ascDesc);
+            $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp + '?' +  $scope.$parent.filterParams).search('order', orderField + ',' + ascDesc);
+            //$location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('sfilter', $scope.sfilterParams).search('order', orderField + ',' + ascDesc);
             return false;
         };
     }]);
