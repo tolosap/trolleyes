@@ -103,12 +103,12 @@ THE SOFTWARE.
                                                 <div class="col-md-12">
                                                     <p></p>
                                                     <cplistfilterpage url="url"   
-                                                                  fields="metaprops"
-                                                                  rpp="rpp"
-                                                                  numpage="numpage"                                                                       
-                                                                  order="orderParams"
-                                                                  filter="filterParams"
-                                                                  sfilter="sfilterParams">
+                                                                      fields="metaprops"
+                                                                      rpp="rpp"
+                                                                      numpage="numpage"                                                                       
+                                                                      order="orderParams"
+                                                                      filter="filterParams"
+                                                                      sfilter="sfilterParams">
                                                     </cplistfilterpage>  
                                                 </div>
                                             </div>
@@ -148,7 +148,7 @@ THE SOFTWARE.
                                                     <div ng-if="f.tablevisible && f.type == 'varchar'" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <div ng-if="f.tablevisible && f.type == 'longtext'" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <div ng-if="f.tablevisible && f.type == 'tinyint'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
-                                                    <div ng-if="f.tablevisible && f.type == 'foreign'" class="text-left" ng-init="fname=(f.name).replace('id_','obj_')">
+                                                    <div ng-if="f.tablevisible && f.type == 'foreign'" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
                                                         <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
                                                     </div>     
                                                 </td>                       
@@ -163,6 +163,7 @@ THE SOFTWARE.
                                         </tbody>
                                     </table>            
                                 </div>
+                                <button type="button" class="btn btn-primary" ng-click="printPDF()">Print</button>                        
                             </div>                                
                         </div>  
                     </div>
