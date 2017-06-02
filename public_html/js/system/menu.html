@@ -83,13 +83,20 @@ THE SOFTWARE.
                 <li class="dropdown-header">Centro sanitario</li>
                 <li ng-class="{ active: isActive('/dependencia/plist')}"><a href="dependencia/plist"> <i class="fa fa-address-book-o"></i> Dependencia</a></li>
                 <li class="dropdown-header">Gestión sanitaria</li>
-                <li ng-class="{ active: isActive('/medico/plist')}"><a href="medico/plist"> <i class="fa fa-address-book-o"></i> Medico</a></li>
-                <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
+                <li ng-class="{ active: isActive('/medico/plist')}"><a href="medico/plist"> <i class="fa fa-address-book-o"></i> Medico</a></li>                
             </ul>
         </li>
         <!-- Alumno ------------------------------------------- -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="dropdown-header">Gestión sanitaria</li>
+                <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
+            </ul>
+        </li>
+         <!-- Invitado ------------------------------------------- -->
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">Gestión sanitaria</li>
                 <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
