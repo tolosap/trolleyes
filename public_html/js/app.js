@@ -36,6 +36,7 @@ var sisane = angular.module('myApp', [
     'usuarioControllers',
     'genericControllers',
     'tipousuarioControllers',
+    'grupoControllers',    
     'medicamentoControllers',
     'medicoControllers',
     'documentoControllers',
@@ -99,6 +100,12 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipousuario/remove/:id', {templateUrl: 'js/tipousuario/remove.html', controller: 'TipousuarioRemoveController'});
         $routeProvider.when('/tipousuario/plist/:page?/:rpp?', {templateUrl: 'js/tipousuario/plist.html', controller: 'TipousuarioPListController'});
 
+
+        $routeProvider.when('/grupo/view/:id', {templateUrl: 'js/grupo/view.html', controller: 'GrupoViewController'});
+        $routeProvider.when('/grupo/new/:id?', {templateUrl: 'js/grupo/new.html', controller: 'GrupoNewController'});
+        $routeProvider.when('/grupo/edit/:id', {templateUrl: 'js/grupo/edit.html', controller: 'GrupoEditController'});
+        $routeProvider.when('/grupo/remove/:id', {templateUrl: 'js/grupo/remove.html', controller: 'GrupoRemoveController'});
+        $routeProvider.when('/grupo/plist/:page?/:rpp?', {templateUrl: 'js/grupo/plist.html', controller: 'GrupoPListController'});
         //------------
         $routeProvider.when('/generic/:ob/view/:id', {templateUrl: 'js/generic/view.html', controller: 'GenericViewController'});
         $routeProvider.when('/generic/:ob/new/:id?', {templateUrl: 'js/generic/new.html', controller: 'GenericNewController'});
@@ -362,12 +369,15 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
 //-------------
 var moduloSistema = angular.module('systemControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
+var moduloTipousuario = angular.module('tipousuarioControllers', []);
+
+
+var moduloGrupo = angular.module('grupoControllers', []);
+
 
 var moduleGeneric = angular.module('genericControllers', []);
-
 var moduloPrioridad = angular.module('prioridadControllers', []);
 var moduloPosologia = angular.module('posologiaControllers', []);
-var moduloTipousuario = angular.module('tipousuarioControllers', []);
 var moduloVia = angular.module('viaControllers', []);
 var moduloImportancia = angular.module('importanciaControllers', []);
 var moduloTipodocumento = angular.module('tipodocumentoControllers', []);
