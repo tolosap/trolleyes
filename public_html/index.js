@@ -7,7 +7,6 @@ sisane.controller('IndexController', ['$scope', '$location', 'serverService', 's
         };
         $scope.isSessionActive = function () {
             if (sessionService.isSessionActive()) {
-                console.log("executing index...");
                 $scope.username = sessionService.getUsername();
                 $scope.desc_tipousuario = sessionService.getDesc_tipousuario();
                 $scope.nombre = sessionService.getNombre_completo();
