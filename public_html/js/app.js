@@ -79,11 +79,46 @@ sisane.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     }]);
 //-------------
+var onlyLoggedIn = function ($location, $q, serverService, sessionService) {
+    var deferred = $q.defer();
+    serverService.getSessionPromise().then(function (response) {
+        if (response['status'] == 200) {
+            console.log("LLEGA LA INFO DEL USUARIO..");
+            sessionService.setSessionActive();
+            sessionService.setUsername(response.data.message.login);
+            sessionService.setId(response.data.message.id);
+            sessionService.setNombre(response.data.message.nombre);
+            sessionService.setPrimer_apellido(response.data.message.primer_apellido);
+            sessionService.setSegundo_apellido(response.data.message.segundo_apellido);
+            sessionService.setEmail(response.data.message.email);
+            sessionService.setActivo(response.data.message.activo);
+            sessionService.setValidado(response.data.message.validado);
+            sessionService.setFecha_alta(response.data.message.fecha_alta);
+            sessionService.setId_tipousuario(response.data.message.obj_tipousuario.id);
+            sessionService.setDesc_tipousuario(response.data.message.obj_tipousuario.descripcion);
+            deferred.resolve();
+        } else {
+            sessionService.setSessionInactive();
+            sessionService.setUsername('');
+            deferred.reject();
+
+        }
+    }).catch(function (data) {
+        sessionService.setSessionInactive();
+        sessionService.setUsername('');
+        deferred.reject();
+    });
+    return deferred.promise;
+};
+
 sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         //------------
         $routeProvider.when('/login', {templateUrl: 'js/system/login.html', controller: 'LoginController'});
-        $routeProvider.when('/profile', {templateUrl: 'js/system/profile.html', controller: 'ProfileController'});
+        $routeProvider.when('/profile', {templateUrl: 'js/system/profile.html', controller: 'ProfileController',
+            resolve: {
+                loggedIn: onlyLoggedIn
+            }});
         $routeProvider.when('/logout', {templateUrl: 'js/system/logout.html', controller: 'LogoutController'});
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
@@ -414,8 +449,8 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
                 $location.path("/login");
             }
         });
-        
-        
+
+
     });
 });
 //-------------
