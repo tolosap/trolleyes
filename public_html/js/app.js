@@ -83,7 +83,6 @@ var onlyLoggedIn = function ($location, $q, serverService, sessionService) {
     var deferred = $q.defer();
     serverService.getSessionPromise().then(function (response) {
         if (response['status'] == 200) {
-            console.log("LLEGA LA INFO DEL USUARIO..");
             sessionService.setSessionActive();
             sessionService.setUsername(response.data.message.login);
             sessionService.setId(response.data.message.id);
@@ -115,10 +114,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         //------------
         $routeProvider.when('/login', {templateUrl: 'js/system/login.html', controller: 'LoginController'});
-        $routeProvider.when('/profile', {templateUrl: 'js/system/profile.html', controller: 'ProfileController',
-            resolve: {
-                loggedIn: onlyLoggedIn
-            }});
+        $routeProvider.when('/profile', {templateUrl: 'js/system/profile.html', controller: 'ProfileController', resolve: {loggedIn: onlyLoggedIn}});
         $routeProvider.when('/logout', {templateUrl: 'js/system/logout.html', controller: 'LogoutController'});
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
@@ -367,57 +363,8 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         sessionService.setSessionInactive();
         sessionService.setUsername('');
-        console.log("ROUTE CHANGE EVENT!!!");
-
-
-
-
-//        $.ajax({
-//            type: "GET",
-//            url: serverService.getAppUrl() + '?ob=usuario&op=getsessionstatus',
-//            async: false,
-//            success: function (response) {
-//                if (response['status'] == 200) {
-//                    console.log("LLEGA LA INFO DEL USUARIO..");
-//                    sessionService.setSessionActive();
-//                    sessionService.setUsername(response.data.message.login);
-//                    sessionService.setId(response.data.message.id);
-//                    sessionService.setNombre(response.data.message.nombre);
-//                    sessionService.setPrimer_apellido(response.data.message.primer_apellido);
-//                    sessionService.setSegundo_apellido(response.data.message.segundo_apellido);
-//                    sessionService.setEmail(response.data.message.email);
-//                    sessionService.setActivo(response.data.message.activo);
-//                    sessionService.setValidado(response.data.message.validado);
-//                    sessionService.setFecha_alta(response.data.message.fecha_alta);
-//                    sessionService.setId_tipousuario(response.data.message.obj_tipousuario.id);
-//                    sessionService.setDesc_tipousuario(response.data.message.obj_tipousuario.descripcion);
-//                } else {
-//                    sessionService.setSessionInactive();
-//                    sessionService.setUsername('');
-//                    var nextUrl = next.$$route.originalPath;
-//                    if (nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license') {
-//
-//                    } else {
-//                        $location.path("/login");
-//                    }
-//                }
-//            },
-//            error: function (textStatus, errorThrown) {
-//                sessionService.setSessionInactive();
-//                sessionService.setUsername('');
-//                var nextUrl = next.$$route.originalPath;
-//                if (nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license') {
-//                } else {
-//                    $location.path("/login");
-//                }
-//            }
-//        });
-
-
-
         serverService.getSessionPromise().then(function (response) {
             if (response['status'] == 200) {
-                console.log("LLEGA LA INFO DEL USUARIO..");
                 sessionService.setSessionActive();
                 sessionService.setUsername(response.data.message.login);
                 sessionService.setId(response.data.message.id);
@@ -449,8 +396,6 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
                 $location.path("/login");
             }
         });
-
-
     });
 });
 //-------------
