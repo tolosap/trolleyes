@@ -4,13 +4,11 @@ moduloSistema.controller('ProfileController', ['$scope', '$routeParams', '$locat
         $scope.title = "Perfil de usuario";
         $scope.icon = "fa-user";
 
+        $scope.session_info = sessionService.getSessionInfo();
+
         console.log("LOADING PROFILE");
 
-        $scope.username = sessionService.getUsername();
-        $scope.usercompletename = sessionService.getNombre() + ' ' + sessionService.getPrimer_apellido() + ' ' + sessionService.getSegundo_apellido();
-        $scope.email = sessionService.getEmail();
-        $scope.desc_tipousuario = sessionService.getDesc_tipousuario();
-
+    
 
 //        isSessionActive = false;
 //        username = "";

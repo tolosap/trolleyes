@@ -109,7 +109,7 @@ THE SOFTWARE.
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-user"></i>
-                <span id="broth_username_id" ng-if="isSessionActive()"> {{nombre}} ({{desc_tipousuario}})</span>
+                <span id="gesane_username_id" ng-if="isSessionActive()"> {{session_info.nombre + ' ' + primer_apellido + ' ' + segundo_apellido}} ({{session_info.obj_tipousuario.descripcion}})</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown">

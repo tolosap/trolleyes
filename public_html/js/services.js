@@ -331,106 +331,23 @@ moduloServicios
         })
         .factory('sessionService', function ($http) {
             var isSessionActive = false;
-            var username = "";
-            var id = 0;
-            var nombre = "";
-            var primer_apellido = "";
-            var segundo_apellido = "";
-            var email = "";
-            var activo = false;
-            var validado = false;
-            var fecha_alta = "";
-            var id_tipousuario = "";
-            var desc_tipousuario = "";
+            var sessionInfo = null;
             return {
                 isSessionActive: function () {
                     return isSessionActive;
                 },
                 setSessionInactive: function () {
                     isSessionActive = false;
-                    username = "";
-                    id = 0;
-                    nombre = "";
-                    primer_apellido = "";
-                    segundo_apellido = "";
-                    email = "";
-                    activo = false;
-                    validado = false;
-                    fecha_alta = "";
-                    id_tipousuario = "";
-                    desc_tipousuario = "";
+                    sessionInfo = null;                 
                 },
                 setSessionActive: function () {
                     isSessionActive = true;
                 },
-                getUsername: function () {
-                    return username;
+                getSessionInfo: function () {
+                    return sessionInfo;
                 },
-                setUsername: function (value) {
-                    username = value;
-                },
-                getId: function () {
-                    return id;
-                },
-                setId: function (value) {
-                    id = value;
-                },
-                getNombre: function () {
-                    return nombre;
-                },
-                setNombre: function (value) {
-                    nombre = value;
-                },
-                getPrimer_apellido: function () {
-                    return primer_apellido;
-                },
-                setPrimer_apellido: function (value) {
-                    primer_apellido = value;
-                },
-                getSegundo_apellido: function () {
-                    return segundo_apellido;
-                },
-                setSegundo_apellido: function (value) {
-                    segundo_apellido = value;
-                },
-                getEmail: function () {
-                    return email;
-                },
-                setEmail: function (value) {
-                    email = value;
-                },
-                getActivo: function () {
-                    return activo;
-                },
-                setActivo: function (value) {
-                    activo = value;
-                },
-                getValidado: function () {
-                    return validado;
-                },
-                setValidado: function (value) {
-                    validado = value;
-                },
-                getFecha_alta: function () {
-                    return fecha_alta;
-                },
-                setFecha_alta: function (value) {
-                    fecha_alta = value;
-                },
-                getId_tipousuario: function () {
-                    return id_tipousuario;
-                },
-                setId_tipousuario: function (value) {
-                    id_tipousuario = value;
-                },
-                getDesc_tipousuario: function () {
-                    return desc_tipousuario;
-                },
-                setDesc_tipousuario: function (value) {
-                    desc_tipousuario = value;
-                },
-                getNombre_completo: function () {
-                    return nombre + ' ' + primer_apellido + ' ' + segundo_apellido;
+                setSessionInfo: function (value) {
+                    sessionInfo = value;
                 }
             };
         })

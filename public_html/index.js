@@ -1,18 +1,16 @@
 sisane.controller('IndexController', ['$scope', '$location', 'serverService', 'sessionService',
     function ($scope, $location, serverService, sessionService) {
-        $scope.username = "";
-        $scope.desc_tipousuario="";
+        
+        
+        $scope.session_info = sessionService.getSessionInfo();     
         $scope.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
         $scope.isSessionActive = function () {
-            if (sessionService.isSessionActive()) {
-                $scope.username = sessionService.getUsername();
-                $scope.desc_tipousuario = sessionService.getDesc_tipousuario();
-                $scope.nombre = sessionService.getNombre_completo();
+            if (sessionService.isSessionActive()) {                       
                 return true;
             } else {
                 return false;
             }
-        };       
+        };
     }]);

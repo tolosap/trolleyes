@@ -79,58 +79,45 @@ sisane.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     }]);
 //-------------
-var onlyLoggedIn = function ($location, $q, serverService, sessionService) {
+var authenticationPromise = function ($location, $q, serverService, sessionService) {
     var deferred = $q.defer();
     serverService.getSessionPromise().then(function (response) {
         if (response['status'] == 200) {
             sessionService.setSessionActive();
-            sessionService.setUsername(response.data.message.login);
-            sessionService.setId(response.data.message.id);
-            sessionService.setNombre(response.data.message.nombre);
-            sessionService.setPrimer_apellido(response.data.message.primer_apellido);
-            sessionService.setSegundo_apellido(response.data.message.segundo_apellido);
-            sessionService.setEmail(response.data.message.email);
-            sessionService.setActivo(response.data.message.activo);
-            sessionService.setValidado(response.data.message.validado);
-            sessionService.setFecha_alta(response.data.message.fecha_alta);
-            sessionService.setId_tipousuario(response.data.message.obj_tipousuario.id);
-            sessionService.setDesc_tipousuario(response.data.message.obj_tipousuario.descripcion);
+            sessionService.setSessionInfo(response.data.message);
             deferred.resolve();
         } else {
             sessionService.setSessionInactive();
-            sessionService.setUsername('');
-            deferred.reject();
-
+            deferred.resolve();
         }
     }).catch(function (data) {
         sessionService.setSessionInactive();
-        sessionService.setUsername('');
-        deferred.reject();
+        deferred.resolve();
     });
     return deferred.promise;
 };
 
 sisane.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
+        $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController', resolve: {auth: authenticationPromise}});
         //------------
-        $routeProvider.when('/login', {templateUrl: 'js/system/login.html', controller: 'LoginController'});
-        $routeProvider.when('/profile', {templateUrl: 'js/system/profile.html', controller: 'ProfileController', resolve: {loggedIn: onlyLoggedIn}});
-        $routeProvider.when('/logout', {templateUrl: 'js/system/logout.html', controller: 'LogoutController'});
-        $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
-        $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
-        $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController'});
+        $routeProvider.when('/login', {templateUrl: 'js/system/login.html', controller: 'LoginController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/profile', {templateUrl: 'js/system/profile.html', controller: 'ProfileController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/logout', {templateUrl: 'js/system/logout.html', controller: 'LogoutController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController', resolve: {auth: authenticationPromise}});
         //------------
-        $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController'});
-        $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController'});
-        $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController'});
-        $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController'});
-        $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController'});
+        $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController', resolve: {auth: authenticationPromise}});
         //------------
-        $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController'});
-        $routeProvider.when('/tipousuario/new/:id?', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController'});
-        $routeProvider.when('/tipousuario/edit/:id', {templateUrl: 'js/tipousuario/edit.html', controller: 'TipousuarioEditController'});
-        $routeProvider.when('/tipousuario/remove/:id', {templateUrl: 'js/tipousuario/remove.html', controller: 'TipousuarioRemoveController'});
-        $routeProvider.when('/tipousuario/plist/:page?/:rpp?', {templateUrl: 'js/tipousuario/plist.html', controller: 'TipousuarioPListController'});
+        $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/tipousuario/new/:id?', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/tipousuario/edit/:id', {templateUrl: 'js/tipousuario/edit.html', controller: 'TipousuarioEditController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/tipousuario/remove/:id', {templateUrl: 'js/tipousuario/remove.html', controller: 'TipousuarioRemoveController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/tipousuario/plist/:page?/:rpp?', {templateUrl: 'js/tipousuario/plist.html', controller: 'TipousuarioPListController', resolve: {auth: authenticationPromise}});
 
 
         $routeProvider.when('/grupo/view/:id', {templateUrl: 'js/grupo/view.html', controller: 'GrupoViewController'});
@@ -360,42 +347,51 @@ sisane.config(['$routeProvider', function ($routeProvider) {
     }]);
 //-------------
 sisane.run(function ($rootScope, $location, serverService, sessionService) {
-    $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        sessionService.setSessionInactive();
-        sessionService.setUsername('');
-        serverService.getSessionPromise().then(function (response) {
-            if (response['status'] == 200) {
-                sessionService.setSessionActive();
-                sessionService.setUsername(response.data.message.login);
-                sessionService.setId(response.data.message.id);
-                sessionService.setNombre(response.data.message.nombre);
-                sessionService.setPrimer_apellido(response.data.message.primer_apellido);
-                sessionService.setSegundo_apellido(response.data.message.segundo_apellido);
-                sessionService.setEmail(response.data.message.email);
-                sessionService.setActivo(response.data.message.activo);
-                sessionService.setValidado(response.data.message.validado);
-                sessionService.setFecha_alta(response.data.message.fecha_alta);
-                sessionService.setId_tipousuario(response.data.message.obj_tipousuario.id);
-                sessionService.setDesc_tipousuario(response.data.message.obj_tipousuario.descripcion);
-            } else {
-                sessionService.setSessionInactive();
-                sessionService.setUsername('');
-                var nextUrl = next.$$route.originalPath;
-                if (nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license') {
 
-                } else {
-                    $location.path("/login");
-                }
-            }
-        }).catch(function (data) {
-            sessionService.setSessionInactive();
-            sessionService.setUsername('');
+//    serverService.getSessionPromise().then(function (response) {
+//        if (response['status'] == 200) {
+//            sessionService.setSessionActive();
+//            sessionService.setSessionInfo(response.data.message);
+//          
+//        } else {
+//            sessionService.setSessionInactive();
+//            
+//        }
+//    }).catch(function (data) {
+//        sessionService.setSessionInactive();
+//       
+//    });
+
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+
+        if (sessionService.isSessionActive()) {
+
+        } else {
             var nextUrl = next.$$route.originalPath;
-            if (nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license') {
+            if (nextUrl == '/' || nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license') {
+
             } else {
                 $location.path("/login");
             }
-        });
+        }
+
+
+//        sessionService.setSessionInactive();
+//        serverService.getSessionPromise().then(function (response) {
+//            if (response['status'] == 200) {
+//                sessionService.setSessionActive();
+//                sessionService.setSessionInfo(response.data.message);
+//            } else {
+//                sessionService.setSessionInactive();
+//            }
+//        }).catch(function (data) {
+//            sessionService.setSessionInactive();
+//            var nextUrl = next.$$route.originalPath;
+//            if (nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license') {
+//            } else {
+//                $location.path("/login");
+//            }
+//        });
     });
 });
 //-------------

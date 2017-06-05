@@ -35,33 +35,27 @@ THE SOFTWARE.
                     <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
                     <div class="panel-body">
                         
-                        <div class="row-fluid" ng-if="!status">
+                        <div class="row-fluid">
 
 
                             <div class="col-md-6 col-md-offset-3">                                                                                                  
-                                <table class="table table-striped table-condensed">
-                                    <thead>                
-                                        <tr>    
-                                            <th>campo</th>
-                                            <th>valor</th>
-                                        </tr>
-                                    </thead>
+                                <table class="table table-striped table-condensed">                                    
                                     <tbody>
                                         <tr>
                                             <td>Nombre de usuario</td>     
-                                            <td>{{username}}</td>                                      
+                                            <td>{{session_info.login}}</td>                                      
                                         </tr>
                                         <tr>
                                             <td>Nombre completo</td>     
-                                            <td>{{usercompletename}}</td>                                      
+                                            <td>{{session_info.nombre + ' ' + primer_apellido + ' ' + segundo_apellido}}</td>                                      
                                         </tr>
                                         <tr>
                                             <td>Correo electrónico</td>     
-                                            <td>{{email}}</td>                                      
+                                            <td>{{session_info.email}}</td>                                      
                                         </tr>
                                         <tr>
                                             <td>Tipo de usuario</td>     
-                                            <td>{{desc_tipousuario}}</td>                                      
+                                            <td>{{session_info.obj_tipousuario.descripcion}}</td>                                      
                                         </tr>
                                     </tbody>
                                 </table>  
