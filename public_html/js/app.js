@@ -79,22 +79,8 @@ sisane.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     }]);
 //-------------
-var authenticationPromise = function ($location, $q, serverService, sessionService) {
-    var deferred = $q.defer();
-    serverService.getSessionPromise().then(function (response) {
-        if (response['status'] == 200) {
-            sessionService.setSessionActive();
-            sessionService.setSessionInfo(response.data.message);
-            deferred.resolve();
-        } else {
-            sessionService.setSessionInactive();
-            deferred.resolve();
-        }
-    }).catch(function (data) {
-        sessionService.setSessionInactive();
-        deferred.resolve();
-    });
-    return deferred.promise;
+var authenticationPromise = function (sessionService) {    
+    return sessionService.authenticationPromise();
 };
 
 sisane.config(['$routeProvider', function ($routeProvider) {

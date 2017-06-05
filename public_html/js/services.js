@@ -214,7 +214,7 @@ moduloServicios
                         }
                         //return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
 //                        if (filter) {
-                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
+                        return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
 //                        } else {
 //                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp, 'GET', '');
 //                        }
@@ -329,16 +329,34 @@ moduloServicios
 
             };
         })
-        .factory('sessionService', function ($http) {
+        .factory('sessionService', function ($http, $q, serverService) {
             var isSessionActive = false;
             var sessionInfo = null;
             return {
+                authenticationPromise: function () {
+                    var deferred = $q.defer();
+                    var that=this;
+                    serverService.getSessionPromise().then(function (response) {
+                        if (response['status'] == 200) {
+                            that.isSessionActive = true;
+                            that.setSessionInfo(response.data.message);
+                            deferred.resolve();
+                        } else {
+                            that.isSessionActive = false;
+                            deferred.resolve();
+                        }
+                    }).catch(function (data) {
+                        that.isSessionActive = false;
+                        deferred.resolve();
+                    });
+                    return deferred.promise;
+                },
                 isSessionActive: function () {
                     return isSessionActive;
                 },
                 setSessionInactive: function () {
                     isSessionActive = false;
-                    sessionInfo = null;                 
+                    sessionInfo = null;
                 },
                 setSessionActive: function () {
                     isSessionActive = true;
