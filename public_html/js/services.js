@@ -332,10 +332,10 @@ moduloServicios
         .factory('sessionService', function ($http, $q, serverService) {
             var isSessionActiveTF = false;
             var sessionInfo = null;
+            var that = this;
             return {
                 authenticationPromise: function () {
-                    var deferred = $q.defer();
-                    var that=this;
+                    var deferred = $q.defer();                    
                     serverService.getSessionPromise().then(function (response) {
                         if (response['status'] == 200) {
                             that.isSessionActiveTF = true;
