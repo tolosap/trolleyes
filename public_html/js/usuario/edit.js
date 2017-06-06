@@ -27,10 +27,12 @@
  */
 
 'use strict';
-moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal) {
+moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
         $scope.ob = "usuario";
         $scope.op = "edit";
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
         $scope.status = null;
         $scope.debugging = serverService.debugging();
         $scope.bean = {};

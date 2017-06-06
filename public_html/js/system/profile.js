@@ -5,8 +5,10 @@ moduloSistema.controller('ProfileController', ['$scope', '$routeParams', '$locat
         $scope.icon = "fa-user";
 
         $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
 
-        console.log("LOADING PROFILE");
+
+//        console.log("LOADING PROFILE");
 
     
 

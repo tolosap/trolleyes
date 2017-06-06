@@ -28,10 +28,12 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '$location', 'serverService',
-    function ($scope, $routeParams, $location, serverService) {
+moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '$location', 'serverService', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, sessionService) {
         $scope.ob = "usuario";  //pte rutas
         $scope.id = $routeParams.id;
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
         $scope.status = null;
         $scope.debugging = serverService.debugging();
         serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {

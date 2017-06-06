@@ -27,11 +27,12 @@
  */
 
 'use strict';
-moduloSistema.controller('LicenseController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+moduloSistema.controller('LicenseController', ['$scope', '$routeParams', '$location', 'serverService', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, sessionService) {
 
         $scope.op = "License";
-
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
     }
 ]
         );

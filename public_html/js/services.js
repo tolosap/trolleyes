@@ -330,7 +330,7 @@ moduloServicios
             };
         })
         .factory('sessionService', function ($http, $q, serverService) {
-            var isSessionActive = false;
+            var isSessionActiveTF = false;
             var sessionInfo = null;
             return {
                 authenticationPromise: function () {
@@ -338,28 +338,28 @@ moduloServicios
                     var that=this;
                     serverService.getSessionPromise().then(function (response) {
                         if (response['status'] == 200) {
-                            that.isSessionActive = true;
+                            that.isSessionActiveTF = true;
                             that.setSessionInfo(response.data.message);
                             deferred.resolve();
                         } else {
-                            that.isSessionActive = false;
+                            that.isSessionActiveTF = false;
                             deferred.resolve();
                         }
                     }).catch(function (data) {
-                        that.isSessionActive = false;
+                        that.isSessionActiveTF = false;
                         deferred.resolve();
                     });
                     return deferred.promise;
                 },
                 isSessionActive: function () {
-                    return isSessionActive;
+                    return isSessionActiveTF;
                 },
                 setSessionInactive: function () {
-                    isSessionActive = false;
+                    isSessionActiveTF = false;
                     sessionInfo = null;
                 },
                 setSessionActive: function () {
-                    isSessionActive = true;
+                    isSessionActiveTF = true;
                 },
                 getSessionInfo: function () {
                     return sessionInfo;

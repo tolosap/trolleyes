@@ -4,6 +4,8 @@ moduloSistema.controller('LoginController', ['$scope', '$routeParams', '$locatio
         $scope.title = "Formulario de entrada al sistema";
         $scope.icon = "fa-file-text-o";
         $scope.user = {};
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
         if (serverService.debugging()) {
             $scope.user.username = 'rafael';
             $scope.user.password = 'rafael';
@@ -13,14 +15,20 @@ moduloSistema.controller('LoginController', ['$scope', '$routeParams', '$locatio
             serverService.getLoginPromise($scope.user.username, $scope.user.password).then(function (response) {
                 if (response.status == 200) {
                     sessionService.setSessionActive();
-                    sessionService.setSessionInfo(response.data.message);                   
+                    sessionService.setSessionInfo(response.data.message);
+                    $scope.session_info = sessionService.getSessionInfo();
+                    $scope.isSessionActive = sessionService.isSessionActive();
                     $location.path('home');
                 } else {
-                    sessionService.setSessionInactive();       
+                    sessionService.setSessionInactive();
+                    $scope.session_info = sessionService.getSessionInfo();
+                    $scope.isSessionActive = sessionService.isSessionActive();
                     return false;
                 }
             }, function errorCallback(response, status) {
-                sessionService.setSessionInactive();         
+                sessionService.setSessionInactive();
+                $scope.session_info = sessionService.getSessionInfo();
+                $scope.isSessionActive = sessionService.isSessionActive();
                 return false;
             });
         };

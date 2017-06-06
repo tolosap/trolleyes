@@ -26,102 +26,104 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div class="navbar-header" >
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-    <a class='navbar-brand' rel="home" href='home' title="Sistema de gestión sanitaria educativo">
-        <img style="max-width:100px;" src="images/gesane/gesane80g.png" />
-       
-    </a>
-</div>
-<div id="navbar" class="navbar-collapse collapse" >
-    <ul class="nav navbar-nav" id="appMenu">
-        <li ng-class="{ active: isActive('/home')}"><a href="home">Home</a></li>
+<div class="container-fluid">
+    <div class="navbar-header" >
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class='navbar-brand' rel="home" href='home' title="Sistema de gestión sanitaria educativo">
+            <img style="max-width:100px;" src="images/gesane/gesane80g.png" />
 
-        <!-- Administración ------------------------------------------- -->
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Usuarios</li>
-                <li ng-class="{ active: isActive('/usuario/plist')}"><a href="usuario/plist"> <i class="fa fa-address-book-o"></i> Usuario</a></li>
-                <li ng-class="{ active: isActive('/tipousuario/plist/')}"><a href="tipousuario/plist"> <i class="fa fa-address-book-o"></i> Tipo de Usuario</a></li>
-                <li class="dropdown-header">Gestión académica</li>
-                <li ng-class="{ active: isActive('/generic/centro/plist/')}"><a href="generic/centro/plist"> <i class="fa fa-address-book-o"></i> Centro Académico</a></li>
-                <li ng-class="{ active: isActive('/generic/curso/plist/')}"><a href="generic/curso/plist"> <i class="fa fa-address-book-o"></i> Curso Académico</a></li>
-            </ul>
-        </li>
-        <!-- Coordinación ------------------------------------------- -->
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Coordinador<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Medico</li>
-                <li ng-class="{ active: isActive('/generic/especialidad/plist')}"><a href="generic/especialidad/plist"> <i class="fa fa-address-book-o"></i> Especialidad</a></li>
-                <li ng-class="{ active: isActive('/generic/categoriaprofesional/plist')}"><a href="generic/categoriaprofesional/plist"> <i class="fa fa-address-book-o"></i> Categoria Profesional</a></li>
-                <li class="dropdown-header">Centro sanitario</li>
-                <li ng-class="{ active: isActive('/servicio/plist')}"><a href="servicio/plist"> <i class="fa fa-address-book-o"></i> Servicio</a></li>
-                <li ng-class="{ active: isActive('/generic/tiposervicio/plist')}"><a href="generic/tiposervicio/plist"> <i class="fa fa-address-book-o"></i> Tipo de servicio</a></li>
-                <li ng-class="{ active: isActive('/generic/tipodependencia/plist')}"><a href="generic/tipodependencia/plist"> <i class="fa fa-address-book-o"></i> Tipo de dependencia</a></li>
-                <li class="dropdown-header">Episodio</li>
-                <li ng-class="{ active: isActive('/generic/tipoepisodio/plist')}"><a href="generic/tipoepisodio/plist"> <i class="fa fa-address-book-o"></i> Tipo de episodio</a></li>
-                <li ng-class="{ active: isActive('/generic/modalidadepisodio/plist')}"><a href="generic/modalidadepisodio/plist"> <i class="fa fa-address-book-o"></i> Modalidad del episodio</a></li>
-                <li ng-class="{ active: isActive('/generic/circunstanciasalta/plist')}"><a href="generic/circunstanciasalta/plist"> <i class="fa fa-address-book-o"></i> Circunstancias de alta</a></li>
-                <li ng-class="{ active: isActive('/generic/destinoalta/plist')}"><a href="generic/destinoalta/plist"> <i class="fa fa-address-book-o"></i> Destino de alta</a></li>
-                
-            </ul>
-        </li>
-        <!-- Profesor ------------------------------------------- -->
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Gestión académica</li>
-                <li ng-class="{ active: isActive('/grupo/plist')}"><a href="grupo/plist"> <i class="fa fa-address-book-o"></i> Grupo</a></li>
-                <li ng-class="{ active: isActive('/usuario/plist')}"><a href="usuario/plist"> <i class="fa fa-address-book-o"></i> Alumno</a></li>                
-                <li class="dropdown-header">Centro sanitario</li>
-                <li ng-class="{ active: isActive('/dependencia/plist')}"><a href="dependencia/plist"> <i class="fa fa-address-book-o"></i> Dependencia</a></li>
-                <li class="dropdown-header">Gestión sanitaria</li>
-                <li ng-class="{ active: isActive('/medico/plist')}"><a href="medico/plist"> <i class="fa fa-address-book-o"></i> Medico</a></li>                
-            </ul>
-        </li>
-        <!-- Alumno ------------------------------------------- -->
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Gestión sanitaria</li>
-                <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
-            </ul>
-        </li>
-         <!-- Invitado ------------------------------------------- -->
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Gestión sanitaria</li>
-                <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
-            </ul>
-        </li>
-        <li ng-class="{ active: isActive('/license')}"><a href="license"><i class="fa fa-icon-smile"></i>Licencia</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <!-- <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li> -->
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user"></i>
-                <span id="gesane_username_id" ng-if="isSessionActive"> {{session_info.nombre + ' ' + primer_apellido + ' ' + segundo_apellido}} ({{session_info.obj_tipousuario.descripcion}})</span>
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu dropdown">
-                <li ng-if="!isSessionActive"><a href="login"><i class="fa fa-fw fa-user"></i> Login</a></li>
-                <li ng-if="isSessionActive"><a href="profile"><i class="fa fa-fw fa-user"></i> Perfil de usuario</a></li>
-                <!--               
-                <li ng-if="isSessionActive"><a href="#"><i class="fa fa-fw fa-gear"></i> Configuración</a></li>
-                -->
-                <li ng-if="isSessionActive"><a href="passchange"><i class="fa fa-fw fa-key"></i> Cambio de contraseña</a></li>
-                <li ng-if="isSessionActive" class="divider"></li>
-                <li ng-if="isSessionActive" id="broth_logout"><a href="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
-            </ul>
-        </li>
-    </ul>
+        </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" >
+        <ul class="nav navbar-nav" id="appMenu">
+            <li ng-class="{ active: isActive('/home')}"><a href="home">Home</a></li>
+
+            <!-- Administración ------------------------------------------- -->
+            <li class="dropdown" ng-if="session_info.obj_tipousuario.id==1">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Usuarios</li>
+                    <li ng-class="{ active: isActive('/usuario/plist')}"><a href="usuario/plist"> <i class="fa fa-address-book-o"></i> Usuario</a></li>
+                    <li ng-class="{ active: isActive('/tipousuario/plist/')}"><a href="tipousuario/plist"> <i class="fa fa-address-book-o"></i> Tipo de Usuario</a></li>
+                    <li class="dropdown-header">Gestión académica</li>
+                    <li ng-class="{ active: isActive('/generic/centro/plist/')}"><a href="generic/centro/plist"> <i class="fa fa-address-book-o"></i> Centro Académico</a></li>
+                    <li ng-class="{ active: isActive('/generic/curso/plist/')}"><a href="generic/curso/plist"> <i class="fa fa-address-book-o"></i> Curso Académico</a></li>
+                </ul>
+            </li>
+            <!-- Coordinación ------------------------------------------- -->
+            <li class="dropdown" ng-if="session_info.obj_tipousuario.id==2">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Coordinador<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Medico</li>
+                    <li ng-class="{ active: isActive('/generic/especialidad/plist')}"><a href="generic/especialidad/plist"> <i class="fa fa-address-book-o"></i> Especialidad</a></li>
+                    <li ng-class="{ active: isActive('/generic/categoriaprofesional/plist')}"><a href="generic/categoriaprofesional/plist"> <i class="fa fa-address-book-o"></i> Categoria Profesional</a></li>
+                    <li class="dropdown-header">Centro sanitario</li>
+                    <li ng-class="{ active: isActive('/servicio/plist')}"><a href="servicio/plist"> <i class="fa fa-address-book-o"></i> Servicio</a></li>
+                    <li ng-class="{ active: isActive('/generic/tiposervicio/plist')}"><a href="generic/tiposervicio/plist"> <i class="fa fa-address-book-o"></i> Tipo de servicio</a></li>
+                    <li ng-class="{ active: isActive('/generic/tipodependencia/plist')}"><a href="generic/tipodependencia/plist"> <i class="fa fa-address-book-o"></i> Tipo de dependencia</a></li>
+                    <li class="dropdown-header">Episodio</li>
+                    <li ng-class="{ active: isActive('/generic/tipoepisodio/plist')}"><a href="generic/tipoepisodio/plist"> <i class="fa fa-address-book-o"></i> Tipo de episodio</a></li>
+                    <li ng-class="{ active: isActive('/generic/modalidadepisodio/plist')}"><a href="generic/modalidadepisodio/plist"> <i class="fa fa-address-book-o"></i> Modalidad del episodio</a></li>
+                    <li ng-class="{ active: isActive('/generic/circunstanciasalta/plist')}"><a href="generic/circunstanciasalta/plist"> <i class="fa fa-address-book-o"></i> Circunstancias de alta</a></li>
+                    <li ng-class="{ active: isActive('/generic/destinoalta/plist')}"><a href="generic/destinoalta/plist"> <i class="fa fa-address-book-o"></i> Destino de alta</a></li>
+
+                </ul>
+            </li>
+            <!-- Profesor ------------------------------------------- -->
+            <li class="dropdown" ng-if="session_info.obj_tipousuario.id==3">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Gestión académica</li>
+                    <li ng-class="{ active: isActive('/grupo/plist')}"><a href="grupo/plist"> <i class="fa fa-address-book-o"></i> Grupo</a></li>
+                    <li ng-class="{ active: isActive('/usuario/plist')}"><a href="usuario/plist"> <i class="fa fa-address-book-o"></i> Alumno</a></li>                
+                    <li class="dropdown-header">Centro sanitario</li>
+                    <li ng-class="{ active: isActive('/dependencia/plist')}"><a href="dependencia/plist"> <i class="fa fa-address-book-o"></i> Dependencia</a></li>
+                    <li class="dropdown-header">Gestión sanitaria</li>
+                    <li ng-class="{ active: isActive('/medico/plist')}"><a href="medico/plist"> <i class="fa fa-address-book-o"></i> Medico</a></li>                
+                </ul>
+            </li>
+            <!-- Alumno ------------------------------------------- -->
+            <li class="dropdown" ng-if="session_info.obj_tipousuario.id==4">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Gestión sanitaria</li>
+                    <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
+                </ul>
+            </li>
+            <!-- Invitado ------------------------------------------- -->
+            <li class="dropdown"  ng-if="session_info.obj_tipousuario.id==5">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Gestión sanitaria</li>
+                    <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
+                </ul>
+            </li>
+            <li ng-class="{ active: isActive('/license')}"><a href="license"><i class="fa fa-icon-smile"></i>Licencia</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <!-- <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li> -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user"></i>
+                    <span id="gesane_username_id" ng-if="isSessionActive"> {{session_info.nombre + ' ' + primer_apellido + ' ' + segundo_apellido}} ({{session_info.obj_tipousuario.descripcion}})</span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown">
+                    <li ng-if="!isSessionActive"><a href="login"><i class="fa fa-fw fa-user"></i> Login</a></li>
+                    <li ng-if="isSessionActive"><a href="profile"><i class="fa fa-fw fa-user"></i> Perfil de usuario</a></li>
+                    <!--               
+                    <li ng-if="isSessionActive"><a href="#"><i class="fa fa-fw fa-gear"></i> Configuración</a></li>
+                    -->
+                    <li ng-if="isSessionActive"><a href="passchange"><i class="fa fa-fw fa-key"></i> Cambio de contraseña</a></li>
+                    <li ng-if="isSessionActive" class="divider"></li>
+                    <li ng-if="isSessionActive" id="broth_logout"><a href="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>

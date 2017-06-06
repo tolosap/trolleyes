@@ -28,10 +28,13 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal',
-    function ($scope, $routeParams, $location, serverService, $uibModal) {
+moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
         $scope.ob = "usuario";
         $scope.op = "plist";
+
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
 
         $scope.numpage = serverService.checkDefault(1, $routeParams.page);
         $scope.rpp = serverService.checkDefault(10, $routeParams.rpp);
