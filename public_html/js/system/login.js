@@ -6,10 +6,12 @@ moduloSistema.controller('LoginController', ['$scope', '$routeParams', '$locatio
         $scope.user = {};
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
-        if (serverService.debugging()) {
-            $scope.user.username = 'rafael';
-            $scope.user.password = 'rafael';
-            //$scope.user.password = '79063E8037FFF16D297A1FE65136F1251126CDDB2CC9870ECF8D653835538E85';
+        $scope.debugging = serverService.debugging();
+        $scope.fill = function (nombre) {
+            if (serverService.debugging()) {
+                $scope.user.username = nombre;
+                $scope.user.password = nombre;
+            }
         }
         $scope.login = function () {
             serverService.getLoginPromise($scope.user.username, $scope.user.password).then(function (response) {
