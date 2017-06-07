@@ -34,7 +34,7 @@ THE SOFTWARE.
                 <div class="panel panel-default">
                     <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
                     <div class="panel-body">
-                        
+
                         <div class="row-fluid">
 
 
@@ -47,15 +47,31 @@ THE SOFTWARE.
                                         </tr>
                                         <tr>
                                             <td>Nombre completo</td>     
-                                            <td>{{session_info.nombre + ' ' + primer_apellido + ' ' + segundo_apellido}}</td>                                      
+                                            <td>{{session_info.nombre + ' ' + session_info.primer_apellido + ' ' + session_info.segundo_apellido}}</td>                                      
                                         </tr>
                                         <tr>
                                             <td>Correo electrónico</td>     
                                             <td>{{session_info.email}}</td>                                      
                                         </tr>
                                         <tr>
+                                            <td>Fecha de alta</td>     
+                                            <td>{{session_info.fecha_alta}}</td>                                      
+                                        </tr>
+                                        <tr>
                                             <td>Tipo de usuario</td>     
                                             <td>{{session_info.obj_tipousuario.descripcion}}</td>                                      
+                                        </tr>
+                                        <tr ng-if="session_info.obj_tipousuario.id == 4">
+                                            <td>Grupo</td>     
+                                            <td>{{session_info.obj_grupo.codigo}}</td>                                      
+                                        </tr>
+                                        <tr ng-if="session_info.obj_tipousuario.id == 4">
+                                            <td>Curso</td>     
+                                            <td>{{session_info.obj_grupo.obj_curso.descripcion}}</td>                                      
+                                        </tr>
+                                        <tr>
+                                            <td>Centro</td>     
+                                            <td>{{session_info.obj_centro.nombre}} ({{session_info.obj_centro.nombresanitario}})</td>                                      
                                         </tr>
                                     </tbody>
                                 </table>  
