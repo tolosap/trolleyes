@@ -44,7 +44,7 @@ THE SOFTWARE.
             <li ng-class="{ active: isActive('/home')}"><a href="home">Home</a></li>
 
             <!-- Administración ------------------------------------------- -->
-            <li class="dropdown" ng-if="session_info.obj_tipousuario.id==1">
+            <li class="dropdown" ng-if="session_info.obj_tipousuario.id == 1">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Usuarios</li>
@@ -56,14 +56,15 @@ THE SOFTWARE.
                 </ul>
             </li>
             <!-- Coordinación ------------------------------------------- -->
-            <li class="dropdown" ng-if="session_info.obj_tipousuario.id==2">
+            <li class="dropdown" ng-if="session_info.obj_tipousuario.id == 2">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Coordinador<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Medico</li>
                     <li ng-class="{ active: isActive('/generic/especialidad/plist')}"><a href="generic/especialidad/plist"> <i class="fa fa-address-book-o"></i> Especialidad</a></li>
                     <li ng-class="{ active: isActive('/generic/categoriaprofesional/plist')}"><a href="generic/categoriaprofesional/plist"> <i class="fa fa-address-book-o"></i> Categoria Profesional</a></li>
+                    <li ng-class="{ active: isActive('/medico/plist')}"><a href="medico/plist"> <i class="fa fa-address-book-o"></i> Medico</a></li>                
                     <li class="dropdown-header">Centro sanitario</li>
-                    <li ng-class="{ active: isActive('/servicio/plist')}"><a href="servicio/plist"> <i class="fa fa-address-book-o"></i> Servicio</a></li>
+                    <li ng-class="{ active: isActive('/generic/servicio/plist')}"><a href="generic/servicio/plist"> <i class="fa fa-address-book-o"></i> Servicio</a></li>
                     <li ng-class="{ active: isActive('/generic/tiposervicio/plist')}"><a href="generic/tiposervicio/plist"> <i class="fa fa-address-book-o"></i> Tipo de servicio</a></li>
                     <li ng-class="{ active: isActive('/generic/tipodependencia/plist')}"><a href="generic/tipodependencia/plist"> <i class="fa fa-address-book-o"></i> Tipo de dependencia</a></li>
                     <li class="dropdown-header">Episodio</li>
@@ -75,20 +76,22 @@ THE SOFTWARE.
                 </ul>
             </li>
             <!-- Profesor ------------------------------------------- -->
-            <li class="dropdown" ng-if="session_info.obj_tipousuario.id==3">
+            <li class="dropdown" ng-if="session_info.obj_tipousuario.id == 3">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Gestión académica</li>
                     <li ng-class="{ active: isActive('/grupo/plist')}"><a href="grupo/plist"> <i class="fa fa-address-book-o"></i> Grupo</a></li>
                     <li ng-class="{ active: isActive('/usuario/plist')}"><a href="usuario/plist"> <i class="fa fa-address-book-o"></i> Alumno</a></li>                
                     <li class="dropdown-header">Centro sanitario</li>
-                    <li ng-class="{ active: isActive('/dependencia/plist')}"><a href="dependencia/plist"> <i class="fa fa-address-book-o"></i> Dependencia</a></li>
+                    <li ng-class="{ active: isActive('/dependencia/plist')}"><a href="dependencia/plist"> <i class="fa fa-address-book-o"></i> Dependencia</a></li>  
+                    <!--
                     <li class="dropdown-header">Gestión sanitaria</li>
                     <li ng-class="{ active: isActive('/medico/plist')}"><a href="medico/plist"> <i class="fa fa-address-book-o"></i> Medico</a></li>                
+                    -->
                 </ul>
             </li>
             <!-- Alumno ------------------------------------------- -->
-            <li class="dropdown" ng-if="session_info.obj_tipousuario.id==4">
+            <li class="dropdown" ng-if="session_info.obj_tipousuario.id == 4">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Gestión sanitaria</li>
@@ -96,7 +99,7 @@ THE SOFTWARE.
                 </ul>
             </li>
             <!-- Invitado ------------------------------------------- -->
-            <li class="dropdown"  ng-if="session_info.obj_tipousuario.id==5">
+            <li class="dropdown"  ng-if="session_info.obj_tipousuario.id == 5">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Gestión sanitaria</li>
