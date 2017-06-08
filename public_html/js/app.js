@@ -79,7 +79,7 @@ sisane.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     }]);
 //-------------
-var authenticationPromise = function (sessionService) {    
+var authenticationPromise = function (sessionService) {
     return sessionService.authenticationPromise();
 };
 
@@ -92,6 +92,8 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController', resolve: {auth: authenticationPromise}});
+        //------------
+        $routeProvider.when('/newalumno/codigo', {templateUrl: 'js/system/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});
         //------------
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController', resolve: {auth: authenticationPromise}});
@@ -348,13 +350,17 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
 //       
 //    });
 
-    $rootScope.$on("$routeChangeStart", function (event, next, current) {
 
+
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        console.log('Current route name: ' + $location.path());
+//        console.log("$routeParams:");
+//        console.log($routeParams);
         if (sessionService.isSessionActive()) {
 
         } else {
             var nextUrl = next.$$route.originalPath;
-            if (nextUrl == '/' || nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license') {
+            if (nextUrl == '/' || nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license' || nextUrl.startsWith("/newalumno")) {
 
             } else {
                 $location.path("/login");
