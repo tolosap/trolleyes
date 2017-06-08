@@ -14,13 +14,18 @@ moduloSistema.controller('LoginController', ['$http', '$scope', '$routeParams', 
                 $scope.user.password = nombre;
             }
         }
+        $scope.fillRegistro = function (cod) {
+            if (serverService.debugging()) {
+                $scope.user.key = cod;
+            }
+        }
         $scope.checkGrupo = function () {
             if ($scope.user.key) {
                 $http.get(serverService.getAppUrl() + '?ob=usuario&op=checkgrupo&codigo=' + $scope.user.key, 'GET', '').then(function (response) {
                     if (response.status == 200) {
-                        if (response.data.message == "OK")
-                            $location.path('/about');
+                        if (response.data.message == "OK") {
                             $location.path('/newalumno/' + $scope.user.key);
+                        }
                     } else {
                         $scope.checkGrupoStatusMsg = "Error: el grupo no es correcto.";
                         return false;
@@ -53,7 +58,6 @@ moduloSistema.controller('LoginController', ['$http', '$scope', '$routeParams', 
                 return false;
             });
         };
-
     }]);
 
 

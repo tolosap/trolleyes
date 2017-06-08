@@ -93,7 +93,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController', resolve: {auth: authenticationPromise}});
         //------------
-        $routeProvider.when('/newalumno/codigo', {templateUrl: 'js/system/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/newalumno/:codigo', {templateUrl: 'js/system/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});
         //------------
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController', resolve: {auth: authenticationPromise}});
