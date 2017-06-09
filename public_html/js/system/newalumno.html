@@ -30,7 +30,7 @@
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.login.$error.pattern && !outerForm.login.$pristine) ||
                                                                      (outerForm.login.$error.required && !outerForm.login.$pristine) ||
-                                                                     (outerForm.login.$error.required && !outerForm.login.$pristine)}">
+                                                                     (outerForm.login.$error.repetido && !outerForm.login.$pristine)}">
                                                 <clabel wide="2"
                                                         name="'labellogin'"
                                                         longname="'Nombre de usuario'"
@@ -47,7 +47,7 @@
                                                     <span class="help-block" ng-if="!outerForm.login.$pristine && outerForm.login.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.login.$pristine && outerForm.login.$error.pattern">El campo no tiene formato adecuado</span>                                                    
                                                 </div>
-                                                <a class="btn btn-primary" ng-click="validausuario()">Valida el nombre de usuario</a>
+                                                <a class="btn btn-primary" ng-show="!outerForm.login.$error.pattern && !outerForm.login.$error.required && !outerForm.login.$error.repetido" ng-click="validausuario()">Valida el nombre de usuario</a>
                                             </div>
                                         </div>
                                     </div>
