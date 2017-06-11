@@ -38,9 +38,34 @@ moduloSistema.controller('NewalumnoController', ['$http', '$scope', '$routeParam
             }
         }
         $scope.validaContrasenya = function () {
-           $scope.fase = 3;
+            $scope.fase = 3;
         }
-
+        $scope.save = function () {
+//            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
+//            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
+//            if (!$scope.bean.obj_medico.id > 0) {
+//                $scope.bean.obj_medico.id = null;
+//            }
+            $scope.bean.password2;
+            var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
+            serverService.promise_setOne('usuario', jsonToSend).then(function (response) {
+                if (response.status == 200) {
+                    if (response.data.status == 200) {
+                        $scope.response = response;
+                        $scope.fase = 4;
+                        $scope.status = "El usuario se ha creado";
+                        $scope.bean.id = response.data.message;
+                    } else {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    }
+                } else {
+                    $scope.status = "Error en la recepción de datos del servidor";
+                }
+            }).catch(function (data) {
+                $scope.status = "Error en la recepción de datos del servidor";
+            });
+            ;
+        };
     }
 ]);
 

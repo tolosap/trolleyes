@@ -12,16 +12,9 @@
                                 <div class="alert alert-success" role="alert" ng-if="debugging">
                                     <h4>Debug:</h4>
                                     {{bean|json}}
-
                                 </div>
 
                                 <form name="outerForm" class="form-horizontal text-left" ng-if="!status">
-
-
-
-
-
-
 
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
@@ -43,7 +36,7 @@
                                                     <texto model="bean.login"
                                                            name="'login'"
                                                            longname="'Nombre de usuario en el sistema (login nickname)'"
-                                                           pattern="'([A-Z][a-z0-9]+)+'"
+                                                           pattern="'[A-ZÑÁÀÉÈÍÓÒÚa-zàáèéíòóúñç0-9]+'"
                                                            length="255"
                                                            required="true">
                                                     </texto>
@@ -59,20 +52,11 @@
                                     </div>
 
 
-
-
-
-
-
-
-
-
-
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <span style="font-size: 25px !important">&#10103</span> Elige una contraseña
                                         </div>
-                                        <div class="panel-body" ng-show="fase==2">
+                                        <div class="panel-body" ng-show="fase == 2">
                                             <div id="password-group"
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.password.$error.pattern && !outerForm.password.$pristine) ||
@@ -133,19 +117,10 @@
                                                >Valida contraseña </a>
 
                                         </div>
-                                         <div class="panel-body"  ng-show="fase>2">
-                                            <h2>Contraseña OK</h2>                                            
+                                        <div class="panel-body"  ng-show="fase > 2">
+                                            <h2>Contraseña OK</h2>
                                         </div>
                                     </div>
-
-
-
-
-
-
-
-
-
 
                                     <div class="panel panel-default" ng-show="fase==3">
                                         <div class="panel-heading"><span style="font-size: 25px !important">&#10104</span> Introduce los datos personales</div>
@@ -160,13 +135,16 @@
                                                         required="true">
                                                 </clabel>
                                                 <div class="control col-sm-8">
-                                                    <texto model="bean.nombre"
-                                                           name="'nombre'"
-                                                           longname="'Nombre'"
-                                                           pattern="'([A-Z][a-z0-9]+)+'"
-                                                           length="255"
-                                                           required="true">
-                                                    </texto>
+                                                    <input ng-model="bean.nombre" 
+                                                           type="text"
+                                                           class="form-control" 
+                                                           id="nombre" 
+                                                           name="nombre" 
+                                                           ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
+                                                           placeholder="Nombre" 
+                                                           maxlength="255" 
+                                                           ng-required="required"                                                         
+                                                           />  
                                                     <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
@@ -182,13 +160,16 @@
                                                         required="true">
                                                 </clabel>
                                                 <div class="control col-sm-8">
-                                                    <texto model="bean.primer_apellido"
-                                                           name="'primer_apellido'"
-                                                           longname="'Primer apellido'"
-                                                           pattern="'([A-Z][a-z0-9]+)+'"
-                                                           length="255"
-                                                           required="true">
-                                                    </texto>
+                                                    <input ng-model="bean.primer_apellido" 
+                                                           type="text"
+                                                           class="form-control" 
+                                                           id="primer_apellido" 
+                                                           name="primer_apellido" 
+                                                           ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
+                                                           placeholder="Primer apellido" 
+                                                           maxlength="255" 
+                                                           ng-required="required"                                                         
+                                                           />                                                                                                                                                            
                                                     <span class="help-block" ng-if="!outerForm.primer_apellido.$pristine && outerForm.primer_apellido.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.primer_apellido.$pristine && outerForm.primer_apellido.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
@@ -204,13 +185,16 @@
                                                         required="true">
                                                 </clabel>
                                                 <div class="control col-sm-8">
-                                                    <texto model="bean.segundo_apellido"
-                                                           name="'segundo_apellido'"
-                                                           longname="'Segundo apellido'"
-                                                           pattern="'([A-Z][a-z0-9]+)+'"
-                                                           length="255"
-                                                           required="true">
-                                                    </texto>
+                                                    <input ng-model="bean.segundo_apellido" 
+                                                           type="text"
+                                                           class="form-control" 
+                                                           id="segundo_apellido" 
+                                                           name="segundo_apellido" 
+                                                           ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
+                                                           placeholder="Segundo apellido" 
+                                                           maxlength="255" 
+                                                           ng-required="required"                                                        
+                                                           />           
                                                     <span class="help-block" ng-if="!outerForm.segundo_apellido.$pristine && outerForm.segundo_apellido.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.segundo_apellido.$pristine && outerForm.segundo_apellido.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
@@ -228,59 +212,52 @@
                                                         required="true">
                                                 </clabel>
                                                 <div class="control col-sm-8">
-                                                    <texto model="bean.email"
-                                                           name="'email'"
-                                                           longname="'Correo electrónico'"
-                                                           pattern="'([A-Z][a-z0-9]+)+'"
-                                                           length="255"
-                                                           required="true">
-                                                    </texto>
+                                                     <input ng-model="bean.email" 
+                                                           type="text"
+                                                           class="form-control" 
+                                                           id="email" 
+                                                           name="email" 
+                                                           ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+                                                           placeholder="Correo electrónico" 
+                                                           maxlength="255" 
+                                                           ng-required="required"                                                         
+                                                           />  
                                                     <span class="help-block" ng-if="!outerForm.email.$pristine && outerForm.email.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.email.$pristine && outerForm.email.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
                                             </div>
 
-
-
-
                                         </div>
                                     </div>
 
-
-
-
-
-
                                     <div class="control-group text-right">
                                         <div class="controls">
-                                            <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                                            <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>
+                                            <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Enviar datos</a>
                                             <a class="btn btn-default" ng-click="back()">Volver</a>
                                             <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                         </div>
                                     </div>
                                 </form>
 
-                                <div ng-if="status">
+                                <div ng-if="fase == 4">
                                     <div class="alert alert-success" ng-if="response.status == 200">
-                                        <h2>{{status}}</h2>
+                                        <h2>Te has dado de alta en el sistema</h2>
                                         <div class="control-group text-right">
                                             <div class="controls">
-                                                <a class="btn btn-success" ng-href="{{ob}}/view/{{bean.id}}">Ver {{obtitle}}</a>
+                                                Recuerda que tu profesor/a debe activar tu cuenta para poder entrar en el sistema.
                                             </div>
                                         </div>
                                     </div>
                                     <div class="alert alert-danger" ng-if="response.status != 200">
+                                        <h2>No te has dado de alta en el sistema</h2>
                                         <div class="control-group text-right">
                                             <div class="controls">
-                                                <h2>{{status}}</h2>
+                                                Algo no ha ido bien, ponte en contacto con tu profesor/a
                                             </div>
                                         </div>
                                     </div>
                                     <div class="control-group text-right">
                                         <div class="controls">
-                                            <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{obtitle}}</a>
-                                            <a class="btn btn-default" ng-click="back()">Volver</a>
                                             <a class="btn btn-default" ng-href="home">Cerrar</a>
                                         </div>
                                     </div>
