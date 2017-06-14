@@ -3,12 +3,35 @@ moduloSistema.controller('NewalumnoController', ['$http', '$scope', '$routeParam
     function ($http, $scope, $routeParams, $location, serverService, sessionService, $rootScope) {
         $scope.title = "Registro de alumno para el curso " + $routeParams.codigo;
         $scope.isSessionActive = sessionService.isSessionActive();
+
         $scope.status = null;
         $scope.debugging = serverService.debugging();
         $scope.bean = {};
         $scope.codigoGrupo = $routeParams.codigo;
         $scope.fase = 1;
-        //$scope.outerForm = {};
+
+
+        //obtener información del profesor y del curso y del centro a partir del código de centro
+        $http.get(serverService.getAppUrl() + '?ob=usuario&op=getinfofromcode&code=' + $routeParams.codigo, 'GET', '').then(function (response) {
+            if (response.status == 200) {
+                if (response.data.message == "OK") {
+                    //$scope.outerForm.login.$setValidity('repetido', false);
+                    $scope.fase = 2;
+                }
+            } else {
+                //$scope.outerForm.login.$setValidity('repetido', true);
+                return false;
+            }
+        }, function errorCallback(response, status) {
+            //$scope.outerForm.login.$setValidity('repetido', true);
+            return false;
+        });
+
+
+
+
+
+
 
         $scope.validausuario = function (field) {
             if ($scope.fase == 1) {
