@@ -329,25 +329,28 @@ moduloServicios
 
             };
         })
-        .factory('sessionService', function ($http, $q, serverService) {
+        .factory('sessionService', function ($http, $q, serverService,$location) {
             var isSessionActiveTF = false;
             var sessionInfo = null;
-            var that = this;
+            //var that = this;
             return {
                 authenticationPromise: function () {
-                    var deferred = $q.defer();                    
+
+                    var deferred = $q.defer();
                     serverService.getSessionPromise().then(function (response) {
                         if (response['status'] == 200) {
-                            that.isSessionActiveTF = true;
-                            that.setSessionInfo(response.data.message);
+                            isSessionActiveTF = true;
+                            sessionInfo = response.data.message;
                             deferred.resolve();
                         } else {
-                            that.isSessionActiveTF = false;
+                            isSessionActiveTF = false;
                             deferred.resolve();
+                            $location.path("/login");
                         }
                     }).catch(function (data) {
-                        that.isSessionActiveTF = false;
+                        isSessionActiveTF = false;
                         deferred.resolve();
+                        $location.path("/login");
                     });
                     return deferred.promise;
                 },

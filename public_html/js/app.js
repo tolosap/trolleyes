@@ -353,19 +353,35 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
 
 
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        console.log('Current route name: ' + $location.path());
+        //console.log('Current route name: ' + $location.path());
 //        console.log("$routeParams:");
 //        console.log($routeParams);
-        if (sessionService.isSessionActive()) {
 
-        } else {
-            var nextUrl = next.$$route.originalPath;
-            if (nextUrl == '/' || nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license' || nextUrl.startsWith("/newalumno")) {
 
-            } else {
-                $location.path("/login");
-            }
-        }
+
+
+
+
+
+//
+//        if (sessionService.isSessionActive()) {
+//
+//        } else {
+//            var nextUrl = next.$$route.originalPath;
+//            if (nextUrl == '/' || nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license' || nextUrl.startsWith("/newalumno")) {
+//
+//            } else {
+//                $location.path("/login");
+//            }
+//        }
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 //        sessionService.setSessionInactive();
