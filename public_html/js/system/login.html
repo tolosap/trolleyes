@@ -7,7 +7,7 @@
                     <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
                     <div class="panel-body" ng-cloak>
                         <div class="row-fluid">
-                            <div class="col-md-3 col-md-offset-4">
+                            <div class="col-md-6">
                                 <br />
                                 <form name="form" ng-submit="login()" role="form">
                                     <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
@@ -28,6 +28,8 @@
                                 </form>
                                 <br />
 
+                            </div>
+                            <div class="col-md-6">
 
                                 <div class="panel panel-default">
                                     <div class="panel-heading">¿Eres alumno y no tienes cuenta?</div>
@@ -70,16 +72,21 @@
                                         Alumno maria:<br />
                                         <button ng-if="debugging" type="submit" class="btn btn-primary" ng-click="fill('pepe')">sandra</button>
                                         <button ng-if="debugging" type="submit" class="btn btn-primary" ng-click="fill('raquel')">eva</button><br />
-                                        
+
                                         Registros de alumnos en grupos:<br />
                                         <button ng-if="debugging" type="submit" class="btn btn-primary" ng-click="fillRegistro('ausias-mariajose-2016-2017')">ausias-mariajose-2016-2017</button><br />
                                         <button ng-if="debugging" type="submit" class="btn btn-primary" ng-click="fillRegistro('ausias-isabel-2016-2017')">ausias-isabel-2016-2017</button><br />
                                         <button ng-if="debugging" type="submit" class="btn btn-primary" ng-click="fillRegistro('sagunto-maria-2016-2017')">sagunto-maria-2016-2017</button><br />
-                                        
+
                                     </div>
                                 </div>
                             </div>
+<!--
+                            <div class="col-md-3 col-md-offset-4">
 
+
+                            </div>
+-->
 
                         </div>
                     </div>
