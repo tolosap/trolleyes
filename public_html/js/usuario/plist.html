@@ -155,8 +155,8 @@ THE SOFTWARE.
                                                     <div ng-if="f.tablevisible && f.type == 'decimal'" class="text-center">{{obj[f.name]}}</div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('varchar')" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <div ng-if="f.tablevisible && f.type == 'longtext'" class="text-left">{{obj[f.name]|clipString}}</div>
-                                                    <div ng-if="f.tablevisible && f.type == 'tinyint'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
-                                                    <div ng-if="f.tablevisible && f.type == 'foreign'" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
+                                                    <div ng-if="f.tablevisible && f.type.startsWith('tinyint')" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
+                                                    <div ng-if="f.tablevisible && f.name.startsWith('obj_')" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
                                                         <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
                                                     </div>     
                                                 </td>                       
