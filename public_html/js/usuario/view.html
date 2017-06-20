@@ -56,13 +56,14 @@ THE SOFTWARE.
                                     <tbody>
                                         <tr ng-repeat="f in metaprops" class="text-left">
                                             <td>{{f.longname}}</td>                                      
-                                            <td ng-if="f.type == 'id'"><b>{{bean[f.name]}}</b></td>
-                                            <td ng-if="f.type == 'datetime'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'int'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'decimal'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'varchar'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'tinyint'" ng-bind-html="bean[f.name] | booleanizate"></td> 
-                                            <td ng-if="f.type == 'foreign'" ng-init="fname = (f.name).replace('id_', 'obj_')"><a href="{{f.reference}}/view/{{bean[fname].data.id}}">{{(bean[fname])|getForeignDescription}}</a></td>    
+                                            <td ng-if="f.name == 'id'"><b>{{bean[f.name]}}</b></td>
+                                            <td ng-if="f.type.startsWith('datetime')">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('int') && !f.name.startsWith('id_') && !f.name == 'id'">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('decimal')">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('varchar')">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('longtext')">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('tinyint')" ng-bind-html="bean[f.name] | booleanizate"></td> 
+                                            <td ng-if="f.name.startsWith('id_')" ng-init="fname = (f.name).replace('id_', 'obj_')"><a href="{{f.reference}}/view/{{bean[fname].data.id}}">{{(bean[fname])|getForeignDescription}}</a></td>    
                                         </tr>
                                     </tbody>
                                 </table>  

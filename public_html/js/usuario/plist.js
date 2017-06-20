@@ -77,7 +77,7 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
 
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;
-                    $scope.ob = $scope.metaobj.name;
+                    //$scope.ob = $scope.metaobj.name;
                     $scope.title = "Listado de " + $scope.obtitle;
 
                     $scope.status = "";

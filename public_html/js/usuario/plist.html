@@ -150,18 +150,18 @@ THE SOFTWARE.
                                                 <td ng-repeat="f in metaprops" ng-if="f.tablevisible"  class="text-right">
                                                     <div ng-if="f.tablevisible && f.name == 'id'"><b>{{obj[f.name]}}</b></div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('datetime')" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-if="f.tablevisible && f.type.startsWith('int') && !f.name.startsWith('obj_') && !f.name == 'id'" class="text-center">{{obj[f.name]}}</div>
+                                                    <div ng-if="f.tablevisible && f.type.startsWith('int') && !f.name.startsWith('id_') && !f.name == 'id'" class="text-center">{{obj[f.name]}}</div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('decimal')" class="text-center">{{obj[f.name]}}</div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('varchar')" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('longtext')" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('tinyint')" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
-                                                    <div ng-if="f.tablevisible && f.name.startsWith('obj_')" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
+                                                    <div ng-if="f.tablevisible && f.name.startsWith('id_')" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
                                                         <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
                                                     </div>     
                                                 </td>                       
                                                 <td>
                                                     <div class="btn-toolbar" role="toolbar">
-                                                        <div class="btn-group">
+                                                        <div class="btn-group">                                                      
                                                             <miniactions id="obj.id" name="ob"></miniactions>
                                                         </div>
                                                     </div>
