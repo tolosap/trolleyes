@@ -150,7 +150,7 @@ THE SOFTWARE.
                                                 <td ng-repeat="f in metaprops" ng-if="f.tablevisible"  class="text-right">
                                                     <div ng-if="f.tablevisible && f.name == 'id'"><b>{{obj[f.name]}}</b></div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('datetime')" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-if="f.tablevisible && f.type.startsWith('int') && !f.name.startsWith('obj_')" class="text-center">{{obj[f.name]}}</div>
+                                                    <div ng-if="f.tablevisible && f.type.startsWith('int') && !f.name.startsWith('obj_') && !f.name == 'id'" class="text-center">{{obj[f.name]}}</div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('decimal')" class="text-center">{{obj[f.name]}}</div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('varchar')" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <div ng-if="f.tablevisible && f.type.startsWith('longtext')" class="text-left">{{obj[f.name]|clipString}}</div>
