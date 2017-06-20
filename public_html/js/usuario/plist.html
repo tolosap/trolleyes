@@ -36,7 +36,7 @@ THE SOFTWARE.
                         <div class="row">
                             <div class="col-xs-12" ng-if="status">
                                 <div class="alert alert-danger" role="alert">
-                                    <h3 class="bg-danger">{{status}}</h3>                                
+                                    <h3 class="bg-danger">{{status}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -56,19 +56,19 @@ THE SOFTWARE.
                                         <div role="tabpanel" id="pane0" class="tab-pane fade active in">
                                             <p></p>
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-3 col-sm-12">  
-                                                    <cplistinfo url="url"         
-                                                                numpage="numpage"                                                       
+                                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                                    <cplistinfo url="url"
+                                                                numpage="numpage"
                                                                 rpp="rpp"
-                                                                registers="registers"        
+                                                                registers="registers"
                                                                 orderparams="orderParams"
                                                                 filterparams="filterParams"
                                                                 searchtext="searchText">
                                                     </cplistinfo>
                                                 </div>
                                                 <div class="col-lg-6  col-md-6 col-sm-8 text-center">
-                                                    <cplistpagination url="url"         
-                                                                      numpage="numpage"          
+                                                    <cplistpagination url="url"
+                                                                      numpage="numpage"
                                                                       rpp="rpp"
                                                                       pages="pages"
                                                                       neighbourhood="neighbourhood"
@@ -78,9 +78,9 @@ THE SOFTWARE.
                                                     </cplistpagination>
                                                 </div>
                                                 <div class="col-lg-3  col-md-3 col-sm-4 text-center">
-                                                    <cplistrpp url="url"         
-                                                               numpage="numpage"          
-                                                               rpp="rpp"                                                       
+                                                    <cplistrpp url="url"
+                                                               numpage="numpage"
+                                                               rpp="rpp"
                                                                filterParams="filterParams"
                                                                orderParams="orderParams"
                                                                sfilterParams="sfilterParams">
@@ -92,24 +92,24 @@ THE SOFTWARE.
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
-                                                    <p></p>   
+                                                    <p></p>
                                                     <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
                                                     <p></p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div role="tabpanel" id="pane2" class="tab-pane fade">
-                                            <div class="row">  
+                                            <div class="row">
                                                 <div class="col-md-12">
                                                     <p></p>
-                                                    <cplistfilterpage url="url"   
+                                                    <cplistfilterpage url="url"
                                                                       fields="metaprops"
                                                                       rpp="rpp"
-                                                                      numpage="numpage"                                                                       
+                                                                      numpage="numpage"
                                                                       order="orderParams"
                                                                       filter="filterParams"
                                                                       sfilter="sfilterParams">
-                                                    </cplistfilterpage>  
+                                                    </cplistfilterpage>
                                                 </div>
                                             </div>
                                         </div>
@@ -134,51 +134,67 @@ THE SOFTWARE.
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                                           
-
-                                <p></p>   
-                                <div class="text-center">
-                                    <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
                                 </div>
-                                <p></p>
-
                                 <div id="datos" ng-if="!status">
-                                    <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">                                
-                                        <thead plistheader></thead>
-                                        <tbody>
-                                            <tr ng-repeat="obj in page| filter:searchText">
-                                                <td ng-repeat="f in metaprops" ng-if="f.tablevisible"  class="text-right">
-                                                    <div ng-if="f.tablevisible && f.name == 'id'"><b>{{obj[f.name]}}</b></div>
-                                                    <div ng-if="f.tablevisible && f.type.startsWith('datetime')" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-if="f.tablevisible && f.type.startsWith('int') && !f.name.startsWith('id_') && !f.name == 'id'" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-if="f.tablevisible && f.type.startsWith('decimal')" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-if="f.tablevisible && f.type.startsWith('varchar')" class="text-left">{{obj[f.name]|clipString}}</div>
-                                                    <div ng-if="f.tablevisible && f.type.startsWith('longtext')" class="text-left">{{obj[f.name]|clipString}}</div>
-                                                    <div ng-if="f.tablevisible && f.type.startsWith('tinyint')" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>  
-                                                    <div ng-if="f.tablevisible && f.name.startsWith('id_')" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
-                                                        <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
-                                                    </div>     
-                                                </td>                       
-                                                <td>
-                                                    <div class="btn-toolbar" role="toolbar">
-                                                        <div class="btn-group">                                                      
-                                                            <miniactions id="obj.id" name="ob"></miniactions>
+                                    <p></p>
+
+                                    <p></p>
+
+
+
+
+
+                                    <div class="panel panel-default">
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <div class="text-center">
+                                                <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
+                                            </div>
+                                        </div>
+                                      
+
+
+
+
+
+
+                                        <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer" style="font-size: 11px !important;">
+                                            <thead plistheader></thead>
+                                            <tbody>
+                                                <tr ng-repeat="obj in page| filter:searchText">
+                                                    <td ng-repeat="f in metaprops" ng-if="f.tablevisible"  class="text-right">
+                                                        <div ng-if="f.tablevisible && f.name == 'id'"><b>{{obj[f.name]}}</b></div>
+                                                        <div ng-if="f.tablevisible && f.type.startsWith('datetime')" class="text-center">{{obj[f.name]}}</div>
+                                                        <div ng-if="f.tablevisible && f.type.startsWith('int') && !f.name.startsWith('id_') && !f.name == 'id'" class="text-center">{{obj[f.name]}}</div>
+                                                        <div ng-if="f.tablevisible && f.type.startsWith('decimal')" class="text-center">{{obj[f.name]}}</div>
+                                                        <div ng-if="f.tablevisible && f.type.startsWith('varchar')" class="text-left">{{obj[f.name]|clipString}}</div>
+                                                        <div ng-if="f.tablevisible && f.type.startsWith('longtext')" class="text-left">{{obj[f.name]|clipString}}</div>
+                                                        <div ng-if="f.tablevisible && f.type.startsWith('tinyint')" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>
+                                                        <div ng-if="f.tablevisible && f.name.startsWith('id_')" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
+                                                            <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>                                            
-                                        </tbody>
-                                    </table>            
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-toolbar" role="toolbar">
+                                                            <div class="btn-group">
+                                                                <miniactions id="obj.id" name="ob"></miniactions>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <button type="button" class="btn btn-primary" ng-click="printPDF()">Print</button>                        
-                            </div>                                
-                        </div>  
+                                <button type="button" class="btn btn-primary" ng-click="printPDF()">Print</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
                 </div>
             </div>
         </div>
-    </div>     
+    </div>
 </div>
 
 
