@@ -129,7 +129,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/posologia/remove/:id', {templateUrl: 'js/posologia/remove.html', controller: 'PosologiaRemoveController'});
         $routeProvider.when('/posologia/plist/:page?/:rpp?', {templateUrl: 'js/posologia/plist.html', controller: 'PosologiaPListController'});
         $routeProvider.when('/posologia/selection/:page?/:rpp?', {templateUrl: 'js/posologia/selection.html', controller: 'PosologiaSelectionController'});
-        //------------        
+        //------------
         $routeProvider.when('/medicamento/view/:id', {templateUrl: 'js/medicamento/view.html', controller: 'MedicamentoViewController'});
         $routeProvider.when('/medicamento/new/:id?', {templateUrl: 'js/medicamento/new.html', controller: 'MedicamentoNewController'});
         $routeProvider.when('/medicamento/edit/:id', {templateUrl: 'js/medicamento/edit.html', controller: 'MedicamentoEditController'});
@@ -276,7 +276,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipomuestra/plist/:page?/:rpp?', {templateUrl: 'js/tipomuestra/plist.html', controller: 'TipomuestraPListController'});
         $routeProvider.when('/tipomuestra/selection/:page?/:rpp?', {templateUrl: 'js/tipomuestra/selection.html', controller: 'TipomuestraSelectionController'});
 
-        //------------        
+        //------------
         $routeProvider.when('/zonaimagen/view/:id', {templateUrl: 'js/zonaimagen/view.html', controller: 'ZonaimagenViewController'});
         $routeProvider.when('/zonaimagen/new/:id?', {templateUrl: 'js/zonaimagen/new.html', controller: 'ZonaimagenNewController'});
         $routeProvider.when('/zonaimagen/edit/:id', {templateUrl: 'js/zonaimagen/edit.html', controller: 'ZonaimagenEditController'});
@@ -284,7 +284,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/zonaimagen/plist/:page?/:rpp?', {templateUrl: 'js/zonaimagen/plist.html', controller: 'ZonaimagenPListController'});
         $routeProvider.when('/zonaimagen/selection/:page?/:rpp?', {templateUrl: 'js/zonaimagen/selection.html', controller: 'ZonaimagenSelectionController'});
 
-        //------------        
+        //------------
         $routeProvider.when('/tratamiento/view/:id', {templateUrl: 'js/tratamiento/view.html', controller: 'TratamientoViewController'});
         $routeProvider.when('/tratamiento/new/:id?', {templateUrl: 'js/tratamiento/new.html', controller: 'TratamientoNewController'});
         $routeProvider.when('/tratamiento/edit/:id', {templateUrl: 'js/tratamiento/edit.html', controller: 'TratamientoEditController'});
@@ -298,7 +298,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/diagnostico/plist/:page?/:rpp?', {templateUrl: 'js/diagnostico/plist.html', controller: 'DiagnosticoPListController'});
         $routeProvider.when('/diagnostico/selection/:page?/:rpp?', {templateUrl: 'js/diagnostico/selection.html', controller: 'DiagnosticoSelectionController'});
 
-        //------------        
+        //------------
 
         $routeProvider.when('/tecnica/view/:id', {templateUrl: 'js/tecnica/view.html', controller: 'TecnicaViewController'});
         $routeProvider.when('/tecnica/new/:id?', {templateUrl: 'js/tecnica/new.html', controller: 'TecnicaNewController'});
@@ -316,7 +316,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/analitica/plist/:page?/:rpp?', {templateUrl: 'js/analitica/plist.html', controller: 'AnaliticaPListController'});
         $routeProvider.when('/analitica/selection/:page?/:rpp?', {templateUrl: 'js/analitica/selection.html', controller: 'AnaliticaSelectionController'});
 
-        //------------        
+        //------------
         $routeProvider.when('/zonaimagen/view/:id', {templateUrl: 'js/zonaimagen/view.html', controller: 'ZonaimagenViewController'});
         $routeProvider.when('/zonaimagen/new/:id?', {templateUrl: 'js/zonaimagen/new.html', controller: 'ZonaimagenNewController'});
         $routeProvider.when('/zonaimagen/edit/:id', {templateUrl: 'js/zonaimagen/edit.html', controller: 'ZonaimagenEditController'});
@@ -324,7 +324,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/zonaimagen/plist/:page?/:rpp?', {templateUrl: 'js/zonaimagen/plist.html', controller: 'ZonaimagenPListController'});
         $routeProvider.when('/zonaimagen/selection/:page?/:rpp?', {templateUrl: 'js/zonaimagen/selection.html', controller: 'ZonaimagenSelectionController'});
 
-        //------------        
+        //------------
         $routeProvider.when('/tratamiento/view/:id', {templateUrl: 'js/tratamiento/view.html', controller: 'TratamientoViewController'});
         $routeProvider.when('/tratamiento/new/:id?', {templateUrl: 'js/tratamiento/new.html', controller: 'TratamientoNewController'});
         $routeProvider.when('/tratamiento/edit/:id', {templateUrl: 'js/tratamiento/edit.html', controller: 'TratamientoEditController'});
@@ -335,71 +335,12 @@ sisane.config(['$routeProvider', function ($routeProvider) {
     }]);
 //-------------
 sisane.run(function ($rootScope, $location, serverService, sessionService) {
-
-//    serverService.getSessionPromise().then(function (response) {
-//        if (response['status'] == 200) {
-//            sessionService.setSessionActive();
-//            sessionService.setSessionInfo(response.data.message);
-//          
-//        } else {
-//            sessionService.setSessionInactive();
-//            
-//        }
-//    }).catch(function (data) {
-//        sessionService.setSessionInactive();
-//       
-//    });
-
-
-
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        //console.log('Current route name: ' + $location.path());
-//        console.log("$routeParams:");
-//        console.log($routeParams);
-
-
-
-
-
-
-
-//
-//        if (sessionService.isSessionActive()) {
-//
-//        } else {
-//            var nextUrl = next.$$route.originalPath;
-//            if (nextUrl == '/' || nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license' || nextUrl.startsWith("/newalumno")) {
-//
-//            } else {
-//                $location.path("/login");
-//            }
-//        }
-        
-        
-        
-        
-        
-        
-        
-        
-
-
-//        sessionService.setSessionInactive();
-//        serverService.getSessionPromise().then(function (response) {
-//            if (response['status'] == 200) {
-//                sessionService.setSessionActive();
-//                sessionService.setSessionInfo(response.data.message);
-//            } else {
-//                sessionService.setSessionInactive();
-//            }
-//        }).catch(function (data) {
-//            sessionService.setSessionInactive();
-//            var nextUrl = next.$$route.originalPath;
-//            if (nextUrl == '/home' || nextUrl == '/login' || nextUrl == '/license') {
-//            } else {
-//                $location.path("/login");
-//            }
-//        });
+        //here's where we notify the auth service with the
+        //url where user wants to go
+        //sessionservice will let or not it go depending on the
+        //call to the server sessionstatus
+        sessionService.setNextURL(next.$$route.originalPath);
     });
 });
 //-------------
