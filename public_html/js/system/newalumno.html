@@ -11,9 +11,18 @@
 
                                 <div class="alert alert-success" role="alert" ng-if="debugging">
                                     <h4>Debug:</h4>
-                                    {{bean|json}}
+                                    {{bean|json}}<br>
+                                    fase:{{fase}}
                                 </div>
-
+                                
+                                <div class="alert alert-success" role="alert">
+                                    Curso: {{grupo.obj_curso.descripcion}}<br>
+                                    Profesor: {{grupo.obj_usuario.nombre}} {{grupo.obj_usuario.primer_apellido}} {{grupo.obj_usuario.segundo_apellido}}<br>                                    
+                                    Centro: {{grupo.obj_usuario.obj_centro.nombre}}<br>
+                                    Centro Sanitario: {{grupo.obj_usuario.obj_centrosanitario.descripcion}}<br>
+                                </div>
+                                
+                                
                                 <form name="outerForm" class="form-horizontal text-left" ng-if="!status">
 
                                     <div class="panel panel-default">
@@ -122,9 +131,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="panel panel-default" ng-show="fase==3">
+                                    <div class="panel panel-default">
                                         <div class="panel-heading"><span style="font-size: 25px !important">&#10104</span> Introduce los datos personales</div>
-                                        <div class="panel-body">
+                                        <div class="panel-body" ng-show="fase == 3">
                                             <div id="nombre-group"
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.nombre.$error.pattern && !outerForm.nombre.$pristine) ||
@@ -212,7 +221,7 @@
                                                         required="true">
                                                 </clabel>
                                                 <div class="control col-sm-8">
-                                                     <input ng-model="bean.email" 
+                                                    <input ng-model="bean.email" 
                                                            type="text"
                                                            class="form-control" 
                                                            id="email" 
@@ -227,17 +236,46 @@
                                                 </div>
                                             </div>
 
-                                        </div>
-                                    </div>
 
-                                    <div class="control-group text-right">
-                                        <div class="controls">
-                                            <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Enviar datos</a>
-                                            <a class="btn btn-default" ng-click="back()">Volver</a>
-                                            <a class="btn btn-default" ng-click="close()">Cerrar</a>
+
+                                            <a class="btn btn-primary"
+                                               ng-click="send()"
+                                               ng-show="!(
+                                                                       (outerForm.nombre.$pristine) ||
+                                                                       (outerForm.primer_apellido.$pristine) ||
+                                                                       (outerForm.segundo_apellido.$pristine) ||
+                                                                       (outerForm.email.$pristine) ||
+                                                                       (outerForm.email.$error.pattern) ||
+                                                                       (outerForm.email.$error.required) ||
+                                                                       (outerForm.segundo_apellido.$error.pattern) ||
+                                                                       (outerForm.segundo_apellido.$error.required) ||
+                                                                       (outerForm.primer_apellido.$error.pattern) ||
+                                                                       (outerForm.primer_apellido.$error.required) ||
+                                                                       (outerForm.nombre.$error.pattern) ||
+                                                                       (outerForm.nombre.$error.required))"
+                                               >Enviar datos </a>
+
+
                                         </div>
+
+                                        <div class="panel-body"  ng-show="fase > 3">
+                                            <h2>{{status}}</h2>
+                                        </div>
+
                                     </div>
                                 </form>
+
+
+
+
+                                <div class="control-group text-right">
+                                    <div class="controls">                                        
+                                        <a class="btn btn-default" ng-click="back()">Volver</a>
+                                        <a class="btn btn-default" ng-click="close()">Cerrar</a>
+                                    </div>
+                                </div>
+
+
 
                                 <div ng-if="fase == 4">
                                     <div class="alert alert-success" ng-if="response.status == 200">
