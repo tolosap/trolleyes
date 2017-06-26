@@ -233,11 +233,7 @@ moduloServicios
                     promise_setOne: function (strClass, jsonfile) {
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                         return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
-                    },
-                    promise_setAlumno: function (strClass, jsonfile) {
-                        $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                        return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=setalumno', {params: jsonfile});
-                    },                    
+                    },                   
                     //--------
                     date_toDate: function (input) {
                         var parts = input.split('/');

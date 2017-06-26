@@ -1,12 +1,12 @@
 'use strict';
-moduloSistema.controller('NewalumnoController', ['$http', '$scope', '$routeParams', '$location', 'serverService', 'sessionService', '$rootScope',
+moduloUsuario.controller('NewalumnoController', ['$http', '$scope', '$routeParams', '$location', 'serverService', 'sessionService', '$rootScope',
     function ($http, $scope, $routeParams, $location, serverService, sessionService, $rootScope) {
         $scope.title = "Registro de alumno para el grupo " + $routeParams.codigo;
         $scope.isSessionActive = sessionService.isSessionActive();
 
         $scope.status = null;
         $scope.debugging = serverService.debugging();
-        $scope.bean = {id_tipousuario: 4};
+        $scope.bean = {};
         $scope.codigoGrupo = $routeParams.codigo;
         $scope.fase = 1;
 
@@ -93,9 +93,15 @@ moduloSistema.controller('NewalumnoController', ['$http', '$scope', '$routeParam
 //            if (!$scope.bean.obj_medico.id > 0) {
 //                $scope.bean.obj_medico.id = null;
 //            }
-            $scope.bean.password2;
+            delete $scope.bean.password2;
+            $scope.bean.id_grupo = $scope.grupo.obj_curso.id;
+            $scope.bean.id_centro = $scope.grupo.obj_usuario.obj_centro.id;
+            $scope.bean.id_centrosanitario = $scope.grupo.obj_usuario.obj_centrosanitario.id;
+            $scope.bean.password = forge_sha256($scope.bean.password).toUpperCase();
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
-            serverService.promise_setOne('usuario', jsonToSend).then(function (response) {
+            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+
+            $http.get(serverService.getAppUrl() + '?ob=usuario&op=setalumno', {params: jsonToSend}).then(function (response) {
                 if (response.status == 200) {
                     if (response.data.status == 200) {
                         $scope.response = response;

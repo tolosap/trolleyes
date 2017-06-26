@@ -14,15 +14,15 @@
                                     {{bean|json}}<br>
                                     fase:{{fase}}
                                 </div>
-                                
+
                                 <div class="alert alert-success" role="alert">
                                     Curso: {{grupo.obj_curso.descripcion}}<br>
                                     Profesor: {{grupo.obj_usuario.nombre}} {{grupo.obj_usuario.primer_apellido}} {{grupo.obj_usuario.segundo_apellido}}<br>                                    
                                     Centro: {{grupo.obj_usuario.obj_centro.nombre}}<br>
                                     Centro Sanitario: {{grupo.obj_usuario.obj_centrosanitario.descripcion}}<br>
                                 </div>
-                                
-                                
+
+
                                 <form name="outerForm" class="form-horizontal text-left" ng-if="!status">
 
                                     <div class="panel panel-default">
@@ -254,29 +254,13 @@
                                                                        (outerForm.nombre.$error.pattern) ||
                                                                        (outerForm.nombre.$error.required))"
                                                >Enviar datos </a>
-
-
                                         </div>
-
                                         <div class="panel-body"  ng-show="fase > 3">
                                             <h2>{{status}}</h2>
                                         </div>
 
                                     </div>
                                 </form>
-
-
-
-
-                                <div class="control-group text-right">
-                                    <div class="controls">                                        
-                                        <a class="btn btn-default" ng-click="back()">Volver</a>
-                                        <a class="btn btn-default" ng-click="close()">Cerrar</a>
-                                    </div>
-                                </div>
-
-
-
                                 <div ng-if="fase == 4">
                                     <div class="alert alert-success" ng-if="response.status == 200">
                                         <h2>Te has dado de alta en el sistema</h2>
@@ -293,14 +277,14 @@
                                                 Algo no ha ido bien, ponte en contacto con tu profesor/a
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="control-group text-right">
-                                        <div class="controls">
-                                            <a class="btn btn-default" ng-href="home">Cerrar</a>
-                                        </div>
+                                    </div>                                    
+                                </div>
+                                <div class="control-group text-right">
+                                    <div class="controls">                                        
+                                        <a class="btn btn-default" ng-click="back()">Volver</a>
+                                        <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
