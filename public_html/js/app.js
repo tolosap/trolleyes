@@ -93,13 +93,13 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController', resolve: {auth: authenticationPromise}});
         //------------
-        $routeProvider.when('/newalumno/:codigo', {templateUrl: 'js/system/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});
-        //------------
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController', resolve: {auth: authenticationPromise}});
+        //------------
+        $routeProvider.when('/newalumno/:codigo', {templateUrl: 'js/usuario/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});        
         //------------
         $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/tipousuario/new/:id?', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController', resolve: {auth: authenticationPromise}});
