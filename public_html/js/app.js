@@ -98,6 +98,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/usuario4profesor/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist4profesor.html', controller: 'UsuarioPList4ProfesorController', resolve: {auth: authenticationPromise}});
         //------------
         $routeProvider.when('/newalumno/:codigo', {templateUrl: 'js/usuario/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});        
         //------------
