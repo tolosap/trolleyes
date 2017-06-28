@@ -151,7 +151,7 @@ THE SOFTWARE.
                                                 <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
                                             </div>
                                         </div>
-                                      
+
 
 
 
@@ -177,7 +177,17 @@ THE SOFTWARE.
                                                     <td style="border-color:#ddd;"  class="text-center">
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
-                                                                <miniactions id="obj.id" name="ob"></miniactions>
+
+                                                                <div class="btn-group">
+
+                                                                    <a class="btn btn-default btn-xs" title="Activar" ng-show="obj.activo==false" ng-click="activaalumno(obj.obj_usuario_alumno.data.id)">
+                                                                        <span class="fa fa-thumbs-o-up"></span>
+                                                                    </a>
+                                                                    <a class="btn btn-default btn-xs" title="Desactivar" ng-show="obj.activo==true" ng-click="desactivaalumno(obj.obj_usuario_alumno.data.id)">
+                                                                        <span class="fa fa-thumbs-o-down"></span>
+                                                                    </a>
+
+                                                                </div>  
                                                             </div>
                                                         </div>
                                                     </td>

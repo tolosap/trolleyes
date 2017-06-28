@@ -28,8 +28,8 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioPList4ProfesorController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
-    function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
+moduloUsuario.controller('UsuarioPList4ProfesorController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService', '$http',
+    function ($scope, $routeParams, $location, serverService, $uibModal, sessionService, $http) {
         $scope.ob = "gruposdeprofesoresconsusalumnos";
         $scope.op = "plist";
 
@@ -53,6 +53,41 @@ moduloUsuario.controller('UsuarioPList4ProfesorController', ['$scope', '$routePa
                 $scope.filterParams += '&filter=' + $routeParams.filter;
             }
         }
+
+        $scope.activaalumno = function (id_alumno) {
+            $http.get(serverService.getAppUrl() + '?ob=usuario&op=activaalumno&id=' + id_alumno, 'GET', '').then(function (response) {
+                if (response.status == 200) {
+                    if (response.data.message == "1") {
+                        //$scope.outerForm.login.$setValidity('repetido', false);
+                        getDataFromServer();
+                    }
+                } else {
+                    //$scope.outerForm.login.$setValidity('repetido', true);
+                    return false;
+                }
+            }, function errorCallback(response, status) {
+                //$scope.outerForm.login.$setValidity('repetido', true);
+                return false;
+            });
+        }
+
+        $scope.desactivaalumno = function (id_alumno) {
+            $http.get(serverService.getAppUrl() + '?ob=usuario&op=desactivaalumno&id=' + id_alumno, 'GET', '').then(function (response) {
+                if (response.status == 200) {
+                    if (response.data.message == "1") {
+                        //$scope.outerForm.login.$setValidity('repetido', false);
+                        getDataFromServer();
+                    }
+                } else {
+                    //$scope.outerForm.login.$setValidity('repetido', true);
+                    return false;
+                }
+            }, function errorCallback(response, status) {
+                //$scope.outerForm.login.$setValidity('repetido', true);
+                return false;
+            });
+        }
+
 
         $scope.status = null;
         $scope.debugging = serverService.debugging();
