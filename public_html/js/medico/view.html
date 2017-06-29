@@ -26,15 +26,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-
-<div id="wrapper">
+<nav class="navbar navbar-default navbar-fixed-top" ng-include="'js/system/menu.html'"></nav>
+<div id="wrapper" ng-cloak>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
-                    <div class="panel-body" ng-cloak>
-                        <div class="row-fluid"  ng-if="status">
+                    <div class="panel-body">
+                        <div class="row-fluid" ng-if="status">
                             <div class="col-xs-12">
                                 <div class="alert alert-danger" role="alert">
                                     <br>
@@ -54,27 +54,27 @@ THE SOFTWARE.
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="f in fields" class="text-left">
-                                            <td>{{f.longname}}</td>
-                                            <td ng-if="f.type == 'id'"><b>{{bean[f.name]}}</b></td>
-                                            <td ng-if="f.type == 'date'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'integer'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'decimal'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'text'">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type == 'boolean'" ng-bind-html="bean[f.name] | booleanizate"></td> 
-                                            <td ng-if="f.name.startsWith('obj_')">
-                                                <a href="{{f.reference}}/view/{{bean[f.name]['id']}}">
-                                                    {{bean[f.name]["descripcion"]}}
-                                                </a>
-                                            </td>  
+                                        <tr ng-repeat="f in metaprops" class="text-left">
+                                            <td>{{f.longname}}</td>                                      
+                                            <td ng-if="f.name == 'id'"><b>{{bean[f.name]}}</b></td>
+                                            <td ng-if="f.type.startsWith('datetime')">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('int') && !f.name.startsWith('id_') && !f.name == 'id'">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('decimal')">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('varchar')">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('longtext')">{{bean[f.name]}}</td>
+                                            <td ng-if="f.type.startsWith('tinyint')" ng-bind-html="bean[f.name] | booleanizate"></td> 
+                                            <td ng-if="f.name.startsWith('id_')" ng-init="fname = (f.name).replace('id_', 'obj_')"><a href="{{f.reference}}/view/{{bean[fname].data.id}}">{{(bean[fname])|getForeignDescription}}</a></td>    
                                         </tr>
                                     </tbody>
                                 </table>  
-                                <div class="text-right"> 
-                                    <a class="btn btn-primary" href="{{ob}}/edit/{{bean.id}}">Editar</a>
-                                    <a class="btn btn-danger" href="{{ob}}/remove/{{bean.id}}">Borrar</a>
-                                    <a class="btn btn-default" ng-click="plist()">Ir al listado de {{obtitle}}</a>
-                                    <a class="btn btn-default" ng-click="close()">Cerrar</a>
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <a class="btn btn-primary" href="{{ob}}/edit/{{bean.id}}">Editar</a>
+                                        <a class="btn btn-danger" href="{{ob}}/remove/{{bean.id}}">Borrar</a>
+                                        <a class="btn btn-info" href="{{ob}}/plist">Ir al listado de {{obtitle}}</a>
+                                        <a class="btn btn-default" ng-click="back()">Volver</a>
+                                        <a class="btn btn-default" href="home">Cerrar</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

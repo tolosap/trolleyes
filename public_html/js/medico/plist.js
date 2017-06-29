@@ -28,53 +28,68 @@
 
 'use strict';
 
-moduloMedico.controller('MedicoPListController', ['$scope', '$routeParams', '$location', 'serverService', 'medicoService', '$uibModal',
-    function ($scope, $routeParams, $location, serverService, medicoService, $uibModal) {
-        $scope.fields = medicoService.getFields();
-        $scope.obtitle = medicoService.getObTitle();
-        $scope.icon = medicoService.getIcon();
-        $scope.ob = medicoService.getTitle();
-        $scope.title = "Listado de " + $scope.obtitle;
+moduloMedico.controller('MedicoPListController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
+        $scope.ob = "medico";
         $scope.op = "plist";
+
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
+
         $scope.numpage = serverService.checkDefault(1, $routeParams.page);
         $scope.rpp = serverService.checkDefault(10, $routeParams.rpp);
         $scope.neighbourhood = serverService.getGlobalNeighbourhood();
-        $scope.order = "";
-        $scope.ordervalue = "";
-        $scope.filter = "id";
-        $scope.filteroperator = "like";
-        $scope.filtervalue = "";
-        $scope.filterParams = serverService.checkNull($routeParams.filter)
+
         $scope.orderParams = serverService.checkNull($routeParams.order)
-        $scope.sfilterParams = serverService.checkNull($routeParams.sfilter)
-        $scope.filterExpression = serverService.getFilterExpression($routeParams.filter, $routeParams.sfilter);
+
+        $scope.filterParams = "";
+        if ($routeParams.filter) {
+            if (Array.isArray($routeParams.filter)) {
+                var arrayLength = $routeParams.filter.length;
+                for (var i = 0; i < arrayLength; i++) {
+                    $scope.filterParams += '&filter=' + $routeParams.filter[i];
+                }
+            } else {
+                $scope.filterParams += '&filter=' + $routeParams.filter;
+            }
+        }
+
         $scope.status = null;
         $scope.debugging = serverService.debugging();
         $scope.url = $scope.ob + '/' + $scope.op;
         function getDataFromServer() {
-            serverService.promise_getCount($scope.ob, $scope.filterExpression).then(function (response) {
+            serverService.promise_getCount($scope.ob, $scope.filterParams).then(function (response) {
                 if (response.status == 200) {
                     $scope.registers = response.data.message;
                     $scope.pages = serverService.calculatePages($scope.rpp, $scope.registers);
                     if ($scope.numpage > $scope.pages) {
                         $scope.numpage = $scope.pages;
                     }
-                    return serverService.promise_getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterExpression, $routeParams.order);
+                    return serverService.promise_getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                 } else {
-                    $scope.status = "Error en la recepción de datos del servidor1";
+                    $scope.status = "Error en la recepción de datos del servidor";
                 }
             }).then(function (response) {
                 if (response.status == 200) {
-                    $scope.page = response.data.message;
+                    $scope.page = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    //$scope.ob = $scope.metaobj.name;
+                    $scope.title = "Listado de " + $scope.obtitle;
+
                     $scope.status = "";
                 } else {
-                    $scope.status = "Error en la recepción de datos del servidor2";
+                    $scope.status = "Error en la recepción de datos del servidor";
                 }
             }).catch(function (data) {
-                $scope.status = "Error en la recepción de datos del servidor3";
+                $scope.status = "Error en la recepción de datos del servidor";
             });
         }
         getDataFromServer();
+       
     }]);
 
 

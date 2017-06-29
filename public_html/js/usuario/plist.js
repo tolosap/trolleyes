@@ -89,24 +89,7 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
             });
         }
         getDataFromServer();
-        $scope.printPDF = function () {
-            var doc = new jsPDF();
-            doc.setFontSize(30);
-            doc.text(80, 20, "Listado de usuario");
-            doc.setFontSize(10);
-            var separacion = 110;
-            var contador = 5;
-            for (var i = 0; i < $scope.page.length; i++) {
-                for (var j = 0; j < $scope.metaprops.length; j++) {
-                    if ($scope.page[i][$scope.metaprops[j].name]) {
-                        doc.text($scope.page[i][$scope.metaprops[j].name].toString().length, separacion, $scope.page[i][$scope.metaprops[j].name].toString());
-                        separacion = separacion + contador;
-                    }
-                }
-            }
-            var fecha = Date.now();
-            doc.save('informes/' + fecha + '.pdf');
-        };
+        
     }]);
 
 

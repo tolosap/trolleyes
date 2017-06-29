@@ -27,31 +27,37 @@
  */
 
 'use strict';
-moduloMedico.controller('MedicoEditController', ['$scope', '$routeParams', '$location', 'medicoService', 'serverService', 'sharedSpaceService', '$filter', '$uibModal',
-    function ($scope, $routeParams, $location, medicoService, serverService, sharedSpaceService, $filter, $uibModal) {
-        $scope.fields = medicoService.getFields();
-        $scope.obtitle = medicoService.getObTitle();
-        $scope.icon = medicoService.getIcon();
-        $scope.ob = medicoService.getTitle();
-        $scope.title = "Editando un " + $scope.obtitle;
-        $scope.op = "plist";
+moduloMedico.controller('MedicoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
+        $scope.ob = "medico";
+        $scope.op = "edit";
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
         $scope.status = null;
-        $scope.error = true;
         $scope.debugging = serverService.debugging();
         $scope.bean = {};
-
-        $scope.bean.obj_servicio = {"id": 0};
-        $scope.show_obj_servicio = true;
-
-        $scope.bean.obj_especialidad = {"id": 0};
-        $scope.show_obj_especialidad = true;
-
+//        //---
+//        $scope.bean.obj_tipousuario = {"id": null};
+//        $scope.show_obj_tipousuario = true;
+//        //---
+//        $scope.bean.obj_medico = {"id": null};
+//        $scope.show_obj_medico = true;
+//        //---
         $scope.id = $routeParams.id;
         serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-                    $scope.bean = response.data.message;
+
+                    $scope.bean = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Modificación de " + $scope.obtitle;
+
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -62,18 +68,20 @@ moduloMedico.controller('MedicoEditController', ['$scope', '$routeParams', '$loc
             $scope.status = "Error en la recepción de datos del servidor";
         });
         $scope.save = function () {
-            if (!$scope.bean.obj_servicio.id > 0) {
-                $scope.bean.obj_servicio.id = null;
-            }
-            if (!$scope.bean.obj_especialidad.id > 0) {
-                $scope.bean.obj_especialidad.id = null;
-            }
+//            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
+//            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
+//            if ($scope.bean.obj_tipousuario.id <= 0) {
+//                $scope.bean.obj_tipousuario.id = null;
+//            }
+//            if ($scope.bean.obj_medico.id <= 0) {
+//                $scope.bean.obj_medico.id = null;
+//            }
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
             serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
                 if (response.status == 200) {
                     if (response.data.status == 200) {
                         $scope.response = response;
-                        $scope.status = "El registro " + $scope.obtitle + " se ha modificado ... id = " + $scope.bean.id;
+                        $scope.status = "El registro de " + $scope.obtitle + " con id=" + $scope.bean.id + " se ha modificado.";
                         $scope.bean.id = $scope.bean.id;
                     } else {
                         $scope.status = "Error en la recepción de datos del servidor";
@@ -89,14 +97,4 @@ moduloMedico.controller('MedicoEditController', ['$scope', '$routeParams', '$loc
         $scope.back = function () {
             window.history.back();
         };
-        $scope.close = function () {
-            $location.path('/home');
-        };
-        $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
-        };
-      
-
-        
-
     }]);
