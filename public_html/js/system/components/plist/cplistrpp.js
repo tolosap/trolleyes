@@ -14,7 +14,13 @@ moduloDirectivas.component('cplistrpp', {
     controller: ['$location', function ($location) {
             var self = this;
             self.repaginate = function (rpp) {
-                $location.path(self.url + '/' + self.numpage + '/' + rpp).search('filter', self.filterparams).search('sfilter', self.sfilterparams).search('order', self.orderparams);
+                var filtro;
+                if (self.filterparams == "") {
+                    filtro = null;
+                } else {
+                    filtro = self.filterparams;
+                }
+                $location.path(self.url + '/' + self.numpage + '/' + rpp).search('filter', filtro).search('sfilter', self.sfilterparams).search('order', self.orderparams);
                 return false;
             };
         }]

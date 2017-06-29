@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioPList4ProfesorController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService', '$http',
+moduloUsuario.controller('UsuarioPListGruposdeprofesoresconsusalumnosController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService', '$http',
     function ($scope, $routeParams, $location, serverService, $uibModal, sessionService, $http) {
         $scope.ob = "gruposdeprofesoresconsusalumnos";
         $scope.op = "plist";

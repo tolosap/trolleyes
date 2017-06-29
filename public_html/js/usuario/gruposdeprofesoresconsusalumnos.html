@@ -47,10 +47,10 @@ THE SOFTWARE.
                                         <li role="presentation" class="active">
                                             <a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a>
                                         </li>
-                                        <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab" aria-expanded="true">Campos visibles</a></li>
-                                        <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de servidor</a></li>
-                                        <li role="presentation"><a data-target="#pane3" aria-controls="pane3" role="tab" data-toggle="tab">Filtro de cliente</a></li>
-                                        <li role="presentation"><a data-target="#pane4" aria-controls="pane4" role="tab" data-toggle="tab">Nuevo {{obtitle}}</a></li>
+                  
+                                        <li role="presentation"><a data-target="#pane1" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de servidor</a></li>
+                                        <li role="presentation"><a data-target="#pane2" aria-controls="pane3" role="tab" data-toggle="tab">Filtro rápido de pantalla</a></li>
+                                       
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" id="pane0" class="tab-pane fade active in">
@@ -89,16 +89,8 @@ THE SOFTWARE.
                                             </div>
                                             <p></p>
                                         </div>
+                                 
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <p></p>
-                                                    <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
-                                                    <p></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div role="tabpanel" id="pane2" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <p></p>
@@ -113,7 +105,7 @@ THE SOFTWARE.
                                                 </div>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" id="pane3" class="tab-pane fade">
+                                        <div role="tabpanel" id="pane2" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <p></p>
@@ -124,15 +116,7 @@ THE SOFTWARE.
                                                 </div>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" id="pane4" class="tab-pane fade">
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/new">Crear un nuevo {{obtitle}}</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
                                     </div>
                                 </div>
                                 <div id="datos" ng-if="!status">

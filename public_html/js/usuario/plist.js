@@ -42,7 +42,7 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', '$
 
         $scope.orderParams = serverService.checkNull($routeParams.order)
 
-        $scope.filterParams = "";
+        $scope.filterParams = null;
         if ($routeParams.filter) {
             if (Array.isArray($routeParams.filter)) {
                 var arrayLength = $routeParams.filter.length;
