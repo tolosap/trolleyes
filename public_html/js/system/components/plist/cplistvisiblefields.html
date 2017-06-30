@@ -1,2 +1,1 @@
-<label ng-repeat="field in pf.fields track by $index" ng-checked="field.tablevisible"><input type="checkbox" ng-model="field.tablevisible">{{field.longname}}&nbsp;</label>
-
+<ul class="list-inline"><li ng-repeat="field in pf.fields track by $index" ng-checked="field.tablevisible"><input type="checkbox" ng-model="field.tablevisible">{{field.longname}}</li></ul>

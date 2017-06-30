@@ -233,7 +233,7 @@ moduloServicios
                     promise_setOne: function (strClass, jsonfile) {
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                         return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
-                    },                   
+                    },
                     //--------
                     date_toDate: function (input) {
                         var parts = input.split('/');
@@ -300,6 +300,13 @@ moduloServicios
                                 return  this.checkEmptyString(sfilter);
                             }
                         }
+                    },
+                    isEmpty: function (obj) {
+                        for (var prop in obj) {
+                            if (obj.hasOwnProperty(prop))
+                                return false;
+                        }
+                        return JSON.stringify(obj) === JSON.stringify({});
                     }
                 };
             }])
