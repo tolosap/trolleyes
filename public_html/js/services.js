@@ -198,15 +198,15 @@ moduloServicios
                         }
                     },
                     promise_getPage: function (strObject, rpp, page, filter, order) {
-//                        if (filter) {
+                        if (filter) {
 //                            var arrayLength = filter.length;
 //                            var strfilter = "";
 //                            for (var i = 0; i < arrayLength; i++) {
 //                                strfilter += "&filter=" + filter[i];
 //                            }
-//                        } else {
-//                            filter = "";
-//                        }
+                        } else {
+                            filter = "";
+                        }
                         if (order) {
                             order = "&order=" + order;
                         } else {
