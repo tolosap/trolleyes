@@ -366,6 +366,37 @@ moduloServicios
                     });
                     return deferred.promise;
                 },
+                authenticationProfesorPromise: function () {
+
+                    var deferred = $q.defer();
+                    serverService.getSessionPromise().then(function (response) {
+                        if (response['status'] == 200) {
+                            if (response.data.message.obj_tipousuario.id == 3) {
+                                isSessionActiveTF = true;
+                                sessionInfo = response.data.message;
+                                deferred.resolve();
+                            } else {
+                                deferred.resolve();
+                                if (nextUrl != '/' && nextUrl != '/home' && nextUrl != '/login' && nextUrl != '/license' && !nextUrl.startsWith("/newalumno")) {
+                                    $location.path("/login");
+                                }
+                            }
+                        } else {
+                            isSessionActiveTF = false;
+                            deferred.resolve();
+                            if (nextUrl != '/' && nextUrl != '/home' && nextUrl != '/login' && nextUrl != '/license' && !nextUrl.startsWith("/newalumno")) {
+                                $location.path("/login");
+                            }
+                        }
+                    }).catch(function (data) {
+                        isSessionActiveTF = false;
+                        deferred.resolve();
+                        if (nextUrl != '/' && nextUrl != '/home' && nextUrl != '/login' && nextUrl != '/license' && !nextUrl.startsWith("/newalumno")) {
+                            $location.path("/login");
+                        }
+                    });
+                    return deferred.promise;
+                },
                 isSessionActive: function () {
                     return isSessionActiveTF;
                 },

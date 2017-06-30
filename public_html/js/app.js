@@ -82,7 +82,9 @@ sisane.config(['$httpProvider', function ($httpProvider) {
 var authenticationPromise = function (sessionService) {
     return sessionService.authenticationPromise();
 };
-
+var authenticationProfesorPromise = function (sessionService) {
+    return sessionService.authenticationProfesorPromise();
+};
 sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController', resolve: {auth: authenticationPromise}});
         //------------
@@ -93,15 +95,27 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController', resolve: {auth: authenticationPromise}});
         //------------
+        $routeProvider.when('/newalumno/:codigo', {templateUrl: 'js/usuario/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});
+        //------------
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/gruposdeprofesoresconsusalumnos/plist/:page?/:rpp?', {templateUrl: 'js/usuario/gruposdeprofesoresconsusalumnos.html', controller: 'UsuarioPListGruposdeprofesoresconsusalumnosController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/gruposdeprofesoresconsusalumnos/plist/:page?/:rpp?', {templateUrl: 'js/usuario/gruposdeprofesoresconsusalumnos.html', controller: 'UsuarioPListGruposdeprofesoresconsusalumnosController', resolve: {auth: authenticationProfesorPromise}});
+
         //------------
-        $routeProvider.when('/newalumno/:codigo', {templateUrl: 'js/usuario/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});        
-        //------------
+
+        $routeProvider.when('/medico/view/:id', {templateUrl: 'js/medico/view.html', controller: 'MedicoViewController', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/medico/new/:id?', {templateUrl: 'js/medico/new.html', controller: 'MedicoNewController', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/medico/edit/:id', {templateUrl: 'js/medico/edit.html', controller: 'MedicoEditController', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/medico/remove/:id', {templateUrl: 'js/medico/remove.html', controller: 'MedicoRemoveController', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/medico/plist/:page?/:rpp?', {templateUrl: 'js/medico/plist.html', controller: 'MedicoPListController', resolve: {auth: authenticationProfesorPromise}});
+
+        $routeProvider.when('/medico/plist4profesor/:page?/:rpp?', {templateUrl: 'js/medico/plist4profesor.html', controller: 'MedicoPList4profesorController', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/medico/edit4profesor/:id', {templateUrl: 'js/medico/edit4profesor.html', controller: 'MedicoEdit4profesorController', resolve: {auth: authenticationProfesorPromise}});
+        //-------------------
+
         $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/tipousuario/new/:id?', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController', resolve: {auth: authenticationPromise}});
         $routeProvider.when('/tipousuario/edit/:id', {templateUrl: 'js/tipousuario/edit.html', controller: 'TipousuarioEditController', resolve: {auth: authenticationPromise}});
@@ -154,13 +168,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/prueba/plist/:page?/:rpp?', {templateUrl: 'js/prueba/plist.html', controller: 'PruebaPListController'});
         $routeProvider.when('/prueba/selection/:page?/:rpp?', {templateUrl: 'js/prueba/selection.html', controller: 'PruebaSelectionController'});
 
-        //-------------------
-        $routeProvider.when('/medico/view/:id', {templateUrl: 'js/medico/view.html', controller: 'MedicoViewController'});
-        $routeProvider.when('/medico/new/:id?', {templateUrl: 'js/medico/new.html', controller: 'MedicoNewController'});
-        $routeProvider.when('/medico/edit/:id', {templateUrl: 'js/medico/edit.html', controller: 'MedicoEditController'});
-        $routeProvider.when('/medico/remove/:id', {templateUrl: 'js/medico/remove.html', controller: 'MedicoRemoveController'});
-        $routeProvider.when('/medico/plist/:page?/:rpp?', {templateUrl: 'js/medico/plist.html', controller: 'MedicoPListController'});
-        $routeProvider.when('/medico/selection/:page?/:rpp?', {templateUrl: 'js/medico/selection.html', controller: 'MedicoSelectionController'});
+
         //------------
 
         $routeProvider.when('/zona/view/:id', {templateUrl: 'js/zona/view.html', controller: 'ZonaViewController'});

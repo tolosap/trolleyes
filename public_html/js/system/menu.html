@@ -74,6 +74,9 @@ THE SOFTWARE.
 
                 </ul>
             </li>
+            
+            
+            
             <!-- Profesor ------------------------------------------- -->
             <li class="dropdown" ng-if="session_info.obj_tipousuario.id == 3">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
@@ -83,9 +86,12 @@ THE SOFTWARE.
                     <li class="dropdown-header">Centro sanitario</li>
                     <li ng-class="{ active: isActive('/dependencia/plist')}"><a href="dependencia/plist"> <i class="fa fa-address-book-o"></i> Mis Dependencias</a></li>                      
                     <li class="dropdown-header">Gestión sanitaria</li>
-                    <li ng-class="{ active: isActive('/medico/plist')}"><a href="medico/plist"> <i class="fa fa-address-book-o"></i> Mis Médicos</a></li>                                    
+                    <li ng-class="{ active: isActive('/medico/plist4profesor')}"><a href="medico/plist4profesor"> <i class="fa fa-address-book-o"></i> Mis Médicos</a></li>                                    
                 </ul>
             </li>
+            
+            
+            
             <!-- Alumno ------------------------------------------- -->
             <li class="dropdown" ng-if="session_info.obj_tipousuario.id == 4">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
@@ -94,6 +100,9 @@ THE SOFTWARE.
                     <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
                 </ul>
             </li>
+            
+            
+            
             <!-- Invitado ------------------------------------------- -->
             <li class="dropdown"  ng-if="session_info.obj_tipousuario.id == 5">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
