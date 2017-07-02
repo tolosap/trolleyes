@@ -16,7 +16,6 @@
             <span ng-if="f.type.startsWith('int') && !f.name.startsWith('id')">{{ct.bean[f.name]}}</span>
             <span ng-if="f.type.startsWith('decimal')">{{ct.bean[f.name]}}</span>
             <span ng-if="f.type.startsWith('varchar')">{{ct.bean[f.name]|clipString}}</span>
-
             <span ng-if="f.type.startsWith('tinyint')" ng-bind-html="ct.bean[f.name] | booleanizate"></span>
         </td>  
     </tr>

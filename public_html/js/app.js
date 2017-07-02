@@ -114,6 +114,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/medico/plist4profesor/:page?/:rpp?', {templateUrl: 'js/medico/plist4profesor.html', controller: 'MedicoPList4profesorController', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/medico/edit4profesor/:id', {templateUrl: 'js/medico/edit4profesor.html', controller: 'MedicoEdit4profesorController', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/medico/new4profesor/:id', {templateUrl: 'js/medico/new4profesor.html', controller: 'MedicoNew4profesorController', resolve: {auth: authenticationProfesorPromise}});
         //-------------------
 
         $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController', resolve: {auth: authenticationPromise}});
