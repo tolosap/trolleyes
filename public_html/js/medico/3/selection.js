@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloMedico.controller('MedicoSelectionController', ['$scope', '$uibModalInstance', '$routeParams', 'serverService', '$location',
+moduloMedico.controller('MedicoSelection3Controller', ['$scope', '$uibModalInstance', '$routeParams', 'serverService', '$location',
     function ($scope, $modalInstance, $routeParams, serverService, $location) {
         $scope.ob = "medico";
         $scope.op = "selection";

@@ -28,9 +28,10 @@
 
 'use strict';
 
-moduloMedico.controller('MedicoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
+moduloMedico.controller('MedicoNew1Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
         $scope.ob = "medico";
+        $scope.profile = 3;
         $scope.op = "new";
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
@@ -54,7 +55,7 @@ moduloMedico.controller('MedicoNewController', ['$scope', '$routeParams', '$loca
 //        $scope.bean.obj_medico = {"id": 0};
 
 
-        serverService.promise_getOne($scope.ob, 0).then(function (response) {
+        serverService.promise_getOne("medico4profesor", 0).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
@@ -62,6 +63,8 @@ moduloMedico.controller('MedicoNewController', ['$scope', '$routeParams', '$loca
                     $scope.bean = {};
                     $scope.metaobj = response.data.message.metaobj;
                     $scope.metaprops = response.data.message.metaprops;
+
+                    $scope.bean.id_centrosanitario = $scope.session_info.obj_centrosanitario.id;
 
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;

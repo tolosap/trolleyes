@@ -128,7 +128,7 @@ THE SOFTWARE.
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/new">Crear un nuevo {{obtitle}}</a>
+                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{obtitle}}</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -151,7 +151,7 @@ THE SOFTWARE.
                                                 <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
                                             </div>
                                         </div>
-                                      
+
 
 
 
@@ -177,7 +177,21 @@ THE SOFTWARE.
                                                     <td style="border-color:#ddd;"  class="text-center">
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
-                                                                <miniactions id="obj.id" name="ob"></miniactions>
+
+                                                                <div class="btn-group">
+
+                                                                    <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{obj.id}}">
+                                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                                    </a>
+
+                                                                    <a class="btn btn-default btn-xs" title="Edit" href="{{ob}}/{{profile}}/edit/{{obj.id}}">
+                                                                        <span class="glyphicon glyphicon-pencil"></span>
+                                                                    </a>
+
+                                                                    <a class="btn btn-default btn-xs" title="Remove" href="{{ob}}/{{profile}}/remove/{{obj.id}}">
+                                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                                    </a>
+                                                                </div>          
                                                             </div>
                                                         </div>
                                                     </td>

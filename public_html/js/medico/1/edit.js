@@ -27,9 +27,10 @@
  */
 
 'use strict';
-moduloMedico.controller('MedicoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
+moduloMedico.controller('MedicoEdit1Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
         $scope.ob = "medico";
+        $scope.profile = 3;
         $scope.op = "edit";
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
