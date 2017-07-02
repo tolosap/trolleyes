@@ -28,44 +28,37 @@
 
 'use strict';
 
-moduloMedico.controller('MedicoPList4profesorController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
-    function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
+moduloMedico.controller('MedicoSelectionController', ['$scope', '$uibModalInstance', '$routeParams', 'serverService', '$location',
+    function ($scope, $modalInstance, $routeParams, serverService, $location) {
         $scope.ob = "medico";
-        $scope.op = "plist";
-
-        $scope.session_info = sessionService.getSessionInfo();
-        $scope.isSessionActive = sessionService.isSessionActive();
-
-        $scope.numpage = serverService.checkDefault(1, $routeParams.page);
-        $scope.rpp = serverService.checkDefault(10, $routeParams.rpp);
-        $scope.neighbourhood = serverService.getGlobalNeighbourhood();
-
-        $scope.orderParams = serverService.checkNull($routeParams.order)
-
-        $scope.filterParams = "";
-        if ($routeParams.filter) {
-            if (Array.isArray($routeParams.filter)) {
-                var arrayLength = $routeParams.filter.length;
-                for (var i = 0; i < arrayLength; i++) {
-                    $scope.filterParams += '&filter=' + $routeParams.filter[i];
-                }
-            } else {
-                $scope.filterParams += '&filter=' + $routeParams.filter;
-            }
-        }
-
+        $scope.op = "selection";
+        $scope.numpage = 1;
+        $scope.rpp = 10;
+        $scope.neighbourhood = 1;
+        $scope.order = "";
+        $scope.ordervalue = "";
+        $scope.filter = "id";
+        $scope.filteroperator = "like";
+        $scope.filtervalue = "";
+        $scope.orderParams = null;
+        $scope.filterParams = null;
         $scope.status = null;
         $scope.debugging = serverService.debugging();
-        $scope.url = $scope.ob + '/' + $scope.op;
-        function getDataFromServer() {
-            serverService.promise_getCount("medico4profesor", $scope.filterParams).then(function (response) {
+        $scope.closeForm = function (id) {
+            $modalInstance.close(id);
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        }
+        function getData() {
+            serverService.promise_getCount($scope.ob, $scope.filterParams).then(function (response) {
                 if (response.status == 200) {
                     $scope.registers = response.data.message;
                     $scope.pages = serverService.calculatePages($scope.rpp, $scope.registers);
                     if ($scope.numpage > $scope.pages) {
                         $scope.numpage = $scope.pages;
                     }
-                    return serverService.promise_getPage("medico4profesor", $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                    return serverService.promise_getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $scope.orderParams);
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -77,8 +70,8 @@ moduloMedico.controller('MedicoPList4profesorController', ['$scope', '$routePara
 
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;
-                    //$scope.ob = $scope.metaobj.name;
-                    $scope.title = "Listado de " + $scope.obtitle;
+                    $scope.ob = $scope.metaobj.name;
+                    $scope.title = "Selección de " + $scope.obtitle;
 
                     $scope.status = "";
                 } else {
@@ -87,9 +80,35 @@ moduloMedico.controller('MedicoPList4profesorController', ['$scope', '$routePara
             }).catch(function (data) {
                 $scope.status = "Error en la recepción de datos del servidor";
             });
+
         }
-        getDataFromServer();
-       
+        $scope.$on('filterSelectionEvent', function (event, data) {
+            $scope.filterParams = data;
+            getData();
+        });
+        $scope.$on('orderSelectionEvent', function (event, data) {
+            $scope.orderParams = data;
+            getData();
+        });
+        $scope.$on('pageSelectionEvent', function (event, data) {
+            $scope.numpage = data;
+            getData();
+        });
+        $scope.$on('rppSelectionEvent', function (event, data) {
+            $scope.rpp = data;
+            getData();
+        });
+        $scope.$on('resetOrderEvent', function (event) {
+            $scope.orderParams = null;
+            getData();
+        });
+        $scope.$on('resetFilterEvent', function (event) {
+            $scope.filterParams = null;
+            getData();
+        });
+        $scope.chooseOne = function (id) {
+            $scope.closeForm(id);
+            return false;
+        }
+        getData();
     }]);
-
-
