@@ -54,7 +54,7 @@ moduloMedico.controller('MedicoNew4profesorController', ['$scope', '$routeParams
 //        $scope.bean.obj_medico = {"id": 0};
 
 
-        serverService.promise_getOne($scope.ob, 0).then(function (response) {
+        serverService.promise_getOne("medico4profesor", 0).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
@@ -63,7 +63,7 @@ moduloMedico.controller('MedicoNew4profesorController', ['$scope', '$routeParams
                     $scope.metaobj = response.data.message.metaobj;
                     $scope.metaprops = response.data.message.metaprops;
 
-                    $scope.bean.id_centrosanitario = session_info.obj_centrosanitario.id;
+                    $scope.bean.id_centrosanitario = $scope.session_info.obj_centrosanitario.id;
 
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;
