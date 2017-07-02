@@ -1,7 +1,8 @@
 'use strict';
-moduloUsuario.controller('NewalumnoController', ['$http', '$scope', '$routeParams', '$location', 'serverService', 'sessionService', '$rootScope',
+moduloUsuario.controller('Newalumno9Controller', ['$http', '$scope', '$routeParams', '$location', 'serverService', 'sessionService', '$rootScope',
     function ($http, $scope, $routeParams, $location, serverService, sessionService, $rootScope) {
         $scope.title = "Registro de alumno para el grupo " + $routeParams.codigo;
+        $scope.profile = 9;
         $scope.isSessionActive = sessionService.isSessionActive();
 
         $scope.status = null;
@@ -28,13 +29,9 @@ moduloUsuario.controller('NewalumnoController', ['$http', '$scope', '$routeParam
             return false;
         });
 
-
-
-
         $scope.back = function () {
             window.history.back();
         };
-
 
         $scope.validausuario = function (field) {
             if ($scope.fase == 1) {

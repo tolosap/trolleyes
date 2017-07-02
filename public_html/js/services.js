@@ -342,7 +342,7 @@ moduloServicios
             var nextUrl = null;
             //var that = this;
             return {
-                authenticationPromise: function () {
+                anyAuthenticationPromise: function () {
 
                     var deferred = $q.defer();
                     serverService.getSessionPromise().then(function (response) {
@@ -366,12 +366,13 @@ moduloServicios
                     });
                     return deferred.promise;
                 },
-                authenticationProfesorPromise: function () {
+                
+                authenticationPromise: function (id_tipousuario) {
 
                     var deferred = $q.defer();
                     serverService.getSessionPromise().then(function (response) {
                         if (response['status'] == 200) {
-                            if (response.data.message.obj_tipousuario.id == 3) {
+                            if (response.data.message.obj_tipousuario.id <= id_tipousuario) {
                                 isSessionActiveTF = true;
                                 sessionInfo = response.data.message;
                                 deferred.resolve();
@@ -397,6 +398,7 @@ moduloServicios
                     });
                     return deferred.promise;
                 },
+                
                 isSessionActive: function () {
                     return isSessionActiveTF;
                 },

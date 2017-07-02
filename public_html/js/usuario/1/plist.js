@@ -28,9 +28,10 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioPListGruposdeprofesoresconsusalumnosController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService', '$http',
-    function ($scope, $routeParams, $location, serverService, $uibModal, sessionService, $http) {
-        $scope.ob = "gruposdeprofesoresconsusalumnos";
+moduloUsuario.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
+        $scope.ob = "usuario";
+        $scope.profile = 1;
         $scope.op = "plist";
 
         $scope.session_info = sessionService.getSessionInfo();
@@ -42,7 +43,7 @@ moduloUsuario.controller('UsuarioPListGruposdeprofesoresconsusalumnosController'
 
         $scope.orderParams = serverService.checkNull($routeParams.order)
 
-        $scope.filterParams = "";
+        $scope.filterParams = null;
         if ($routeParams.filter) {
             if (Array.isArray($routeParams.filter)) {
                 var arrayLength = $routeParams.filter.length;
@@ -53,41 +54,6 @@ moduloUsuario.controller('UsuarioPListGruposdeprofesoresconsusalumnosController'
                 $scope.filterParams += '&filter=' + $routeParams.filter;
             }
         }
-
-        $scope.activaalumno = function (id_alumno) {
-            $http.get(serverService.getAppUrl() + '?ob=usuario&op=activaalumno&id=' + id_alumno, 'GET', '').then(function (response) {
-                if (response.status == 200) {
-                    if (response.data.message == "1") {
-                        //$scope.outerForm.login.$setValidity('repetido', false);
-                        getDataFromServer();
-                    }
-                } else {
-                    //$scope.outerForm.login.$setValidity('repetido', true);
-                    return false;
-                }
-            }, function errorCallback(response, status) {
-                //$scope.outerForm.login.$setValidity('repetido', true);
-                return false;
-            });
-        }
-
-        $scope.desactivaalumno = function (id_alumno) {
-            $http.get(serverService.getAppUrl() + '?ob=usuario&op=desactivaalumno&id=' + id_alumno, 'GET', '').then(function (response) {
-                if (response.status == 200) {
-                    if (response.data.message == "1") {
-                        //$scope.outerForm.login.$setValidity('repetido', false);
-                        getDataFromServer();
-                    }
-                } else {
-                    //$scope.outerForm.login.$setValidity('repetido', true);
-                    return false;
-                }
-            }, function errorCallback(response, status) {
-                //$scope.outerForm.login.$setValidity('repetido', true);
-                return false;
-            });
-        }
-
 
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -124,24 +90,7 @@ moduloUsuario.controller('UsuarioPListGruposdeprofesoresconsusalumnosController'
             });
         }
         getDataFromServer();
-        $scope.printPDF = function () {
-            var doc = new jsPDF();
-            doc.setFontSize(30);
-            doc.text(80, 20, "Listado de usuario");
-            doc.setFontSize(10);
-            var separacion = 110;
-            var contador = 5;
-            for (var i = 0; i < $scope.page.length; i++) {
-                for (var j = 0; j < $scope.metaprops.length; j++) {
-                    if ($scope.page[i][$scope.metaprops[j].name]) {
-                        doc.text($scope.page[i][$scope.metaprops[j].name].toString().length, separacion, $scope.page[i][$scope.metaprops[j].name].toString());
-                        separacion = separacion + contador;
-                    }
-                }
-            }
-            var fecha = Date.now();
-            doc.save('informes/' + fecha + '.pdf');
-        };
+
     }]);
 
 

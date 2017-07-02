@@ -47,7 +47,7 @@ THE SOFTWARE.
                                         <li role="presentation" class="active">
                                             <a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a>
                                         </li>
-                                        
+
                                         <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
                                         <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de cliente</a></li>
                                         <li role="presentation"><a data-target="#pane3" aria-controls="pane3" role="tab" data-toggle="tab">Nuevo {{obtitle}}</a></li>
@@ -89,7 +89,7 @@ THE SOFTWARE.
                                             </div>
                                             <p></p>
                                         </div>
-                    
+
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -120,7 +120,7 @@ THE SOFTWARE.
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/new">Crear un nuevo {{obtitle}}</a>
+                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{obtitle}}</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -143,7 +143,7 @@ THE SOFTWARE.
                                                 <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
                                             </div>
                                         </div>
-                                      
+
 
 
 
@@ -163,13 +163,23 @@ THE SOFTWARE.
                                                         <div ng-if="f.tablevisible && f.type.startsWith('longtext')" class="text-left">{{obj[f.name]|clipString}}</div>
                                                         <div ng-if="f.tablevisible && f.type.startsWith('tinyint')" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>
                                                         <div ng-if="f.tablevisible && f.name.startsWith('id_')" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
-                                                            <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
+                                                            <a href="{{f.reference}}/{{profile}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
                                                         </div>
                                                     </td>
                                                     <td style="border-color:#ddd;"  class="text-center">
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
-                                                                <miniactions id="obj.id" name="ob"></miniactions>
+                                                                <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{obj.id}}">
+                                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                                </a>
+
+                                                                <a class="btn btn-default btn-xs" title="Edit" href="{{ob}}/{{profile}}/edit/{{obj.id}}">
+                                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                                </a>
+
+                                                                <a class="btn btn-default btn-xs" title="Remove" href="{{ob}}/{{profile}}/remove/{{obj.id}}">
+                                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </td>

@@ -79,51 +79,61 @@ sisane.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     }]);
 //-------------
-var authenticationPromise = function (sessionService) {
-    return sessionService.authenticationPromise();
+var anyAuthenticationPromise = function (sessionService) {
+    return sessionService.anyAuthenticationPromise();
+};
+var authenticationAdministradorPromise = function (sessionService) {
+    return sessionService.authenticationPromise(1);
+};
+var authenticationCoordinadorPromise = function (sessionService) {
+    return sessionService.authenticationPromise(2);
 };
 var authenticationProfesorPromise = function (sessionService) {
-    return sessionService.authenticationProfesorPromise();
+    return sessionService.authenticationPromise(3);
+};
+var authenticationAlumnoPromise = function (sessionService) {
+    return sessionService.authenticationPromise(4);
+};
+var authenticationVisitantePromise = function (sessionService) {
+    return sessionService.authenticationPromise(5);
 };
 sisane.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController', resolve: {auth: anyAuthenticationPromise}});
         //------------
-        $routeProvider.when('/login', {templateUrl: 'js/system/login.html', controller: 'LoginController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/profile', {templateUrl: 'js/system/profile.html', controller: 'ProfileController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/logout', {templateUrl: 'js/system/logout.html', controller: 'LogoutController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/login', {templateUrl: 'js/system/login.html', controller: 'LoginController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/profile', {templateUrl: 'js/system/profile.html', controller: 'ProfileController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/logout', {templateUrl: 'js/system/logout.html', controller: 'LogoutController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController', resolve: {auth: anyAuthenticationPromise}});
         //------------
-        $routeProvider.when('/newalumno/:codigo', {templateUrl: 'js/usuario/newalumno.html', controller: 'NewalumnoController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/newalumno/9/:codigo', {templateUrl: 'js/usuario/9/newalumno.html', controller: 'Newalumno9Controller', resolve: {auth: anyAuthenticationPromise}});
         //------------
-        $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/gruposdeprofesoresconsusalumnos/plist/:page?/:rpp?', {templateUrl: 'js/usuario/gruposdeprofesoresconsusalumnos.html', controller: 'UsuarioPListGruposdeprofesoresconsusalumnosController', resolve: {auth: authenticationProfesorPromise}});
-
+        $routeProvider.when('/usuario/1/view/:id', {templateUrl: 'js/usuario/1/view.html', controller: 'UsuarioView1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        $routeProvider.when('/usuario/1/new/:id?', {templateUrl: 'js/usuario/1/new.html', controller: 'UsuarioNew1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        $routeProvider.when('/usuario/1/edit/:id', {templateUrl: 'js/usuario/1/edit.html', controller: 'UsuarioEdit1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        $routeProvider.when('/usuario/1/remove/:id', {templateUrl: 'js/usuario/1/remove.html', controller: 'UsuarioRemove1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        $routeProvider.when('/usuario/1/plist/:page?/:rpp?', {templateUrl: 'js/usuario/1/plist.html', controller: 'UsuarioPList1Controller', resolve: {auth: authenticationAdministradorPromise}});
         //------------
-
-        $routeProvider.when('/medico/1/view/:id', {templateUrl: 'js/medico/1/view.html', controller: 'MedicoView1Controller', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/medico/1/new', {templateUrl: 'js/medico/1/new.html', controller: 'MedicoNew1Controller', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/medico/1/edit/:id', {templateUrl: 'js/medico/1/edit.html', controller: 'MedicoEdit1Controller', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/medico/1/remove/:id', {templateUrl: 'js/medico/1/remove.html', controller: 'MedicoRemove1Controller', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/medico/1/plist/:page?/:rpp?', {templateUrl: 'js/medico/1/plist.html', controller: 'MedicoPList1Controller', resolve: {auth: authenticationPromise}});
-
+        $routeProvider.when('/gruposdeprofesoresconsusalumnos/3/plist/:page?/:rpp?', {templateUrl: 'js/usuario/3/gruposdeprofesoresconsusalumnos.html', controller: 'UsuarioPListGruposdeprofesoresconsusalumnos3Controller', resolve: {auth: authenticationProfesorPromise}});
+        //------------
+        $routeProvider.when('/medico/1/view/:id', {templateUrl: 'js/medico/1/view.html', controller: 'MedicoView1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        $routeProvider.when('/medico/1/new', {templateUrl: 'js/medico/1/new.html', controller: 'MedicoNew1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        $routeProvider.when('/medico/1/edit/:id', {templateUrl: 'js/medico/1/edit.html', controller: 'MedicoEdit1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        $routeProvider.when('/medico/1/remove/:id', {templateUrl: 'js/medico/1/remove.html', controller: 'MedicoRemove1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        $routeProvider.when('/medico/1/plist/:page?/:rpp?', {templateUrl: 'js/medico/1/plist.html', controller: 'MedicoPList1Controller', resolve: {auth: authenticationAdministradorPromise}});
+        //-------------
         $routeProvider.when('/medico/3/plist/:page?/:rpp?', {templateUrl: 'js/medico/3/plist.html', controller: 'MedicoPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/medico/3/remove/:id', {templateUrl: 'js/medico/3/remove.html', controller: 'MedicoRemove3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/medico/3/edit/:id', {templateUrl: 'js/medico/3/edit.html', controller: 'MedicoEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/medico/3/new', {templateUrl: 'js/medico/3/new.html', controller: 'MedicoNew3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/medico/3/view/:id', {templateUrl: 'js/medico/3/view.html', controller: 'MedicoView3Controller', resolve: {auth: authenticationProfesorPromise}});
         //-------------------
-
-        $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/tipousuario/new/:id?', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/tipousuario/edit/:id', {templateUrl: 'js/tipousuario/edit.html', controller: 'TipousuarioEditController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/tipousuario/remove/:id', {templateUrl: 'js/tipousuario/remove.html', controller: 'TipousuarioRemoveController', resolve: {auth: authenticationPromise}});
-        $routeProvider.when('/tipousuario/plist/:page?/:rpp?', {templateUrl: 'js/tipousuario/plist.html', controller: 'TipousuarioPListController', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/tipousuario/new/:id?', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/tipousuario/edit/:id', {templateUrl: 'js/tipousuario/edit.html', controller: 'TipousuarioEditController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/tipousuario/remove/:id', {templateUrl: 'js/tipousuario/remove.html', controller: 'TipousuarioRemoveController', resolve: {auth: anyAuthenticationPromise}});
+        $routeProvider.when('/tipousuario/plist/:page?/:rpp?', {templateUrl: 'js/tipousuario/plist.html', controller: 'TipousuarioPListController', resolve: {auth: anyAuthenticationPromise}});
 
 
         $routeProvider.when('/grupo/view/:id', {templateUrl: 'js/grupo/view.html', controller: 'GrupoViewController'});
