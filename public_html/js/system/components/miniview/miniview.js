@@ -7,16 +7,21 @@ moduloDirectivas.component('miniview', {
     },
     templateUrl: "js/system/components/miniview/miniview.html",
     controllerAs: 'ct',
-    controller: ['serverService', 'metaService', function (serverService, metaService) {
+    controller: ['serverService', function (serverService) {
             var self = this;
             this.$onInit = function () {
-                self.meta = metaService.getMeta();
-                self.fields = self.meta[self.nombre];
+              
+                
                 serverService.promise_getOne(self.nombre, self.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             self.status = null;
-                            self.bean = response.data.message;
+                            self.bean = response.data.message.data;
+
+
+                            self.metaobj = response.data.message.metaobj;
+                            self.metaprops = response.data.message.metaprops;
+
                         } else {
                             self.status = "Error en la recepción de datos del servidor";
                         }

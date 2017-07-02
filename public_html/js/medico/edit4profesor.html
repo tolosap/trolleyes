@@ -37,16 +37,13 @@ THE SOFTWARE.
                             <h4>Debug:</h4>
                             {{bean|json}}
                         </div>
-                        
-                        <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
-                            <div class="form-group">
-                                <label ng-class="'control-label col-sm-2" for="centrosanitario">                                      
-                                    Centro Sanitario:
-                                </label>   
-                                <label ng-class="control-label col-sm-2" id="centrosanitario" name="centrosanitario">                                      
-                                    {{session_info.obj_centrosanitario.descripcion}}
-                                </label> 
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <miniview id="session_info.obj_centrosanitario.id" nombre="'centrosanitario'"></miniview>
                             </div>
+                        </div>                        
+                        <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
+
                             <div ng-repeat="f in metaprops">            
 
                                 <!--- id ---------------------------------------------->

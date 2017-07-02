@@ -30,7 +30,7 @@
 
 moduloMedico.controller('MedicoPList4profesorController', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
     function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
-        $scope.ob = "medico";
+        $scope.ob = "medico4profesor";
         $scope.op = "plist";
 
         $scope.session_info = sessionService.getSessionInfo();
