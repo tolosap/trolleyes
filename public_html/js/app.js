@@ -106,11 +106,11 @@ sisane.config(['$routeProvider', function ($routeProvider) {
 
         //------------
 
-        $routeProvider.when('/medico/1/view/:id', {templateUrl: 'js/medico/view.html', controller: 'MedicoViewController', resolve: {auth: authenticationProfesorPromise}});
-        $routeProvider.when('/medico/1/new/:id?', {templateUrl: 'js/medico/new.html', controller: 'MedicoNewController', resolve: {auth: authenticationProfesorPromise}});
-        $routeProvider.when('/medico/1/edit/:id', {templateUrl: 'js/medico/edit.html', controller: 'MedicoEditController', resolve: {auth: authenticationProfesorPromise}});
-        $routeProvider.when('/medico/1/remove/:id', {templateUrl: 'js/medico/remove.html', controller: 'MedicoRemoveController', resolve: {auth: authenticationProfesorPromise}});
-        $routeProvider.when('/medico/1/plist/:page?/:rpp?', {templateUrl: 'js/medico/plist.html', controller: 'MedicoPListController', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/medico/1/view/:id', {templateUrl: 'js/medico/1/view.html', controller: 'MedicoView1Controller', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/medico/1/new', {templateUrl: 'js/medico/1/new.html', controller: 'MedicoNew1Controller', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/medico/1/edit/:id', {templateUrl: 'js/medico/1/edit.html', controller: 'MedicoEdit1Controller', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/medico/1/remove/:id', {templateUrl: 'js/medico/1/remove.html', controller: 'MedicoRemove1Controller', resolve: {auth: authenticationPromise}});
+        $routeProvider.when('/medico/1/plist/:page?/:rpp?', {templateUrl: 'js/medico/1/plist.html', controller: 'MedicoPList1Controller', resolve: {auth: authenticationPromise}});
 
         $routeProvider.when('/medico/3/plist/:page?/:rpp?', {templateUrl: 'js/medico/3/plist.html', controller: 'MedicoPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/medico/3/remove/:id', {templateUrl: 'js/medico/3/remove.html', controller: 'MedicoRemove3Controller', resolve: {auth: authenticationProfesorPromise}});

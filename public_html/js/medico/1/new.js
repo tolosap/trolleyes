@@ -31,7 +31,7 @@
 moduloMedico.controller('MedicoNew1Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
         $scope.ob = "medico";
-        $scope.profile = 3;
+        $scope.profile = 1;
         $scope.op = "new";
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();

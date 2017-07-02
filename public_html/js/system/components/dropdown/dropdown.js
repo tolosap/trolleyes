@@ -36,8 +36,8 @@ function dropdown(serverService) {
             console.log(data);
         });
     };
-    self.$doCheck = function () {
-        console.log("change dropdown");
-    }
+//    self.$doCheck = function () {
+//        console.log("change dropdown");
+//    }
 }
 

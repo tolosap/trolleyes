@@ -37,11 +37,7 @@ THE SOFTWARE.
                             <h4>Debug:</h4>
                             {{bean|json}}
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <miniview id="session_info.obj_centrosanitario.id" nombre="'centrosanitario'"></miniview>
-                            </div>
-                        </div>                        
+                    
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
 
                             <div ng-repeat="f in metaprops">            
@@ -69,7 +65,7 @@ THE SOFTWARE.
                                     </div>
                                 </div>
                                 <!------------------------------------------------->
-                                <div ng-if="f.name.startsWith('id_') && f.name != 'id_centrosanitario'" class="form-group" ng-init="fname = (f.name).replace('id_', 'obj_')">
+                                <div ng-if="f.name.startsWith('id_')" class="form-group" ng-init="fname = (f.name).replace('id_', 'obj_')">
                                     <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
                                     <div class="control col-sm-4">
                                         <foreign-key

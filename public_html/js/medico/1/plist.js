@@ -31,7 +31,7 @@
 moduloMedico.controller('MedicoPList1Controller', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
     function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
         $scope.ob = "medico";
-        $scope.profile = 3;
+        $scope.profile = 1;
         $scope.op = "plist";
 
         $scope.session_info = sessionService.getSessionInfo();
@@ -59,14 +59,14 @@ moduloMedico.controller('MedicoPList1Controller', ['$scope', '$routeParams', '$l
         $scope.debugging = serverService.debugging();
         $scope.url = $scope.ob + '/' + $scope.op;
         function getDataFromServer() {
-            serverService.promise_getCount("medico4profesor", $scope.filterParams).then(function (response) {
+            serverService.promise_getCount("medico", $scope.filterParams).then(function (response) {
                 if (response.status == 200) {
                     $scope.registers = response.data.message;
                     $scope.pages = serverService.calculatePages($scope.rpp, $scope.registers);
                     if ($scope.numpage > $scope.pages) {
                         $scope.numpage = $scope.pages;
                     }
-                    return serverService.promise_getPage("medico4profesor", $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                    return serverService.promise_getPage("medico", $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }

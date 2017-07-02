@@ -31,6 +31,7 @@
 moduloMedico.controller('MedicoSelection1Controller', ['$scope', '$uibModalInstance', '$routeParams', 'serverService', '$location',
     function ($scope, $modalInstance, $routeParams, serverService, $location) {
         $scope.ob = "medico";
+          $scope.profile = 1;
         $scope.op = "selection";
         $scope.numpage = 1;
         $scope.rpp = 10;

@@ -31,7 +31,7 @@
 moduloMedico.controller('MedicoView1Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
     function ($scope, $routeParams, serverService, $location, sessionService) {
         $scope.ob = "medico";  //pte rutas
-        $scope.profile = 3;
+        $scope.profile = 1;
         $scope.id = $routeParams.id;
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
