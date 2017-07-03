@@ -28,8 +28,8 @@
 
 'use strict';
 
-moduloMedico.controller('MedicoNew3Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
+moduloMedico.controller('MedicoNew3Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService', '$route',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService, $route) {
         $scope.ob = "medico";
         $scope.profile = 3;
         $scope.op = "new";
@@ -107,6 +107,9 @@ moduloMedico.controller('MedicoNew3Controller', ['$scope', '$routeParams', '$loc
         };
         $scope.back = function () {
             window.history.back();
+        };
+        $scope.reload = function () {
+            $route.reload();
         };
     }]);
 

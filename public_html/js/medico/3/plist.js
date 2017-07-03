@@ -44,6 +44,11 @@ moduloMedico.controller('MedicoPList3Controller', ['$scope', '$routeParams', '$l
         $scope.orderParams = serverService.checkNull($routeParams.order)
 
         $scope.filterParams = "";
+
+        $scope.status = null;
+        $scope.debugging = serverService.debugging();
+        $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+
         if ($routeParams.filter) {
             if (Array.isArray($routeParams.filter)) {
                 var arrayLength = $routeParams.filter.length;
@@ -55,9 +60,6 @@ moduloMedico.controller('MedicoPList3Controller', ['$scope', '$routeParams', '$l
             }
         }
 
-        $scope.status = null;
-        $scope.debugging = serverService.debugging();
-        $scope.url = $scope.ob + '/' + $scope.op;
         function getDataFromServer() {
             serverService.promise_getCount("medico4profesor", $scope.filterParams).then(function (response) {
                 if (response.status == 200) {
@@ -89,6 +91,7 @@ moduloMedico.controller('MedicoPList3Controller', ['$scope', '$routeParams', '$l
                 $scope.status = "Error en la recepción de datos del servidor";
             });
         }
+        
         getDataFromServer();
 
     }]);
