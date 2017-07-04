@@ -17,7 +17,27 @@ moduloDirectivas.component('cplistpagination', {
             var self = this;
             self.gotopage = function (numpage) {
                 self.numpage = numpage;
-                $location.path(self.url + '/' + self.numpage + '/' + self.rpp).search('filter', self.filterparams).search('sfilter', self.sfilterparams).search('order', self.orderparams);
+
+
+
+                if (self.filterparams) {
+                    if (self.orderparams) {
+                        $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?filter=' + self.filterparams + '&order=' + self.orderparams);
+                    } else {
+                        $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?filter=' + self.filterparams);
+                    }
+                } else {
+                    if (self.orderparams) {
+                        $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '&order=' + self.orderparams);
+                    } else {
+                        $location.url(self.url + '/' + self.numpage + '/' + self.rpp);
+                    }
+                }
+
+
+
+                //$location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?' + self.filterparams + self.orderparams);
+                //$location.path(self.url + '/' + self.numpage + '/' + self.rpp).search('filter', self.filterparams).search('order', self.orderparams);
                 return false;
             };
             self.getRangeArray = serverService.getRangeArray;

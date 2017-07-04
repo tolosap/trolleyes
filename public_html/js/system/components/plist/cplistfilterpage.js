@@ -77,9 +77,25 @@ moduloDirectivas.component('cplistfilterpage', {
                 if (strFilter) {
                     strFilter = strFilter.substring(0, strFilter.length - 1);
                 }
-                //self.strFilter = window.encodeURIComponent(self.url + '/' + self.numpage + '/' + self.rpp + strFilter);
-                self.strFilter = self.url + '/' + self.numpage + '/' + self.rpp + '?' + strFilter;
-                $location.url(self.strFilter).search('order', self.order);
+                
+                //self.strFilter = self.url + '/' + self.numpage + '/' + self.rpp + '?filter=' + strFilter;
+                //$location.url(self.strFilter).search('order', self.order);
+
+
+                if (strFilter) {
+                    if (self.order) {
+                        $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?' + strFilter + '&order=' + self.order);
+                    } else {
+                        $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?' + strFilter);
+                    }
+                } else {
+                    if (self.orderparams) {
+                        $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '&order=' + self.order);
+                    } else {
+                        $location.url(self.url + '/' + self.numpage + '/' + self.rpp);
+                    }
+                }
+
 
 
                 return false;

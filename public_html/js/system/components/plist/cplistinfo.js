@@ -15,13 +15,22 @@ moduloDirectivas.component('cplistinfo', {
     controller: ['$location', function ($location) {
             var self = this;
             self.doresetorder = function () {
-                $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?' + self.filterparams);
-                //$location.url(self.url + '/' + self.numpage + '/' + self.rpp).search('filter', self.filterparams).search('sfilter', self.sfilterparams);
+                if (self.filterparams) {
+                    $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?filter=' + self.filterparams);
+                } else {
+                    $location.url(self.url + '/' + self.numpage + '/' + self.rpp);
+                }
+                //$location.url(self.url + '/' + self.numpage + '/' + self.rpp).search('filter', self.filterparams);
                 return false;
             };
 
             self.doresetfilter = function () {
-                $location.url(self.url + '/' + self.numpage + '/' + self.rpp).search('order', self.orderparams);
+                if (self.orderparams) {
+                    $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?order=' + self.orderparams);
+                } else {
+                    $location.url(self.url + '/' + self.numpage + '/' + self.rpp);
+                }
+                //$location.url(self.url + '/' + self.numpage + '/' + self.rpp).search('order', self.orderparams);
                 return false;
             };
 

@@ -182,47 +182,41 @@ moduloServicios
                     },
                     //------------------------------------------------
                     promise_getCount: function (strObject, filter) {
-//                        if (filter) {
-//                            var arrayLength = filter.length;
-//                            var strfilter = "";
-//                            for (var i = 0; i < arrayLength; i++) {
-//                                strfilter += "&filter=" + filter[i];
-//                            }
-//                        } else {
-//                            strfilter = "";
-//                        }
                         if (filter) {
-                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getcount' + filter, 'GET', '');
+                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getcount&filter=' + filter, 'GET', '');
                         } else {
                             return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getcount', 'GET', '');
                         }
                     },
                     promise_getPage: function (strObject, rpp, page, filter, order) {
                         if (filter) {
-//                            var arrayLength = filter.length;
-//                            var strfilter = "";
-//                            for (var i = 0; i < arrayLength; i++) {
-//                                strfilter += "&filter=" + filter[i];
-//                            }
+                            if (order) {
+                                return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + "&filter=" + filter + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + "&filter=" + filter, 'GET', '');
+                            }
                         } else {
-                            filter = "";
+                            if (order) {
+                                return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp, 'GET', '');
+                            }
                         }
-                        if (order) {
-                            order = "&order=" + order;
-                        } else {
-                            order = "";
-                        }
-                        //return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
-//                        if (filter) {
-                        return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
-//                        } else {
-//                            return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp, 'GET', '');
-//                        }
                     },
-                    promise_getAll: function (strClass, filter, order) {
-                        filter = (filter === undefined || filter === null) ? "" : filter;
-                        order = (order === undefined || order === null) ? "" : order;
-                        return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=getall' + filter + order, 'GET', '');
+                    promise_getAll: function (strObject, filter, order) {
+                        if (filter) {
+                            if (order) {
+                                return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getall' + "&filter=" + filter + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getall' + "&filter=" + filter, 'GET', '');
+                            }
+                        } else {
+                            if (order) {
+                                return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getall' + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getall', 'GET', '');
+                            }
+                        }
                     },
                     promise_getOne: function (strClass, id) {
                         return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id, 'GET', '');
@@ -366,7 +360,6 @@ moduloServicios
                     });
                     return deferred.promise;
                 },
-                
                 authenticationPromise: function (id_tipousuario) {
 
                     var deferred = $q.defer();
@@ -398,7 +391,6 @@ moduloServicios
                     });
                     return deferred.promise;
                 },
-                
                 isSessionActive: function () {
                     return isSessionActiveTF;
                 },

@@ -43,7 +43,7 @@ moduloMedico.controller('MedicoPList3Controller', ['$scope', '$routeParams', '$l
 
         $scope.orderParams = serverService.checkNull($routeParams.order)
 
-        $scope.filterParams = "";
+        $scope.filterParams = null;
 
         $scope.status = null;
         $scope.debugging = serverService.debugging();
@@ -53,10 +53,13 @@ moduloMedico.controller('MedicoPList3Controller', ['$scope', '$routeParams', '$l
             if (Array.isArray($routeParams.filter)) {
                 var arrayLength = $routeParams.filter.length;
                 for (var i = 0; i < arrayLength; i++) {
-                    $scope.filterParams += '&filter=' + $routeParams.filter[i];
+                    if (i > 0) {
+                        $scope.filterParams += '&filter=';
+                    }
+                    $scope.filterParams += $routeParams.filter[i];
                 }
             } else {
-                $scope.filterParams += '&filter=' + $routeParams.filter;
+                $scope.filterParams = $routeParams.filter;
             }
         }
 
@@ -91,7 +94,7 @@ moduloMedico.controller('MedicoPList3Controller', ['$scope', '$routeParams', '$l
                 $scope.status = "Error en la recepción de datos del servidor";
             });
         }
-        
+
         getDataFromServer();
 
     }]);
