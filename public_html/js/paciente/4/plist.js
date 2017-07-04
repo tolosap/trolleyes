@@ -28,44 +28,56 @@
 
 'use strict';
 
-moduloMedico.controller('MedicoView3Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
-    function ($scope, $routeParams, serverService, $location, sessionService) {
-        $scope.ob = "medico";
-        $scope.source = "medico";
-        $scope.op = "view";
-        $scope.profile = 3;
-        //---
-        $scope.id = $routeParams.id;
+moduloPaciente.controller('PacientePList4Controller', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
+        $scope.ob = "paciente";
+        $scope.source = "paciente4alumno";
+        $scope.op = "plist";
+        $scope.profile = 4;
+        //----
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
+        $scope.numpage = serverService.checkDefault(1, $routeParams.page);
+        $scope.rpp = serverService.checkDefault(10, $routeParams.rpp);
+        $scope.neighbourhood = serverService.getGlobalNeighbourhood();
         $scope.status = null;
         $scope.debugging = serverService.debugging();
-        serverService.promise_getOne($scope.source, $scope.id).then(function (response) {
-            if (response.status == 200) {
-                if (response.data.status == 200) {
-                    $scope.status = null;
-                    $scope.bean = response.data.message.data;
-                    $scope.metaobj = response.data.message.metaobj;
-                    $scope.metaprops = response.data.message.metaprops;
-
-                    $scope.icon = $scope.metaobj.icon;
-                    $scope.obtitle = $scope.metaobj.name;
-                    $scope.ob = $scope.metaobj.name;
-                    $scope.title = "Vista de " + $scope.obtitle;
-
+        $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+        $scope.orderParams = serverService.checkNull($routeParams.order);
+        $scope.filterParams = serverService.getFilter($routeParams.filter);
+        function getDataFromServer() {
+            serverService.promise_getCount($scope.source, $scope.filterParams).then(function (response) {
+                if (response.status == 200) {
+                    $scope.registers = response.data.message;
+                    $scope.pages = serverService.calculatePages($scope.rpp, $scope.registers);
+                    if ($scope.numpage > $scope.pages) {
+                        $scope.numpage = $scope.pages;
+                    }
+                    return serverService.promise_getPage($scope.source, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
-            } else {
+            }).then(function (response) {
+                if (response.status == 200) {
+                    $scope.page = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+                    //
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.title = "Listado de " + $scope.obtitle;
+                    $scope.status = "";
+                } else {
+                    $scope.status = "Error en la recepción de datos del servidor";
+                }
+            }).catch(function (data) {
                 $scope.status = "Error en la recepción de datos del servidor";
-            }
-        }).catch(function (data) {
-            $scope.status = "Error en la recepción de datos del servidor";
-        });
-        $scope.back = function () {
-            window.history.back();
-        };
+            });
+        }
         $scope.close = function () {
             $location.path('/home');
         };
+        getDataFromServer();
     }]);
+
+

@@ -28,13 +28,13 @@
 
 'use strict';
 
-moduloMedico.controller('MedicoView3Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
-    function ($scope, $routeParams, serverService, $location, sessionService) {
-        $scope.ob = "medico";
-        $scope.source = "medico";
-        $scope.op = "view";
-        $scope.profile = 3;
-        //---
+moduloPaciente.controller('PacienteRemove4Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, sessionService) {
+        $scope.ob = "paciente";
+        $scope.source = "paciente";
+        $scope.op = "new";
+        $scope.profile = 4;
+        //--------
         $scope.id = $routeParams.id;
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
@@ -51,8 +51,7 @@ moduloMedico.controller('MedicoView3Controller', ['$scope', '$routeParams', 'ser
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;
                     $scope.ob = $scope.metaobj.name;
-                    $scope.title = "Vista de " + $scope.obtitle;
-
+                    $scope.title = "Borrado de " + $scope.obtitle;
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -62,6 +61,25 @@ moduloMedico.controller('MedicoView3Controller', ['$scope', '$routeParams', 'ser
         }).catch(function (data) {
             $scope.status = "Error en la recepción de datos del servidor";
         });
+        $scope.remove = function () {
+            serverService.promise_removeOne($scope.source, $scope.id).then(function (response) {
+                if (response.status == 200) {
+                    if (response.data.status == 200) {
+                        if (response.data.message == 1) {
+                            $scope.status = "El registro de " + $scope.obtitle + " con id=" + $scope.id + " se ha eliminado.";
+                        } else {
+                            $scope.status = "Error en el borrado de datos del servidor";
+                        }
+                    } else {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    }
+                } else {
+                    $scope.status = "Error en la recepción de datos del servidor";
+                }
+            }).catch(function (data) {
+                $scope.status = "Error en la recepción de datos del servidor";
+            });
+        }
         $scope.back = function () {
             window.history.back();
         };

@@ -38,6 +38,7 @@ var sisane = angular.module('myApp', [
     'tipousuarioControllers',
     'medicoControllers',
     'dependenciaControllers',
+    'pacienteControllers',
     'grupoControllers',
     'medicamentoControllers',
     'medicoControllers',
@@ -57,7 +58,6 @@ var sisane = angular.module('myApp', [
     'pruebaControllers',
     'especialidadControllers',
     'servicioControllers',
-    'pacienteControllers',
     'diagnosticoControllers',
     'zonaimagenControllers',
     'tecnicaControllers',
@@ -136,6 +136,14 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/dependencia/3/edit/:id', {templateUrl: 'js/dependencia/3/edit.html', controller: 'DependenciaEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/dependencia/3/new', {templateUrl: 'js/dependencia/3/new.html', controller: 'DependenciaNew3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/dependencia/3/view/:id', {templateUrl: 'js/dependencia/3/view.html', controller: 'DependenciaView3Controller', resolve: {auth: authenticationProfesorPromise}});
+                //------------
+        $routeProvider.when('/paciente/4/view/:id', {templateUrl: 'js/paciente/4/view.html', controller: 'PacienteView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/paciente/4/new/:id?', {templateUrl: 'js/paciente/4/new.html', controller: 'PacienteNew4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/paciente/4/edit/:id', {templateUrl: 'js/paciente/4/edit.html', controller: 'PacienteEdit4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/paciente/4/remove/:id', {templateUrl: 'js/paciente/4/remove.html', controller: 'PacienteRemove4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/paciente/4/plist/:page?/:rpp?', {templateUrl: 'js/paciente/4/plist.html', controller: 'PacientePList4Controller', resolve: {auth: authenticationAlumnoPromise}});
+
+
         //-------------------
         $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController', resolve: {auth: anyAuthenticationPromise}});
         $routeProvider.when('/tipousuario/new/:id?', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController', resolve: {auth: anyAuthenticationPromise}});
@@ -290,13 +298,6 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/cargo/plist/:page?/:rpp?', {templateUrl: 'js/cargo/plist.html', controller: 'CargoPListController'});
         $routeProvider.when('/cargo/selection/:page?/:rpp?', {templateUrl: 'js/cargo/selection.html', controller: 'CargoSelectionController'});
 
-        //------------
-        $routeProvider.when('/paciente/view/:id', {templateUrl: 'js/paciente/view.html', controller: 'PacienteViewController'});
-        $routeProvider.when('/paciente/new/:id?', {templateUrl: 'js/paciente/new.html', controller: 'PacienteNewController'});
-        $routeProvider.when('/paciente/edit/:id', {templateUrl: 'js/paciente/edit.html', controller: 'PacienteEditController'});
-        $routeProvider.when('/paciente/remove/:id', {templateUrl: 'js/paciente/remove.html', controller: 'PacienteRemoveController'});
-        $routeProvider.when('/paciente/plist/:page?/:rpp?', {templateUrl: 'js/paciente/plist.html', controller: 'PacientePListController'});
-        $routeProvider.when('/paciente/selection/:page?/:rpp?', {templateUrl: 'js/paciente/selection.html', controller: 'PacienteSelectionController'});
 
         //------------
         $routeProvider.when('/tipomuestra/view/:id', {templateUrl: 'js/tipomuestra/view.html', controller: 'TipomuestraViewController'});

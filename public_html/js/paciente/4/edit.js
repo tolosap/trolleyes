@@ -1,10 +1,10 @@
 /* Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
+ *
  * gesane is a medical pilot web application that shows an environment
  *        for easily developing AJAX web applications
- *        
+ *
  * Sources at https://github.com/rafaelaznar/
- * 
+ *
  * gesane is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,19 +27,19 @@
  */
 
 'use strict';
-
-moduloMedico.controller('MedicoView3Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
-    function ($scope, $routeParams, serverService, $location, sessionService) {
-        $scope.ob = "medico";
-        $scope.source = "medico";
-        $scope.op = "view";
-        $scope.profile = 3;
-        //---
-        $scope.id = $routeParams.id;
+moduloPaciente.controller('PacienteEdit4Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
+        $scope.ob = "paciente";
+        $scope.source = "paciente";
+        $scope.op = "edit";
+        $scope.profile = 4;
+        //--------
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
         $scope.status = null;
         $scope.debugging = serverService.debugging();
+        $scope.bean = {};
+        $scope.id = $routeParams.id;
         serverService.promise_getOne($scope.source, $scope.id).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
@@ -47,11 +47,10 @@ moduloMedico.controller('MedicoView3Controller', ['$scope', '$routeParams', 'ser
                     $scope.bean = response.data.message.data;
                     $scope.metaobj = response.data.message.metaobj;
                     $scope.metaprops = response.data.message.metaprops;
-
+                    //obj metas
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;
-                    $scope.ob = $scope.metaobj.name;
-                    $scope.title = "Vista de " + $scope.obtitle;
+                    $scope.title = "Modificación de " + $scope.obtitle;
 
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
@@ -62,6 +61,25 @@ moduloMedico.controller('MedicoView3Controller', ['$scope', '$routeParams', 'ser
         }).catch(function (data) {
             $scope.status = "Error en la recepción de datos del servidor";
         });
+        $scope.save = function () {
+            var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
+            serverService.promise_setOne($scope.source, jsonToSend).then(function (response) {
+                if (response.status == 200) {
+                    if (response.data.status == 200) {
+                        $scope.response = response;
+                        $scope.status = "El registro de " + $scope.obtitle + " con id=" + $scope.bean.id + " se ha modificado.";
+                        $scope.bean.id = $scope.bean.id;
+                    } else {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    }
+                } else {
+                    $scope.status = "Error en la recepción de datos del servidor";
+                }
+            }).catch(function (data) {
+                $scope.status = "Error en la recepción de datos del servidor";
+            });
+            ;
+        };
         $scope.back = function () {
             window.history.back();
         };

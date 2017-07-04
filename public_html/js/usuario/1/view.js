@@ -32,7 +32,7 @@ moduloMedico.controller('UsuarioView1Controller', ['$scope', '$routeParams', 'se
     function ($scope, $routeParams, serverService, $location, sessionService) {
         $scope.ob = "usuario";
         $scope.source = "usuario";
-        $scope.op = "new";
+        $scope.op = "view";
         $scope.profile = 1;
         //---
         $scope.id = $routeParams.id;

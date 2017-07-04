@@ -28,12 +28,12 @@
 
 'use strict';
 
-moduloMedico.controller('MedicoView3Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
+moduloPaciente.controller('PacienteView4Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
     function ($scope, $routeParams, serverService, $location, sessionService) {
-        $scope.ob = "medico";
-        $scope.source = "medico";
+        $scope.ob = "paciente";
+        $scope.source = "paciente";
         $scope.op = "view";
-        $scope.profile = 3;
+        $scope.profile = 4;
         //---
         $scope.id = $routeParams.id;
         $scope.session_info = sessionService.getSessionInfo();
