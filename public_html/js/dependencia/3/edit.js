@@ -1,10 +1,11 @@
-/*
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+/* Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * sisane: The stunning micro-library that helps you to develop easily
- *             AJAX web applications by using Angular.js 1.x & sisane-server
- * sisane is distributed under the MIT License (MIT)
+ * gesane is a medical pilot web application that shows an environment
+ *        for easily developing AJAX web applications
+ *
  * Sources at https://github.com/rafaelaznar/
+ *
+ * gesane is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +24,34 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
  */
 
 'use strict';
-moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '$location', 'pacienteService', 'serverService', 'sharedSpaceService', '$filter', '$uibModal',
-    function ($scope, $routeParams, $location, pacienteService, serverService, sharedSpaceService, $filter, $uibModal) {
-        $scope.fields = pacienteService.getFields();
-        $scope.obtitle = pacienteService.getObTitle();
-        $scope.icon = pacienteService.getIcon();
-        $scope.ob = pacienteService.getTitle();
-        $scope.title = "Editando un " + $scope.obtitle;
-        $scope.op = "plist";
+moduloDependencia.controller('DependenciaEdit3Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
+        $scope.ob = "dependencia";
+        $scope.source = "dependencia";
+        $scope.op = "edit";
+        $scope.profile = 3;
+        //--------
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
         $scope.status = null;
-        $scope.error = true;
         $scope.debugging = serverService.debugging();
         $scope.bean = {};
-        $scope.bean.obj_servicio = {"id": 0};
-        $scope.show_obj_servicio = true;
         $scope.id = $routeParams.id;
-        serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {
+        serverService.promise_getOne($scope.source, $scope.id).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-                    $scope.bean = response.data.message;
+                    $scope.bean = response.data.message.data;
+                    $scope.metaobj = response.data.message.metaobj;
+                    $scope.metaprops = response.data.message.metaprops;
+                    //obj metas
+                    $scope.icon = $scope.metaobj.icon;
+                    $scope.obtitle = $scope.metaobj.name;
+                    $scope.title = "Modificación de " + $scope.obtitle;
+
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -58,11 +63,11 @@ moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '
         });
         $scope.save = function () {
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
-            serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
+            serverService.promise_setOne($scope.source, jsonToSend).then(function (response) {
                 if (response.status == 200) {
                     if (response.data.status == 200) {
                         $scope.response = response;
-                        $scope.status = "El registro " + $scope.obtitle + " se ha modificado ... id = " + $scope.bean.id;
+                        $scope.status = "El registro de " + $scope.obtitle + " con id=" + $scope.bean.id + " se ha modificado.";
                         $scope.bean.id = $scope.bean.id;
                     } else {
                         $scope.status = "Error en la recepción de datos del servidor";
@@ -81,9 +86,4 @@ moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '
         $scope.close = function () {
             $location.path('/home');
         };
-        $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
-        };
-
-
     }]);

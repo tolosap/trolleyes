@@ -33,9 +33,11 @@ var sisane = angular.module('myApp', [
     'Services',
     'Directives',
     'systemControllers',
-    'usuarioControllers',
     'genericControllers',
+    'usuarioControllers',
     'tipousuarioControllers',
+    'medicoControllers',
+    'dependenciaControllers',
     'grupoControllers',
     'medicamentoControllers',
     'medicoControllers',
@@ -128,6 +130,12 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/medico/3/edit/:id', {templateUrl: 'js/medico/3/edit.html', controller: 'MedicoEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/medico/3/new', {templateUrl: 'js/medico/3/new.html', controller: 'MedicoNew3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/medico/3/view/:id', {templateUrl: 'js/medico/3/view.html', controller: 'MedicoView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        //-------------
+        $routeProvider.when('/dependencia/3/plist/:page?/:rpp?', {templateUrl: 'js/dependencia/3/plist.html', controller: 'DependenciaPList3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/remove/:id', {templateUrl: 'js/dependencia/3/remove.html', controller: 'DependenciaRemove3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/edit/:id', {templateUrl: 'js/dependencia/3/edit.html', controller: 'DependenciaEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/new', {templateUrl: 'js/dependencia/3/new.html', controller: 'DependenciaNew3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/view/:id', {templateUrl: 'js/dependencia/3/view.html', controller: 'DependenciaView3Controller', resolve: {auth: authenticationProfesorPromise}});
         //-------------------
         $routeProvider.when('/tipousuario/view/:id', {templateUrl: 'js/tipousuario/view.html', controller: 'TipousuarioViewController', resolve: {auth: anyAuthenticationPromise}});
         $routeProvider.when('/tipousuario/new/:id?', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController', resolve: {auth: anyAuthenticationPromise}});
@@ -369,7 +377,8 @@ sisane.run(function ($rootScope, $location, serverService, sessionService) {
 var moduloSistema = angular.module('systemControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
 var moduloTipousuario = angular.module('tipousuarioControllers', []);
-
+var moduloMedico = angular.module('medicoControllers', []);
+var moduloDependencia = angular.module('dependenciaControllers', []);
 
 var moduloGrupo = angular.module('grupoControllers', []);
 
@@ -382,7 +391,7 @@ var moduloImportancia = angular.module('importanciaControllers', []);
 var moduloTipodocumento = angular.module('tipodocumentoControllers', []);
 var moduloTipodiagnostico = angular.module('tipodiagnosticoControllers', []);
 var moduloMedicamento = angular.module('medicamentoControllers', []);
-var moduloMedico = angular.module('medicoControllers', []);
+
 var moduloZona = angular.module('zonaControllers', []);
 var moduloTipo = angular.module('tipoControllers', []);
 var moduloImagen = angular.module('imagenControllers', []);
