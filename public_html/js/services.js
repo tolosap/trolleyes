@@ -295,6 +295,23 @@ moduloServicios
                             }
                         }
                     },
+                    getFilter: function (filter) {
+                        var filterParams = null;
+                        if (filter) {
+                            if (Array.isArray(filter)) {
+                                var arrayLength = filter.length;
+                                for (var i = 0; i < arrayLength; i++) {
+                                    if (i > 0) {
+                                        filterParams += '&filter=';
+                                    }
+                                    filterParams += filter[i];
+                                }
+                            } else {
+                                filterParams = filter;
+                            }
+                        }
+                        return filterParams;
+                    },
                     isEmpty: function (obj) {
                         for (var prop in obj) {
                             if (obj.hasOwnProperty(prop))

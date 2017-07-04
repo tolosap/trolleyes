@@ -1,10 +1,12 @@
 <!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
 
-sisane: The stunning micro-library that helps you to develop easily
-            AJAX web applications by using Angular.js 1.x & sisane-server
-sisane is distributed under the MIT License (MIT)
+gesane is a medical pilot web application that shows an environment
+       for easily developing AJAX web applications
+
 Sources at https://github.com/rafaelaznar/
+
+gesane is distributed under the MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +25,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
 -->
 <nav class="navbar navbar-default navbar-fixed-top" ng-include="'js/system/menu.html'"></nav>
 <div id="wrapper" ng-cloak>
@@ -87,6 +88,7 @@ THE SOFTWARE.
                                         </date-time-picker>
                                     </div>
                                 </div>
+                                <!------------------------------------------------->
                                 <div class="form-group"
                                      ng-if="f.type == 'date'"
                                      id="fecha-group"
@@ -111,11 +113,12 @@ THE SOFTWARE.
                                         name="f.name">
                                     </boolean>
                                 </div>
+                                <!------------------------------------------------->
                             </div>
                             <div class="control-group text-right">
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                                    <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>
@@ -126,7 +129,8 @@ THE SOFTWARE.
                                 <h2>{{status}}</h2>
                                 <div class="control-group text-right">
                                     <div class="controls">
-                                        <a class="btn btn-success" ng-href="{{ob}}/view/{{bean.id}}">Ver {{obtitle}}</a>
+                                        <a class="btn btn-success" ng-href="{{ob}}/{{profile}}/view/{{bean.id}}">Ver {{obtitle}}</a>
+                                        <a class="btn btn-info" ng-click="reload()">Introducir otro {{obtitle}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +143,7 @@ THE SOFTWARE.
                             </div>
                             <div class="control-group text-right">
                                 <div class="controls">
-                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist" >Ir al listado de {{obtitle}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{obtitle}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" href="home">Cerrar</a>
                                 </div>

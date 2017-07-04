@@ -1,10 +1,11 @@
-/*
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+/* Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * sisane: The stunning micro-library that helps you to develop easily
- *             AJAX web applications by using Angular.js 1.x & sisane-server
- * sisane is distributed under the MIT License (MIT)
+ * gesane is a medical pilot web application that shows an environment
+ *        for easily developing AJAX web applications
+ *
  * Sources at https://github.com/rafaelaznar/
+ *
+ * gesane is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,52 +24,33 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
  */
 
 'use strict';
 
-moduloUsuario.controller('UsuarioNew1Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService) {
+moduloMedico.controller('UsuarioNew1Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService', '$route',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService, $route) {
         $scope.ob = "usuario";
-        $scope.profile = 1;
+        $scope.source = "usuario";
         $scope.op = "new";
+        $scope.profile = 1;
+        //--------
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
         $scope.status = null;
         $scope.debugging = serverService.debugging();
-//        $scope.bean = {};
-//        //----
-////        $scope.bean.obj_tipousuario = {"id": 0};
-//        if ($routeParams.id_tipousuario) {
-//            serverService.promise_getOne('tipousuario', $routeParams.id_tipousuario).then(function (response) {
-//                if (response.data.message.id != 0) {
-//                    $scope.bean.obj_tipousuario = response.data.message;
-//                    $scope.show_obj_tipousuario = false;
-//                    $scope.title = "Nuevo usuario del tipo" + $scope.bean.obj_tipousuario.description;
-//                }
-//            });
-//        } else {
-//            $scope.show_obj_tipousuario = true;
-//        }
-//        //----
-//        $scope.bean.obj_medico = {"id": 0};
-
-
-        serverService.promise_getOne($scope.ob, 0).then(function (response) {
+        serverService.promise_getOne($scope.source, 0).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
-
                     $scope.bean = {};
                     $scope.metaobj = response.data.message.metaobj;
                     $scope.metaprops = response.data.message.metaprops;
-
+                    //obj metas
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;
                     $scope.ob = $scope.metaobj.name;
                     $scope.title = "Alta de " + $scope.obtitle;
-
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -78,13 +60,7 @@ moduloUsuario.controller('UsuarioNew1Controller', ['$scope', '$routeParams', '$l
         }).catch(function (data) {
             $scope.status = "Error en la recepción de datos del servidor";
         });
-        //-----
         $scope.save = function () {
-//            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
-//            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
-//            if (!$scope.bean.obj_medico.id > 0) {
-//                $scope.bean.obj_medico.id = null;
-//            }
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
             serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
                 if (response.status == 200) {
@@ -105,6 +81,12 @@ moduloUsuario.controller('UsuarioNew1Controller', ['$scope', '$routeParams', '$l
         };
         $scope.back = function () {
             window.history.back();
+        };
+        $scope.reload = function () {
+            $route.reload();
+        };
+        $scope.close = function () {
+            $location.path('/home');
         };
     }]);
 

@@ -1,10 +1,12 @@
 <!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
 
-sisane: The stunning micro-library that helps you to develop easily
-            AJAX web applications by using Angular.js 1.x & sisane-server
-sisane is distributed under the MIT License (MIT)
+gesane is a medical pilot web application that shows an environment
+       for easily developing AJAX web applications
+
 Sources at https://github.com/rafaelaznar/
+
+gesane is distributed under the MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +25,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
 -->
 <nav class="navbar navbar-default navbar-fixed-top" ng-include="'js/system/menu.html'"></nav>
 <div id="wrapper" ng-cloak>
@@ -41,11 +42,9 @@ THE SOFTWARE.
                             <div class="col-xs-12">
                                 <miniview id="session_info.obj_centrosanitario.id" nombre="'centrosanitario'"></miniview>
                             </div>
-                        </div>                        
+                        </div>
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
-
-                            <div ng-repeat="f in metaprops">            
-
+                            <div ng-repeat="f in metaprops">
                                 <!--- id ---------------------------------------------->
                                 <div ng-if="f.name == 'id'" class="form-group" id="{{f.name}}-group">
                                     <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
@@ -60,7 +59,7 @@ THE SOFTWARE.
                                      id="{{f.name}}-group"
                                      class="form-group"
                                      ng-class="{'has-error': (outerForm[f.name].$error.pattern && !outerForm[f.name].$pristine) ||
-                                                 (outerForm[f.name].$error.required && !outerForm[f.name].$pristine)}">
+                                                             (outerForm[f.name].$error.required && !outerForm[f.name].$pristine)}">
                                     <clabel wide="2" name="f.name" longname="f.longname" required="f.required" />
                                     <div class="control col-sm-8">
                                         <texto model="bean[f.name]" name="f.name" longname="f.longname" pattern="f.pattern" length="f.maxlength" required="f.required"></texto>
@@ -84,8 +83,8 @@ THE SOFTWARE.
                                 <!------------------------------------------------->
                                 <div class="form-group" ng-if="f.type.startsWith('datetime')"
                                      ng-class="{'has-error':(outerForm.fecha.$error.required ||
-                                                 outerForm.fecha.$error.valid)
-                                                 && !outerForm.fecha.$pristine}">
+                                                             outerForm.fecha.$error.valid)
+                                                             && !outerForm.fecha.$pristine}">
                                     <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
                                     <div class="control col-sm-3">
                                         <date-time-picker
@@ -96,12 +95,13 @@ THE SOFTWARE.
                                         </date-time-picker>
                                     </div>
                                 </div>
+                                <!------------------------------------------------->
                                 <div class="form-group"
                                      ng-if="f.type == 'date'"
                                      id="fecha-group"
                                      ng-class="{'has-error': (outerForm[f.name].$error.required ||
-                                                 outerForm[f.name].$error.valid)
-                                                 && !outerForm[f.name].$pristine}">
+                                                             outerForm[f.name].$error.valid)
+                                                             && !outerForm[f.name].$pristine}">
                                     <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
                                     <div class="control col-sm-3">
                                         <date-picker
@@ -120,6 +120,7 @@ THE SOFTWARE.
                                         name="f.name">
                                     </boolean>
                                 </div>
+                                <!------------------------------------------------->
                             </div>
                             <div class="control-group text-right">
                                 <div class="controls">
@@ -135,7 +136,7 @@ THE SOFTWARE.
                                 <h2>{{status}}</h2>
                                 <div class="control-group text-right">
                                     <div class="controls">
-                                        <a class="btn btn-success" ng-href="{{ob}}/view/{{bean.id}}">Ver {{obtitle}}</a>
+                                        <a class="btn btn-success" ng-href="{{ob}}/{{profile}}/view/{{bean.id}}">Ver {{obtitle}}</a>
                                     </div>
                                 </div>
                             </div>

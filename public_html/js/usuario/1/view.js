@@ -1,21 +1,22 @@
-/* 
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+/* Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  * 
- * sisane: The stunning micro-library that helps you to develop easily 
- *             AJAX web applications by using Angular.js 1.x & sisane-server
- * sisane is distributed under the MIT License (MIT)
+ * gesane is a medical pilot web application that shows an environment
+ *        for easily developing AJAX web applications
+ *        
  * Sources at https://github.com/rafaelaznar/
  * 
+ * gesane is distributed under the MIT License (MIT)
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,21 +24,23 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- * 
  */
 
 'use strict';
 
-moduloUsuario.controller('UsuarioView1Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
+moduloMedico.controller('UsuarioView1Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
     function ($scope, $routeParams, serverService, $location, sessionService) {
-        $scope.ob = "usuario";  //pte rutas
+        $scope.ob = "usuario";
+        $scope.source = "usuario";
+        $scope.op = "new";
         $scope.profile = 1;
+        //---
         $scope.id = $routeParams.id;
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
         $scope.status = null;
         $scope.debugging = serverService.debugging();
-        serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {
+        serverService.promise_getOne($scope.source, $scope.id).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
@@ -61,5 +64,8 @@ moduloUsuario.controller('UsuarioView1Controller', ['$scope', '$routeParams', 's
         });
         $scope.back = function () {
             window.history.back();
+        };
+        $scope.close = function () {
+            $location.path('/home');
         };
     }]);

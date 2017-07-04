@@ -1,10 +1,12 @@
 <!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
 
-sisane: The stunning micro-library that helps you to develop easily
-            AJAX web applications by using Angular.js 1.x & sisane-server
-sisane is distributed under the MIT License (MIT)
+gesane is a medical pilot web application that shows an environment
+       for easily developing AJAX web applications
+
 Sources at https://github.com/rafaelaznar/
+
+gesane is distributed under the MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +25,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
 -->
 <nav class="navbar navbar-default navbar-fixed-top" ng-include="'js/system/menu.html'"></nav>
 <div id="wrapper" ng-cloak>
@@ -64,15 +65,15 @@ THE SOFTWARE.
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="f in metaprops" class="text-left">
-                                            <td>{{f.longname}}</td>                                      
+                                            <td>{{f.longname}}</td>
                                             <td ng-if="f.name == 'id'"><b>{{bean[f.name]}}</b></td>
                                             <td ng-if="f.type.startsWith('datetime')">{{bean[f.name]}}</td>
                                             <td ng-if="f.type.startsWith('int') && !f.name.startsWith('id_') && !f.name == 'id'">{{bean[f.name]}}</td>
                                             <td ng-if="f.type.startsWith('decimal')">{{bean[f.name]}}</td>
                                             <td ng-if="f.type.startsWith('varchar')">{{bean[f.name]}}</td>
                                             <td ng-if="f.type.startsWith('longtext')">{{bean[f.name]}}</td>
-                                            <td ng-if="f.type.startsWith('tinyint')" ng-bind-html="bean[f.name] | booleanizate"></td> 
-                                            <td ng-if="f.name.startsWith('id_')" ng-init="fname = (f.name).replace('id_', 'obj_')"><a href="{{f.reference}}/view/{{bean[fname].data.id}}">{{(bean[fname])|getForeignDescription}}</a></td>    
+                                            <td ng-if="f.type.startsWith('tinyint')" ng-bind-html="bean[f.name] | booleanizate"></td>
+                                            <td ng-if="f.name.startsWith('id_')" ng-init="fname = (f.name).replace('id_', 'obj_')"><a href="{{f.reference}}/view/{{bean[fname].data.id}}">{{(bean[fname])|getForeignDescription}}</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

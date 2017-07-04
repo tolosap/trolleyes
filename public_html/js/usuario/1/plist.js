@@ -1,10 +1,11 @@
-/*
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- *
- * sisane: The stunning micro-library that helps you to develop easily
- *             AJAX web applications by using Angular.js 1.x & sisane-server
- * sisane is distributed under the MIT License (MIT)
+/* Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ * 
+ * gesane is a medical pilot web application that shows an environment
+ *        for easily developing AJAX web applications
+ *        
  * Sources at https://github.com/rafaelaznar/
+ * 
+ * gesane is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,50 +24,36 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
  */
 
 'use strict';
 
-moduloUsuario.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
+moduloMedico.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
     function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
         $scope.ob = "usuario";
-        $scope.profile = 1;
+        $scope.source = "usuario";
         $scope.op = "plist";
-
+        $scope.profile = 1;
+        //----
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
-
         $scope.numpage = serverService.checkDefault(1, $routeParams.page);
         $scope.rpp = serverService.checkDefault(10, $routeParams.rpp);
         $scope.neighbourhood = serverService.getGlobalNeighbourhood();
-
-        $scope.orderParams = serverService.checkNull($routeParams.order)
-
-        $scope.filterParams = null;
-        if ($routeParams.filter) {
-            if (Array.isArray($routeParams.filter)) {
-                var arrayLength = $routeParams.filter.length;
-                for (var i = 0; i < arrayLength; i++) {
-                    $scope.filterParams += '&filter=' + $routeParams.filter[i];
-                }
-            } else {
-                $scope.filterParams += '&filter=' + $routeParams.filter;
-            }
-        }
-
         $scope.status = null;
         $scope.debugging = serverService.debugging();
-        $scope.url = $scope.ob + '/' + $scope.op;
+        $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+        $scope.orderParams = serverService.checkNull($routeParams.order);
+        $scope.filterParams = serverService.getFilter($routeParams.filter);
         function getDataFromServer() {
-            serverService.promise_getCount($scope.ob, $scope.filterParams).then(function (response) {
+            serverService.promise_getCount($scope.source, $scope.filterParams).then(function (response) {
                 if (response.status == 200) {
                     $scope.registers = response.data.message;
                     $scope.pages = serverService.calculatePages($scope.rpp, $scope.registers);
                     if ($scope.numpage > $scope.pages) {
                         $scope.numpage = $scope.pages;
                     }
-                    return serverService.promise_getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                    return serverService.promise_getPage($scope.source, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -75,12 +62,10 @@ moduloUsuario.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '
                     $scope.page = response.data.message.data;
                     $scope.metaobj = response.data.message.metaobj;
                     $scope.metaprops = response.data.message.metaprops;
-
+                    //
                     $scope.icon = $scope.metaobj.icon;
                     $scope.obtitle = $scope.metaobj.name;
-                    //$scope.ob = $scope.metaobj.name;
                     $scope.title = "Listado de " + $scope.obtitle;
-
                     $scope.status = "";
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
@@ -89,8 +74,10 @@ moduloUsuario.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '
                 $scope.status = "Error en la recepción de datos del servidor";
             });
         }
+        $scope.close = function () {
+            $location.path('/home');
+        };
         getDataFromServer();
-
     }]);
 
 

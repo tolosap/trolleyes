@@ -1,10 +1,12 @@
 <!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
 
-sisane: The stunning micro-library that helps you to develop easily
-            AJAX web applications by using Angular.js 1.x & sisane-server
-sisane is distributed under the MIT License (MIT)
+gesane is a medical pilot web application that shows an environment
+       for easily developing AJAX web applications
+
 Sources at https://github.com/rafaelaznar/
+
+gesane is distributed under the MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +25,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
 -->
 <nav class="navbar navbar-default navbar-fixed-top" ng-include="'js/system/menu.html'"></nav>
 <div id="wrapper" ng-cloak>
@@ -46,8 +47,7 @@ THE SOFTWARE.
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li role="presentation" class="active">
                                             <a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a>
-                                        </li>
-
+                                        </li>                                        
                                         <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
                                         <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de cliente</a></li>
                                         <li role="presentation"><a data-target="#pane3" aria-controls="pane3" role="tab" data-toggle="tab">Nuevo {{obtitle}}</a></li>
@@ -82,14 +82,12 @@ THE SOFTWARE.
                                                                numpage="numpage"
                                                                rpp="rpp"
                                                                filterParams="filterParams"
-                                                               orderParams="orderParams"
-                                                               sfilterParams="sfilterParams">
+                                                               orderParams="orderParams">
                                                     </cplistrpp>
                                                 </div>
                                             </div>
                                             <p></p>
-                                        </div>
-
+                                        </div>                                       
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -128,28 +126,12 @@ THE SOFTWARE.
                                     </div>
                                 </div>
                                 <div id="datos" ng-if="!status">
-                                    <p></p>
-
-                                    <p></p>
-
-
-
-
-
                                     <div class="panel panel-default">
-                                        <!-- Default panel contents -->
                                         <div class="panel-heading">
                                             <div class="text-center">
                                                 <cplistvisiblefields fields="metaprops"></cplistvisiblefields>
                                             </div>
                                         </div>
-
-
-
-
-
-
-
                                         <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer" style="font-size: 11px !important;">
                                             <thead plistheader></thead>
                                             <tbody>
@@ -163,7 +145,7 @@ THE SOFTWARE.
                                                         <div ng-if="f.tablevisible && f.type.startsWith('longtext')" class="text-left">{{obj[f.name]|clipString}}</div>
                                                         <div ng-if="f.tablevisible && f.type.startsWith('tinyint')" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>
                                                         <div ng-if="f.tablevisible && f.name.startsWith('id_')" class="text-left" ng-init="fname = (f.name).replace('id_', 'obj_')">
-                                                            <a href="{{f.reference}}/{{profile}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
+                                                            <a href="{{f.reference}}/view/{{obj[fname].data.id}}">{{(obj[fname])|getForeignDescription}}</a>
                                                         </div>
                                                     </td>
                                                     <td style="border-color:#ddd;"  class="text-center">
@@ -172,22 +154,22 @@ THE SOFTWARE.
                                                                 <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{obj.id}}">
                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                 </a>
-
                                                                 <a class="btn btn-default btn-xs" title="Edit" href="{{ob}}/{{profile}}/edit/{{obj.id}}">
                                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                                 </a>
-
                                                                 <a class="btn btn-default btn-xs" title="Remove" href="{{ob}}/{{profile}}/remove/{{obj.id}}">
                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                 </a>
-                                                            </div>
+                                                            </div>          
+
                                                         </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>                                
+                                </div>   
+                                <a class="btn btn-default" href="home">Cerrar</a>
                             </div>
                         </div>
                     </div>

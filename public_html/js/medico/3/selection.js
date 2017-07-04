@@ -1,10 +1,11 @@
-/*
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- *
- * sisane: The stunning micro-library that helps you to develop easily
- *             AJAX web applications by using Angular.js 1.x & sisane-server
- * sisane is distributed under the MIT License (MIT)
+/* Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ * 
+ * gesane is a medical pilot web application that shows an environment
+ *        for easily developing AJAX web applications
+ *        
  * Sources at https://github.com/rafaelaznar/
+ * 
+ * gesane is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +24,6 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
  */
 
 'use strict';
