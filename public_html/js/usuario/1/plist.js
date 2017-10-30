@@ -28,12 +28,17 @@
 
 'use strict';
 
-moduloMedico.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
+moduloUsuario.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '$location', 'serverService', '$uibModal', 'sessionService',
     function ($scope, $routeParams, $location, serverService, $uibModal, sessionService) {
         $scope.ob = "usuario";
         $scope.source = "usuario";
         $scope.op = "plist";
         $scope.profile = 1;
+        //---
+        $scope.icon = "user";
+        $scope.obtitle = "usuario";
+        $scope.title = "Listado de " + $scope.obtitle;
+        $scope.status = "";
         //----
         $scope.session_info = sessionService.getSessionInfo();
         $scope.isSessionActive = sessionService.isSessionActive();
@@ -45,6 +50,25 @@ moduloMedico.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '$
         $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
         $scope.orderParams = serverService.checkNull($routeParams.order);
         $scope.filterParams = serverService.getFilter($routeParams.filter);
+        //---
+        //       
+        $scope.visibles = {};
+        $scope.visibles.id = true;
+        $scope.visibles.nombre = true;
+        $scope.visibles.primer_apellido = true;
+        $scope.visibles.segundo_apellido = true;
+        $scope.visibles.login = true;
+        $scope.visibles.email = true;
+        $scope.visibles.token = true;
+        $scope.visibles.activo = true;
+        $scope.visibles.fecha_alta = true;
+        $scope.visibles.validado = true;
+        $scope.visibles.id_tipousuario = true;
+        $scope.visibles.id_grupo = true;
+        $scope.visibles.id_centro = true;
+        $scope.visibles.id_centrosanitario = true;
+
+        //---
         function getDataFromServer() {
             serverService.promise_getCount($scope.source, $scope.filterParams).then(function (response) {
                 if (response.status == 200) {
@@ -59,14 +83,14 @@ moduloMedico.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '$
                 }
             }).then(function (response) {
                 if (response.status == 200) {
-                    $scope.page = response.data.message.data;
-                    $scope.metaobj = response.data.message.metaobj;
-                    $scope.metaprops = response.data.message.metaprops;
+                    $scope.page = response.data.message;
+                    //$scope.metaobj = response.data.message.metaobj;
+                    //$scope.metaprops = response.data.message.metaprops;
                     //
-                    $scope.icon = $scope.metaobj.icon;
-                    $scope.obtitle = $scope.metaobj.name;
-                    $scope.title = "Listado de " + $scope.obtitle;
-                    $scope.status = "";
+                    //$scope.icon = $scope.metaobj.icon;
+                    //$scope.obtitle = $scope.metaobj.name;
+                    //$scope.title = "Listado de " + $scope.obtitle;
+                    $scope.status = null;
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -74,6 +98,24 @@ moduloMedico.controller('UsuarioPList1Controller', ['$scope', '$routeParams', '$
                 $scope.status = "Error en la recepción de datos del servidor";
             });
         }
+        $scope.dofilter = function () {
+            if ($scope.filter != "" && $scope.filteroperator != "" && $scope.filtervalue != "") {
+                if ($routeParams.order && $routeParams.ordervalue) {
+                    if ($routeParams.systemfilter && $routeParams.systemfilteroperator) {
+                        $location.path($scope.ob + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filter).search('filteroperator', $scope.filteroperator).search('filtervalue', $scope.filtervalue).search('order', $routeParams.order).search('ordervalue', $routeParams.ordervalue).search('systemfilter', $routeParams.systemfilter).search('systemfilteroperator', $routeParams.systemfilteroperator).search('systemfiltervalue', $routeParams.systemfiltervalue);
+                    } else {
+                        $location.path($scope.ob + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filter).search('filteroperator', $scope.filteroperator).search('filtervalue', $scope.filtervalue).search('order', $routeParams.order).search('ordervalue', $routeParams.ordervalue);
+                    }
+                } else {
+                    $location.path($scope.ob + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filter).search('filteroperator', $scope.filteroperator).search('filtervalue', $scope.filtervalue);
+                }
+            }
+            return false;
+        };
+        $scope.doorder = function (orderField, ascDesc) {
+            $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
+            return false;
+        };
         $scope.close = function () {
             $location.path('/home');
         };

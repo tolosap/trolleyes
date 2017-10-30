@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloMedico.controller('UsuarioView1Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
+moduloUsuario.controller('UsuarioView1Controller', ['$scope', '$routeParams', 'serverService', '$location', 'sessionService',
     function ($scope, $routeParams, serverService, $location, sessionService) {
         $scope.ob = "usuario";
         $scope.source = "usuario";

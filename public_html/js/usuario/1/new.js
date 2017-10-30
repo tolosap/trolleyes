@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloMedico.controller('UsuarioNew1Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService', '$route',
+moduloUsuario.controller('UsuarioNew1Controller', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$uibModal', 'sessionService', '$route',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $uibModal, sessionService, $route) {
         $scope.ob = "usuario";
         $scope.source = "usuario";
