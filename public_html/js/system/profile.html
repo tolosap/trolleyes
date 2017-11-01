@@ -51,41 +51,9 @@ THE SOFTWARE.
                                             <td>{{session_info.email}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Fecha de alta</td>
-                                            <td>{{session_info.fecha_alta}}</td>
-                                        </tr>
-                                        <tr>
                                             <td>Tipo de usuario</td>
                                             <td>{{session_info.obj_tipousuario.descripcion}}</td>
-                                        </tr>
-                                        <tr ng-if="session_info.obj_tipousuario.id == 3">
-                                            <td>Centro</td>
-                                            <td>{{session_info.obj_centro.nombre}}</td>
-                                        </tr>
-                                        <tr ng-if="session_info.obj_tipousuario.id == 3">
-                                            <td>Centro sanitario</td>
-                                            <td>{{session_info.obj_centrosanitario.descripcion}}</td>
-                                        </tr>
-                                        <tr ng-if="session_info.obj_tipousuario.id == 4">
-                                            <td>Grupo</td>
-                                            <td>{{session_info.obj_grupo.codigo}}</td>
-                                        </tr>
-                                        <tr ng-if="session_info.obj_tipousuario.id == 4">
-                                            <td>Curso</td>
-                                            <td>{{session_info.obj_grupo.obj_curso.descripcion}}</td>
-                                        </tr>
-                                        <tr ng-if="session_info.obj_tipousuario.id == 4">
-                                            <td>Profesor</td>
-                                            <td>{{session_info.obj_grupo.obj_usuario.nombre + ' ' + session_info.obj_grupo.obj_usuario.primer_apellido + ' ' + session_info.obj_grupo.obj_usuario.segundo_apellido}}</td>
-                                        </tr>
-                                        <tr ng-if="session_info.obj_tipousuario.id == 4">
-                                            <td>Centro</td>
-                                            <td>{{session_info.obj_grupo.obj_usuario.obj_centro.nombre}}</td>
-                                        </tr>
-                                        <tr ng-if="session_info.obj_tipousuario.id == 4">
-                                            <td>Centro sanitario</td>
-                                            <td>{{session_info.obj_grupo.obj_usuario.obj_centrosanitario.descripcion}}</td>
-                                        </tr>
+                                        </tr>                                        
                                     </tbody>
                                 </table>
                                 <div class="control-group text-right">

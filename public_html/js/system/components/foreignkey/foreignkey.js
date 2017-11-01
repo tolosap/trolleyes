@@ -12,13 +12,13 @@ moduloDirectivas.component('foreignKey', {
 
 });
 
-function foreignkey(serverService, $uibModal) {
+function foreignkey(toolService, serverCallService, $uibModal) {
     var self = this;
 
     self.chooseOne = function () {
         var modalInstance = $uibModal.open({
             templateUrl: 'js/' + self.reference + '/selection.html',
-            controller: serverService.capitalizeWord(self.reference) + "SelectionController",
+            controller: toolService.capitalizeWord(self.reference) + "SelectionController",
             size: 'lg'
         }).result.then(function (modalResult) {
             self.change(modalResult);
@@ -59,7 +59,7 @@ function foreignkey(serverService, $uibModal) {
             return;
         }
 
-        serverService.promise_getOne(self.reference, id).then(function (response) {
+        serverCallService.promise_getOne(self.reference, id).then(function (response) {
             //var old_id = id;
             if (!response.data.message.data.id) {
                 validity(false);

@@ -17,7 +17,7 @@ moduloDirectivas.component('graficas', {
     }
 });
 
-function graficas(serverService, $uibModal, $routeParams, $filter, sharedSpaceService) {
+function graficas($uibModal, $routeParams, $filter) {
     var self = this;
     console.log(self);
     self.graficaOn = false;

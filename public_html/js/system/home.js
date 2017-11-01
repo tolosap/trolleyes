@@ -27,10 +27,11 @@
  */
 
 'use strict';
-moduloSistema.controller('HomeController', ['$scope', '$routeParams', '$location', 'serverService', 'sessionService',
-    function ($scope, $routeParams, $location, serverService, sessionService) {
-        $scope.op = "Home";
-        $scope.session_info = sessionService.getSessionInfo();
-        $scope.isSessionActive = sessionService.isSessionActive();
-    }
-]);
+moduloSistema.controller('HomeController',
+        ['$scope', '$routeParams', '$location', 'sessionService',
+            function ($scope, $routeParams, $location, sessionService) {
+                $scope.op = "Home";
+                $scope.session_info = sessionService.getSessionInfo();
+                $scope.isSessionActive = sessionService.isSessionActive();
+            }
+        ]);

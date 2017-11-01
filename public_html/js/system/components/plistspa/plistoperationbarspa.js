@@ -9,11 +9,13 @@ moduloDirectivas.directive('plistoperationbarspa', function () {
 //        }
     };
 });
-moduloSistema.controller('plistoperationbarspaController', ['$scope', 'serverService', function ($scope, serverService) {
+moduloSistema.controller('plistoperationbarspaController',
+        ['$scope',
+            function ($scope) {
 //        $scope.ob = $scope.$parent.ob;
 //        $scope.obj = $scope.$parent.obj;
 //            $scope.chooseOne = function (id) {
 //            alert(id);
 //
 //        }
-    }]);
+            }]);

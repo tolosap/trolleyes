@@ -9,7 +9,7 @@ moduloDirectivas.component('dateTimePicker', {
         form: '='
     }
 });
-function datetimepicker(serverService) {
+function datetimepicker() {
     var self = this;
 
 //    self.$onInit = function () {

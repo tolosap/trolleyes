@@ -12,14 +12,17 @@ moduloDirectivas.component('cplistpaginationspa', {
     },
     templateUrl: 'js/system/components/plistspa/cplistpaginationspa.html',
     controllerAs: 'pf',
-    controller: ['serverService', function (serverService) {
-            var self = this;
-            self.gotopage = function (numpage) {
-                self.pageSelectionEvent({'selectedPageNumber': numpage})
-                return false;
-            };
-            self.getRangeArray = serverService.getRangeArray;
-            self.evaluateMin = serverService.evaluateMin;
-            self.evaluateMax = serverService.evaluateMax;
-        }]
+    controller:
+            ['toolService',
+                function (toolService) {
+                    var self = this;
+                    self.gotopage = function (numpage) {
+                        self.pageSelectionEvent({'selectedPageNumber': numpage})
+                        return false;
+                    };
+                    self.getRangeArray = toolService.getRangeArray;
+                    self.evaluateMin = toolService.evaluateMin;
+                    self.evaluateMax = toolService.evaluateMax;
+                }
+            ]
 });

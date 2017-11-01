@@ -10,15 +10,15 @@ moduloDirectivas.component('actions', {
 
 });
 
-function actions(serverService, $uibModal)
+function actions(constantService, toolService, $uibModal)
 {
     var self = this;
 
-    self.appurl = serverService.getCAppUrl();
+    self.appurl = constantService.getCAppUrl();
 
     self.pop = function (id, foreignObjectName, foreignViewName, op) {
 
-        self.viewpop = serverService.capitalizeWord(self.name);
+        self.viewpop = toolService.capitalizeWord(self.name);
         if (op === 1)
         {
             self.viewpop += 'ViewpopController';

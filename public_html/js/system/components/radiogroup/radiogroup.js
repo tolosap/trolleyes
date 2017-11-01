@@ -10,11 +10,11 @@ moduloDirectivas.component('radiogroup', {
     controller: radiogroup
 });
 
-function radiogroup(serverService) {
+function radiogroup(serverCallService) {
     var self = this;
 
     this.$onInit = function () {
-        serverService.promise_getAll(self.tablereference).then(function (response) {
+        serverCallService.promise_getAll(self.tablereference).then(function (response) {
             self.radiobuttons = response.data.message;
         }).catch(function (data) {
             console.log(data);

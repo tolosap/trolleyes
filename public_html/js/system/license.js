@@ -27,8 +27,8 @@
  */
 
 'use strict';
-moduloSistema.controller('LicenseController', ['$scope', '$routeParams', '$location', 'serverService', 'sessionService',
-    function ($scope, $routeParams, $location, serverService, sessionService) {
+moduloSistema.controller('LicenseController', ['$scope', '$routeParams', '$location', 'sessionService',
+    function ($scope, $routeParams, $location, sessionService) {
 
         $scope.op = "License";
         $scope.session_info = sessionService.getSessionInfo();

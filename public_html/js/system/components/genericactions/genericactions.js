@@ -9,8 +9,8 @@ moduloDirectivas.component('genericactions', {
             }
 });
 
-function actions(serverService)
+function actions(constantService)
 {
     var self = this;
-    self.appurl = serverService.getCAppUrl();
+    self.appurl = constantService.getCAppUrl();
 }

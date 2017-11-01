@@ -9,10 +9,12 @@ moduloDirectivas.component('cforeign', {
     },
     templateUrl: 'js/system/components/plist/cforeign.html',
     controllerAs: 'cf',
-    controller: ['serverService', '$location', function (serverService, $location) {
-            var self = this;
-
-        }]
+    controller:
+            ['$location',
+                function ($location) {
+                    var self = this;
+                }
+            ]
 });
 
 

@@ -1,11 +1,12 @@
 <!--
 /*
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * sisane: The stunning micro-library that helps you to develop easily
- *             AJAX web applications by using Angular.js 1.x & sisane-server
- * sisane is distributed under the MIT License (MIT)
- * Sources at https://github.com/rafaelaznar/sisane
+ * TROLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/troleyes
+ *
+ * TROLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,15 +36,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="Rafael Aznar">
-        <title>SISSANE</title>
-        <!-- see resetCSS  -->
-        <base href="/sissane/public_html/index.html" />
+        <title>TROLEYES</title>
+        <base href="/troleyes/public_html/index.html" />
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
         <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="css/main/fonts/fonts.css" rel="stylesheet" type="text/css">
+        <link href="fonts/fonts.css" rel="stylesheet" type="text/css">
         <link href="vendor/jqueryui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/main/main.css" rel="stylesheet" type="text/css">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
         <link href="vendor/jqueryuitimepicker/jquery-ui-timepicker-addon.min.css" rel="stylesheet" type="text/css"/>
         <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
         <base href="/public_html/index.html" />
@@ -74,23 +74,26 @@
         <script src="vendor/angular/angular-locale_es-es.js" type="text/javascript"></script>
 
         <script src="vendor/sha/forge-sha256.min.js" type="text/javascript"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
         <script src="vendor/angular-chart/dist/angular-chart.min.js"></script>
 
         <script src="vendor/pdf/jspdf.min.js" type="text/javascript"></script>
 
+        <!-- APP ------------------------------- -->
+        <script src="js/system/config/app.js" type="text/javascript"></script>
+        <!-- SERVICES ------------------------------- -->
+        <script src="js/system/services/constant.js" type="text/javascript"></script>
+        <script src="js/system/services/regex.js" type="text/javascript"></script>
+        <script src="js/system/services/serverCall.js" type="text/javascript"></script>
+        <script src="js/system/services/session.js" type="text/javascript"></script>
+        <script src="js/system/services/sessionServerCall.js" type="text/javascript"></script>
+        <script src="js/system/services/sharedSpace.js" type="text/javascript"></script>
+        <script src="js/system/services/tool.js" type="text/javascript"></script>
         <!-- ------------------------------- -->
-        <script src="js/app.js" type="text/javascript"></script>
-        <script src="js/services.js" type="text/javascript"></script>
+
         <script src="js/filters.js" type="text/javascript"></script>
         <script src="js/directives.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/system/home.js" type="text/javascript"></script>
-        <script src="js/system/login.js" type="text/javascript"></script>
-        <script src="js/system/logout.js" type="text/javascript"></script>
-        <script src="js/system/license.js" type="text/javascript"></script>
-        <script src="js/system/passchange.js" type="text/javascript"></script>
-        <script src="js/system/profile.js" type="text/javascript"></script>
+
 
 
 
@@ -125,357 +128,37 @@
         <script src="js/system/components/datepicker/datepicker.js" type="text/javascript"></script>
         <script src="js/system/components/radiogroup/radiogroup.js" type="text/javascript"></script>
 
+        <!-- ------------------------------- -->
+
         <script src="js/system/components/manytomany/manytomany.js" type="text/javascript"></script>
         <script src="js/system/components/manytomany/modalController.js" type="text/javascript"></script>
         <script src="js/system/components/manytomany/modal2Controller.js" type="text/javascript"></script>
-        <script src="js/system/components/texto/texto.js" type="text/javascript"></script>       
+        <script src="js/system/components/texto/texto.js" type="text/javascript"></script>
         <script src="js/system/components/boolean/boolean.js" type="text/javascript"></script>
-        <script src="js/system/components/key/key.js" type="text/javascript"></script>        
+        <script src="js/system/components/key/key.js" type="text/javascript"></script>
         <script src="js/system/components/bfkey/bfkey.js" type="text/javascript"></script>
         <script src="js/system/components/actions/actions.js" type="text/javascript"></script>
         <script src="js/system/components/genericactions/genericactions.js" type="text/javascript"></script>
         <script src="js/system/components/timepicker/timepicker.js" type="text/javascript"></script>
         <script src="js/system/components/graficas/graficas.js" type="text/javascript"></script>
-        <script src="js/system/components/miniview/miniview.js" type="text/javascript"></script>  
+        <script src="js/system/components/miniview/miniview.js" type="text/javascript"></script>
         <script src="js/system/components/miniactions/miniactions.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->    
 
         <!-- ------------------------------- -->
-        <script src="js/usuario/1/edit.js" type="text/javascript"></script>
-        <script src="js/usuario/1/new.js" type="text/javascript"></script>
-        <script src="js/usuario/1/plist.js" type="text/javascript"></script>
-        <script src="js/usuario/1/remove.js" type="text/javascript"></script>
-        <script src="js/usuario/1/selection.js" type="text/javascript"></script>
-        <script src="js/usuario/1/view.js" type="text/javascript"></script>
+        <script src="js/system/home.js" type="text/javascript"></script>
+        <script src="js/system/login.js" type="text/javascript"></script>
+        <script src="js/system/logout.js" type="text/javascript"></script>
+        <script src="js/system/license.js" type="text/javascript"></script>
+        <script src="js/system/passchange.js" type="text/javascript"></script>
+        <script src="js/system/profile.js" type="text/javascript"></script>
+        <!-- ------------------------------- -->
+        <script src="js/app/usuario/1/edit.js" type="text/javascript"></script>
+        <script src="js/app/usuario/1/new.js" type="text/javascript"></script>
+        <script src="js/app/usuario/1/plist.js" type="text/javascript"></script>
+        <script src="js/app/usuario/1/remove.js" type="text/javascript"></script>
+        <script src="js/app/usuario/1/selection.js" type="text/javascript"></script>
+        <script src="js/app/usuario/1/view.js" type="text/javascript"></script>
 
-        <script src="js/usuario/9/newalumno.js" type="text/javascript"></script>
-
-        <script src="js/usuario/3/gruposdeprofesoresconsusalumnos.js" type="text/javascript"></script>
-        <!-- ------------------------------- --> 
-        <script src="js/medico/1/edit.js" type="text/javascript"></script>
-        <script src="js/medico/1/new.js" type="text/javascript"></script>
-        <script src="js/medico/1/plist.js" type="text/javascript"></script>
-        <script src="js/medico/1/remove.js" type="text/javascript"></script>
-        <script src="js/medico/1/selection.js" type="text/javascript"></script>
-        <script src="js/medico/1/view.js" type="text/javascript"></script>        
-        <!-- ------------------------------- -->        
-        <script src="js/medico/3/edit.js" type="text/javascript"></script>
-        <script src="js/medico/3/plist.js" type="text/javascript"></script>
-        <script src="js/medico/3/new.js" type="text/javascript"></script>
-        <script src="js/medico/3/view.js" type="text/javascript"></script>
-        <script src="js/medico/3/remove.js" type="text/javascript"></script>
-        <script src="js/medico/3/selection.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->     
-        <script src="js/dependencia/3/edit.js" type="text/javascript"></script>
-        <script src="js/dependencia/3/new.js" type="text/javascript"></script>
-        <script src="js/dependencia/3/plist.js" type="text/javascript"></script>
-        <script src="js/dependencia/3/remove.js" type="text/javascript"></script>
-        <script src="js/dependencia/3/selection.js" type="text/javascript"></script>
-        <script src="js/dependencia/3/view.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->      
-        <script src="js/paciente/4/edit.js" type="text/javascript"></script>
-        <script src="js/paciente/4/new.js" type="text/javascript"></script>
-        <script src="js/paciente/4/plist.js" type="text/javascript"></script>
-        <script src="js/paciente/4/remove.js" type="text/javascript"></script>
-        <script src="js/paciente/4/selection.js" type="text/javascript"></script>
-        <script src="js/paciente/4/view.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->        
-        <script src="js/generic/edit.js" type="text/javascript"></script>
-        <script src="js/generic/new.js" type="text/javascript"></script>
-        <script src="js/generic/plist.js" type="text/javascript"></script>
-        <script src="js/generic/remove.js" type="text/javascript"></script>
-        <script src="js/generic/removepop.js" type="text/javascript"></script>
-        <script src="js/generic/view.js" type="text/javascript"></script>
-        <script src="js/generic/viewpop.js" type="text/javascript"></script>
-        <script src="js/generic/selection.js" type="text/javascript"></script>               
-        <!-- ------------------------------- -->
-        <script src="js/grupo/edit.js" type="text/javascript"></script>
-        <script src="js/grupo/new.js" type="text/javascript"></script>
-        <script src="js/grupo/plist.js" type="text/javascript"></script>
-        <script src="js/grupo/remove.js" type="text/javascript"></script>
-        <script src="js/grupo/removepop.js" type="text/javascript"></script>
-        <script src="js/grupo/selection.js" type="text/javascript"></script>
-        <script src="js/grupo/view.js" type="text/javascript"></script>
-        <script src="js/grupo/viewpop.js" type="text/javascript"></script>
-
-
-
-
-        <script src="js/imagen/edit.js" type="text/javascript"></script>
-        <script src="js/imagen/new.js" type="text/javascript"></script>
-        <script src="js/imagen/plist.js" type="text/javascript"></script>
-        <script src="js/imagen/remove.js" type="text/javascript"></script>
-        <script src="js/imagen/removepop.js" type="text/javascript"></script>
-        <script src="js/imagen/selection.js" type="text/javascript"></script>
-        <script src="js/imagen/service.js" type="text/javascript"></script>
-        <script src="js/imagen/view.js" type="text/javascript"></script>
-        <script src="js/imagen/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/prueba/edit.js" type="text/javascript"></script>
-        <script src="js/prueba/new.js" type="text/javascript"></script>
-        <script src="js/prueba/plist.js" type="text/javascript"></script>
-        <script src="js/prueba/remove.js" type="text/javascript"></script>
-        <script src="js/prueba/removepop.js" type="text/javascript"></script>
-        <script src="js/prueba/selection.js" type="text/javascript"></script>
-        <script src="js/prueba/service.js" type="text/javascript"></script>
-        <script src="js/prueba/view.js" type="text/javascript"></script>
-        <script src="js/prueba/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/tipousuario/edit.js" type="text/javascript"></script>
-        <script src="js/tipousuario/new.js" type="text/javascript"></script>
-        <script src="js/tipousuario/plist.js" type="text/javascript"></script>
-        <script src="js/tipousuario/remove.js" type="text/javascript"></script>
-        <script src="js/tipousuario/removepop.js" type="text/javascript"></script>
-        <script src="js/tipousuario/selection.js" type="text/javascript"></script>
-        <script src="js/tipousuario/view.js" type="text/javascript"></script>
-        <script src="js/tipousuario/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/via/edit.js" type="text/javascript"></script>
-        <script src="js/via/new.js" type="text/javascript"></script>
-        <script src="js/via/plist.js" type="text/javascript"></script>
-        <script src="js/via/remove.js" type="text/javascript"></script>
-        <script src="js/via/removepop.js" type="text/javascript"></script>
-        <script src="js/via/selection.js" type="text/javascript"></script>
-        <script src="js/via/service.js" type="text/javascript"></script>
-        <script src="js/via/view.js" type="text/javascript"></script>
-        <script src="js/via/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/importancia/edit.js" type="text/javascript"></script>
-        <script src="js/importancia/new.js" type="text/javascript"></script>
-        <script src="js/importancia/plist.js" type="text/javascript"></script>
-        <script src="js/importancia/remove.js" type="text/javascript"></script>
-        <script src="js/importancia/removepop.js" type="text/javascript"></script>
-        <script src="js/importancia/selection.js" type="text/javascript"></script>
-        <script src="js/importancia/service.js" type="text/javascript"></script>
-        <script src="js/importancia/view.js" type="text/javascript"></script>
-        <script src="js/importancia/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/tipodocumento/edit.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/new.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/plist.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/remove.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/removepop.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/selection.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/service.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/view.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/documento/service.js" type="text/javascript"></script>
-        <script src="js/documento/view.js" type="text/javascript"></script>
-        <script src="js/documento/plist.js" type="text/javascript"></script>
-        <script src="js/documento/edit.js" type="text/javascript"></script>
-        <script src="js/documento/new.js" type="text/javascript"></script>
-        <script src="js/documento/selection.js" type="text/javascript"></script>
-        <script src="js/documento/remove.js" type="text/javascript"></script>
-        <script src="js/documento/removepop.js" type="text/javascript"></script>
-        <script src="js/documento/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/cargo/service.js" type="text/javascript"></script>
-        <script src="js/cargo/view.js" type="text/javascript"></script>
-        <script src="js/cargo/plist.js" type="text/javascript"></script>
-        <script src="js/cargo/edit.js" type="text/javascript"></script>
-        <script src="js/cargo/new.js" type="text/javascript"></script>
-        <script src="js/cargo/selection.js" type="text/javascript"></script>
-        <script src="js/cargo/remove.js" type="text/javascript"></script>
-        <script src="js/cargo/removepop.js" type="text/javascript"></script>
-        <script src="js/cargo/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/tipodiagnostico/edit.js" type="text/javascript"></script>
-        <script src="js/tipodiagnostico/new.js" type="text/javascript"></script>
-        <script src="js/tipodiagnostico/plist.js" type="text/javascript"></script>
-        <script src="js/tipodiagnostico/remove.js" type="text/javascript"></script>
-        <script src="js/tipodiagnostico/removepop.js" type="text/javascript"></script>
-        <script src="js/tipodiagnostico/selection.js" type="text/javascript"></script>
-        <script src="js/tipodiagnostico/service.js" type="text/javascript"></script>
-        <script src="js/tipodiagnostico/view.js" type="text/javascript"></script>
-        <script src="js/tipodiagnostico/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/medicamento/edit.js" type="text/javascript"></script>
-        <script src="js/medicamento/new.js" type="text/javascript"></script>
-        <script src="js/medicamento/plist.js" type="text/javascript"></script>
-        <script src="js/medicamento/remove.js" type="text/javascript"></script>
-        <script src="js/medicamento/removepop.js" type="text/javascript"></script>
-        <script src="js/medicamento/selection.js" type="text/javascript"></script>
-        <script src="js/medicamento/service.js" type="text/javascript"></script>
-        <script src="js/medicamento/view.js" type="text/javascript"></script>
-        <script src="js/medicamento/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/posologia/edit.js" type="text/javascript"></script>
-        <script src="js/posologia/new.js" type="text/javascript"></script>
-        <script src="js/posologia/plist.js" type="text/javascript"></script>
-        <script src="js/posologia/remove.js" type="text/javascript"></script>
-        <script src="js/posologia/removepop.js" type="text/javascript"></script>
-        <script src="js/posologia/selection.js" type="text/javascript"></script>
-        <script src="js/posologia/service.js" type="text/javascript"></script>
-        <script src="js/posologia/view.js" type="text/javascript"></script>
-        <script src="js/posologia/viewpop.js" type="text/javascript"></script>
-        <script src="js/via/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/zona/edit.js" type="text/javascript"></script>
-        <script src="js/zona/new.js" type="text/javascript"></script>
-        <script src="js/zona/plist.js" type="text/javascript"></script>
-        <script src="js/zona/remove.js" type="text/javascript"></script>
-        <script src="js/zona/removepop.js" type="text/javascript"></script>
-        <script src="js/zona/selection.js" type="text/javascript"></script>
-        <script src="js/zona/service.js" type="text/javascript"></script>
-        <script src="js/zona/view.js" type="text/javascript"></script>
-        <script src="js/zona/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/prioridad/edit.js" type="text/javascript"></script>
-        <script src="js/prioridad/new.js" type="text/javascript"></script>
-        <script src="js/prioridad/plist.js" type="text/javascript"></script>
-        <script src="js/prioridad/remove.js" type="text/javascript"></script>
-        <script src="js/prioridad/removepop.js" type="text/javascript"></script>
-        <script src="js/prioridad/selection.js" type="text/javascript"></script>
-        <script src="js/prioridad/service.js" type="text/javascript"></script>
-        <script src="js/prioridad/view.js" type="text/javascript"></script>
-        <script src="js/prioridad/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/tipo/edit.js" type="text/javascript"></script>
-        <script src="js/tipo/new.js" type="text/javascript"></script>
-        <script src="js/tipo/plist.js" type="text/javascript"></script>
-        <script src="js/tipo/remove.js" type="text/javascript"></script>
-        <script src="js/tipo/removepop.js" type="text/javascript"></script>
-        <script src="js/tipo/selection.js" type="text/javascript"></script>
-        <script src="js/tipo/service.js" type="text/javascript"></script>
-        <script src="js/tipo/view.js" type="text/javascript"></script>
-        <script src="js/tipo/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-
-        <!-- ------------------------------- -->
-        <script src="js/episodio/edit.js" type="text/javascript"></script>
-        <script src="js/episodio/new.js" type="text/javascript"></script>
-        <script src="js/episodio/newfrompaciente.js" type="text/javascript"></script>
-        <script src="js/episodio/plist.js" type="text/javascript"></script>
-        <script src="js/episodio/plistfrompaciente.js" type="text/javascript"></script>
-        <script src="js/episodio/remove.js" type="text/javascript"></script>
-        <script src="js/episodio/removepop.js" type="text/javascript"></script>
-        <script src="js/episodio/selection.js" type="text/javascript"></script>
-        <script src="js/episodio/service.js" type="text/javascript"></script>
-        <script src="js/episodio/view.js" type="text/javascript"></script>
-        <script src="js/episodio/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/importancia/edit.js" type="text/javascript"></script>
-        <script src="js/importancia/new.js" type="text/javascript"></script>
-        <script src="js/importancia/plist.js" type="text/javascript"></script>
-        <script src="js/importancia/remove.js" type="text/javascript"></script>
-        <script src="js/importancia/removepop.js" type="text/javascript"></script>
-        <script src="js/importancia/selection.js" type="text/javascript"></script>
-        <script src="js/importancia/service.js" type="text/javascript"></script>
-        <script src="js/importancia/view.js" type="text/javascript"></script>
-        <script src="js/importancia/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- --> 
-        <script src="js/tipodocumento/edit.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/new.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/plist.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/remove.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/removepop.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/selection.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/service.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/view.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/viewpop.js" type="text/javascript"></script>        
-
-        <!-- ------------------------------- -->
-        <script src="js/anticoagulante/edit.js" type="text/javascript"></script>
-        <script src="js/anticoagulante/new.js" type="text/javascript"></script>
-        <script src="js/anticoagulante/plist.js" type="text/javascript"></script>
-        <script src="js/anticoagulante/remove.js" type="text/javascript"></script>
-        <script src="js/anticoagulante/removepop.js" type="text/javascript"></script>
-        <script src="js/anticoagulante/selection.js" type="text/javascript"></script>
-        <script src="js/anticoagulante/service.js" type="text/javascript"></script>
-        <script src="js/anticoagulante/view.js" type="text/javascript"></script>
-        <script src="js/anticoagulante/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/especialidad/edit.js" type="text/javascript"></script>
-        <script src="js/especialidad/new.js" type="text/javascript"></script>
-        <script src="js/especialidad/plist.js" type="text/javascript"></script>
-        <script src="js/especialidad/remove.js" type="text/javascript"></script>
-        <script src="js/especialidad/removepop.js" type="text/javascript"></script>
-        <script src="js/especialidad/selection.js" type="text/javascript"></script>
-        <script src="js/especialidad/service.js" type="text/javascript"></script>
-        <script src="js/especialidad/view.js" type="text/javascript"></script>
-        <script src="js/especialidad/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/servicio/edit.js" type="text/javascript"></script>
-        <script src="js/servicio/new.js" type="text/javascript"></script>
-        <script src="js/servicio/plist.js" type="text/javascript"></script>
-        <script src="js/servicio/remove.js" type="text/javascript"></script>
-        <script src="js/servicio/removepop.js" type="text/javascript"></script>
-        <script src="js/servicio/selection.js" type="text/javascript"></script>
-        <script src="js/servicio/service.js" type="text/javascript"></script>
-        <script src="js/servicio/view.js" type="text/javascript"></script>
-        <script src="js/servicio/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/paciente/edit.js" type="text/javascript"></script>
-        <script src="js/paciente/new.js" type="text/javascript"></script>
-        <script src="js/paciente/plist.js" type="text/javascript"></script>
-        <script src="js/paciente/remove.js" type="text/javascript"></script>
-        <script src="js/paciente/removepop.js" type="text/javascript"></script>
-        <script src="js/paciente/selection.js" type="text/javascript"></script>
-        <script src="js/paciente/service.js" type="text/javascript"></script>
-        <script src="js/paciente/view.js" type="text/javascript"></script>
-        <script src="js/paciente/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/tipomuestra/edit.js" type="text/javascript"></script>
-        <script src="js/tipomuestra/new.js" type="text/javascript"></script>
-        <script src="js/tipomuestra/plist.js" type="text/javascript"></script>
-        <script src="js/tipomuestra/remove.js" type="text/javascript"></script>
-        <script src="js/tipomuestra/removepop.js" type="text/javascript"></script>
-        <script src="js/tipomuestra/selection.js" type="text/javascript"></script>
-        <script src="js/tipomuestra/service.js" type="text/javascript"></script>
-        <script src="js/tipomuestra/view.js" type="text/javascript"></script>
-        <script src="js/tipomuestra/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/zonaimagen/edit.js" type="text/javascript"></script>
-        <script src="js/zonaimagen/new.js" type="text/javascript"></script>
-        <script src="js/zonaimagen/plist.js" type="text/javascript"></script>
-        <script src="js/zonaimagen/remove.js" type="text/javascript"></script>
-        <script src="js/zonaimagen/removepop.js" type="text/javascript"></script>
-        <script src="js/zonaimagen/selection.js" type="text/javascript"></script>
-        <script src="js/zonaimagen/service.js" type="text/javascript"></script>
-        <script src="js/zonaimagen/view.js" type="text/javascript"></script>
-        <script src="js/zonaimagen/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/diagnostico/edit.js" type="text/javascript"></script>
-        <script src="js/diagnostico/new.js" type="text/javascript"></script>
-        <script src="js/diagnostico/plist.js" type="text/javascript"></script>
-        <script src="js/diagnostico/remove.js" type="text/javascript"></script>
-        <script src="js/diagnostico/removepop.js" type="text/javascript"></script>
-        <script src="js/diagnostico/selection.js" type="text/javascript"></script>
-        <script src="js/diagnostico/service.js" type="text/javascript"></script>
-        <script src="js/diagnostico/view.js" type="text/javascript"></script>
-        <script src="js/diagnostico/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/tecnica/edit.js" type="text/javascript"></script>
-        <script src="js/tecnica/new.js" type="text/javascript"></script>
-        <script src="js/tecnica/plist.js" type="text/javascript"></script>
-        <script src="js/tecnica/remove.js" type="text/javascript"></script>
-        <script src="js/tecnica/removepop.js" type="text/javascript"></script>
-        <script src="js/tecnica/selection.js" type="text/javascript"></script>
-        <script src="js/tecnica/service.js" type="text/javascript"></script>
-        <script src="js/tecnica/view.js" type="text/javascript"></script>
-        <script src="js/tecnica/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-
-        <script src="js/tratamiento/edit.js" type="text/javascript"></script>
-        <script src="js/tratamiento/new.js" type="text/javascript"></script>
-        <script src="js/tratamiento/plist.js" type="text/javascript"></script>
-        <script src="js/tratamiento/remove.js" type="text/javascript"></script>
-        <script src="js/tratamiento/removepop.js" type="text/javascript"></script>
-        <script src="js/tratamiento/service.js" type="text/javascript"></script>
-        <script src="js/tratamiento/view.js" type="text/javascript"></script>
-        <script src="js/tratamiento/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/analitica/edit.js" type="text/javascript"></script>
-        <script src="js/analitica/new.js" type="text/javascript"></script>
-        <script src="js/analitica/plist.js" type="text/javascript"></script>
-        <script src="js/analitica/remove.js" type="text/javascript"></script>
-        <script src="js/analitica/removepop.js" type="text/javascript"></script>
-        <script src="js/analitica/selection.js" type="text/javascript"></script>
-        <script src="js/analitica/service.js" type="text/javascript"></script>
-        <script src="js/analitica/view.js" type="text/javascript"></script>
-        <script src="js/analitica/viewpop.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
     </body>
 </html>
 

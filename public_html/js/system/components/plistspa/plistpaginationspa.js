@@ -6,14 +6,16 @@ moduloDirectivas.directive('plistpaginationspa', function () {
         templateUrl: 'js/system/components/plistspa/plistpaginationspa.html'
     };
 });
-moduloSistema.controller('plistPaginationspaController', ['$scope', 'serverService', '$rootScope', function ($scope, serverService, $rootScope) {
-        $scope.getRangeArray = serverService.getRangeArray;
-        $scope.evaluateMin = serverService.evaluateMin;
-        $scope.evaluateMax = serverService.evaluateMax;
-        $scope.gotopage = function (numpage)
-        {
-            $rootScope.$broadcast('pageSelectionEvent', numpage);
-            return false;
-        }
+moduloSistema.controller('plistPaginationspaController',
+        ['$scope', 'toolService', '$rootScope',
+            function ($scope, toolService, $rootScope) {
+                $scope.getRangeArray = toolService.getRangeArray;
+                $scope.evaluateMin = toolService.evaluateMin;
+                $scope.evaluateMax = toolService.evaluateMax;
+                $scope.gotopage = function (numpage)
+                {
+                    $rootScope.$broadcast('pageSelectionEvent', numpage);
+                    return false;
+                }
 
-    }]);
+            }]);

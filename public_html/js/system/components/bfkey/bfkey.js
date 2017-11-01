@@ -12,7 +12,7 @@ moduloDirectivas.component('bfKey', {
 
 });
 
-function bfkey(serverService, $uibModal, metaService)
+function bfkey(serverCallService, $uibModal, metaService)
 {
     var self = this;
 
@@ -24,15 +24,15 @@ function bfkey(serverService, $uibModal, metaService)
         var modalInstance = $uibModal.open({
             templateUrl: 'js/system/templates/selection.html',
             // templateUrl: 'js/' + self.reference + '/selection.html',
-            controller: serverService.capitalizeWord(self.reference) + "SelectionController",
+            controller: toolService.capitalizeWord(self.reference) + "SelectionController",
             size: 'lg'
         }).result.then(function (modalResult)
         {
             // Pendiente de desarrollo en el servidor de un servicio específico de lectura y mofificación de ajenas 
 
             self.bean["obj_" + self.reference].id = modalResult;
-            var jsonToSend = {json: angular.toJson(serverService.array_identificarArray(self.bean))};
-            serverService.promise_setOne(self.name, jsonToSend).then(function (response) {
+            var jsonToSend = {json: angular.toJson(toolService.array_identificarArray(self.bean))};
+            serverCallService.promise_setOne(self.name, jsonToSend).then(function (response) {
                  $rootScope.$broadcast('reloadEvent');
                // location.reload();
             })

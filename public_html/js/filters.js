@@ -46,10 +46,10 @@ moduloFiltros
                 return input[0] + ':' + input[1];
             };
         })
-        .filter('getForeignDescription', ['serverService', function (serverService) {
+        .filter('getForeignDescription', ['toolService', function (toolService) {
                 return function (foreignObject)
                 {
-                    if (!serverService.isEmpty(foreignObject.data)) {
+                    if (!toolService.isEmpty(foreignObject.data)) {
                         var arrayLength = foreignObject.metaprops.length;
                         var description = "";
                         for (var i = 0; i < arrayLength; i++) {

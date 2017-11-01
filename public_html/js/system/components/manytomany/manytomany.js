@@ -11,7 +11,7 @@ moduloDirectivas.component('manytomany', {
 
 });
 
-function manyToMany(serverService, $uibModal) {
+function manyToMany($uibModal) {
     var self = this;
 
 

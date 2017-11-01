@@ -7,6 +7,8 @@ moduloDirectivas.directive('plistvisiblefields', function () {
     };
 });
 
-moduloSistema.controller('plistvisiblefieldsController', ['$scope', 'serverService', function ($scope, serverService) {
+moduloSistema.controller('plistvisiblefieldsController',
+        ['$scope',
+            function ($scope) {
 //        $scope.Fields = $scope.$parent.Fields;      
-    }]);
+            }]);

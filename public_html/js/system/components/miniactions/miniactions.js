@@ -9,9 +9,8 @@ moduloDirectivas.component('miniactions', {
             }
 
 });
-
-function miniactions(serverService)
+function miniactions(constantService)
 {
     var self = this;
-    self.appurl = serverService.getCAppUrl();
+    self.appurl = constantService.getCAppUrl();
 }

@@ -9,25 +9,20 @@ moduloDirectivas.directive('plistinfospa', function () {
 //        }
     };
 });
-moduloSistema.controller('plistInfospaController', ['$scope', 'serverService', '$rootScope', '$location', function ($scope, serverService, $rootScope, $location) {
-
-        $scope.doresetorder = function () {
-            $rootScope.$broadcast('resetOrderEvent');
-            return false;
-        };
-
-
-        $scope.doresetfilter = function () {
-            $rootScope.$broadcast('resetFilterEvent');
-            return false;
-        };
-
-
-        $scope.resetClientfilter = function () {
-            $scope.$parent.searchText = "";
-            return false;
-        };
-
-
-    }
-]);
+moduloSistema.controller('plistInfospaController',
+        ['$scope', '$rootScope', '$location',
+            function ($scope, $rootScope, $location) {
+                $scope.doresetorder = function () {
+                    $rootScope.$broadcast('resetOrderEvent');
+                    return false;
+                };
+                $scope.doresetfilter = function () {
+                    $rootScope.$broadcast('resetFilterEvent');
+                    return false;
+                };
+                $scope.resetClientfilter = function () {
+                    $scope.$parent.searchText = "";
+                    return false;
+                };
+            }
+        ]);

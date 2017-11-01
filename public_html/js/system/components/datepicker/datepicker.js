@@ -10,7 +10,7 @@ moduloDirectivas.component('datePicker', {
     }
 });
 
-function datepickerCtrl(serverService) {
+function datepickerCtrl() {
     var self = this;
 
     self.change = function () {

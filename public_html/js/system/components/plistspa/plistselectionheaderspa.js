@@ -7,7 +7,7 @@ moduloDirectivas.directive('plistselectionheaderspa', function () {
     };
 });
 
-moduloSistema.controller('plistSelectionHeaderSpaController', ['$scope', 'serverService', '$rootScope', function ($scope, serverService, $rootScope) {
+moduloSistema.controller('plistSelectionHeaderSpaController', ['$scope', '$rootScope', function ($scope, $rootScope) {
         $scope.dosortSelection = function (field, mode)
         {
             $scope.uorder = field + ',' + mode;

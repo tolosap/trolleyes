@@ -1,14 +1,14 @@
 'use strict';
-moduloSistema.controller('PasschangeController', ['$scope', '$routeParams', '$location', 'serverService', 'sessionService',
-    function ($scope, $routeParams, $location, serverService, sessionService) {
+moduloSistema.controller('PasschangeController', ['$scope', '$routeParams', '$location', 'constantService', 'sessionService', 'sessionServerCall',
+    function ($scope, $routeParams, $location, constantService, sessionService, sessionServerCall) {
         $scope.title = "Formulario de cambio de password";
         $scope.icon = "fa-key";
-        $scope.debugging = serverService.debugging();
+        $scope.debugging = constantService.debugging();
         $scope.status = null;
         $scope.old = '';
         $scope.new = '';
         $scope.passchange = function () {
-            serverService.getPasswordChangePromise($scope.old, $scope.new).then(function (response) {
+            sessionServerCall.getPasswordChangePromise($scope.old, $scope.new).then(function (response) {
                 $scope.response = response;
                 if (response.status == 200) {
                     if (response.data.status == 200) {

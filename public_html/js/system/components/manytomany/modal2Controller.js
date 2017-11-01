@@ -1,54 +1,52 @@
-moduloDirectivas.controller('mtmModal2', ['$scope', 'metaService', 'id',
-    'reference', 'from', '$filter', 'serverService',
-    '$uibModalInstance',
-    function ($scope, metaService, id, reference,
-            from, $filter, serverService, $uibModalInstance) {
+moduloDirectivas.controller('mtmModal2',
+        ['$scope', 'metaService', 'id', 'reference', 'from', '$filter', 'serverCallService', 'toolService', '$uibModalInstance',
+            function ($scope, metaService, id, reference, from, $filter, serverCallService, toolService, $uibModalInstance) {
 
-        var fields = metaService.getMeta()[reference].fields;
-        $scope.bean = {id: 0};
-        var pos = null;
+                var fields = metaService.getMeta()[reference].fields;
+                $scope.bean = {id: 0};
+                var pos = null;
 
-        for (var f in fields) {
-            if (fields[f].name.match('obj_')) {
-                $scope.bean[fields[f].name] = {id: 0}
+                for (var f in fields) {
+                    if (fields[f].name.match('obj_')) {
+                        $scope.bean[fields[f].name] = {id: 0}
 
-            }
-            if (fields[f].name.match('obj_' + from)) {
-                $scope.bean[fields[f].name].id = id;
-                pos = f;
-            }
-        }
-        delete fields[pos];
-
-        $scope.fields = fields;
-
-        $scope.save = function () {
-
-            for (var f in fields) {
-                if (fields[f].type === 'date') {
-                    $scope.bean[fields[f].name] = $filter('date')($scope.bean[fields[f].name], "dd/MM/yyyy");
+                    }
+                    if (fields[f].name.match('obj_' + from)) {
+                        $scope.bean[fields[f].name].id = id;
+                        pos = f;
+                    }
                 }
-            }
+                delete fields[pos];
 
-            var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
+                $scope.fields = fields;
 
-            serverService.promise_setOne(reference, jsonToSend).then(function (response) {
-                if (response.status === 200) {
-                    $uibModalInstance.close(true);
-                } else {
-                    $uibModalInstance.close(false);
-                }
-            }).catch(function (data) {
-                console.log(data);
-            });
+                $scope.save = function () {
 
-        };
+                    for (var f in fields) {
+                        if (fields[f].type === 'date') {
+                            $scope.bean[fields[f].name] = $filter('date')($scope.bean[fields[f].name], "dd/MM/yyyy");
+                        }
+                    }
 
-        $scope.close = function () {
-            $uibModalInstance.close();
-        };
+                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
+
+                    serverCallService.promise_setOne(reference, jsonToSend).then(function (response) {
+                        if (response.status === 200) {
+                            $uibModalInstance.close(true);
+                        } else {
+                            $uibModalInstance.close(false);
+                        }
+                    }).catch(function (data) {
+                        console.log(data);
+                    });
+
+                };
+
+                $scope.close = function () {
+                    $uibModalInstance.close();
+                };
 
 
-    }]);
+            }]);
 
 
