@@ -1,26 +1,16 @@
-# GESANE
-# gesane client (warning: under development)
+## WARNING: TROLLEYES IS UNDER CONSTRUCTION
 
-## License
+# ¿What is TROLLEYES?
+TROLLEYES is an educative application that was created for students to learn how to develop web applications.
+It was designed for Spanish Ciclos Formativos de Grado Superior students, more specifically, the Web Application Development students.
+The structure of TROLLEYES was thought to be maintanable, easy to undestand and easy to expand in a workgroup.
 
-The MIT License (MIT)
+# Objectives
+Learn how to structure the design of a web project in the client environment.
+Provide the student with the experience of working on a structured project.
+Provide an environment for students to develop in a team.
+Simulate the creation of a complex project in a working environment.
+Participate in the creation of a complex AJAX web application.
 
-Copyright (c) 2015
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+# Run
+Use with trolleyes-server and its database
