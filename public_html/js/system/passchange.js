@@ -18,7 +18,6 @@ moduloSistema.controller('PasschangeController',
                             if (response.data.status == 200) {
                                 $scope.status = "El password se ha cambiado";
                                 $scope.result = response.data.message;
-
                             } else {
                                 $scope.status = "No se ha cambiado el password";
                             }
