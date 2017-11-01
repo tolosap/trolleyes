@@ -25,14 +25,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-'use strict';
-moduloSistema.controller('LicenseController', ['$scope', '$routeParams', '$location', 'sessionService',
-    function ($scope, $routeParams, $location, sessionService) {
-
-        $scope.op = "License";
-        $scope.session_info = sessionService.getSessionInfo();
-        $scope.isSessionActive = sessionService.isSessionActive();
-    }
-]
-        );
+trolleyes.config(['$locationProvider', function ($locationProvider) {
+        $locationProvider.html5Mode({
+            //requireBase: false,
+            enabled: true
+        });
+    }]);
+//-------------
+trolleyes.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.defaults.withCredentials = true;
+    }]);

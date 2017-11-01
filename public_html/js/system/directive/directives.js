@@ -1,21 +1,22 @@
 /*
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
- * sisane: The stunning micro-library that helps you to develop easily 
- *             AJAX web applications by using Angular.js 1.x & sisane-server
- * sisane is distributed under the MIT License (MIT)
- * Sources at https://github.com/rafaelaznar/sisane
- * 
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ *
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/trolleyes
+ *
+ * TROLLEYES is distributed under the MIT License (MIT)
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,7 +25,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 'use strict';
 
 moduloDirectivas
@@ -38,6 +38,7 @@ moduloDirectivas
                 }
             }
         })
+
         .directive('linkusuario', function () {
             return {
                 restrict: 'E',
@@ -47,6 +48,7 @@ moduloDirectivas
                 }
             }
         })
+
         .directive('linktipodocumento', function () {
             return {
                 restrict: 'E',
@@ -81,11 +83,13 @@ moduloDirectivas
                 }
             };
         })
+
         .directive('focus', function () {
             return function (scope, element) {
                 element[0].focus();
             }
         })
+
         .directive('validatemax', function () {
             return {
                 restrict: 'A',
@@ -110,6 +114,7 @@ moduloDirectivas
                 }
             };
         })
+
         .directive('jqdatepicker', function () {
             return {
                 restrict: "A",
@@ -134,37 +139,32 @@ moduloDirectivas
                     elem.datepicker(options);
                 }
             }
-        }).directive("datetimepicker", function () {
-    return {
-        restrict: "A",
-        require: "ngModel",
-        link: function (scope, elem, attrs, ngModelCtrl) {
-            var updateModel = function (dateText) {
-                // call $apply to bring stuff to angular model
-                scope.$apply(function () {
-                    ngModelCtrl.$setViewValue(dateText);
-                });
-            };
+        })
 
-            var options = {
-                dateFormat: "dd/mm/yy",
-                // handle jquery date change
-                onSelect: function (dateText) {
-                    updateModel(dateText);
+        .directive("datetimepicker", function () {
+            return {
+                restrict: "A",
+                require: "ngModel",
+                link: function (scope, elem, attrs, ngModelCtrl) {
+                    var updateModel = function (dateText) {
+                        // call $apply to bring stuff to angular model
+                        scope.$apply(function () {
+                            ngModelCtrl.$setViewValue(dateText);
+                        });
+                    };
+                    var options = {
+                        dateFormat: "dd/mm/yy",
+                        // handle jquery date change
+                        onSelect: function (dateText) {
+                            updateModel(dateText);
+                        }
+                    };
+                    // jqueryfy the element
+                    elem.datetimepicker($.timepicker.regional['es']);
                 }
-            };
+            }
+        });
 
-            // jqueryfy the element
-            elem.datetimepicker($.timepicker.regional['es']);
-
-
-
-
-        }
-    }
-})
-        ;
-;
 
 
 

@@ -25,14 +25,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-'use strict';
-moduloSistema.controller('LicenseController', ['$scope', '$routeParams', '$location', 'sessionService',
-    function ($scope, $routeParams, $location, sessionService) {
-
-        $scope.op = "License";
-        $scope.session_info = sessionService.getSessionInfo();
-        $scope.isSessionActive = sessionService.isSessionActive();
-    }
-]
-        );
+trolleyes.run(function ($rootScope, $location, sessionService) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        //here's where we notify the auth service with the
+        //url where user wants to go
+        //sessionservice will let or not it go depending on the
+        //call to the server sessionstatus
+        sessionService.setNextURL(next.$$route.originalPath);
+    });
+});
