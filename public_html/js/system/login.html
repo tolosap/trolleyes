@@ -11,54 +11,9 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Entra en el sistema</div>
                                     <div class="panel-body">
-                                        <div class="dropdown">
-                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                Dropdown
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                <li class="dropdown-header">Administrador:</li>
-
-                                                <li><a href="#"  ng-if="debugging"    ng-click="fill('rafael')">rafael</a></li>
-
-                                                <li class="dropdown-header">Coordinador:</li>
-                                                <li><a href="#" ng-if="debugging"   ng-click="fill('coordinadora')">coordinadora</a></li>
-                                                <li role="separator" class="divider"></li>
-                                                <li class="dropdown-header">Profesor:</li>
-
-                                                <li><a href="#"  ng-if="debugging"    ng-click="fill('mariajose')">mariajose</a></li>
-                                                <li><a href="#"  ng-if="debugging"    ng-click="fill('isabel')">isabel</a></li>
-                                                <li><a href="#"  ng-if="debugging"    ng-click="fill('maria')">maria</a></li>
-                                                <li role="separator" class="divider"></li>
-                                                <li class="dropdown-header">Alumno mariajose:</li>
-
-                                                <li><a href="#"  ng-if="debugging"    ng-click="fill('pepe')">pepe</a></li>
-                                                <li><a href="#"  ng-if="debugging"    ng-click="fill('raquel')">raquel</a></li>
-                                                <li><a href="#"  ng-if="debugging"    ng-click="fill('carlos')">carlos</a></li>
-                                                <li role="separator" class="divider"></li>
-                                                <li class="dropdown-header">Alumno isabel:</li>
-
-                                                <li><a href="#" ng-if="debugging"    ng-click="fill('sergio')">sergio</a></li>
-                                                <li><a href="#" ng-if="debugging"    ng-click="fill('ana')">ana</a></li>
-                                                <li role="separator" class="divider"></li>
-                                                <li class="dropdown-header">Alumno maria:</li>
-
-                                                <li><a href="#" ng-if="debugging"    ng-click="fill('pepe')">sandra</a></li>
-                                                <li><a href="#" ng-if="debugging"    ng-click="fill('raquel')">eva</a></li>
-                                                <li role="separator" class="divider"></li>
-                                                <li class="dropdown-header">Registros de alumnos grupo maria josé:</li>
-
-                                                <li><a href="#" ng-if="debugging"    ng-click="fillRegistro('ausias-mariajose-2016-2017')">ausias-mariajose-2016-2017</a></li>
-
-                                                <li class="dropdown-header">Registros de alumnos grupo isabel:</li>
-                                                <li><a href="#" ng-if="debugging"    ng-click="fillRegistro('ausias-isabel-2016-2017')">ausias-isabel-2016-2017</a></li>
-                                                <li class="dropdown-header"> Registros de alumnos grupo maria:</li>
-
-                                                <li><a href="#" ng-if="debugging"    ng-click="fillRegistro('sagunto-maria-2016-2017')">sagunto-maria-2016-2017</a></li>
-                                                <li role="separator" class="divider"></li>
-                                            </ul>
-                                        </div>
-                                        <br />
+                                        <a href="#" class="btn btn-default" ng-if="debugging"    ng-click="fill('pepe')">pepe</a>
+                                        <a href="#"  class="btn btn-default"  ng-if="debugging"    ng-click="fill('ana')">ana</a>                                        
+                                        <br /><br />
                                         <form name="form" ng-submit="login()" role="form">
                                             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                                 <label for="username">Usuario:</label>
@@ -73,27 +28,11 @@
                                             <div class="form-actions">
                                                 <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
                                                 <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-
                                             </div>
                                         </form>
                                         <br />
-
                                     </div>                                    
-                                </div>
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">¿Eres alumno y no tienes cuenta?</div>
-                                    <div class="panel-body">
-                                        Pide a tu profesor el código para darte de alta e introdúcelo aqui:
-                                        <div class="form-group">
-                                            <label for="key">Clave:</label>
-                                            <input type="key" name="key" id="key" class="form-control" ng-model="user.key"  value="rafa" value="rafael" />
-                                            <br />
-                                            <button class="btn btn-primary" ng-click="checkGrupo()">Registrarme</button>
-                                            <span ng-if="checkGrupoStatusMsg" class="help-block">{{checkGrupoStatusMsg}}</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>                                
                             </div>
 
                         </div>

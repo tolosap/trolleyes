@@ -43,5 +43,3 @@ moduloSistema.controller('LoginController',
                 };
             }
         ]);
-
-
