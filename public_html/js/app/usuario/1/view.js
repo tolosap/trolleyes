@@ -40,7 +40,7 @@ moduloUsuario.controller('UsuarioView1Controller', ['$scope', '$routeParams', 's
             $scope.isSessionActive = sessionService.isSessionActive();
             $scope.status = null;
             $scope.debugging = constantService.debugging();
-            serverCallService.promise_getOne($scope.source, $scope.id).then(function (response) {
+            serverCallService.getOne($scope.source, $scope.id).then(function (response) {
                 if (response.status == 200) {
                     if (response.data.status == 200) {
                         $scope.status = null;

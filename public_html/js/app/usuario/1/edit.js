@@ -41,7 +41,7 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                 $scope.debugging = constantService.debugging();
                 $scope.bean = {};
                 $scope.id = $routeParams.id;
-                serverCallService.promise_getOne($scope.source, $scope.id).then(function (response) {
+                serverCallService.getOne($scope.source, $scope.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
@@ -64,7 +64,7 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                 });
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-                    serverCallService.promise_setOne($scope.source, jsonToSend).then(function (response) {
+                    serverCallService.set($scope.source, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;

@@ -71,14 +71,14 @@ moduloUsuario.controller('UsuarioPList1Controller',
 
                 //---
                 function getDataFromServer() {
-                    serverCallService.promise_getCount($scope.source, $scope.filterParams).then(function (response) {
+                    serverCallService.getCount($scope.source, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.message;
                             $scope.pages = serverCallService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.promise_getPage($scope.source, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPage($scope.source, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

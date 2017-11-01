@@ -51,14 +51,14 @@ moduloUsuario.controller('UsuarioSelection1Controller', ['$scope', '$uibModalIns
             $modalInstance.dismiss('cancel');
         }
         function getData() {
-            serverCallService.promise_getCount($scope.ob, $scope.filterParams).then(function (response) {
+            serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                 if (response.status == 200) {
                     $scope.registers = response.data.message;
                     $scope.pages = serverCallService.calculatePages($scope.rpp, $scope.registers);
                     if ($scope.numpage > $scope.pages) {
                         $scope.numpage = $scope.pages;
                     }
-                    return serverCallService.promise_getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $scope.orderParams);
+                    return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $scope.orderParams);
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }

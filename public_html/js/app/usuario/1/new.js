@@ -40,7 +40,7 @@ moduloUsuario.controller('UsuarioNew1Controller',
                 $scope.isSessionActive = sessionService.isSessionActive();
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                serverCallService.promise_getOne($scope.source, 0).then(function (response) {
+                serverCallService.getOne($scope.source, 0).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
@@ -63,7 +63,7 @@ moduloUsuario.controller('UsuarioNew1Controller',
                 });
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-                    serverCallService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;

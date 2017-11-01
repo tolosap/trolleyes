@@ -40,7 +40,7 @@ moduloUsuario.controller('UsuarioRemove1Controller', ['$scope', '$routeParams', 
         $scope.isSessionActive = sessionService.isSessionActive();
         $scope.status = null;
         $scope.debugging = constantService.debugging();
-        serverCallService.promise_getOne($scope.source, $scope.id).then(function (response) {
+        serverCallService.getOne($scope.source, $scope.id).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
@@ -62,7 +62,7 @@ moduloUsuario.controller('UsuarioRemove1Controller', ['$scope', '$routeParams', 
             $scope.status = "Error en la recepción de datos del servidor";
         });
         $scope.remove = function () {
-            serverCallService.promise_removeOne($scope.source, $scope.id).then(function (response) {
+            serverCallService.remove($scope.source, $scope.id).then(function (response) {
                 if (response.status == 200) {
                     if (response.data.status == 200) {
                         if (response.data.message == 1) {
