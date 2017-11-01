@@ -12,7 +12,7 @@ moduloDirectivas.component('dropdown', {
 function dropdown(serverCallService) {
     var self = this;
     this.$onInit = function () {
-        serverCallService.promise_getAll(self.tablereference).then(function (response) {
+        serverCallService.getAll(self.tablereference).then(function (response) {
             self.data = response.data.message.data;
             self.metaobj = response.data.message.metaobj;
             self.metaprops = response.data.message.metaprops;

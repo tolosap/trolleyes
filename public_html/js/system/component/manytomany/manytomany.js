@@ -37,7 +37,7 @@ function manyToMany($uibModal) {
 
 //    function getData(id) {
 //        var filter = '&filter=and,id_' + self.table + ',equa,' + id;
-//        serverService.promise_getAll(self.referencetable.name,filter).then(function (data) {
+//        serverService.getAll(self.referencetable.name,filter).then(function (data) {
 //            var vars = self.referencetable.vars;
 //            var mdata = data.data.message;
 //            var result = [];

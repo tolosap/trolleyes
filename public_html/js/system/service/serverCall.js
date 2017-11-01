@@ -63,7 +63,7 @@ moduloServicios.factory('serverCallService',
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
                     },
-                    promise_getAll: function (strObject, filter, order) {
+                    getAll: function (strObject, filter, order) {
                         if (filter) {
                             if (order) {
                                 return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=1&rpp=1000&filter=' + filter + "&order=" + order, 'GET', '');

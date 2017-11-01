@@ -6,7 +6,7 @@ moduloDirectivas.controller('mtmModal',
 
                 function getData() {
                     var filter = '&filter=and,id_' + currentTable + ',equa,' + id;
-                    serverCallService.promise_getAll(reference.name, filter).then(function (data) {
+                    serverCallService.getAll(reference.name, filter).then(function (data) {
                         var vars = reference.vars;
                         var mdata = data.data.message;
                         var result = [];
