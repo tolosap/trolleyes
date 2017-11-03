@@ -28,45 +28,38 @@
 'use strict';
 
 moduloUsuario.controller('UsuarioView1Controller', ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
-        function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-            $scope.ob = "usuario";
-            $scope.source = "usuario";
-            $scope.op = "view";
-            $scope.profile = 1;
-            //---
-            $scope.id = $routeParams.id;
-            $scope.session_info = sessionService.getSessionInfo();
-            $scope.isSessionActive = sessionService.isSessionActive();
-            $scope.status = null;
-            $scope.debugging = constantService.debugging();
-            serverCallService.getOne($scope.source, $scope.id).then(function (response) {
-                if (response.status == 200) {
-                    if (response.data.status == 200) {
-                        $scope.status = null;
-                        $scope.bean = response.data.message.data;
-                        $scope.metaobj = response.data.message.metaobj;
-                        $scope.metaprops = response.data.message.metaprops;
-
-                        $scope.icon = $scope.metaobj.icon;
-                        $scope.obtitle = $scope.metaobj.name;
-                        $scope.ob = $scope.metaobj.name;
-                        $scope.title = "Vista de " + $scope.obtitle;
-
-                    } else {
-                        $scope.status = "Error en la recepción de datos del servidor";
-                    }
+    function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
+        $scope.title = "Vista de usuario";
+        $scope.icon = "fa-user";
+        $scope.ob = "usuario"        
+        $scope.op = "view";
+        $scope.profile = 1;
+        //---
+        $scope.id = $routeParams.id;
+        $scope.session_info = sessionService.getSessionInfo();
+        $scope.isSessionActive = sessionService.isSessionActive();
+        $scope.status = null;
+        $scope.debugging = constantService.debugging();
+        serverCallService.get($scope.ob, $scope.id).then(function (response) {
+            if (response.status == 200) {
+                if (response.data.status == 200) {
+                    $scope.status = null;
+                    $scope.bean = response.data.json;                                                                                
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
-            }).catch(function (data) {
+            } else {
                 $scope.status = "Error en la recepción de datos del servidor";
-            });
-            $scope.back = function () {
-                window.history.back();
-            };
-            $scope.close = function () {
-                $location.path('/home');
             }
-            ;
+        }).catch(function (data) {
+            $scope.status = "Error en la recepción de datos del servidor";
+        });
+        $scope.back = function () {
+            window.history.back();
+        };
+        $scope.close = function () {
+            $location.path('/home');
         }
+        ;
+    }
 ]);

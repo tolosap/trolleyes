@@ -53,7 +53,7 @@ moduloServicios.factory('serverCallService',
                             }
                         }
                     },
-                    getOne: function (strClass, id) {
+                    get: function (strClass, id) {
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id, 'GET', '');
                     },
                     remove: function (strClass, id) {
