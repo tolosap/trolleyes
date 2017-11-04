@@ -31,65 +31,51 @@ moduloUsuario.controller('UsuarioPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$uibModal', 'sessionService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $uibModal, sessionService, toolService, constantService) {
                 $scope.ob = "usuario";
-                $scope.source = "usuario";
+                $scope.icon = "fa-user";
+                $scope.title = "Listado de usuario";
+                //---
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---
-                $scope.icon = "user";
-                $scope.obtitle = "usuario";
-                $scope.title = "Listado de " + $scope.obtitle;
                 $scope.status = "";
                 //----
-                $scope.session_info = sessionService.getSessionInfo();
-                $scope.isSessionActive = sessionService.isSessionActive();
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
-                $scope.neighbourhood = toolService.getGlobalNeighbourhood();
+                $scope.neighbourhood = constantService.getGlobalNeighbourhood();
+                //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                //---
                 $scope.orderParams = toolService.checkNull($routeParams.order);
                 $scope.filterParams = toolService.getFilter($routeParams.filter);
-                //---
-                //       
+                //---      
                 $scope.visibles = {};
                 $scope.visibles.id = true;
+                $scope.visibles.dni = true;
                 $scope.visibles.nombre = true;
                 $scope.visibles.primer_apellido = true;
                 $scope.visibles.segundo_apellido = true;
                 $scope.visibles.login = true;
                 $scope.visibles.email = true;
-                $scope.visibles.token = true;
-                $scope.visibles.activo = true;
-                $scope.visibles.fecha_alta = true;
-                $scope.visibles.validado = true;
+                $scope.visibles.fecha_nacimiento = true;                
                 $scope.visibles.id_tipousuario = true;
-                $scope.visibles.id_grupo = true;
-                $scope.visibles.id_centro = true;
-                $scope.visibles.id_centrosanitario = true;
-
                 //---
                 function getDataFromServer() {
-                    serverCallService.getCount($scope.source, $scope.filterParams).then(function (response) {
+                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
-                            $scope.registers = response.data.message;
-                            $scope.pages = serverCallService.calculatePages($scope.rpp, $scope.registers);
+                            $scope.registers = response.data.json;
+                            $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPage($scope.source, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
                     }).then(function (response) {
                         if (response.status == 200) {
-                            $scope.page = response.data.message;
-                            //$scope.metaobj = response.data.message.metaobj;
-                            //$scope.metaprops = response.data.message.metaprops;
-                            //
-                            //$scope.icon = $scope.metaobj.icon;
-                            //$scope.obtitle = $scope.metaobj.name;
-                            //$scope.title = "Listado de " + $scope.obtitle;
+                            $scope.page = response.data.json;
                             $scope.status = null;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";

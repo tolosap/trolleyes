@@ -41,15 +41,15 @@ moduloServicios.factory('serverCallService',
                     getPage: function (strObject, rpp, page, filter, order) {
                         if (filter) {
                             if (order) {
-                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + "&filter=" + filter + "&order=" + order, 'GET', '');
+                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&np=' + page + "&rpp=" + rpp + "&filter=" + filter + "&order=" + order, 'GET', '');
                             } else {
-                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + "&filter=" + filter, 'GET', '');
+                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&np=' + page + "&rpp=" + rpp + "&filter=" + filter, 'GET', '');
                             }
                         } else {
                             if (order) {
-                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + "&order=" + order, 'GET', '');
+                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&np=' + page + "&rpp=" + rpp + "&order=" + order, 'GET', '');
                             } else {
-                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp, 'GET', '');
+                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&np=' + page + "&rpp=" + rpp, 'GET', '');
                             }
                         }
                     },
