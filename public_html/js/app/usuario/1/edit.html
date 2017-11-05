@@ -27,7 +27,7 @@
  * THE SOFTWARE.
  */
 -->
-<nav class="navbar navbar-default navbar-fixed-top" ng-include="'js/system/include/menu.html'"></nav>
+<menu></menu>
 <div id="wrapper" ng-cloak>
     <div class="container-fluid">
         <div class="row">
@@ -40,84 +40,26 @@
                             {{bean|json}}
                         </div>
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
-                            <div ng-repeat="f in metaprops">
-                                <!--- id ---------------------------------------------->
-                                <div ng-if="f.name == 'id'" class="form-group" id="{{f.name}}-group">
-                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
-                                    <div class="control col-sm-3">
-                                        <key ide="bean[f.name]"
-                                             name="f.name"
-                                             disable="false"></key>
-                                    </div>
+                            <!------------------------------------------------->                             
+                            <div class="form-group" id="id-group">
+                                <clabel wide="2" name="'id'" longname="'Identificador'" required="true"></clabel>
+                                <div class="control col-sm-3">
+                                    <key ide="bean.id" name="id" disable="false"></key>
                                 </div>
-                                <!-- varchar ------------------------------------------------>
-                                <div ng-if="f.type.startsWith('varchar')"
-                                     id="{{f.name}}-group"
-                                     class="form-group"
-                                     ng-class="{'has-error': (outerForm[f.name].$error.pattern && !outerForm[f.name].$pristine) ||
-                                                             (outerForm[f.name].$error.required && !outerForm[f.name].$pristine)}">
-                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required" />
-                                    <div class="control col-sm-8">
-                                        <texto model="bean[f.name]" name="f.name" longname="f.longname" pattern="f.pattern" length="f.maxlength" required="f.required"></texto>
-                                        <span class="help-block" ng-if="!outerForm[f.name].$pristine && outerForm[f.name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[f.name].$pristine && outerForm[f.name].$error.pattern">El campo no tiene formato adecuado: {{f.help}}</span>
-                                    </div>
-                                </div>
-                                <!------------------------------------------------->
-                                <div ng-if="f.name.startsWith('id_')" class="form-group" ng-init="fname = (f.name).replace('id_', 'obj_')">
-                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
-                                    <div class="control col-sm-4">
-                                        <foreign-key
-                                            bean="bean[fname]"
-                                            form="outerForm"
-                                            name="fname"
-                                            reference="f.reference"
-                                            required="f.required">
-                                        </foreign-key>
-                                    </div>
-                                </div>
-                                <!------------------------------------------------->
-                                <div class="form-group" ng-if="f.type.startsWith('datetime')"
-                                     ng-class="{'has-error':(outerForm.fecha.$error.required ||
-                                                             outerForm.fecha.$error.valid)
-                                                             && !outerForm.fecha.$pristine}">
-                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
-                                    <div class="control col-sm-3">
-                                        <date-time-picker
-                                            name="f.name"
-                                            form="outerForm"
-                                            required="f.required"
-                                            model="bean[f.name]">
-                                        </date-time-picker>
-                                    </div>
-                                </div>
-                                <!------------------------------------------------->
-                                <div class="form-group"
-                                     ng-if="f.type == 'date'"
-                                     id="fecha-group"
-                                     ng-class="{'has-error': (outerForm[f.name].$error.required ||
-                                                             outerForm[f.name].$error.valid)
-                                                             && !outerForm[f.name].$pristine}">
-                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
-                                    <div class="control col-sm-3">
-                                        <date-picker
-                                            name="f.name"
-                                            required="f.required"
-                                            model="bean[f.name]"
-                                            form="outerForm" >
-                                        </date-picker>
-                                    </div>
-                                </div>
-                                <!------------------------------------------------->
-                                <div ng-if="f.type.startsWith('tinyint')" class="form-group">
-                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
-                                    <boolean
-                                        model="bean[f.name]"
-                                        name="f.name">
-                                    </boolean>
-                                </div>
-                                <!------------------------------------------------->
                             </div>
+                            <!-------------------------------------------------> 
+                            <div class="form-group" id="dni-group" 
+                                 ng-class="{'has-error':(outerForm.dni.$error.pattern && !outerForm.dni.$pristine) ||
+                                             (outerForm.dni.$error.required && !outerForm.dni.$pristine)}">
+                                <clabel wide="2" name="'dni'" longname="'DNI'" required="true" />  
+                                <div class="control col-sm-2"> 
+                                    <texto model="bean.dni" name="'dni'" longname="'DNI'" pattern="'^[0-9]{8,8}[A-Z]$'" length="9" required="true"></texto>
+                                    <span class="help-block" ng-if="!outerForm.dni.$pristine && outerForm.dni.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.dni.$pristine && outerForm.dni.$error.pattern">El campo no tiene formato adecuado: Debes introducir un DNI de 8 digitos y una letra mayúscula.</span>
+                                </div>
+                            </div>  
+                            <!-------------------------------------------------> 
+
                             <div class="control-group text-right">
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>

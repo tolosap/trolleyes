@@ -28,31 +28,26 @@
 
 'use strict';
 moduloUsuario.controller('UsuarioEdit1Controller',
-        ['$scope', '$routeParams', '$location', '$filter', '$uibModal', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, $filter, $uibModal, serverCallService, toolService, constantService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, sessionService) {
                 $scope.ob = "usuario";
-                $scope.source = "usuario";
+                $scope.icon = "fa-user";
+                $scope.title = "Listado de usuario";
+                //---
                 $scope.op = "edit";
-                $scope.profile = 1;
-                //--------
-                $scope.session_info = sessionService.getSessionInfo();
-                $scope.isSessionActive = sessionService.isSessionActive();
+                $scope.profile = sessionService.getSessionInfo().obj_tipousuario.id;
+                //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                //---
                 $scope.bean = {};
                 $scope.id = $routeParams.id;
-                serverCallService.getOne($scope.source, $scope.id).then(function (response) {
+                //---
+                serverCallService.get($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.message.data;
-                            $scope.metaobj = response.data.message.metaobj;
-                            $scope.metaprops = response.data.message.metaprops;
-                            //obj metas
-                            $scope.icon = $scope.metaobj.icon;
-                            $scope.obtitle = $scope.metaobj.name;
-                            $scope.title = "Modificación de " + $scope.obtitle;
-
+                            $scope.bean = response.data.json;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -64,7 +59,7 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                 });
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-                    serverCallService.set($scope.source, jsonToSend).then(function (response) {
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;

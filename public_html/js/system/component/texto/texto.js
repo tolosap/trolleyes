@@ -1,8 +1,4 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 moduloDirectivas.component('texto', {
     templateUrl: "js/system/component/texto/texto.html",
@@ -14,8 +10,6 @@ moduloDirectivas.component('texto', {
         pattern: '<',
         length: '<',
         required: '<'
-
     },
     controller: function () {}
-
 });
