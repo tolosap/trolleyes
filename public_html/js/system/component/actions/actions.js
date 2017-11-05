@@ -35,7 +35,7 @@ moduloDirectivas.component('actions', {
                 name: '<'
             }
 });
-function actions(constantService, toolService, $uibModal, sessionService) {
+function actions(constantService, sessionService) {
     var self = this;
     self.appurl = constantService.getCAppUrl();
     self.session_info = sessionService.getSessionInfo();
