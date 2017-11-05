@@ -223,17 +223,12 @@
                                                     <td ng-show="visibles.login">{{obj.login}}</td>
                                                     <td ng-show="visibles.email">{{obj.email}}</td>
                                                     <td ng-show="visibles.fecha_nacimiento">{{obj.fecha_nacimiento}}</td>
-                                                    <td ng-show="visibles.id_tipousuario"><a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>
+                                                    <td ng-show="visibles.id_tipousuario"><a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>                                                   
                                                     <td>
-                                                        <div class="btn-group" role="group">
-                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                Acciones<span class="caret"></span>
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a class="btn btn-default action02" href="{{ob}}/{{profile}}/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
-                                                                <li><a class="btn btn-default action03" href="{{ob}}/{{profile}}/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
-                                                                <li><a class="btn btn-default action04" href="{{ob}}/{{profile}}/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
-                                                            </ul>
+                                                        <div class="btn-toolbar" role="toolbar">
+                                                            <div class="btn-group">
+                                                                <actions id="obj.id" name="ob" profile="profile"></actions>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>

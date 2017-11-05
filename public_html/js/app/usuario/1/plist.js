@@ -28,8 +28,8 @@
 'use strict';
 
 moduloUsuario.controller('UsuarioPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', '$uibModal', 'sessionService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, $uibModal, sessionService, toolService, constantService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$uibModal', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $uibModal, toolService, constantService) {
                 $scope.ob = "usuario";
                 $scope.icon = "fa-user";
                 $scope.title = "Listado de usuario";
