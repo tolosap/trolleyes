@@ -10,6 +10,5 @@ moduloDirectivas.component('texto', {
         pattern: '<',
         length: '<',
         required: '<'
-    },
-    controller: function () {}
+    }
 });

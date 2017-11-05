@@ -9,13 +9,10 @@ moduloDirectivas.component('datePicker', {
         form: '='
     }
 });
-
 function datepickerCtrl() {
     var self = this;
-
     self.change = function () {
         var strFecha = self.model;
-        // El único formato válido es dd/mm/aaaa
         if (strFecha.length != 10) {
             validity(false);
         } else {
@@ -30,7 +27,6 @@ function datepickerCtrl() {
                 validity(false);
         }
     };
-
     var validity = function (isValid) {
         if (self.form) {
             self.form[self.name].$setValidity('valid', isValid);

@@ -7,7 +7,7 @@
            placeholder="dd/mm/aaaa" 
            name="{{dt.name}}" 
            jqdatepicker />
-    <small>{{dt.model| fechaformateada }}</small>
+    <small>{{dt.model|fechaformateada}}</small>
 </div>
 <span class="help-block" ng-if="dt.form[dt.name].$error.required">El campo es obligatorio</span>
 <span class="help-block" ng-if="dt.form[dt.name].$error.valid">Fecha no válida</span>
