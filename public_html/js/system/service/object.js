@@ -33,7 +33,7 @@ moduloServicios.factory('objectService', function () {
                 case "usuario":
                     return 'fa-user';
                     break;
-                case "tipo_usuario":
+                case "tipousuario":
                     return 'fa-user-o';
                     break;              
                 default:
@@ -45,7 +45,7 @@ moduloServicios.factory('objectService', function () {
                 case "usuario":
                     return "Usuario";
                     break;
-                case "tipo_usuario":
+                case "tipousuario":
                     return "Tipo de usuario";
                     break;               
                 default:

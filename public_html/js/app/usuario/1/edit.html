@@ -180,8 +180,7 @@
                                              outerForm.fecha_nacimiento.$error.valid)
                                              && !outerForm.fecha_nacimiento.$pristine}">
                                 <label class="control-label col-sm-2" for="fecha_nacimiento">
-                                    <span ng-show="true">*</span>
-                                    Fecha de nacimiento
+                                    <span>*</span>Fecha de nacimiento
                                 </label>
                                 <div class="control col-sm-2">
                                     <date-picker
@@ -192,9 +191,24 @@
                                     </date-picker>
                                 </div>
                             </div>
-
+<!--
+                            <div class="form-group" id="obj_tipousuario-group">
+                                <label class="control-label col-sm-2" for="obj_tipousuario">
+                                    <span>*</span>Tipo de usuario
+                                </label>
+                                <foreign-key class="col-md-4"
+                                             bean="bean.obj_tipousuario"
+                                             form="outerForm"
+                                             name="obj_tipousuario"                                                 
+                                             reference="tipousuario"
+                                             profile="profile"
+                                             description="descripcion"
+                                             required="true">   
+                                </foreign-key>
+                            </div>
+-->
                             <div class="control-group text-right">
-                                 {{outerForm.$valid}}
+                                {{outerForm.$valid}}
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
                                     <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>

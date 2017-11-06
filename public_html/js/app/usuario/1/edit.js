@@ -39,6 +39,7 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.bean = {};
+                $scope.bean.obj_tipousuario = {"id": null};
                 //---
                 $scope.id = $routeParams.id;
                 //---
