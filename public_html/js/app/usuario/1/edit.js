@@ -28,19 +28,18 @@
 
 'use strict';
 moduloUsuario.controller('UsuarioEdit1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, sessionService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "usuario";
-                $scope.icon = "fa-user";
-                $scope.title = "Listado de usuario";
-                //---
-                $scope.op = "edit";
-                $scope.profile = sessionService.getSessionInfo().obj_tipousuario.id;
+                $scope.op = "view";
+                $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.bean = {};
+                //---
                 $scope.id = $routeParams.id;
                 //---
                 serverCallService.get($scope.ob, $scope.id).then(function (response) {

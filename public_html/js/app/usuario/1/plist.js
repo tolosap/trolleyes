@@ -27,22 +27,19 @@
  */
 'use strict';
 moduloUsuario.controller('UsuarioPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, sessionService, objectService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "usuario";
                 $scope.op = "plist";
-                //---
-
-                $scope.profile = sessionService.getSessionInfo().obj_tipousuario.id;
+                $scope.profile = 1;
                 //---
                 $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
                 $scope.neighbourhood = constantService.getGlobalNeighbourhood();
-                //---
-                $scope.debugging = constantService.debugging();
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
@@ -124,6 +121,7 @@ moduloUsuario.controller('UsuarioPList1Controller',
                     $location.path('/home');
                 };
                 getDataFromServer();
-            }]);
+            }
+        ]);
 
 
