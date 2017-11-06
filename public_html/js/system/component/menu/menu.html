@@ -40,22 +40,18 @@
                 <img style="max-width:100px;" src="images/trolleyes30.png" />
             </a>
         </div>
+     
         <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav" id="appMenu">
-                <li ng-class="{ active: isActive('/home')}"><a href="home">Home</a></li>
+                <li ng-class="{ active: mn.isActive('/home')}"><a href="home">Home</a></li>
 
                 <!-- Administración ------------------------------------------- -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 1">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Usuarios</li>
-                        <li ng-class="{ active: isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i class="fa fa-address-book-o"></i> Usuario</a></li>
-                        <li ng-class="{ active: isActive('/tipousuario/1/plist/')}"><a href="tipousuario/1/plist"> <i class="fa fa-address-book-o"></i> Tipo de Usuario</a></li>
-                        <li class="dropdown-header">Gestión académica</li>
-                        <li ng-class="{ active: isActive('/generic/centro/plist/')}"><a href="generic/centro/plist"> <i class="fa fa-address-book-o"></i> Centro Académico</a></li>
-                        <li ng-class="{ active: isActive('/generic/curso/plist/')}"><a href="generic/curso/plist"> <i class="fa fa-address-book-o"></i> Curso Académico</a></li>
-                        <li class="dropdown-header">Gestión sanitaria</li>
-                        <li ng-class="{ active: isActive('/medico/1/plist')}"><a href="medico/1/plist"> <i class="fa fa-address-book-o"></i> Médico</a></li> 
+                        <li ng-class="{ active: mn.isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i ng-class="'fa ' + mn.object_info.getIcon('usuario')"></i> {{mn.object_info.getName("usuario")}}</a></li>
+                        <li ng-class="{ active: mn.isActive('/tipousuario/1/plist/')}"><a href="tipousuario/1/plist"> <i ng-class="'fa ' + mn.object_info.getIcon('tipo_usuario')"></i> {{mn.object_info.getName("tipo_usuario")}}</a></li>
                     </ul>
                 </li>
                 <!-- Coordinación ------------------------------------------- -->
@@ -114,7 +110,7 @@
                         <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
                     </ul>
                 </li>
-                <li ng-class="{ active: isActive('/license')}"><a href="license"><i class="fa fa-icon-smile"></i>Licencia</a></li>
+                <li ng-class="{ active: mn.isActive('/license')}"><a href="license"><i class="fa fa-icon-smile"></i>Licencia</a></li>
             </ul>
 
 

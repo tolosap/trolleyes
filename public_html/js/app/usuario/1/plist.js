@@ -27,13 +27,12 @@
  */
 'use strict';
 moduloUsuario.controller('UsuarioPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService', 'usuarioService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, sessionService, usuarioService) {
-                $scope.ob = usuarioService.getName();
-                $scope.icon = usuarioService.getIcon();
-                $scope.title = "Listado de " + $scope.ob;
-                //---
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService', 'objectService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, sessionService, objectService) {
+                $scope.ob = "usuario";
                 $scope.op = "plist";
+                //---
+
                 $scope.profile = sessionService.getSessionInfo().obj_tipousuario.id;
                 //---
                 $scope.status = null;
