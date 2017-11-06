@@ -44,9 +44,22 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.orderParams = toolService.checkNull($routeParams.order);
-                $scope.filterParams = toolService.getFilter($routeParams.filter);
+                $scope.orderParams = toolService.checkEmptyString($routeParams.order);
+                $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---      
+                $scope.filter = {};
+                $scope.filter.text = {};
+                $scope.filter.number = {};
+                $scope.filter.date = {};
+                $scope.filter.boolean = {};
+                $scope.filter.foreign = {};
+                $scope.filter.text.field = "";
+                $scope.filter.text.operator = "";
+                $scope.filter.text.value = "";
+                $scope.filter.number.field = "";
+                $scope.filter.number.operator = "";
+                $scope.filter.number.value = "";
+                //---
                 $scope.visibles = {};
                 $scope.visibles.id = true;
                 $scope.visibles.dni = true;
@@ -80,16 +93,25 @@ moduloUsuario.controller('UsuarioPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
-                $scope.dofilter = function () {
-                    if ($scope.filter != "" && $scope.filteroperator != "" && $scope.filtervalue != "") {
-                        if ($routeParams.order && $routeParams.ordervalue) {
-                            if ($routeParams.systemfilter && $routeParams.systemfilteroperator) {
-                                $location.path($scope.ob + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filter).search('filteroperator', $scope.filteroperator).search('filtervalue', $scope.filtervalue).search('order', $routeParams.order).search('ordervalue', $routeParams.ordervalue).search('systemfilter', $routeParams.systemfilter).search('systemfilteroperator', $routeParams.systemfilteroperator).search('systemfiltervalue', $routeParams.systemfiltervalue);
+                $scope.dofilter = function (filterType) {
+                    if (filterType == 0) {
+                        if ($scope.filter.text.field != "" && $scope.filter.text.operator != "" && $scope.filter.text.value != "") {
+                            var newFilter = $scope.filterParams + "+and," + $scope.filter.text.field + "," + $scope.filter.text.operator + "," + $scope.filter.text.value;
+                            if ($scope.orderParams) {
+                                $location.path($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', newFilter).search('order', $scope.orderParams);
                             } else {
-                                $location.path($scope.ob + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filter).search('filteroperator', $scope.filteroperator).search('filtervalue', $scope.filtervalue).search('order', $routeParams.order).search('ordervalue', $routeParams.ordervalue);
+                                $location.path($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', newFilter);
                             }
-                        } else {
-                            $location.path($scope.ob + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filter).search('filteroperator', $scope.filteroperator).search('filtervalue', $scope.filtervalue);
+                        }
+                    }
+                    if (filterType == 1) {
+                        if ($scope.filter.number.field != "" && $scope.filter.number.operator != "" && $scope.filter.number.value != "") {
+                            var newFilter = $scope.filterParams + "+and," + $scope.filter.number.field + "," + $scope.filter.number.operator + "," + $scope.filter.number.value;
+                            if ($scope.orderParams) {
+                                $location.path($scope.ob + '/' + $scope.profile + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', newFilter).search('order', $scope.orderParams);
+                            } else {
+                                $location.path($scope.ob + '/' + $scope.profile + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', newFilter);
+                            }
                         }
                     }
                     return false;

@@ -91,34 +91,48 @@
                                         </div>
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-12">                                                                                                                                                           
+                                                    <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number>
+                                                        <option value="0">Filtrar textos</option>
+                                                        <option value="1">Filtrar por id</option>
+                                                    </select>
                                                     <p></p>
-                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm">
-                                                        <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
+                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="textFilterForm" ng-show="filterType == 0">
+                                                        <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter.text.field">
                                                             <option style="display:none">selecciona un campo</option>
-                                                            <option value="id">identificador</option>
                                                             <option value="dni">dni</option>
                                                             <option value="nombre">nombre</option>
                                                             <option value="primer_apellido">primer apellido</option>
                                                             <option value="segundo_apellido">segundo apellido</option>
                                                             <option value="login">login</option>
-                                                            <option value="email">email</option>                                                           
-                                                            <option value="fecha_nacimiento">fecha de nacimiento</option>
-                                                            <option value="id_tipousuario">tipo de usuario</option>
+                                                            <option value="email">email</option>
                                                         </select>
-                                                        <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
+                                                        <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filter.text.operator">
                                                             <option style="display:none">selecciona una operacion</option>
                                                             <option value="like" ng-selected="true">contiene</option>
-                                                            <option value="notlike">no contiene</option>
-                                                            <option value="equals">es igual a</option>
-                                                            <option value="notequalto">es distinto de</option>
-                                                            <option value="less">es menor que</option>
-                                                            <option value="lessorequal">es menor o igual que</option>
-                                                            <option value="greater">es mayor que</option>
-                                                            <option value="greaterorequal">es mayor o igual que</option>
+                                                            <option value="nlik">no contiene</option>
+                                                            <option value="equa">es igual a</option>
+                                                            <option value="nequ">es distinto de</option>
                                                         </select>
-                                                        <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filtervalue">
-                                                        <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />
+                                                        <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filter.text.value">
+                                                        <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter(filterType)" />
+                                                    </form>
+                                                    <p></p>
+                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm2" ng-show="filterType == 1">
+                                                        <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter.number.field">
+                                                            <option style="display:none">selecciona un campo</option>
+                                                            <option value="id">identificador</option>
+                                                        </select>
+                                                        <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filter.number.operator">
+                                                            <option value="equa"  ng-selected="true">es igual a</option>
+                                                            <option value="nequ">es distinto de</option>
+                                                            <option value="lowe">es menor que</option>
+                                                            <option value="lequ">es menor o igual que</option>
+                                                            <option value="grea">es mayor que</option>
+                                                            <option value="gequ">es mayor o igual que</option>
+                                                        </select>
+                                                        <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filter.number.value">
+                                                        <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter(filterType)" />
                                                     </form>
                                                     <p></p>
                                                 </div>
@@ -222,7 +236,7 @@
                                                     <td ng-show="visibles.login">{{obj.login}}</td>
                                                     <td ng-show="visibles.email">{{obj.email}}</td>
                                                     <td ng-show="visibles.fecha_nacimiento">{{obj.fecha_nacimiento}}</td>
-                                                    <td ng-show="visibles.id_tipousuario"><a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>                                                   
+                                                    <td ng-show="visibles.id_tipousuario"><a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
