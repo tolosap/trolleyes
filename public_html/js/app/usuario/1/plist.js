@@ -27,11 +27,11 @@
  */
 'use strict';
 moduloUsuario.controller('UsuarioPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', '$uibModal', 'toolService', 'constantService', 'sessionService',
-            function ($scope, $routeParams, $location, serverCallService, $uibModal, toolService, constantService, sessionService) {
-                $scope.ob = "usuario";
-                $scope.icon = "fa-user";
-                $scope.title = "Listado de usuario";
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService', 'usuarioService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, sessionService, usuarioService) {
+                $scope.ob = usuarioService.getName();
+                $scope.icon = usuarioService.getIcon();
+                $scope.title = "Listado de " + $scope.ob;
                 //---
                 $scope.op = "plist";
                 $scope.profile = sessionService.getSessionInfo().obj_tipousuario.id;
@@ -56,7 +56,7 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 $scope.visibles.segundo_apellido = true;
                 $scope.visibles.login = true;
                 $scope.visibles.email = true;
-                $scope.visibles.fecha_nacimiento = true;
+                $scope.visibles.fecha_nacimiento = false;
                 $scope.visibles.id_tipousuario = true;
                 //---
                 function getDataFromServer() {
@@ -74,7 +74,6 @@ moduloUsuario.controller('UsuarioPList1Controller',
                     }).then(function (response) {
                         if (response.status == 200) {
                             $scope.page = response.data.json;
-                            $scope.status = null;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

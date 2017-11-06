@@ -27,8 +27,8 @@
  */
 'use strict';
 
-moduloUsuario.controller('UsuarioView1Controller', ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
-    function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
+moduloUsuario.controller('UsuarioView1Controller', ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService', 'usuarioService',
+    function ($scope, $routeParams, serverCallService, $location, sessionService, constantService, usuarioService) {
         $scope.ob = "usuario"
         $scope.icon = "fa-user";
         $scope.title = "Vista de usuario";

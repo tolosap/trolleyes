@@ -95,17 +95,14 @@
                                                         <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
                                                             <option style="display:none">selecciona un campo</option>
                                                             <option value="id">identificador</option>
+                                                            <option value="dni">dni</option>
+                                                            <option value="nombre">nombre</option>
                                                             <option value="primer_apellido">primer apellido</option>
                                                             <option value="segundo_apellido">segundo apellido</option>
                                                             <option value="login">login</option>
-                                                            <option value="email">email</option>
-                                                            <option value="token">token</option>
-                                                            <option value="activo">activo</option>
-                                                            <option value="fecha_alta">fecha de alta</option>
+                                                            <option value="email">email</option>                                                           
+                                                            <option value="fecha_nacimiento">fecha de nacimiento</option>
                                                             <option value="id_tipousuario">tipo de usuario</option>
-                                                            <option value="id_grupo">grupo</option>
-                                                            <option value="id_centro">centro</option>
-                                                            <option value="id_centrosanitario">centro sanitario</option>
                                                         </select>
                                                         <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
                                                             <option style="display:none">selecciona una operacion</option>
@@ -140,7 +137,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{obtitle}}</a>
+                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -153,13 +150,13 @@
                                             <div class="text-center">
                                                 <ul class="list-inline">
                                                     <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
-                                                    <li><input type="checkbox" ng-model="visibles.dni" ng-checked="visibles.id">DNI</li>
+                                                    <li><input type="checkbox" ng-model="visibles.dni" ng-checked="visibles.dni">DNI</li>
                                                     <li><input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre" >Nombre</li>
                                                     <li><input type="checkbox" ng-model="visibles.primer_apellido" ng-checked="visibles.primer_apellido" >Primer_apellido</li>
                                                     <li><input type="checkbox" ng-model="visibles.segundo_apellido" ng-checked="visibles.segundo_apellido" >Segundo_apellido</li>
                                                     <li><input type="checkbox" ng-model="visibles.login" ng-checked="visibles.login" >Login</li>
                                                     <li><input type="checkbox" ng-model="visibles.email" ng-checked="visibles.email">Email</li>
-                                                    <li><input type="checkbox" ng-model="visibles.fecha_nacimiento" ng-checked="visibles.email">Fecha de nacimiento</li>
+                                                    <li><input type="checkbox" ng-model="visibles.fecha_nacimiento" ng-checked="visibles.fecha_nacimiento">Fecha de nacimiento</li>
                                                     <li><input type="checkbox" ng-model="visibles.id_tipousuario" ng-checked="visibles.id_tipousuario">Tipo de usuario</li>
                                                 </ul>
                                             </div>
@@ -171,7 +168,7 @@
                                                     <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
-                                                <th ng-show="visibles.id" class="text-center">
+                                                <th ng-show="visibles.dni" class="text-center">
                                                     <label>DNI</label><br/>
                                                     <a ng-click="doorder('dni', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('dni', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
