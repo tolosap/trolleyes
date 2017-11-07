@@ -39,7 +39,7 @@ moduloUsuario.controller('UsuarioView1Controller',
                 //---
                 $scope.id = $routeParams.id;
                 //---
-                serverCallService.get($scope.ob, $scope.id).then(function (response) {
+                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;

@@ -1,31 +1,32 @@
 moduloDirectivas.component('foreignKey', {
-    templateUrl: "js/system/components/foreignkey/foreignkey.html",
+    templateUrl: "js/system/component/foreignkey/foreignkey.html",
     controllerAs: 'fk',
-    controller: foreignkey,
+    controller: foreignkeyController,
     bindings: {
         bean: '=',
-        form: '=',
+        form: '<',
         name: '<',
         reference: '<',
         description: '<',
         profile: '<',
         required: '<'
     }
-
 });
 
-function foreignkey(toolService, serverCallService, $uibModal) {
+function foreignkeyController(toolService, serverCallService, $uibModal) {
     var self = this;
+    console.log("leyendo controlador ...");
 
-
+// $postLink $onInit  $onChanges  $onDestroy
 
     self.chooseOne = function () {
+        console.log("chooseOne ...");
         var modalInstance = $uibModal.open({
-            templateUrl: 'js/' + self.reference + '/' + self.profile + '/selection.html',
-            controller: toolService.capitalizeWord(self.reference) + self.profile + "SelectionController",
+            templateUrl: 'js/app/' + self.reference + '/' + self.profile + '/selection.html',
+            controller: toolService.capitalizeWord(self.reference) + "Selection" + self.profile + "Controller",
             size: 'lg'
         }).result.then(function (modalResult) {
-            self.change(modalResult);
+            self.change_value(modalResult);
         });
     };
 
@@ -39,27 +40,31 @@ function foreignkey(toolService, serverCallService, $uibModal) {
 
     var oldid = null;
     self.$doCheck = function () {
+        console.log("doCheck ...");
         if (oldid == self.bean.id) {
             return
         } else {
             oldid = self.bean.id;
             console.log("foreign: " + self.bean.id);
-            self.change(self.bean.id);
+            self.change_value(self.bean.id);
         }
     };
 
-    self.change = function (id) {
+    self.change_value = function (id) {
+        console.log("change_value ...");
         if (!self.required && (id <= 0 || id === "" || id === undefined)) {
             self.bean.id = null;
-
             validity(true);
             return;
         }
-        if (self.bean) {
-            serverCallService.get(self.reference, id).then(function (response) {
+        if (self.bean.id > 0) {
+            console.log("petcion: get " + self.reference + " " + id);
+            serverCallService.getOne(self.reference, id).then(function (response) {
+                console.log("llegan los valores...");
                 var old_id = id;
-                self.bean = response.data.message;
-                if (response.data.message.id <= 0) {
+                self.bean = response.data.json;
+                console.log(self.bean);
+                if (response.data.json.id <= 0) {
                     validity(false);
                     self.bean.id = old_id;
                 } else {
@@ -82,13 +87,15 @@ function foreignkey(toolService, serverCallService, $uibModal) {
     };
 
     var validity = function (isValid) {
+        console.log("validity ..." + isValid);
         if (self.form[self.name]) {
             self.form[self.name].$setValidity('exists', isValid);
         }
     };
 
     this.$onInit = function () {
-        self.change(self.bean.id);
+        console.log("on init llamando a change id=" + self.bean.id)
+        self.change_value(self.bean.id);
     }
 }
 

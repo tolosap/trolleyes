@@ -44,6 +44,10 @@ moduloTipousuario.controller('TipousuarioSelection1Controller',
                 $scope.orderParams = null;
                 $scope.filterParams = null;
 
+                $scope.visibles = {};
+                $scope.visibles.id = true;
+                $scope.visibles.descripcion = true;
+
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);
                 };

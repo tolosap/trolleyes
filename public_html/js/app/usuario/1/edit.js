@@ -39,11 +39,11 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.bean = {};
-                $scope.bean.obj_tipousuario = {"id": null};
+                $scope.bean.obj_tipousuario = {"id": 0};
                 //---
                 $scope.id = $routeParams.id;
                 //---
-                serverCallService.get($scope.ob, $scope.id).then(function (response) {
+                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
