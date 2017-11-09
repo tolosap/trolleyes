@@ -30,11 +30,11 @@
 moduloServicios.factory('constantService', function () {
     return {
         getAppUrl: function () {
-            return "http://10.3.9.194:8081/trolleyes-server/json";
+            return "http://127.0.0.1:8081/trolleyes-server/json";
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
         getCAppUrl: function () {
-            return "http://localhost:8080/trolleyes/public_html";
+            return "http://127.0.0.1:8080/trolleyes/public_html";
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
         debugging: function () {
