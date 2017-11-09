@@ -95,6 +95,7 @@
                                                     <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number>
                                                         <option value="0">Filtrar textos</option>
                                                         <option value="1">Filtrar números</option>
+                                                        <option value="2">Filtrar fechas</option>
                                                     </select>
                                                     <p></p>
                                                     <div ng-show="filterType == 0">
@@ -120,6 +121,17 @@
                                                             
                                                     </div>
                                                     <p></p>
+                                                     <div ng-show="filterType == 2">
+                                                        <cplistfilterbydate
+                                                            url="url"
+                                                            fields="[{'name':'fecha_nacimiento','longname':'Fecha de nacimiento'}]"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams">
+                                                        </cplistfilterbydate>
+                                                            
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
