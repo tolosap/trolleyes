@@ -36,6 +36,9 @@ moduloServicios.factory('objectService', function () {
                 case "tipousuario":
                     return 'fa-user-o';
                     break;              
+                case "pedido":
+                    return 'fa-sticky-note-o ';
+                    break;              
                 default:
                     return null;
             }
@@ -47,6 +50,9 @@ moduloServicios.factory('objectService', function () {
                     break;
                 case "tipousuario":
                     return "Tipo de usuario";
+                    break;               
+                case "pedido":
+                    return "Pedido";
                     break;               
                 default:
                     return null;

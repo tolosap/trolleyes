@@ -35,6 +35,7 @@ var trolleyes = angular.module('myApp', [
     'systemControllers',
     'usuarioControllers',
     'tipousuarioControllers',
+    'pedidoControllers',
     'ui.bootstrap',
     'ngSanitize',
     'chart.js'
@@ -48,3 +49,4 @@ var moduloFiltros = angular.module('Filters', []);
 //-------------
 var moduloUsuario = angular.module('usuarioControllers', []);
 var moduloTipousuario = angular.module('tipousuarioControllers', []);
+var moduloPedido = angular.module('pedidoControllers', []);

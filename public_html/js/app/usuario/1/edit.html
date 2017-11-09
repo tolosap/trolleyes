@@ -102,7 +102,7 @@
                                            ng-required="true"
                                            />
                                     <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('nombre')}}</span>
+                                    <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.pattern">El campo no tiene formato adecuado: Los nombres deben comenzar con mayúsculas.</span>
                                 </div>
                             </div>
 
@@ -125,7 +125,7 @@
                                            ng-required="true"
                                            />
                                     <span class="help-block" ng-if="!outerForm.primer_apellido.$pristine && outerForm.primer_apellido.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.primer_apellido.$pristine && outerForm.primer_apellido.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('nombre')}}</span>
+                                    <span class="help-block" ng-if="!outerForm.primer_apellido.$pristine && outerForm.primer_apellido.$error.pattern">El campo no tiene formato adecuado: Los nombres deben comenzar con mayúsculas.</span>
                                 </div>
                             </div>
 
