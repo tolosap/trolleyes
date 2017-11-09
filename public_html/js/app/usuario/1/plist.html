@@ -94,162 +94,155 @@
                                                 <div class="col-md-12">                                                                                                                                                           
                                                     <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number>
                                                         <option value="0">Filtrar textos</option>
-                                                        <option value="1">Filtrar por id</option>
+                                                        <option value="1">Filtrar números</option>
                                                     </select>
                                                     <p></p>
                                                     <div ng-show="filterType == 0">
-                                                        <cplistfilter
+                                                        <cplistfilterbystring
                                                             url="url"
-                                                            fields="[['id','Identificador'],['nombre','Nombre'],['primer_apellido','Primer apellido'],['segundo_apellido','Segundo apellido']]"
+                                                            fields="[{'name':'dni','longname':'DNI'},{'name':'nombre','longname':'Nombre'},{'name':'primer_apellido','longname':'Primer apellido'},{'name':'segundo_apellido','longname':'Segundo apellido'}]"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
-                                                    </cplistfilter>
-                                                </div>
-                                                <p></p>
-                                                <div ng-show="filterType == 1">
-                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm2">
-                                                        <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter.number.field">
-                                                            <option style="display:none">selecciona un campo</option>
-                                                            <option value="id">identificador</option>
-                                                        </select>
-                                                        <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filter.number.operator">
-                                                            <option value="equa"  ng-selected="true">es igual a</option>
-                                                            <option value="nequ">es distinto de</option>
-                                                            <option value="lowe">es menor que</option>
-                                                            <option value="lequ">es menor o igual que</option>
-                                                            <option value="grea">es mayor que</option>
-                                                            <option value="gequ">es mayor o igual que</option>
-                                                        </select>
-                                                        <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filter.number.value">
-                                                        <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter(filterType)" />
-                                                    </form>
-                                                </div>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" id="pane2" class="tab-pane fade">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <p></p>
-                                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
-                                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
-                                                </form>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" id="pane3" class="tab-pane fade">
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <p><br>
-                                                    <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="datos" ng-if="!status">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <div class="text-center">
-                                            <ul class="list-inline">
-                                                <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
-                                                <li><input type="checkbox" ng-model="visibles.dni" ng-checked="visibles.dni">DNI</li>
-                                                <li><input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre" >Nombre</li>
-                                                <li><input type="checkbox" ng-model="visibles.primer_apellido" ng-checked="visibles.primer_apellido" >Primer_apellido</li>
-                                                <li><input type="checkbox" ng-model="visibles.segundo_apellido" ng-checked="visibles.segundo_apellido" >Segundo_apellido</li>
-                                                <li><input type="checkbox" ng-model="visibles.login" ng-checked="visibles.login" >Login</li>
-                                                <li><input type="checkbox" ng-model="visibles.email" ng-checked="visibles.email">Email</li>
-                                                <li><input type="checkbox" ng-model="visibles.fecha_nacimiento" ng-checked="visibles.fecha_nacimiento">Fecha de nacimiento</li>
-                                                <li><input type="checkbox" ng-model="visibles.id_tipousuario" ng-checked="visibles.id_tipousuario">Tipo de usuario</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer" style="font-size: 11px !important;">
-                                        <tr>
-                                            <th ng-show="visibles.id" class="text-center">
-                                                <label>ID.</label><br/>
-                                                <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th ng-show="visibles.dni" class="text-center">
-                                                <label>DNI</label><br/>
-                                                <a ng-click="doorder('dni', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('dni', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th ng-show="visibles.nombre" class="text-center">
-                                                <label>Nombre</label><br/>
-                                                <a ng-click="doorder('nombre', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('nombre', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th ng-show="visibles.primer_apellido" class="text-center">
-                                                <label>Primer apellido</label><br/>
-                                                <a ng-click="doorder('primer_apellido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('primer_apellido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th ng-show="visibles.segundo_apellido" class="text-center">
-                                                <label>Segundo apellido</label><br/>
-                                                <a ng-click="doorder('segundo_apellido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('segundo_apellido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th ng-show="visibles.login" class="text-center">
-                                                <label>Login</label><br/>
-                                                <a ng-click="doorder('login', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('login', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th ng-show="visibles.email" class="text-center">
-                                                <label>Email</label><br/>
-                                                <a ng-click="doorder('email', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('email', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th ng-show="visibles.fecha_nacimiento" class="text-center">
-                                                <label>Fecha de nacimiento</label><br/>
-                                                <a ng-click="doorder('fecha_nacimiento', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('fecha_nacimiento', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th ng-show="visibles.id_tipousuario" class="text-center">
-                                                <label>Tipo</label><br/>
-                                                <a ng-click="doorder('id_tipousuario', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                <a ng-click="doorder('id_tipousuario', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                            </th>
-                                            <th  class="text-center">Acciones</th>
-                                        </tr>
-                                        <tbody>
-                                            <tr ng-repeat="obj in page| filter:searchText">
-                                                <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
-                                                <td ng-show="visibles.dni"><b>{{obj.dni}}</b></td>
-                                                <td ng-show="visibles.nombre">{{obj.nombre}}</td>
-                                                <td ng-show="visibles.primer_apellido">{{obj.primer_apellido}}</td>
-                                                <td ng-show="visibles.segundo_apellido">{{obj.segundo_apellido}}</td>
-                                                <td ng-show="visibles.login">{{obj.login}}</td>
-                                                <td ng-show="visibles.email">{{obj.email}}</td>
-                                                <td ng-show="visibles.fecha_nacimiento">{{obj.fecha_nacimiento}}</td>
-                                                <td ng-show="visibles.id_tipousuario"><a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>
-                                                <td>
-                                                    <div class="btn-toolbar" role="toolbar">
-                                                        <div class="btn-group">
-                                                            <actions id="obj.id" name="ob"></actions>
-                                                        </div>
+                                                        </cplistfilterbystring>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                    <p></p>
+                                                    <div ng-show="filterType == 1">
+                                                        <cplistfilterbynumber
+                                                            url="url"
+                                                            fields="[{'name':'id','longname':'Identificador'}]"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams">
+                                                        </cplistfilterbynumber>
+                                                            
+                                                    </div>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" id="pane2" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p></p>
+                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
+                                                        <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
+                                                    </form>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" id="pane3" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <p><br>
+                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div id="datos" ng-if="!status">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="text-center">
+                                                <ul class="list-inline">
+                                                    <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
+                                                    <li><input type="checkbox" ng-model="visibles.dni" ng-checked="visibles.dni">DNI</li>
+                                                    <li><input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre" >Nombre</li>
+                                                    <li><input type="checkbox" ng-model="visibles.primer_apellido" ng-checked="visibles.primer_apellido" >Primer_apellido</li>
+                                                    <li><input type="checkbox" ng-model="visibles.segundo_apellido" ng-checked="visibles.segundo_apellido" >Segundo_apellido</li>
+                                                    <li><input type="checkbox" ng-model="visibles.login" ng-checked="visibles.login" >Login</li>
+                                                    <li><input type="checkbox" ng-model="visibles.email" ng-checked="visibles.email">Email</li>
+                                                    <li><input type="checkbox" ng-model="visibles.fecha_nacimiento" ng-checked="visibles.fecha_nacimiento">Fecha de nacimiento</li>
+                                                    <li><input type="checkbox" ng-model="visibles.id_tipousuario" ng-checked="visibles.id_tipousuario">Tipo de usuario</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer" style="font-size: 11px !important;">
+                                            <tr>
+                                                <th ng-show="visibles.id" class="text-center">
+                                                    <label>ID.</label><br/>
+                                                    <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.dni" class="text-center">
+                                                    <label>DNI</label><br/>
+                                                    <a ng-click="doorder('dni', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('dni', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.nombre" class="text-center">
+                                                    <label>Nombre</label><br/>
+                                                    <a ng-click="doorder('nombre', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('nombre', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.primer_apellido" class="text-center">
+                                                    <label>Primer apellido</label><br/>
+                                                    <a ng-click="doorder('primer_apellido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('primer_apellido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.segundo_apellido" class="text-center">
+                                                    <label>Segundo apellido</label><br/>
+                                                    <a ng-click="doorder('segundo_apellido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('segundo_apellido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.login" class="text-center">
+                                                    <label>Login</label><br/>
+                                                    <a ng-click="doorder('login', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('login', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.email" class="text-center">
+                                                    <label>Email</label><br/>
+                                                    <a ng-click="doorder('email', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('email', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.fecha_nacimiento" class="text-center">
+                                                    <label>Fecha de nacimiento</label><br/>
+                                                    <a ng-click="doorder('fecha_nacimiento', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('fecha_nacimiento', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.id_tipousuario" class="text-center">
+                                                    <label>Tipo</label><br/>
+                                                    <a ng-click="doorder('id_tipousuario', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('id_tipousuario', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th  class="text-center">Acciones</th>
+                                            </tr>
+                                            <tbody>
+                                                <tr ng-repeat="obj in page| filter:searchText">
+                                                    <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
+                                                    <td ng-show="visibles.dni"><b>{{obj.dni}}</b></td>
+                                                    <td ng-show="visibles.nombre">{{obj.nombre}}</td>
+                                                    <td ng-show="visibles.primer_apellido">{{obj.primer_apellido}}</td>
+                                                    <td ng-show="visibles.segundo_apellido">{{obj.segundo_apellido}}</td>
+                                                    <td ng-show="visibles.login">{{obj.login}}</td>
+                                                    <td ng-show="visibles.email">{{obj.email}}</td>
+                                                    <td ng-show="visibles.fecha_nacimiento">{{obj.fecha_nacimiento}}</td>
+                                                    <td ng-show="visibles.id_tipousuario"><a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>
+                                                    <td>
+                                                        <div class="btn-toolbar" role="toolbar">
+                                                            <div class="btn-group">
+                                                                <actions id="obj.id" name="ob"></actions>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <a class="btn btn-default" href="home">Cerrar</a>
                             </div>
-                            <a class="btn btn-default" href="home">Cerrar</a>
                         </div>
                     </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
                 </div>
-                <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 

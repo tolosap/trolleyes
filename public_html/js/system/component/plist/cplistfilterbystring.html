@@ -2,20 +2,8 @@
 
     <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filterbystring.field">
         <option style="display:none">selecciona un campo</option>
-        <option ng-repeat="field in filterbystring.fields"  value="{{field.name}}">{{field.longname}}</option>                                                                                               
+        <option ng-repeat="field in filterbystring.fields"  value="{{field.name}}">{{field.longname}}</option>
     </select>
-
-<!--
-    <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter.text.field">
-        <option style="display:none">selecciona un campo</option>
-        <option value="dni">dni</option>
-        <option value="nombre">nombre</option>
-        <option value="primer_apellido">primer apellido</option>
-        <option value="segundo_apellido">segundo apellido</option>
-        <option value="login">login</option>
-        <option value="email">email</option>
-    </select>
--->
     <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filterbystring.operator">
         <option style="display:none">selecciona una operacion</option>
         <option value="like" ng-selected="true">contiene</option>
@@ -24,5 +12,5 @@
         <option value="nequ">es distinto de</option>
     </select>
     <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filterbystring.value">
-    <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />
+    <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="filterbystring.dofilter()" />
 </form>

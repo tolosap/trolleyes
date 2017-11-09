@@ -1,5 +1,5 @@
 'use strict';
-moduloDirectivas.component('cplistfilterbystring', {
+moduloDirectivas.component('cplistfilterbynumber', {
     restrict: 'E',
     bindings: {
         url: '<',
@@ -9,8 +9,8 @@ moduloDirectivas.component('cplistfilterbystring', {
         orderparams: '<',
         filterparams: '<'
     },
-    templateUrl: 'js/system/component/plist/cplistfilterbystring.html',
-    controllerAs: 'filterbystring',
+    templateUrl: 'js/system/component/plist/cplistfilterbynumber.html',
+    controllerAs: 'filterbynumber',
     controller:
             ['$location',
                 function ($location) {
