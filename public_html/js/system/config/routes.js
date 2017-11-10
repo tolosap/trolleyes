@@ -45,7 +45,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/passchange', {templateUrl: 'js/system/shared/passchange.html', controller: 'PasschangeController', resolve: {auth: anyAuthenticationPromise}});                
         //------------
         $routeProvider.when('/usuario/1/view/:id', {templateUrl: 'js/app/usuario/1/view.html', controller: 'UsuarioView1Controller', resolve: {auth: authenticationAdministratorPromise}});
-        $routeProvider.when('/usuario/1/new/:id?', {templateUrl: 'js/app/pusuario/1/new.html', controller: 'UsuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/usuario/1/new/:id?', {templateUrl: 'js/app/usuario/1/new.html', controller: 'UsuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/usuario/1/edit/:id', {templateUrl: 'js/app/usuario/1/edit.html', controller: 'UsuarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/usuario/1/remove/:id', {templateUrl: 'js/app/usuario/1/remove.html', controller: 'UsuarioRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/usuario/1/plist/:page?/:rpp?', {templateUrl: 'js/app/usuario/1/plist.html', controller: 'UsuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});                

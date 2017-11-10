@@ -31,43 +31,28 @@ moduloUsuario.controller('UsuarioNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "usuario";
-                $scope.source = "usuario";
                 $scope.op = "new";
                 $scope.profile = 1;
-                //--------
-                $scope.session_info = sessionService.getSessionInfo();
-                $scope.isSessionActive = sessionService.isSessionActive();
+                //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                serverCallService.getOne($scope.source, 0).then(function (response) {
-                    if (response.status == 200) {
-                        if (response.data.status == 200) {
-                            $scope.status = null;
-                            $scope.bean = {};
-                            $scope.metaobj = response.data.message.metaobj;
-                            $scope.metaprops = response.data.message.metaprops;
-                            //obj metas
-                            $scope.icon = $scope.metaobj.icon;
-                            $scope.obtitle = $scope.metaobj.name;
-                            $scope.ob = $scope.metaobj.name;
-                            $scope.title = "Alta de " + $scope.obtitle;
-                        } else {
-                            $scope.status = "Error en la recepción de datos del servidor";
-                        }
-                    } else {
-                        $scope.status = "Error en la recepción de datos del servidor";
-                    }
-                }).catch(function (data) {
-                    $scope.status = "Error en la recepción de datos del servidor";
-                });
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                //---
+                $scope.bean = {};
+                $scope.bean.obj_tipousuario = {"id": 0};
+                //---
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
                     serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;
-                                $scope.status = "El registro " + $scope.obtitle + " se ha creado con id = " + response.data.message;
-                                $scope.bean.id = response.data.message;
+                                if ($scope.op = "edit") {
+                                    $scope.status = "El registro de " + $scope.ob + " con id=" + $scope.data.json + " se ha modificado.";
+                                } else {
+                                    $scope.status = "El registro de " + $scope.ob + " con id=" + $scope.data.json + " se ha creado.";
+                                }
+                                $scope.bean.obj_tipousuario.id = $scope.data.json;
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -81,9 +66,6 @@ moduloUsuario.controller('UsuarioNew1Controller',
                 };
                 $scope.back = function () {
                     window.history.back();
-                };
-                $scope.reload = function () {
-                    $route.reload();
                 };
                 $scope.close = function () {
                     $location.path('/home');

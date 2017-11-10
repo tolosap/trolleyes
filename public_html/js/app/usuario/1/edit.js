@@ -31,7 +31,7 @@ moduloUsuario.controller('UsuarioEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "usuario";
-                $scope.op = "view";
+                $scope.op = "edit";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
@@ -63,8 +63,12 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;
-                                $scope.status = "El registro de " + $scope.obtitle + " con id=" + $scope.bean.id + " se ha modificado.";
-                                $scope.bean.id = $scope.bean.id;
+                                if ($scope.op = "edit") {
+                                    $scope.status = "El registro de " + $scope.ob + " con id=" + $scope.data.json + " se ha modificado.";
+                                } else {
+                                    $scope.status = "El registro de " + $scope.ob + " con id=" + $scope.data.json + " se ha creado.";
+                                }
+                                $scope.bean.obj_tipousuario.id = $scope.data.json;
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
