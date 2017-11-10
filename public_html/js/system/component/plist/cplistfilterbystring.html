@@ -8,8 +8,8 @@
         <option style="display:none">selecciona una operacion</option>
         <option value="like" ng-selected="true">contiene</option>
         <option value="nlik">no contiene</option>
-        <option value="equa">es igual a</option>
-        <option value="nequ">es distinto de</option>
+        <option value="sequa">es igual a</option>
+        <option value="snequ">es distinto de</option>
     </select>
     <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filterbystring.value">
     <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="filterbystring.dofilter()" />
