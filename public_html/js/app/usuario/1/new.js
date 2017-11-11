@@ -47,12 +47,8 @@ moduloUsuario.controller('UsuarioNew1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;
-                                if ($scope.op = "edit") {
-                                    $scope.status = "El registro de " + $scope.ob + " con id=" + $scope.data.json + " se ha modificado.";
-                                } else {
-                                    $scope.status = "El registro de " + $scope.ob + " con id=" + $scope.data.json + " se ha creado.";
-                                }
-                                $scope.bean.obj_tipousuario.id = $scope.data.json;
+                                $scope.status = "El registro se ha creado con id=" + response.data.json;
+                                $scope.bean.id = response.data.json;
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }

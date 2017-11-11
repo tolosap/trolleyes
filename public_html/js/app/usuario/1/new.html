@@ -42,7 +42,7 @@
                             {{bean|json}}
                         </div>
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
-
+                            <!------------------------------------------------->
                             <div class="form-group" id="id-group">
                                 <label class="control-label col-sm-2" for="identificador">
                                     <span ng-show="true">*</span>
@@ -59,7 +59,7 @@
                                            disabled />
                                 </div>
                             </div>
-
+                            <!------------------------------------------------->
                             <div class="form-group" id="dni-group"
                                  ng-class="{'has-error':(outerForm.dni.$error.pattern && !outerForm.dni.$pristine) ||
                                                      (outerForm.dni.$error.required && !outerForm.dni.$pristine)}">
@@ -82,7 +82,7 @@
                                     <span class="help-block" ng-if="!outerForm.dni.$pristine && outerForm.dni.$error.pattern">El campo no tiene formato adecuado: Introduzca un DNI de 8 digitos y una letra mayúscula.</span>
                                 </div>
                             </div>
-
+                            <!------------------------------------------------->
                             <div class="form-group" id="nombre-group"
                                  ng-class="{'has-error':(outerForm.nombre.$error.pattern && !outerForm.nombre.$pristine) ||
                                                      (outerForm.nombre.$error.required && !outerForm.nombre.$pristine)}">
@@ -105,7 +105,7 @@
                                     <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.pattern">El campo no tiene formato adecuado: Los nombres deben comenzar con mayúsculas.</span>
                                 </div>
                             </div>
-
+                            <!------------------------------------------------->
                             <div class="form-group" id="primer_apellido-group"
                                  ng-class="{'has-error':(outerForm.primer_apellido.$error.pattern && !outerForm.primer_apellido.$pristine) ||
                                                      (outerForm.primer_apellido.$error.required && !outerForm.primer_apellido.$pristine)}">
@@ -128,7 +128,7 @@
                                     <span class="help-block" ng-if="!outerForm.primer_apellido.$pristine && outerForm.primer_apellido.$error.pattern">El campo no tiene formato adecuado: Los nombres deben comenzar con mayúsculas.</span>
                                 </div>
                             </div>
-
+                            <!------------------------------------------------->
                             <div class="form-group" id="segundo_apellido-group"
                                  ng-class="{'has-error':(outerForm.segundo_apellido.$error.pattern && !outerForm.segundo_apellido.$pristine) ||
                                                      (outerForm.segundo_apellido.$error.required && !outerForm.segundo_apellido.$pristine)}">
@@ -151,7 +151,30 @@
                                     <span class="help-block" ng-if="!outerForm.segundo_apellido.$pristine && outerForm.segundo_apellido.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('nombre')}}</span>
                                 </div>
                             </div>
-
+                            <!------------------------------------------------->
+                            <div class="form-group" id="login-group"
+                                 ng-class="{'has-error':(outerForm.login.$error.pattern && !outerForm.login.$pristine) ||
+                                                     (outerForm.login.$error.required && !outerForm.login.$pristine)}">
+                                <label class="control-label col-sm-2" for="login">
+                                    <span ng-show="true">*</span>
+                                    Login
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.login"
+                                           type="text"
+                                           class="form-control"
+                                           id="login"
+                                           name="login"
+                                           ng-pattern="/^[a-z][a-z0-9]+$/"
+                                           placeholder="Login"
+                                           maxlength="100"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.login.$pristine && outerForm.login.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.login.$pristine && outerForm.login.$error.pattern">El campo no tiene formato adecuado: Los logins empiezan con letra y sólo llevan minúsculas y números.</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
                             <div class="form-group" id="email-group"
                                  ng-class="{'has-error':(outerForm.email.$error.pattern && !outerForm.email.$pristine) ||
                                                      (outerForm.email.$error.required && !outerForm.email.$pristine)}">
@@ -174,7 +197,7 @@
                                     <span class="help-block" ng-if="!outerForm.email.$pristine && outerForm.email.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('email')}}</span>
                                 </div>
                             </div>
-
+                            <!------------------------------------------------->
                             <div class="form-group" id="fecha-group"
                                  ng-class="{'has-error': (outerForm.fecha_nacimiento.$error.required ||
                                                      outerForm.fecha_nacimiento.$error.valid)
@@ -191,7 +214,7 @@
                                         </date-timer-picker>
                                 </div>
                             </div>
-
+                            <!------------------------------------------------->
                             <div class="form-group" id="obj_tipousuario-group">
                                 <label class="control-label col-sm-2" for="obj_tipousuario">
                                     <span>*</span>Tipo de usuario
@@ -206,11 +229,8 @@
                                     description="['descripcion']"
                                     required="true">
                                 </foreign-key>
-
-
-
                             </div>
-
+                            <!------------------------------------------------->
                             <div class="control-group text-right">                               
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
@@ -219,13 +239,14 @@
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>
                             </div>
+                            <!------------------------------------------------->
                         </form>
                         <div ng-if="status">
                             <div class="alert alert-success" ng-if="response.status == 200">
                                 <h2>{{status}}</h2>
                                 <div class="control-group text-right">
                                     <div class="controls">
-                                        <a class="btn btn-success" ng-href="{{ob}}/{{profile}}/view/{{bean.id}}">Ver {{obtitle}}</a>
+                                        <a class="btn btn-success" ng-href="{{ob}}/{{profile}}/view/{{bean.id}}">Ver registro</a>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +259,7 @@
                             </div>
                             <div class="control-group text-right">
                                 <div class="controls">
-                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{obtitle}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" href="home">Cerrar</a>
                                 </div>
