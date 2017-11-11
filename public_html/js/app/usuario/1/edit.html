@@ -64,8 +64,7 @@
                                  ng-class="{'has-error':(outerForm.dni.$error.pattern && !outerForm.dni.$pristine) ||
                                              (outerForm.dni.$error.required && !outerForm.dni.$pristine)}">
                                 <label class="control-label col-sm-2" for="dni">
-                                    <span ng-show="true">*</span>
-                                    DNI
+                                    * DNI
                                 </label>
                                 <div class="control col-sm-2">
                                     <input ng-model="bean.dni"
@@ -87,8 +86,7 @@
                                  ng-class="{'has-error':(outerForm.nombre.$error.pattern && !outerForm.nombre.$pristine) ||
                                              (outerForm.nombre.$error.required && !outerForm.nombre.$pristine)}">
                                 <label class="control-label col-sm-2" for="nombre">
-                                    <span ng-show="true">*</span>
-                                    Nombre
+                                    * Nombre
                                 </label>
                                 <div class="control col-sm-3">
                                     <input ng-model="bean.nombre"
@@ -110,8 +108,7 @@
                                  ng-class="{'has-error':(outerForm.primer_apellido.$error.pattern && !outerForm.primer_apellido.$pristine) ||
                                              (outerForm.primer_apellido.$error.required && !outerForm.primer_apellido.$pristine)}">
                                 <label class="control-label col-sm-2" for="primer_apellido">
-                                    <span ng-show="true">*</span>
-                                    Primer Apellido
+                                    * Primer Apellido
                                 </label>
                                 <div class="control col-sm-3">
                                     <input ng-model="bean.primer_apellido"
@@ -130,10 +127,8 @@
                             </div>
                             <!------------------------------------------------->
                             <div class="form-group" id="segundo_apellido-group"
-                                 ng-class="{'has-error':(outerForm.segundo_apellido.$error.pattern && !outerForm.segundo_apellido.$pristine) ||
-                                             (outerForm.segundo_apellido.$error.required && !outerForm.segundo_apellido.$pristine)}">
+                                 ng-class="{'has-error':(outerForm.segundo_apellido.$error.pattern && !outerForm.segundo_apellido.$pristine)}">
                                 <label class="control-label col-sm-2" for="primer_apellido">
-                                    <span ng-show="true">*</span>
                                     Segundo Apellido
                                 </label>
                                 <div class="control col-sm-3">
@@ -145,9 +140,8 @@
                                            ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
                                            placeholder="Segundo Apellido"
                                            maxlength="100"
-                                           ng-required="true"
-                                           />
-                                    <span class="help-block" ng-if="!outerForm.segundo_apellido.$pristine && outerForm.segundo_apellido.$error.required">El campo es obligatorio</span>
+                                           ng-required="false"
+                                           />                                    
                                     <span class="help-block" ng-if="!outerForm.segundo_apellido.$pristine && outerForm.segundo_apellido.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('nombre')}}</span>
                                 </div>
                             </div>
@@ -156,8 +150,7 @@
                                  ng-class="{'has-error':(outerForm.login.$error.pattern && !outerForm.login.$pristine) ||
                                              (outerForm.login.$error.required && !outerForm.login.$pristine)}">
                                 <label class="control-label col-sm-2" for="login">
-                                    <span ng-show="true">*</span>
-                                    Login
+                                    * Login
                                 </label>
                                 <div class="control col-sm-3">
                                     <input ng-model="bean.login"
@@ -179,8 +172,7 @@
                                  ng-class="{'has-error':(outerForm.email.$error.pattern && !outerForm.email.$pristine) ||
                                              (outerForm.email.$error.required && !outerForm.email.$pristine)}">
                                 <label class="control-label col-sm-2" for="email">
-                                    <span ng-show="true">*</span>
-                                    Email
+                                    * Email
                                 </label>
                                 <div class="control col-sm-3">
                                     <input ng-model="bean.email"
@@ -203,7 +195,7 @@
                                              outerForm.fecha_nacimiento.$error.valid)
                                              && !outerForm.fecha_nacimiento.$pristine}">
                                 <label class="control-label col-sm-2" for="fecha_nacimiento">
-                                    <span>*</span>Fecha de nacimiento
+                                    * Fecha de nacimiento
                                 </label>
                                 <div class="control col-sm-2">
                                     <date-time-picker
@@ -217,7 +209,7 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="obj_tipousuario-group">
                                 <label class="control-label col-sm-2" for="obj_tipousuario">
-                                    <span>*</span>Tipo de usuario
+                                    * Tipo de usuario
                                 </label>
                                 <foreign-key 
                                     class="col-md-4"                                            
