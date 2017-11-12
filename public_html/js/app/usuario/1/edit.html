@@ -141,7 +141,7 @@
                                            placeholder="Segundo Apellido"
                                            maxlength="100"
                                            ng-required="false"
-                                           />                                    
+                                           />
                                     <span class="help-block" ng-if="!outerForm.segundo_apellido.$pristine && outerForm.segundo_apellido.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('nombre')}}</span>
                                 </div>
                             </div>
@@ -207,23 +207,27 @@
                                 </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="obj_tipousuario-group">
+                            <div class="form-group" id="obj_tipousuario-group"
+                                 ng-class="{'has-error': outerForm.obj_tipousuario.$error.exists}">
                                 <label class="control-label col-sm-2" for="obj_tipousuario">
                                     * Tipo de usuario
                                 </label>
-                                <foreign-key 
-                                    class="col-md-4"                                            
-                                    bean="bean.obj_tipousuario"
-                                    form="outerForm"
-                                    name="'obj_tipousuario'"
-                                    reference="'tipousuario'"
-                                    profile="profile"
-                                    description="['descripcion']"
-                                    required="true">
-                                </foreign-key>
+                                <div class="col-md-4">
+                                    <foreign-key
+                                        bean="bean.obj_tipousuario"
+                                        form="outerForm"
+                                        name="'obj_tipousuario'"
+                                        reference="'tipousuario'"
+                                        profile="profile"
+                                        description="['descripcion']"
+                                        required="true">
+                                    </foreign-key>
+                                    <span class="help-block" ng-if="!outerForm.obj_tipousuario.$pristine && outerForm.obj_tipousuario.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_tipousuario.$pristine && outerForm.obj_tipousuario.$error.exists">El tipo de usuario no existe</span>
+                                </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="control-group text-right">                               
+                            <div class="control-group text-right">
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
                                     <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>

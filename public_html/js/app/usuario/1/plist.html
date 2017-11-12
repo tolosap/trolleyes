@@ -91,7 +91,7 @@
                                         </div>
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-5">
                                                     <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
                                                         <label class="control-label col-sm-3" for="filterSelection">
                                                             Selecciona filtro:
@@ -100,10 +100,11 @@
                                                             <option value="0">Filtrar por dni, nombre, primer apellido, segundo apellido o login</option>
                                                             <option value="1">Filtrar por id</option>
                                                             <option value="2">Filtrar por fecha de nacimiento</option>
-                                                            
+                                                            <option value="3">Filtrar por tipo de usuario</option>                                                            
                                                         </select>
                                                     </form>
-                                                    <p></p>
+                                                </div>
+                                                <div class="col-md-7">
                                                     <div ng-show="filterType == 0">
                                                         <cplistfilterbystring
                                                             url="url"
@@ -124,7 +125,6 @@
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbynumber>
-
                                                     </div>
                                                     <p></p>
                                                     <div ng-show="filterType == 2">
@@ -136,9 +136,19 @@
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbydate>
-
                                                     </div>
-
+                                                    <p></p>
+                                                    <div ng-show="filterType == 3">
+                                                        <cplistfilterbyforeign
+                                                            url="url"
+                                                            field="{'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']}"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams"
+                                                            profile="profile">
+                                                        </cplistfilterbyforeign>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
