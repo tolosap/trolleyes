@@ -73,7 +73,9 @@
                                         required="true"
                                         model="bean.fecha"
                                         form="outerForm">
-                                        </date-timer-picker>
+                                    </date-time-picker>
+                                    <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.valid">El campo no tiene formato adecuado: Debe ser una fecha y hora válidas</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->

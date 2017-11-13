@@ -95,7 +95,7 @@
                                            type="text"
                                            class="form-control"
                                            id="nombre"
-                                           name="nombre" <header ob="ob" title="'Alta de'"></header>
+                                           name="nombre"
                                            ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
                                            placeholder="Nombre"
                                            maxlength="100"
@@ -194,7 +194,7 @@
                                            ng-required="true"
                                            />
                                     <span class="help-block" ng-if="!outerForm.email.$pristine && outerForm.email.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.email.$pristine && outerForm.email.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('email')}}</span>
+                                    <span class="help-block" ng-if="!outerForm.email.$pristine && outerForm.email.$error.pattern">El campo no tiene formato adecuado: Debe ser un email</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
@@ -211,9 +211,12 @@
                                         required="true"
                                         model="bean.fecha_nacimiento"
                                         form="outerForm">
-                                        </date-timer-picker>
+                                        </date-time-picker>
+                                    <span class="help-block" ng-if="!outerForm.fecha_nacimiento.$pristine && outerForm.fecha_nacimiento.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.fecha_nacimiento.$pristine && outerForm.fecha_nacimiento.$error.valid">El campo no tiene formato adecuado: Debe ser una fecha y hora válidas</span>
                                 </div>
                             </div>
+                            
                             <!------------------------------------------------->
                             <div class="form-group" id="obj_tipousuario-group"
                                  ng-class="{'has-error': outerForm.obj_tipousuario.$error.exists}">
