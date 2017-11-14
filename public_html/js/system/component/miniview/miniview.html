@@ -1,12 +1,10 @@
 <table class="table table-condensed table-responsive table-bordered" style ="border-radius: 4px !important;border-color: #ccc !important;">
-
     <tr class="active">
         <td rowspan="2" style ="vertical-align: middle; background-color: #c4cdc1;color: #2f575d;border-color: #ccc"><b>{{ct.nombre}}</b></td>
         <td style ="background-color: #c4cdc1;color: #2f575d;border-color: #ccc" ng-repeat="f in ct.metaprops" class="text-right" ng-if="ct.bean[f.name] && f.type != 'foreign'">
             <b>{{f.longname}}</b> 
         </td>
     </tr>
-
     <tr>
         <td style ="background-color: whitesmoke;color: slategrey;border-color: #ccc;font-size: 12px;" ng-repeat="f in ct.metaprops" class="text-right" ng-if="ct.bean[f.name] && f.type != 'foreign'">
 
