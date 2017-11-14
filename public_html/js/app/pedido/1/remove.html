@@ -58,14 +58,9 @@
                                     </thead>
                                     <tbody>
                                         <tr class="text-left"><td>id</td><td>{{bean.id}}</td></tr>
-                                        <tr><td>DNI</td><td>{{bean.dni}}</td></tr>
-                                        <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr>
-                                        <tr><td>Primer Apellido</td><td>{{bean.primer_apellido}}</td></tr>
-                                        <tr><td>Segundo Apellido</td><td>{{bean.segundo_apellido}}</td></tr>
-                                        <tr><td>Login</td><td>{{bean.login}}</td></tr>
-                                        <tr><td>Email</td><td>{{bean.email}}</td></tr>
-                                        <tr><td>Fecha de nacimiento</td><td>{{bean.fecha_nacimiento}}</td></tr>
-                                        <tr><td>Tipo de usuario</td><td><a href="tipousuario/{{profile}}/view/{{bean.obj_tipousuario.id}}">{{bean.obj_tipousuario.descripcion}}</td></tr>
+                                        <tr><td>IVA</td><td>{{bean.iva}}</td></tr>
+                                        <tr><td>fecha</td><td>{{bean.fecha}}</td></tr>                                       
+                                        <tr><td>Usuario</td><td><a href="usuario/{{profile}}/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.dni}} {{bean.obj_usuario.nombre}} {{bean.obj_usuario.primer_apellido}}</td></tr>
                                     </tbody>
                                 </table>
                                 <div class="control-group text-right">

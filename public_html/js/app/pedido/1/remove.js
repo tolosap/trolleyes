@@ -27,27 +27,17 @@
  */
 
 'use strict';
-moduloPedido.controller('PedidoXEdit1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
+
+moduloPedido.controller('PedidoRemove1Controller',
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService','objectService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService,objectService) {
                 $scope.ob = "pedido";
-                $scope.op = "editXusuario";
+                $scope.op = "remove";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
-                //---
-                $scope.ob = "usuario";
-                $scope.id = $routeParams.id_usuario;
-                
-                $scope.xob = "pedido"
-                $scope.xid = $routeParams.id;
-                
-                $scope.bean = {};
-                $scope.bean.obj_usuario = {"id": $scope.id};
-                $scope.bean.obj_pedido = {"id": $scope.xid};
-                
                 //---
                 $scope.id = $routeParams.id;
                 //---
@@ -57,7 +47,7 @@ moduloPedido.controller('PedidoXEdit1Controller',
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.usuariobean = response.data.json;
+                            $scope.bean = response.data.json;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -67,15 +57,15 @@ moduloPedido.controller('PedidoXEdit1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-                //--
-                $scope.save = function () {
-                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-                    serverCallService.set($scope.xob, jsonToSend).then(function (response) {
+                $scope.remove = function () {
+                    serverCallService.remove($scope.ob, $scope.id).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
-                                $scope.response = response;
-                                $scope.status = "El registro con id=" + $scope.xid + " se ha modificado.";
-                                $scope.bean.id = response.data.json;
+                                if (response.data.json == 1) {
+                                    $scope.status = "El registro con id=" + $scope.id + " se ha eliminado.";
+                                } else {
+                                    $scope.status = "Error en el borrado de datos del servidor";
+                                }
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -85,13 +75,11 @@ moduloPedido.controller('PedidoXEdit1Controller',
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-                    ;
-                };
+                }
                 $scope.back = function () {
                     window.history.back();
                 };
                 $scope.close = function () {
                     $location.path('/home');
                 };
-            }
-        ]);
+            }]);

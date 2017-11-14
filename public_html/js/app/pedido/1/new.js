@@ -25,29 +25,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 'use strict';
 
-moduloUsuario.controller('UsuarioRemove1Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService','objectService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService,objectService) {
-                $scope.ob = "usuario";
-                $scope.op = "remove";
+moduloPedido.controller('PedidoNew1Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService', 'objectService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService, objectService) {
+                $scope.ob = "pedido";
+                $scope.op = "new";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.id = $routeParams.id;
+                //$scope.xob = "usuario";
+                //$scope.xid = $routeParams.id_usuario;
+                //--
+                $scope.bean = {};
+                $scope.bean.obj_usuario = {"id": 0};
                 //---
                 $scope.objectService = objectService;
                 //---
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                /*serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json;
+                            $scope.usuariobean = response.data.json;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -56,16 +59,16 @@ moduloUsuario.controller('UsuarioRemove1Controller',
                     }
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
-                });
-                $scope.remove = function () {
-                    serverCallService.remove($scope.ob, $scope.id).then(function (response) {
+                });*/
+                //--
+                $scope.save = function () {
+                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
-                                if (response.data.json == 1) {
-                                    $scope.status = "El registro con id=" + $scope.id + " se ha eliminado.";
-                                } else {
-                                    $scope.status = "Error en el borrado de datos del servidor";
-                                }
+                                $scope.response = response;
+                                $scope.status = "El registro se ha creado con id=" + response.data.json;
+                                $scope.bean.id = response.data.json;
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -75,11 +78,14 @@ moduloUsuario.controller('UsuarioRemove1Controller',
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-                }
+                    ;
+                };
                 $scope.back = function () {
                     window.history.back();
                 };
                 $scope.close = function () {
                     $location.path('/home');
                 };
-            }]);
+            }
+        ]);
+
