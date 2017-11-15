@@ -39,6 +39,12 @@ moduloServicios.factory('objectService', function () {
                 case "pedido":
                     return 'fa fa-sticky-note-o ';
                     break;              
+                case "producto":
+                    return 'fa-product-hunt';
+                    break;              
+                case "linea_pedido":
+                    return 'fa fa-bars';
+                    break;              
                 default:
                     return null;
             }
@@ -53,6 +59,12 @@ moduloServicios.factory('objectService', function () {
                     break;               
                 case "pedido":
                     return "Pedido";
+                    break;               
+                case "producto":
+                    return "Producto";
+                    break;               
+                case "linea_pedido":
+                    return "Linea de Pedido";
                     break;               
                 default:
                     return null;

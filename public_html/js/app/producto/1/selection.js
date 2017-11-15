@@ -28,10 +28,10 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioSelection1Controller',
-        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService','objectService',
-            function ($scope, $modalInstance, serverCallService, $location, toolService, objectService) {
-                $scope.ob = 'usuario';
+moduloProducto.controller('ProductoSelection1Controller',
+        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
+            function ($scope, $modalInstance, serverCallService, $location, toolService) {
+                $scope.ob = 'producto';
                 $scope.op = "selection";
                 //---
                 $scope.numpage = 1;
@@ -40,19 +40,16 @@ moduloUsuario.controller('UsuarioSelection1Controller',
                 //---
                 $scope.status = null;
                 $scope.debugging = true;
-                $scope.objectService = objectService;
                 //---
                 $scope.orderParams = null;
                 $scope.filterParams = null;
 
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.dni = true;
-                $scope.visibles.nombre = true;
-                $scope.visibles.primer_apellido = true;
-                $scope.visibles.segundo_apellido = true;
-                $scope.visibles.login = true;
-                $scope.visibles.email = true;
+                $scope.visibles.codigo = true;
+                $scope.visibles.descripcion = true;
+                $scope.visibles.existencias = true;
+                $scope.visibles.precio = true;
 
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);
