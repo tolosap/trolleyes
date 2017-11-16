@@ -26,14 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPedido.controller('PedidoXusuarioPList1Controller',
+moduloPedido.controller('PedidoXproductoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
                 $scope.ob = "pedido";
-                $scope.op = "plistXusuario";
+                $scope.op = "plistXproducto";
                 $scope.profile = 1;
-                $scope.xob = "usuario";
-                $scope.xid = $routeParams.id_usuario;
+                $scope.xob = "producto";
+                $scope.xid = $routeParams;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();

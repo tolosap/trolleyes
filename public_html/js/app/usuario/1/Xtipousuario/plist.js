@@ -26,13 +26,13 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPedido.controller('PedidoXusuarioPList1Controller',
+moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
-                $scope.ob = "pedido";
-                $scope.op = "plistXusuario";
+                $scope.ob = "usuario";
+                $scope.op = "plistXtipousuario";
                 $scope.profile = 1;
-                $scope.xob = "usuario";
+                $scope.xob = "tipousuario";
                 $scope.xid = $routeParams.id_usuario;
                 //---
                 $scope.status = null;
@@ -48,10 +48,14 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                 //---
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.fecha = true;
-                $scope.visibles.id_usuario = false;
-                $scope.visibles.tiene_iva = true;
-                $scope.visibles.iva = true;
+                $scope.visibles.dni = true;
+                $scope.visibles.nombre = true;
+                $scope.visibles.primer_apellido = true;
+                $scope.visibles.segundo_apellido = true;
+                $scope.visibles.login = true;
+                $scope.visibles.email = true;
+                $scope.visibles.fecha_nacimiento = false;
+                $scope.visibles.id_tipousuario = true;
                 //--
                 $scope.filterString = null;
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
