@@ -38,8 +38,8 @@ moduloTipousuario.controller('TipousuarioNew1Controller',
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.bean = {};
-                $scope.bean.obj_tipousuario = {"id": 0};
+                //$scope.bean = {};
+                //$scope.bean.obj_tipousuario = {"id": 0};
                 //---
                 $scope.objectService = objectService;
                 //---

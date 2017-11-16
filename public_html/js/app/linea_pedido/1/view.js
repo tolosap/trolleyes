@@ -26,10 +26,10 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPedido.controller('PedidoView1Controller',
+moduloLineadepedido.controller('LineadepedidoView1Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService','objectService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService,objectService) {
-                $scope.ob = "pedido";
+                $scope.ob = "linea_pedido";
                 $scope.op = "view";
                 $scope.profile = 1;
                 //---
@@ -38,6 +38,7 @@ moduloPedido.controller('PedidoView1Controller',
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.id = $routeParams.id;
+                //---
                 $scope.objectService = objectService;
                 //---
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {

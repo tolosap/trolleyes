@@ -46,10 +46,8 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                 //---
                 $scope.objectService = objectService;
                 //---
-                $scope.filterString = [{'name': 'dni', 'longname': 'DNI'}, {'name': 'nombre', 'longname': 'Nombre'}, {'name': 'primer_apellido', 'longname': 'Primer apellido'}, {'name': 'segundo_apellido', 'longname': 'Segundo apellido'}, {'name': 'login', 'longname': 'Login'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
-                $scope.filterDate = [{'name': 'fecha_nacimiento', 'longname': 'Fecha de nacimiento'}];
-                $scope.filterBoolean = null;
+                $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripcion'}];
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];                
                 $scope.filterTipousuario = {'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']};
                 
                 //---

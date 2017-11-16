@@ -38,14 +38,14 @@ moduloPedido.controller('PedidoXEdit1Controller',
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.ob = "usuario";
-                $scope.id = $routeParams.id_usuario;
+                $scope.yob = "usuario";
+                $scope.yid = $routeParams.id_usuario;
                 
                 $scope.xob = "pedido"
                 $scope.xid = $routeParams.id;
                 
                 $scope.bean = {};
-                $scope.bean.obj_usuario = {"id": $scope.id};
+                $scope.bean.obj_usuario = {"id": $scope.yid};
                 $scope.bean.obj_pedido = {"id": $scope.xid};
                 
                 //---
@@ -53,7 +53,7 @@ moduloPedido.controller('PedidoXEdit1Controller',
                 //---
                 $scope.objectService = objectService;
                 //---
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                serverCallService.getOne($scope.yob, $scope.yid).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
