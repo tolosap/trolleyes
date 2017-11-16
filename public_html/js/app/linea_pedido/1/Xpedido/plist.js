@@ -34,6 +34,7 @@ moduloLineadepedido.controller('LineadepedidoXpedidoPList1Controller',
                 $scope.profile = 1;
                 $scope.xob = "pedido";
                 $scope.xid = $routeParams.id_pedido;
+                $scope.prod = "producto"
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();

@@ -100,7 +100,7 @@
                                                             <option value="0">Filtrar por dni, nombre, primer apellido, segundo apellido o login</option>
                                                             <option value="1">Filtrar por id</option>
                                                             <option value="2">Filtrar por fecha de nacimiento</option>
-                                                            <option value="3">Filtrar por tipo de usuario</option>                                                            
+                                                            <option value="3">Filtrar por tipo de usuario</option>
                                                         </select>
                                                     </form>
                                                 </div>
@@ -181,7 +181,7 @@
                                                 <ul class="list-inline">
                                                     <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
                                                     <li><input type="checkbox" ng-model="visibles.cantidad" ng-checked="visibles.cantidad">Cantidad</li>
-                                                    <li><input type="checkbox" ng-model="visibles.id_pedido" ng-checked="visibles.id_pedido" >ID de Pedido</li>                                                   
+                                                    <li><input type="checkbox" ng-model="visibles.id_pedido" ng-checked="visibles.id_pedido" >ID de Pedido</li>
                                                     <li><input type="checkbox" ng-model="visibles.id_producto" ng-checked="visibles.id_producto">ID de Producto</li>
                                                 </ul>
                                             </div>
@@ -207,13 +207,13 @@
                                                     <label>ID Producto</label><br/>
                                                     <a ng-click="doorder('id_producto', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('id_producto', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>                                                
+                                                </th>
                                                 <th  class="text-center">Acciones</th>
                                             </tr>
                                             <tbody>
                                                 <tr ng-repeat="obj in page| filter:searchText">
                                                     <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
-                                                    <td ng-show="visibles.cantidad"><b>{{obj.cantidad}}</b></td>                     
+                                                    <td ng-show="visibles.cantidad"><b>{{obj.cantidad}}</b></td>
                                                     <td ng-show="visibles.id_pedido" class="text-center">
                                                         <a href="pedido/{{profile}}/view/{{obj.obj_pedido.id}}">{{obj.obj_pedido.id}}</a>
                                                     </td>
@@ -224,9 +224,6 @@
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <actions id="obj.id" name="ob"></actions>
-                                                                <a class="btn btn-default btn-xs" title="Pedidos" href="pedido/{{profile}}/plistXusuario/{{obj.id}}/1/10">
-                                                                    <span ng-class="objectService.getIcon('pedido')"></span>
-                                                                </a>
                                                             </div>
                                                         </div>
                                                     </td>
