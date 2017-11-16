@@ -33,14 +33,13 @@ moduloPedido.controller('PedidoXusuarioNew1Controller',
                 $scope.ob = "pedido";
                 $scope.op = "newXusuario";
                 $scope.profile = 1;
+                $scope.xob = "usuario";
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                //$scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.xob = "usuario";
-                $scope.xid = $routeParams.id_usuario;
-                //--
                 $scope.bean = {};
                 $scope.bean.obj_usuario = {"id": $scope.xid};
                 //---

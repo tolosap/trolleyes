@@ -26,15 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPedido.controller('PedidoXproductoPList1Controller',
+moduloLineadepedido.controller('LineadepedidoXpedidoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
-                $scope.ob = "pedido";
+                $scope.ob = "linea_pedido";
                 $scope.op = "plistXproducto";
                 $scope.profile = 1;
-                $scope.xob = "producto";
-                $scope.xid = $routeParams.id_producto;
-                $scope.ped = "linea_pedido";
+                $scope.xob = "pedido";
+                $scope.xid = $routeParams.id_pedido;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
@@ -76,14 +75,14 @@ moduloPedido.controller('PedidoXproductoPList1Controller',
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-                    serverCallService.getCountX($scope.ped, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPageX($scope.ped, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

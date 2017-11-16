@@ -51,6 +51,8 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/1/plist/:page?/:rpp?', {templateUrl: 'js/app/usuario/1/plist.html', controller: 'UsuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});                
         
         $routeProvider.when('/usuario/1/plistXtipousuario/:id_usuario/:page?/:rpp?', {templateUrl: 'js/app/usuario/1/Xtipousuario/plist.html', controller: 'UsuarioXtipousuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});                
+        $routeProvider.when('/usuario/1/newXtipousuario/:id_usuario', {templateUrl: 'js/app/usuario/1/Xtipousuario/new.html', controller: 'UsuarioXtipousuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});       
+
         //------------
         //$routeProvider.when('/tipousuario/1/selection/:page?/:rpp?', {templateUrl: 'js/app/tipousuario/1/selection.html', controller: 'TipousuarioSelection1Controller', resolve: {auth: authenticationAdministratorPromise}});                
         //$routeProvider.when('/usuario/1/selection/:page?/:rpp?', {templateUrl: 'js/app/usuario/1/selection.html', controller: 'UsuarioSelection1Controller', resolve: {auth: authenticationAdministratorPromise}});                
@@ -85,6 +87,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/linea_pedido/1/remove/:id', {templateUrl: 'js/app/linea_pedido/1/remove.html', controller: 'LineadepedidoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/linea_pedido/1/new/', {templateUrl: 'js/app/linea_pedido/1/new.html', controller: 'LineadepedidoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
 
-        
+        $routeProvider.when('/linea_pedido/1/plistXpedido/:id_pedido/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/1/Xpedido/plist.html', controller: 'LineadepedidoXpedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Alta de ' + objectService.getName(ob)"></header>
+                        <header ob="ob" title="'Alta de ' + objectService.getName(ob) +' ['+ bean.obj_tipousuario.descripcion+']'"></header>
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-success" role="alert" ng-if="debugging">
@@ -50,7 +50,7 @@
                                 </label>
                                 <div class="control col-sm-2">
                                     <input type="text"
-                                           ng-model="bean.id"
+                                           ng-model="bean.obj_tipousuario.id"
                                            id="id"
                                            class="form-control"
                                            name="id"
@@ -218,13 +218,13 @@
                             </div>
                             
                             <!------------------------------------------------->
-                            <div class="form-group" id="obj_tipousuario-group"
+                            <div class="form-group" id="obj_tipousuario-group "
                                  ng-class="{'has-error': outerForm.obj_tipousuario.$error.exists}">
                                 <label class="control-label col-sm-2" for="obj_tipousuario">
                                     * Tipo de usuario
                                 </label>
-                                <div class="col-md-4">
-                                    <foreign-key
+                                <div class="col-md-4" ng-disabled="true">
+                                    <foreign-key2
                                         bean="bean.obj_tipousuario"
                                         form="outerForm"
                                         name="'obj_tipousuario'"
@@ -232,16 +232,17 @@
                                         profile="profile"
                                         description="['descripcion']"
                                         required="true">
-                                    </foreign-key>
+                                    </foreign-key2>
                                     <span class="help-block" ng-if="!outerForm.obj_tipousuario.$pristine && outerForm.obj_tipousuario.$error.required">El campo es obligatorio</span>
                                     <span class="help-block" ng-if="!outerForm.obj_tipousuario.$pristine && outerForm.obj_tipousuario.$error.exists">El tipo de usuario no existe</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
+                            <!------------------------------------------------->
                             <div class="control-group text-right">                               
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                                    <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plistXtipousuario/{{bean.obj_tipousuario.id}}/1/10">Ir al listado de {{ob}} [{{bean.obj_tipousuario.descripcion}}]</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>
@@ -266,7 +267,7 @@
                             </div>
                             <div class="control-group text-right">
                                 <div class="controls">
-                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plistXtipousuario/{{ob.obj_usuario.id}}/1/10">Ir al listado de {{ob}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" href="home">Cerrar</a>
                                 </div>
