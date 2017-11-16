@@ -223,17 +223,14 @@
                                                     <td ng-show="visibles.fecha"><b>{{obj.fecha}}</b></td>
                                                     <td ng-show="visibles.iva">{{obj.iva}}</td>
                                                     <td ng-show="visibles.id_usuario" class="text-center">
-                                                        <a href="usuario/{{profile}}/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.id}}</a>
+                                                        <a href="usuario/{{profile}}/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.id}} {{obj.obj_usuario.nombre}}</a>
                                                     </td>
                                                     <td ng-show="visibles.tiene_iva">{{obj.tiene_iva}}</td>                                                    
                                                     
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
-                                                                <actions2 id="obj.id" name="ob"></actions2>
-                                                                <a class="btn btn-default btn-xs" title="Pedidos" href="pedido/{{profile}}/plistXusuario/{{obj.id}}/1/10">
-                                                                    <span ng-class="objectService.getIcon('pedido')"></span>
-                                                                </a>
+                                                                <actions2 id="obj.id" idforeign="obj.obj_usuario.id" name="ob"></actions2>
                                                             </div>
                                                         </div>
                                                     </td>

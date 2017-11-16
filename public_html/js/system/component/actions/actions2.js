@@ -5,11 +5,13 @@ moduloDirectivas.component('actions2', {
     bindings:
             {
                 id: '<',
-                name: '<'
+                name: '<',
+                idforeign: '<'
             }
 });
 function actions2(constantService, sessionService) {
     var self = this;
+    //self.idforeign.id = obj.obj_usuario.id;
     self.appurl = constantService.getCAppUrl();
     self.session_info = sessionService.getSessionInfo();
     self.isSessionActive = sessionService.isSessionActive();
