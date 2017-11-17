@@ -61,7 +61,7 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="cantidad-group"
                                  ng-class="{'has-error':(outerForm.cantidad.$error.pattern && !outerForm.cantidad.$pristine) ||
-                                                     (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}">
+                                             (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}">
                                 <label class="control-label col-sm-2" for="existencias">
                                     * Existencias
                                 </label>
@@ -80,30 +80,6 @@
                                 </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="cantidad-group"
-                                 ng-class="{'has-error':(outerForm.cantidad.$error.pattern && !outerForm.cantidad.$pristine) ||
-                                                     (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}">
-                                <label class="control-label col-sm-2" for="existencias">
-                                    ¿Necesita crear un pedido nuevo?
-                                </label>
-                                <div class="control col-sm-2">
-                                    <label class="container">
-                                        <input type="checkbox" ng-model="estaschecked" ng-checked="estaschecked">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group" id="cantidad-group"
-                                 ng-class="{'has-error':(outerForm.cantidad.$error.pattern && !outerForm.cantidad.$pristine) ||
-                                                     (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}" ng-show="estaschecked">
-                                <label class="control-label col-sm-2" for="existencias">
-                                    * Crear nuevo pedido
-                                </label>
-                                <div class="control col-sm-2">
-                                    <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
-                                </div>
-                            </div>
-                            <!-------------------------------------------------><!------------------------------------------------->
                             <div class="form-group" id="obj_pedido-group"
                                  ng-class="{'has-error': outerForm.obj_pedido.$error.exists}">
                                 <label class="control-label col-sm-2" for="obj_pedido">

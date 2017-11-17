@@ -35,7 +35,6 @@ moduloPedido.controller('PedidoXproductoNew1Controller',
                 $scope.profile = 1;
                 $scope.xob = "producto";
                 $scope.xid = $routeParams.id_producto;
-                $scope.estaschecked = false;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();

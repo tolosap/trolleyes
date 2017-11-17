@@ -26,11 +26,11 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloCarrito.controller('CarritoPList1Controller',
+moduloCarrito.controller('CarritoList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
                 $scope.ob = "carrito";
-                $scope.op = "plist";
+                $scope.op = "list";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
