@@ -53,11 +53,9 @@ moduloLineadepedido.controller('LineadepedidoXpedidoPList1Controller',
                 $scope.visibles.id_pedido = true;
                 $scope.visibles.id_producto = true;
                 //--
-                $scope.filterString = null;
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
-                $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha de pedido'}];
-                $scope.filterBoolean = [{'name': 'tiene_iva', 'longname': '¿Lleva IVA el pedido?'}];
-                $scope.filterUsuario = {'name': 'id_usuario', 'longname': 'Usuario cliente', 'reference': 'usuario', 'description': ['nombre', 'primer_apellido', 'segundo_apellido']};
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name':'cantidad','longname':'Cantidad'}];
+                $scope.filterIDPedido = {'name':'id_pedido','longname':'ID de Pedido','reference':'pedido','description':['id']};
+                $scope.filterIDProducto = {'name':'id_producto','longname':'ID de Producto','reference':'producto','description':['id','descripcion']};
                 //---
                 $scope.objectService = objectService;
                 //---

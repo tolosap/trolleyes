@@ -47,10 +47,11 @@ moduloPedido.controller('PedidoPList1Controller',
                 $scope.objectService = objectService;
                 //---
                 //$scope.filterString = [{'name': 'dni', 'longname': 'DNI'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
+                $scope.filterString = null;
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}, {'name':'iva', 'longname':'Cantidad IVA'}];
                 $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha de pedido'}];
-                $scope.filterBoolean = {'name':'tiene_iva', 'longname':'Tiene IVA'};
-                $scope.filterIDUser = {'name':'id_usuario','longname':'ID Usuario','reference':'usuario','id':['id']};
+                $scope.filterBoolean = [{'name': 'tiene_iva', 'longname': '¿Lleva IVA el pedido?'}];
+                $scope.filterUsuario = {'name': 'id_usuario', 'longname': 'Usuario cliente', 'reference': 'usuario', 'description': ['nombre']};
                 
                 //---
                 $scope.visibles = {};

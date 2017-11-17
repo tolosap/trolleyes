@@ -41,7 +41,7 @@ moduloPedido.controller('PedidoXproductoNew1Controller',
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.bean = {};
-                $scope.bean.obj_tipousuario = {"id": $scope.xid};
+                $scope.bean.obj_producto = {"id": $scope.xid};
                 //---
                 $scope.objectService = objectService;
                 //---

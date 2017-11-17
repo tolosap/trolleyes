@@ -54,7 +54,7 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                 $scope.visibles.iva = true;
                 //--
                 $scope.filterString = null;
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}, {'name':'iva', 'longname':'Cantidad IVA'}];
                 $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha de pedido'}];
                 $scope.filterBoolean = [{'name': 'tiene_iva', 'longname': '¿Lleva IVA el pedido?'}];
                 $scope.filterUsuario = {'name': 'id_usuario', 'longname': 'Usuario cliente', 'reference': 'usuario', 'description': ['nombre', 'primer_apellido', 'segundo_apellido']};

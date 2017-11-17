@@ -61,12 +61,13 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="cantidad-group"
                                  ng-class="{'has-error':(outerForm.cantidad.$error.pattern && !outerForm.cantidad.$pristine) ||
-                                             (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}">
+                                                     (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}">
                                 <label class="control-label col-sm-2" for="existencias">
                                     * Existencias
                                 </label>
                                 <div class="control col-sm-2">
-                                    <input type="text"
+                                    <input ng-model="bean.cantidad"
+                                           type="text"
                                            class="form-control"
                                            id="cantidad"
                                            name="cantidad"

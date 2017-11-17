@@ -167,7 +167,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
+                                                        <a class="btn btn-primary" href="{{ped}}/{{profile}}/newXproducto/{{xid}}">Crear un nuevo {{ob}} para [{{usuariobean.descripcion}}]</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -215,8 +215,12 @@
                                                 <tr ng-repeat="obj in page| filter:searchText">
                                                     <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
                                                     <td ng-show="visibles.cantidad"><b>{{obj.cantidad}}</b></td>
-                                                    <td ng-show="visibles.id_pedido">{{obj.obj_pedido.id}}</td>
-                                                    <td ng-show="visibles.id_producto">{{obj.obj_producto.id}} ({{obj.obj_producto.descripcion}})</td>
+                                                    <td ng-show="visibles.id_pedido">
+                                                        <a href="pedido/{{profile}}/view/{{obj.obj_pedido.id}}">{{obj.obj_pedido.id}}</a>
+                                                    </td>
+                                                    <td ng-show="visibles.id_producto">
+                                                        <a href="producto/{{profile}}/view/{{obj.obj_producto.id}}">{{obj.obj_producto.id}} ({{obj.obj_producto.descripcion}})</a>
+                                                    </td>
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">

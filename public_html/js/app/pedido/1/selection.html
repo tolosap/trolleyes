@@ -167,7 +167,7 @@ THE SOFTWARE.
                                 <td ng-show="visibles.fecha"><b>{{obj.fecha}}</b></td>
                                 <td ng-show="visibles.iva"><b>{{obj.iva}}</b></td>
                                 <td ng-show="visibles.obj_usuario.id"><b>{{obj.obj_usuario.id}}</b></td>
-                                <td ng-show="visibles.tiene_iva"><b>{{obj.tiene_iva}}</b></td>
+                                <td ng-show="visibles.tiene_iva" class="text-center" ng-bind-html="obj.tiene_iva | booleanizate"><b>{{obj.tiene_iva}}</b></td>
                                 <td plistoperationbarspa></td>
                             </tr>
                         </tbody>

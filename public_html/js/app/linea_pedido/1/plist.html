@@ -96,27 +96,15 @@
                                                         <label class="control-label col-sm-3" for="filterSelection">
                                                             Selecciona filtro:
                                                         </label>
-                                                        <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
-                                                            <option value="0">Filtrar por dni, nombre, primer apellido, segundo apellido o login</option>
-                                                            <option value="1">Filtrar por id</option>
-                                                            <option value="2">Filtrar por fecha de nacimiento</option>
-                                                            <option value="3">Filtrar por tipo de usuario</option>
+                                                        <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">                                                            
+                                                            <option value="0">Filtrar por ID</option>
+                                                            <option value="1">Filtrar por ID de Pedido</option>
+                                                            <option value="2">Filtrar por ID de Producto</option>
                                                         </select>
                                                     </form>
                                                 </div>
-                                                <div class="col-md-7">
+                                                <div class="col-md-7">                                                    
                                                     <div ng-show="filterType == 0">
-                                                        <cplistfilterbystring
-                                                            url="url"
-                                                            fields="filterString"
-                                                            rpp="rpp"
-                                                            numpage="numpage"
-                                                            orderparams="orderParams"
-                                                            filterparams="filterParams">
-                                                        </cplistfilterbystring>
-                                                    </div>
-                                                    <p></p>
-                                                    <div ng-show="filterType == 1">
                                                         <cplistfilterbynumber
                                                             url="url"
                                                             fields="filterNumber"
@@ -127,21 +115,22 @@
                                                         </cplistfilterbynumber>
                                                     </div>
                                                     <p></p>
-                                                    <div ng-show="filterType == 2">
-                                                        <cplistfilterbydate
+                                                    <div ng-show="filterType == 1">
+                                                        <cplistfilterbyforeign
                                                             url="url"
-                                                            fields="filterDate"
+                                                            field="filterIDPedido"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
-                                                            filterparams="filterParams">
-                                                        </cplistfilterbydate>
+                                                            filterparams="filterParams"
+                                                            profile="profile">
+                                                        </cplistfilterbyforeign>
                                                     </div>
                                                     <p></p>
-                                                    <div ng-show="filterType == 3">
+                                                    <div ng-show="filterType == 2">
                                                         <cplistfilterbyforeign
                                                             url="url"
-                                                            field="filterTipousuario"
+                                                            field="filterIDProducto"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"

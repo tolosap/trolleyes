@@ -98,22 +98,22 @@
                                                         </label>
                                                         <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
                                                             <option value="0">Filtrar por tiene iva</option>
-                                                            <option value="1">Filtrar por id</option>
+                                                            <option value="1">Filtrar por id o cantidad de iva</option>
                                                             <option value="2">Filtrar por fecha</option>
-                                                            <option value="3">Filtrar por ID de usuario</option>                                                            
+                                                            <option value="3">Filtrar por ID de usuario</option>
                                                         </select>
                                                     </form>
                                                 </div>
                                                 <div class="col-md-7">
                                                     <div ng-show="filterType == 0">
-                                                        <cplistfilterbystring
+                                                        <cplistfilterbyboolean
                                                             url="url"
                                                             fields="filterBoolean"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
-                                                        </cplistfilterbystring>
+                                                        </cplistfilterbyboolean>
                                                     </div>
                                                     <p></p>
                                                     <div ng-show="filterType == 1">
@@ -141,7 +141,7 @@
                                                     <div ng-show="filterType == 3">
                                                         <cplistfilterbyforeign
                                                             url="url"
-                                                            field="filterIDUser"
+                                                            field="filterUsuario"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
@@ -183,7 +183,7 @@
                                                     <li><input type="checkbox" ng-model="visibles.fecha" ng-checked="visibles.fecha">Fecha</li>
                                                     <li><input type="checkbox" ng-model="visibles.iva" ng-checked="visibles.iva" >IVA</li>
                                                     <li><input type="checkbox" ng-model="visibles.id_usuario" ng-checked="visibles.id_usuario" >ID Usuario</li>
-                                                    <li><input type="checkbox" ng-model="visibles.tiene_iva" ng-checked="visibles.tiene_iva" >Tiene IVA</li>                                                    
+                                                    <li><input type="checkbox" ng-model="visibles.tiene_iva" ng-checked="visibles.tiene_iva" >Tiene IVA</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -214,7 +214,7 @@
                                                     <a ng-click="doorder('tiene_iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('tiene_iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
-                                                
+
                                                 <th  class="text-center">Acciones</th>
                                             </tr>
                                             <tbody>
@@ -225,8 +225,7 @@
                                                     <td ng-show="visibles.id_usuario" class="text-center">
                                                         <a href="usuario/{{profile}}/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.id}} {{obj.obj_usuario.nombre}}</a>
                                                     </td>
-                                                    <td ng-show="visibles.tiene_iva">{{obj.tiene_iva}}</td>                                                    
-                                                    
+                                                    <td ng-show="visibles.tiene_iva" class="text-center" ng-bind-html="obj.tiene_iva | booleanizate">{{obj.tiene_iva}}</td>
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">

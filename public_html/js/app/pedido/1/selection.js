@@ -29,8 +29,8 @@
 'use strict';
 
 moduloPedido.controller('PedidoSelection1Controller',
-        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
-            function ($scope, $modalInstance, serverCallService, $location, toolService) {
+        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService', 'objectService',
+            function ($scope, $modalInstance, serverCallService, $location, toolService, objectService) {
                 $scope.ob = 'pedido';
                 $scope.op = "selection";
                 //---
@@ -40,6 +40,7 @@ moduloPedido.controller('PedidoSelection1Controller',
                 //---
                 $scope.status = null;
                 $scope.debugging = true;
+                $scope.objectService = objectService;
                 //---
                 $scope.orderParams = null;
                 $scope.filterParams = null;

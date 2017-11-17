@@ -46,11 +46,10 @@ moduloLineadepedido.controller('LineadepedidoPList1Controller',
                 //---
                 $scope.objectService = objectService;
                 //---
-                $scope.filterString = [{'name': 'dni', 'longname': 'DNI'}, {'name': 'nombre', 'longname': 'Nombre'}, {'name': 'primer_apellido', 'longname': 'Primer apellido'}, {'name': 'segundo_apellido', 'longname': 'Segundo apellido'}, {'name': 'login', 'longname': 'Login'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
-                $scope.filterDate = [{'name': 'fecha_nacimiento', 'longname': 'Fecha de nacimiento'}];
-                $scope.filterBoolean = null;
-                $scope.filterTipousuario = {'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']};
+                
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name':'cantidad','longname':'Cantidad'}];
+                $scope.filterIDPedido = {'name':'id_pedido','longname':'ID de Pedido','reference':'pedido','description':['id']};
+                $scope.filterIDProducto = {'name':'id_producto','longname':'ID de Producto','reference':'producto','description':['id','descripcion']};
                 
                 //---
                 $scope.visibles = {};
