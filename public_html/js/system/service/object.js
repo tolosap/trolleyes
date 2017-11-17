@@ -45,6 +45,9 @@ moduloServicios.factory('objectService', function () {
                 case "linea_pedido":
                     return 'fa fa-bars';
                     break;              
+                case "carrito":
+                    return 'fa fa-shopping-cart';
+                    break;              
                 default:
                     return null;
             }
@@ -65,6 +68,9 @@ moduloServicios.factory('objectService', function () {
                     break;               
                 case "linea_pedido":
                     return "Linea de Pedido";
+                    break;               
+                case "carrito":
+                    return "Carrito";
                     break;               
                 default:
                     return null;
