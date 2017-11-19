@@ -40,7 +40,7 @@ moduloServicios.factory('objectService', function () {
                     return 'fa fa-sticky-note-o ';
                     break;              
                 case "producto":
-                    return 'fa-product-hunt';
+                    return 'fa fa-rebel';
                     break;              
                 case "linea_pedido":
                     return 'fa fa-bars';

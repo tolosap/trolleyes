@@ -207,7 +207,8 @@
                                                                 <a class="btn btn-default btn-xs" title="Pedido" href="pedido/{{profile}}/plistXproducto/{{obj.id}}/1/10">
                                                                     <span ng-class="objectService.getIcon('pedido')"></span>
                                                                 </a>
-                                                                <a class="btn btn-default btn-xs" title="Añadir al carrito" href="carrito/{{profile}}/add/{{obj.id}}">
+                                                                <input type="number" name="cantidad" min="1" max="obj.existencias" ng-model="cantidad.value">
+                                                                <a class="btn btn-default btn-xs" title="Añadir al carrito" href="carrito/{{profile}}/add/{{obj.id}}/{{cantidad.value}}">
                                                                     <span ng-class="objectService.getIcon('carrito')"></span>
                                                                 </a>
                                                             </div>

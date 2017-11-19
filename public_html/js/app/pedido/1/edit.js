@@ -25,67 +25,63 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 'use strict';
-moduloCarrito.controller('CarritoList1Controller',
+moduloPedido.controller('PedidoEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
-                $scope.ob = "carrito";
-                $scope.op = "list";
+                $scope.ob = "pedido";
+                $scope.op = "edit";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
-                //----
-                $scope.numpage = toolService.checkDefault(1, $routeParams.page);
-                $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
-                $scope.neighbourhood = constantService.getGlobalNeighbourhood();
                 //---
-                $scope.orderParams = toolService.checkEmptyString($routeParams.order);
-                $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
+                $scope.bean = {};
+                $scope.bean.obj_pedido = {"id": 0};
+                //---
+                $scope.id = $routeParams.id;
                 //---
                 $scope.objectService = objectService;
                 //---
-                $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripcion'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name':'codigo', 'longname':'Codigo'},{'name':'existencias','longname':'Existencias'},{'name':'precio','longname':'Precio'}];                
-                //---
-                $scope.visibles = {};
-                $scope.visibles.cantidad = true;
-                $scope.visibles.producto = true;
-                $scope.visibles.precio = true;
-                $scope.visibles.total = true;
-                //---
-                function getDataFromServer() {
-                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
-                        if (response.status == 200) {
-                            $scope.registers = response.data.json;
-                            $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
-                            if ($scope.numpage > $scope.pages) {
-                                $scope.numpage = $scope.pages;
-                            }
-                            return serverCallService.getList($scope.ob);
+                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 200) {
+                            $scope.status = null;
+                            $scope.bean = response.data.json;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
-                    }).then(function (response) {
+                    } else {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    }
+                }).catch(function (data) {
+                    $scope.status = "Error en la recepción de datos del servidor";
+                });
+                $scope.save = function () {
+                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
-                            $scope.obj = response.data.json;
+                            if (response.data.status == 200) {
+                                $scope.response = response;
+                                $scope.status = "El registro con id=" + $scope.id + " se ha modificado.";
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
+                            }
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-                }
-                $scope.doorder = function (orderField, ascDesc) {
-                    $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
-                    return false;
+                    ;
+                };
+                $scope.back = function () {
+                    window.history.back();
                 };
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                getDataFromServer();
             }
         ]);
-
-

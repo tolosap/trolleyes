@@ -38,6 +38,27 @@ moduloServicios.factory('serverCallService',
                             return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getcount', 'GET', '');
                         }
                     },
+                    getList: function (strObject, filter) {
+                        if (filter) {
+                            return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=list');
+                        } else {
+                            return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=list');
+                        }
+                    },
+                    getEmpty: function (strObject) {
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=empty');
+
+                    },
+                    getAdd: function (strObject, id, cantidad) {
+
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=add' + '&id=' + id + '&cantidad=' + cantidad);
+
+                    },
+                    getRemove: function (strObject, id, cantidad) {
+
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=remove' + '&id=' + id + '&cantidad=' + cantidad);
+
+                    },
                     getPage: function (strObject, rpp, page, filter, order) {
                         if (filter) {
                             if (order) {

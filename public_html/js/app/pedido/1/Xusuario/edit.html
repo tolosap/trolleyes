@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Edición de ' + objectService.getName(xob)+ ' para el usuario ' + usuariobean.nombre + ' ' + usuariobean.primer_apellido + ' ' + usuariobean.segundo_apellido + ' (dni:' + usuariobean.dni + ')'"></header>
+                        <header ob="ob" title="'Edicion de ' + objectService.getName(ob)+ ' [' + bean.id +'] para el usuario: ' +bean.obj_usuario.nombre+' DNI ('+bean.obj_usuario.dni+')' "></header>
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-success" role="alert" ng-if="debugging">
@@ -42,7 +42,7 @@
                             {{bean|json}}
                         </div>
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
-                            <!-------------------------------------------------><!------------------------------------------------->
+                            <!------------------------------------------------->
                             <div class="form-group" id="id-group">
                                 <label class="control-label col-sm-2" for="identificador">
                                     <span ng-show="true">*</span>
@@ -50,7 +50,7 @@
                                 </label>
                                 <div class="control col-sm-2">
                                     <input type="text"
-                                           ng-model="bean.obj_pedido.id"
+                                           ng-model="bean.id"
                                            id="id"
                                            class="form-control"
                                            name="id"
@@ -86,15 +86,20 @@
                                     ¿Tiene IVA?
                                 </label>
                                 <div class="control col-sm-3">
-                                    <input
-                                        ng-model="bean.tiene_iva"
-                                        type="checkbox"
+                                    <select
                                         id="tiene_iva"
-                                        name="tiene_iva">
+                                        ng-required="true"
+                                        class="form-control"
+                                        name="tiene_iva"
+                                        style="width: 180px"
+                                        ng-model="bean.tiene_iva">
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select>
                                     <span class="help-block" ng-if="!outerForm.tiene_iva.$pristine && outerForm.tiene_iva.$error.required">El campo es obligatorio</span>
                                 </div>
                             </div>
-                            <!------------------------------------------------->                            
+                            <!------------------------------------------------->
                             <div class="form-group" id="iva-group"
                                  ng-class="{'has-error':(outerForm.iva.$error.pattern && !outerForm.iva.$pristine) ||
                                                      (outerForm.iva.$error.required && !outerForm.iva.$pristine)}">
@@ -118,10 +123,30 @@
                                 </div>
                             </div>
                             <!------------------------------------------------->
+                            <div class="form-group" id="obj_usuario-group"
+                                 ng-class="{'has-error': outerForm.obj_usuario.$error.exists}">
+                                <label class="control-label col-sm-2" for="obj_usuario">
+                                    * Usuario
+                                </label>
+                                <div class="col-md-4">
+                                    <foreign-key2
+                                        bean="bean.obj_usuario"
+                                        form="outerForm"
+                                        name="'obj_usuario'"
+                                        reference="'usuario'"
+                                        profile="profile"
+                                        description="['nombre']"
+                                        required="true">
+                                    </foreign-key2>
+                                    <span class="help-block" ng-if="!outerForm.obj_usuario.$pristine && outerForm.obj_usuario.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_usuario.$pristine && outerForm.obj_usuario.$error.exists">El tipo de usuario no existe</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
                             <div class="control-group text-right">
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plistXusuario/{{bean.obj_usuario.id}}/1/10">Ir al listado de {{ob}}s para {{usuariobean.nombre}} {{usuariobean.primer_apellido}} {{usuariobean.segundo_apellido}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>
@@ -146,7 +171,7 @@
                             </div>
                             <div class="control-group text-right">
                                 <div class="controls">
-                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}s para {{usuariobean.nombre}} {{usuariobean.primer_apellido}} {{usuariobean.segundo_apellido}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" href="home">Cerrar</a>
                                 </div>

@@ -32,6 +32,8 @@ moduloPedido.controller('PedidoPList1Controller',
                 $scope.ob = "pedido";
                 $scope.op = "plist";
                 $scope.profile = 1;
+                $scope.cantidad = {};
+                $scope.cantidad.value = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
