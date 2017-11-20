@@ -54,9 +54,14 @@ moduloServicios.factory('serverCallService',
                         return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=add' + '&id=' + id + '&cantidad=' + cantidad);
 
                     },
-                    getRemove: function (strObject, id, cantidad) {
+                    getRemove: function (strObject, id) {
 
-                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=remove' + '&id=' + id + '&cantidad=' + cantidad);
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=remove' + '&id=' + id);
+
+                    },
+                    getBuy: function (strObject) {
+
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=buy');
 
                     },
                     getPage: function (strObject, rpp, page, filter, order) {
